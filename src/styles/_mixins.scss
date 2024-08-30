@@ -1,0 +1,32 @@
+// Mixin pour une police de texte
+@mixin font($size, $weight: normal, $family: $font-family-base) {
+    font-size: $size;
+    font-weight: $weight;
+    font-family: $family;
+}
+
+// Mixin pour les styles de conteneur flexibles
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+// Mixin pour une mise en page responsive
+@mixin responsive($property, $small, $medium, $large) {
+    #{$property}: $small;
+
+    @media (min-width: 576px) {
+        #{$property}: $medium;
+    }
+
+    @media (min-width: 768px) {
+        #{$property}: $large;
+    }
+}
+
+// Mixin pour les ombrages
+@mixin box-shadow($shadow: $box-shadow-default) {
+    box-shadow: $shadow;
+}

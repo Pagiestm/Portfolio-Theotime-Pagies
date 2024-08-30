@@ -1,0 +1,23 @@
+// Couleurs
+$color-primary: #333; // Conservé pour d'autres éléments si besoin
+$color-secondary: #f0f0f0; // Conservé pour d'autres éléments si besoin
+$color-accent: #9f86c0; // Violet accentué pour les éléments interactifs
+$color-text: #ffffff; // Texte blanc pour contraster sur fond sombre
+$color-background: #000000; // Fond noir
+$color-blur: rgba(255, 255, 255, 0.1); // Couleur blanche avec transparence pour l'effet de flou
+$color-border: #ddd; // Conservé pour les bordures si besoin
+
+
+// Polices
+$font-family-base: 'Arial', sans-serif;
+$font-size-base: 16px;
+$font-size-large: 24px;
+$font-size-title: 28px;
+
+// Espacements
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
+
+// Ombres
+$box-shadow-default: 0 2px 8px rgba(0, 0, 0, 0.1);

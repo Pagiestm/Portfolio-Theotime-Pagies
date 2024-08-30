@@ -1,0 +1,80 @@
+@import '../variables';
+@import '../mixins';
+
+.home {
+    padding: $spacing-large;
+    flex-grow: 1;
+    margin-top: 100px;
+
+    &__profile {
+        @include flex-center(row, center, center);
+        margin-bottom: $spacing-large;
+    }
+
+    &__content {
+        margin-left: $spacing-medium;
+    }
+
+    &__intro {
+        @include font($font-size-large);
+        margin-bottom: $spacing-small;
+    }
+}
+
+.portfolio {
+    &__title {
+        @include font($font-size-title);
+        margin-bottom: $spacing-medium;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: $spacing-medium;
+    }
+
+    &__item {
+        background-color: $color-background;
+        padding: $spacing-medium;
+        border-radius: 8px;
+        @include box-shadow;
+    }
+
+    &__item-title {
+        @include font($font-size-large);
+        margin-bottom: $spacing-small;
+    }
+
+    &__item-description {
+        @include font($font-size-base);
+    }
+}
+
+.contact {
+    &__title {
+        @include font($font-size-title);
+        margin-bottom: $spacing-medium;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-small;
+    }
+
+    &__input,
+    &__textarea {
+        padding: $spacing-small;
+        border: 1px solid $color-border;
+        border-radius: 4px;
+    }
+
+    &__button {
+        padding: $spacing-small;
+        background-color: $color-primary;
+        color: $color-background;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}

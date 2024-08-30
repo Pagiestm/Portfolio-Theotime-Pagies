@@ -1,0 +1,45 @@
+@import '../variables';
+@import '../mixins';
+
+.header {
+    color: $color-text;
+    padding: $spacing-medium 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    &__container {
+        @include flex-center(row, space-between, center);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 $spacing-large;
+    }
+
+    &__title {
+        font-size: $font-size-title;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    &__nav {
+        display: flex;
+        gap: $spacing-medium;
+    }
+
+    &__link {
+        color: $color-text;
+        font-size: $font-size-base;
+        text-transform: uppercase;
+        padding: $spacing-small $spacing-medium;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        border-radius: 4px;
+
+        &:hover,
+        &:focus {
+            color: $color-background;
+            background-color: $color-accent;
+        }
+    }
+}
