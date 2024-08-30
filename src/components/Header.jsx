@@ -4,11 +4,11 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <h1 className="header__title">Théotime Pagies</h1>
         <nav className="header__nav">
-          <a href="#about" className="header__link">À propos</a>
-          <a href="#portfolio" className="header__link">Portfolio</a>
-          <a href="#contact" className="header__link">Contact</a>
+          <a href="" className="header__link">À propos</a>
+          <a href="" className="header__link">Mes projets</a>
+          <a href="" className="header__link">Expériences</a>
+          <a href="" className="header__link">Contact</a>
         </nav>
       </div>
     </header>
