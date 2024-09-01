@@ -1,20 +1,23 @@
 import React from 'react';
-import Home from './pages/Home';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import SectionAbout from './components/SectionAbout';
+import SectionPortfolio from './components/SectionPortfolio';
+import './index.css'
 import Footer from './components/Footer';
-import './styles/index.scss';
-import Background from './components/Background';
 
-const App = () => {
+function App() {
   return (
-    <div className="app">
-      <Header />
-      <Home />
-      <Background />
+    <div className="font-sans bg-gray-900 text-white">
+      <Navbar />
+      <HeroSection />
+      <SectionAbout />
+      <SectionPortfolio />
       <Footer />
     </div>
   );
-};
+}
 
 export default App;
+
 
