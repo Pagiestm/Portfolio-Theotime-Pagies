@@ -9,7 +9,7 @@ const HeroSection = () => {
             className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-900 to-gray-800 text-center md:text-left px-4 md:px-16"
         >
             {/* Conteneur pour l'image et l'animation */}
-            <div className="relative flex justify-center items-center w-full mb-12 md:mb-0 mt-6 md:mt-0">
+            <div className="relative flex justify-center items-center w-full mb-12 md:mb-0 mt-24 md:mt-0">
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{
