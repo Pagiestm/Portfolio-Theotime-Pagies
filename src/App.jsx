@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import Navbar from './components/Navbar';
 import SectionAbout from './components/SectionAbout';
 import SectionPortfolio from './components/SectionPortfolio';
 import './index.css'
@@ -19,5 +19,3 @@ function App() {
 }
 
 export default App;
-
-

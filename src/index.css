@@ -2,17 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes moveVertically {
     0% {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
 
     50% {
-        transform: translateY(5px);
+        transform: translateY(10px);
     }
 
     100% {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
 }
 

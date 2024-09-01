@@ -9,7 +9,7 @@ const HeroSection = () => {
             className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-900 to-gray-800 text-center md:text-left px-4 md:px-16"
         >
             {/* Conteneur pour l'image et l'animation */}
-            <div className="relative flex justify-center items-center w-full mb-8 md:mb-0">
+            <div className="relative flex justify-center items-center w-full mb-12 md:mb-0">
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{
@@ -47,7 +47,7 @@ const HeroSection = () => {
                 </h2>
 
                 {/* Nom avec dégradé animé */}
-                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-8">
+                <p className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-8">
                     <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                         Théotime Pagies
                     </span>
