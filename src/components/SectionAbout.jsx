@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CodeEditor from './CodeEditor';
+import { SparklesCore } from "./ui/sparkles";
 
 const SectionAbout = () => {
   const initialScript = `function greet(name) {
@@ -26,11 +27,29 @@ console.log(greet('tout le monde'));`;
 
   return (
     <section id="about" className="flex flex-col justify-center items-center min-h-screen p-10 bg-gray-800">
-      <h2 className="text-4xl font-bold mb-6 text-white relative">
-        <span className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 opacity-20 blur-md rounded-lg"></span>
-        <span className="relative text-shadow-lg">À Propos de Moi</span>
-      </h2>
-      <p className="text-lg max-w-2xl text-center mb-10 text-white">
+      <div className="bg-gray-800 w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
+        <h1 className="md:text-4xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20">
+          À Propos de Moi
+        </h1>
+        <div className="w-[40rem] h-40 relative">
+          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+          <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+          <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={1}
+            particleDensity={1200}
+            className="w-full h-full"
+            particleColor="#FFFFFF"
+          />
+
+          <div className="absolute inset-0 bg-gray-800 w-full h-full [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+        </div>
+      </div>
+      <p className="text-lg max-w-2xl text-center mb-10 text-white mt-6">
         Passionné par le développement web et la création d'expériences numériques, je suis un développeur front-end avec une expertise en React et Tailwind CSS.
       </p>
       <CodeEditor code={code} setCode={setCode} executeCode={executeCode} output={output} />
