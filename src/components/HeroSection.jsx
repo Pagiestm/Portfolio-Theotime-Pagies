@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Spotlight } from "./ui/spotlight";
 import TheotimePhoto from '../assets/Theotime.png';
 
 const HeroSection = () => {
@@ -8,6 +9,10 @@ const HeroSection = () => {
             id="home"
             className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-black via-gray-900 to-gray-800 text-center md:text-left px-4 md:px-16"
         >
+            <Spotlight
+                className="-top-40 left-0 md:left-60 md:-top-20"
+                fill="white"
+            />
             {/* Conteneur pour l'image et l'animation */}
             <div className="relative flex justify-center items-center w-full mb-12 md:mb-0 mt-24 md:mt-0">
                 <motion.div

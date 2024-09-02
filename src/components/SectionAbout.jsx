@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CodeEditor from './CodeEditor';
-import { SparklesCore } from "./ui/sparkles";
 
 const SectionAbout = () => {
   const initialScript = `function greet(name) {
@@ -31,7 +30,7 @@ console.log(greet('tout le monde'));`;
         <h1 className="md:text-4xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20">
           À Propos de Moi
         </h1>
-        <div className="w-[40rem] h-40 relative">
+        <div className="w-[40rem] h-10 relative">
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
           <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
