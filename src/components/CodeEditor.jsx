@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Button } from './ui/moving-border';
 
 const CodeEditor = ({ code, setCode, executeCode, output }) => {
   const codeRef = useRef(null);
@@ -46,13 +47,14 @@ const CodeEditor = ({ code, setCode, executeCode, output }) => {
         >
           {code}
         </code>
-        <div className="flex justify-center md:justify-start">
-          <button
+        <div className="flex justify-center md:justify-start mt-4">
+          <Button
             onClick={executeCode}
-            className="mt-4 inline-block rounded-2xl px-8 py-3 text-sm font-medium transition hover:scale-110 hover:shadow-xl bg-gradient-to-r from-purple-500 to-blue-500"
+            borderRadius="1.75rem"
+            className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
           >
             Exécuter le Code
-          </button>
+          </Button>
         </div>
       </div>
       <div className="flex-1 w-full">
