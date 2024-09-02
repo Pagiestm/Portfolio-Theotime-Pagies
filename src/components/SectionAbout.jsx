@@ -8,8 +8,8 @@ import { DiMysql } from 'react-icons/di';
 const SectionAbout = () => {
 
   return (
-    <section id="about" className="flex flex-col justify-center items-center min-h-screen p-10 bg-gray-800">
-      <div className="bg-gray-800 w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-6">
+    <section id="about" className="flex flex-col justify-center items-center min-h-screen p-6 bg-gray-800">
+      <div className="bg-gray-800 w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-6 mt-10">
         <h1 className="md:text-4xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20">
           À PROPOS
         </h1>
