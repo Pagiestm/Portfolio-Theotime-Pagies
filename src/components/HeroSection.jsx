@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Spotlight } from "./ui/spotlight";
+import { Spotlight } from "./ui/Spotlight";
 import TheotimePhoto from '../assets/Theotime.png';
 
 const HeroSection = () => {
