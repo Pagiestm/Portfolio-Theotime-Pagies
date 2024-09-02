@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CodeEditor from './CodeEditor';
 
 const SectionPortfolio = () => {
+  const initialScript = `function greet(name) {
+    return 'Bonjour, ' + name + '!';
+  }
+  
+  console.log(greet('tout le monde'));`;
+
+  const [code, setCode] = useState(initialScript);
+  const [output, setOutput] = useState('');
+
+  const executeCode = () => {
+    try {
+      const consoleLog = [];
+      const console = {
+        log: (msg) => consoleLog.push(msg),
+      };
+      eval(code);
+      setOutput(consoleLog.join('\n'));
+    } catch (error) {
+      setOutput(error.message);
+    }
+  };
+
   return (
     <section id="portfolio" className="flex flex-col justify-center items-center min-h-screen p-10 bg-gradient-to-b from-gray-800 to-gray-900">
       <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
@@ -20,6 +43,7 @@ const SectionPortfolio = () => {
           <p className="text-sm text-gray-400">Description du projet ici...</p>
         </div>
       </div>
+      <CodeEditor code={code} setCode={setCode} executeCode={executeCode} output={output} />
     </section>
   );
 };
