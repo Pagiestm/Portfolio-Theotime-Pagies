@@ -68,7 +68,7 @@ const TripModal = ({
                 </CardBody>
             </CardContainer>
             <ModalBody>
-                <ModalContent>
+                <ModalContent className="max-h-[80vh] overflow-y-auto">
                     <h4 className="text-lg md:text-2xl text-white font-bold text-center mb-8">
                         {modalTitle}{" "}
                     </h4>
