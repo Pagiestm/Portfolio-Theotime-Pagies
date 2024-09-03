@@ -50,7 +50,7 @@ const SectionAbout = () => {
             <div className="bg-gradient-to-r from-[#84ba64] to-green-700 p-4 rounded-full flex items-center justify-center">
               <FaNodeJs className="text-white text-4xl" />
             </div>
-            <div className="bg-gradient-to-r from-gray-600 to-gray-800 p-4 rounded-full flex items-center justify-center">
+            <div className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center">
               <SiExpress className="text-white text-4xl" />
             </div>
             <div className="bg-gradient-to-r from-[#2f265f] to-blue-700 p-4 rounded-full flex items-center justify-center">

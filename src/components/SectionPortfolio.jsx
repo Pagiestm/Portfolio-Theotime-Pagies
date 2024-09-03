@@ -3,8 +3,8 @@ import TripModal from './TripModal';
 import CodeEditor from './CodeEditor';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
-import { FaVuejs, FaReact, FaSymfony, FaNodeJs } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiPrisma, SiPostgresql } from 'react-icons/si';
+import { FaVuejs, FaSymfony, FaNodeJs } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql } from 'react-icons/si';
 import { DiMysql } from 'react-icons/di';
 
 const SectionPortfolio = () => {
@@ -34,8 +34,8 @@ const SectionPortfolio = () => {
   // Liste de tous mes projets dans mon portfolio
   const allProjects = [
     {
-      title: "CarbonTrack",
-      description: "Projet réaliser seul sur mon temps personnel de juillet à août 2024.",
+      title: "CarbonTrack - juillet à août 2024",
+      description: "CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.",
       cardImage: "/images/projets/CarbonTrack/CarbonTrack.png",
       modalTitle: "CarbonTrack",
       modalContent: (
@@ -82,8 +82,8 @@ const SectionPortfolio = () => {
       siteLink: "https://carbon-track-one.vercel.app/"
     },
     {
-      title: "Click'n Party",
-      description: "Projet réaliser à l'école deans le cadre du MyDigitalProject à MyDigitalSchool de avril à juin 2024.",
+      title: "Click'n Party - avril à juin 2024",
+      description: "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements. En connectant directement les propriétaires de lieux exceptionnels avec les organisateurs d'événements.",
       cardImage: "/images/projets/Click-n-party/Click-n-party.png",
       modalTitle: "Click'n Party",
       modalContent: (
@@ -124,6 +124,55 @@ const SectionPortfolio = () => {
       pdf: "/images/projets/Click-n-party/Dossier-de-projet-Théotime-Pagies.pdf",
       githubLink: "https://github.com/Pagiestm/Click-n-Party",
       siteLink: "https://click-n-party.mds-lille.yt/"
+    },
+    {
+      title: "Luminous Movies - mai à juin 2024",
+      description: "Luminous-Movies est une application permettant d'accéder aux informations sur des films. Elle offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche. De plus, une interface d'administration a été développée pour la gestion des films et des catégories.",
+      cardImage: "/images/projets/Luminous-Movies/Luminous-Movies.png",
+      modalTitle: "Luminous Movies",
+      modalContent: (
+        <div>
+          <p>Luminous-Movies est une application permettant d'accéder aux informations sur des films. Cette application offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche de films. De plus, une interface d'administration a été développée pour la gestion complète des films et des catégories.</p>
+          <ul className="list-disc list-inside mt-4">
+            <li>Ce projet à était réalisé par groupe de 3 personnes pendant le cours de développement mobile.</li>
+            <li>Création de la maquette sur figma.</li>
+            <li>Réalisation : Digramme de cas d'utilisation.</li>
+            <li>Fonctionnalités principales : Authentification, consultation des détails d'un film, notation (sur 5), favoris, recherche, gestion du profil, gestion des films et catégories (Admin).</li>
+          </ul>
+          <div className="flex flex-wrap mt-6">
+            <div className="bg-gradient-to-r from-[#84ba64] to-green-700 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <FaNodeJs className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#47a248] to-green-700 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiMongodb className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiExpress className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#00c4b3] to-blue-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiDart className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#02569b] to-blue-800 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiFlutter className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+          </div>
+        </div>
+      ),
+      images: [
+        "/images/projets/Luminous-Movies/Luminous-Movies2.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies7.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies8.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies3.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies4.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies5.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies6.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies7.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies8.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies9.png",
+        "/images/projets/Luminous-Movies/Luminous-Movies10.png"
+      ],
+      figma: "https://www.figma.com/design/zhMUnAN6hLZLXXYG8TjufX/Application-Mobile?node-id=1-24&node-type=CANVAS&t=WgTDf6b9B2ZUPuGZ-0",
+      githubLink: "https://github.com/Pagiestm/Luminous-Movies",
     }
   ];
 
@@ -146,7 +195,7 @@ const SectionPortfolio = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 mt-10 mb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-10 mt-10 mb-10">
         {/* Affiche mes projets selon la limite définie par projectsToShow */}
         {allProjects.slice(0, projectsToShow).map((project, index) => (
           <TripModal
@@ -180,6 +229,18 @@ const SectionPortfolio = () => {
                 className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
               >
                 Documentation API
+              </motion.a>
+            )}
+            {project.figma && (
+              <motion.a
+                href={project.figma}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+              >
+                Maquette
               </motion.a>
             )}
             {project.githubLink && (
