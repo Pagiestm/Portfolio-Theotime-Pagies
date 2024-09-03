@@ -4,7 +4,8 @@ import CodeEditor from './CodeEditor';
 import { motion } from "framer-motion";
 import { FaSymfony } from 'react-icons/fa';
 import { Button } from './ui/moving-border';
-import { SiJavascript, SiTailwindcss, SiFigma, SiNotion, SiTrello } from 'react-icons/si';
+import { SiJavascript, SiTailwindcss, } from 'react-icons/si';
+import { DiMysql } from 'react-icons/di';
 
 const SectionPortfolio = () => {
   const initialScript = `function greet(name) {
@@ -59,17 +60,17 @@ const SectionPortfolio = () => {
     },
     {
       title: "Click'n Party",
-      description: "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.",
+      description: "Projet réaliser à l'école deans le cadre du MyDigitalProject en 2024.",
       cardImage: "/images/projets/Click-n-party/Click-n-party.png",
       modalTitle: "Click'n Party",
       modalContent: (
         <div>
-          <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
+          <p className="text-center">Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
           <ul className="list-disc list-inside mt-4">
-            <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
-            <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
-            <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
-            <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
+            <li>Groupe de 6 personnes constitué d'un designer, deux marketings, deux chefs de projet et moi même en développement.</li>
+            <li>Réalisation : Digrammes de cas d'utilisation, de séquence, d'activité.</li>
+            <li>Méthode Merise : MCD, MLD et MPD.</li>
+            <li>Fonctionnalités principales : Authentification, location, réservation, paiement, facturation, commentaire, email...</li>
           </ul>
           <div className="flex flex-wrap mt-6">
             <div className="bg-gradient-to-r from-gray-700 to-gray-900 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
@@ -81,14 +82,8 @@ const SectionPortfolio = () => {
             <div className="bg-gradient-to-r from-[#38bdf8] to-teal-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
               <SiTailwindcss className="text-white text-2xl md:text-3xl lg:text-4xl" />
             </div>
-            <div className="bg-gradient-to-r from-[#f24e1e] to-orange-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
-              <SiFigma className="text-white text-2xl md:text-3xl lg:text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
-              <SiNotion className="text-white text-2xl md:text-3xl lg:text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#0079bf] to-blue-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4">
-              <SiTrello className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            <div className="bg-gradient-to-r from-orange-400 to-orange-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <DiMysql className="text-white text-2xl md:text-3xl lg:text-4xl" />
             </div>
           </div>
         </div>
