@@ -9,6 +9,8 @@ import {
 } from "./ui/animated-modal";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { motion } from "framer-motion";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 const TripModal = ({
     title = "Default Title",
@@ -16,7 +18,7 @@ const TripModal = ({
     buttonText = "Détails",
     cardImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     modalTitle = "Book your trip",
-    modalContent, 
+    modalContent,
     images = [],
     children
 }) => {
@@ -38,13 +40,15 @@ const TripModal = ({
                         {description}
                     </CardItem>
                     <CardItem translateZ="100" className="w-full mt-4">
-                        <img
-                            src={cardImage}
-                            height="1000"
-                            width="1000"
-                            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                            alt="Card Thumbnail"
-                        />
+                        <Zoom>
+                            <img
+                                src={cardImage}
+                                height="1000"
+                                width="1000"
+                                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                                alt="Card Thumbnail"
+                            />
+                        </Zoom>
                     </CardItem>
                     <div className="flex justify-between items-center mt-10">
                         <CardItem
@@ -74,21 +78,22 @@ const TripModal = ({
                     </h4>
                     <div className="flex justify-center items-center mb-8">
                         {images.map((image, idx) => (
-                            <motion.div
-                                key={"images" + idx}
-                                style={{ rotate: Math.random() * 20 - 10 }}
-                                whileHover={{ scale: 1.1, rotate: 0, zIndex: 100 }}
-                                whileTap={{ scale: 1.1, rotate: 0, zIndex: 100 }}
-                                className="rounded-xl -mr-4 mt-4 p-1 bg-white bg-neutral-800 border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
-                            >
-                                <img
-                                    src={image}
-                                    alt="project images"
-                                    width="500"
-                                    height="500"
-                                    className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
-                                />
-                            </motion.div>
+                            <Zoom key={"images" + idx}>
+                                <motion.div
+                                    style={{ rotate: Math.random() * 20 - 10 }}
+                                    whileHover={{ scale: 1.1, rotate: 0, zIndex: 100 }}
+                                    whileTap={{ scale: 1.1, rotate: 0, zIndex: 100 }}
+                                    className="rounded-xl -mr-4 mt-4 p-1 bg-white bg-neutral-800 border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
+                                >
+                                    <img
+                                        src={image}
+                                        alt="project images"
+                                        width="500"
+                                        height="500"
+                                        className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+                                    />
+                                </motion.div>
+                            </Zoom>
                         ))}
                     </div>
                     {modalContent ? (
