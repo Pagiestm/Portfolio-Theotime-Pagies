@@ -25,7 +25,7 @@ const TripModal = ({
     return (
         <Modal>
             <CardContainer className="inter-var">
-                <CardBody className="relative group/card dark:hover:shadow-2xl dark:hover:shadow-blue-300/[0.1] bg-gray-900 border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-3xl p-6 border">
+                <CardBody className="relative group/card hover:shadow-2xl hover:shadow-blue-300/[0.1] bg-gray-900 border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-3xl p-6 border">
                     <CardItem
                         translateZ="50"
                         className="text-xl font-bold text-neutral-600 text-white"
@@ -63,7 +63,7 @@ const TripModal = ({
                             <CardItem
                                 translateZ={20}
                                 as="button"
-                                className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
                             >
                                 {buttonText}
                             </CardItem>
