@@ -35,7 +35,7 @@ const CodeEditor = ({ code, setCode, executeCode, output }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-start w-full max-w-4xl">
+    <div className="flex flex-col md:flex-row items-start w-full max-w-4xl mt-6">
       <div className="flex-1 mb-6 md:mb-0 md:mr-6 w-full">
         <code
           ref={codeRef}
@@ -51,7 +51,7 @@ const CodeEditor = ({ code, setCode, executeCode, output }) => {
           <Button
             onClick={executeCode}
             borderRadius="1.75rem"
-            className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+            className="bg-slate-900 text-black text-white border-neutral-200 border-slate-800"
           >
             Exécuter le Code
           </Button>

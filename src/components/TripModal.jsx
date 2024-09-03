@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const TripModal = ({
     title = "Default Title",
     description = "Default Description",
-    buttonText = "Details",
+    buttonText = "Détails",
     cardImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     modalTitle = "Book your trip",
     modalContent, 
@@ -69,7 +69,7 @@ const TripModal = ({
             </CardContainer>
             <ModalBody>
                 <ModalContent>
-                    <h4 className="text-lg md:text-2xl text-neutral-600 text-neutral-100 font-bold text-center mb-8">
+                    <h4 className="text-lg md:text-2xl text-white font-bold text-center mb-8">
                         {modalTitle}{" "}
                     </h4>
                     <div className="flex justify-center items-center mb-8">

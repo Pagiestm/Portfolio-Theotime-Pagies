@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import TripModal from './TripModal';
 import CodeEditor from './CodeEditor';
 import { motion } from "framer-motion";
+import { FaSymfony } from 'react-icons/fa';
+import { Button } from './ui/moving-border';
+import { SiJavascript, SiTailwindcss, SiFigma, SiNotion, SiTrello } from 'react-icons/si';
 
 const SectionPortfolio = () => {
   const initialScript = `function greet(name) {
@@ -12,6 +15,7 @@ const SectionPortfolio = () => {
 
   const [code, setCode] = useState(initialScript);
   const [output, setOutput] = useState('');
+  const [projectsToShow, setProjectsToShow] = useState(3);
 
   const executeCode = () => {
     try {
@@ -24,6 +28,135 @@ const SectionPortfolio = () => {
     } catch (error) {
       setOutput(error.message);
     }
+  };
+
+  // Liste de tous mes projets dans mon portfolio
+  const allProjects = [
+    {
+      title: "Click'n Party",
+      description: "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.",
+      cardImage: "/images/projets/Click-n-party.png",
+      modalTitle: "Click'n Party",
+      modalContent: (
+        <div>
+          <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
+          <ul className="list-disc list-inside">
+            <li>Technologies utilisées : React, Node.js, MongoDB</li>
+            <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
+            <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
+            <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
+            <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
+          </ul>
+        </div>
+      ),
+      images: [
+        "/images/projets/Click-n-party2.png",
+        "/images/projets/Click-n-party3.png",
+        "/images/projets/Click-n-party2.png"
+      ],
+      githubLink: "https://github.com/Pagiestm/Click-n-Party",
+      siteLink: "https://click-n-party.mds-lille.yt/"
+    },
+    {
+      title: "Click'n Party",
+      description: "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.",
+      cardImage: "/images/projets/Click-n-party/Click-n-party.png",
+      modalTitle: "Click'n Party",
+      modalContent: (
+        <div>
+          <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
+          <ul className="list-disc list-inside mt-4">
+            <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
+            <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
+            <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
+            <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
+          </ul>
+          <div className="flex flex-wrap mt-6">
+            <div className="bg-gradient-to-r from-gray-700 to-gray-900 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <FaSymfony className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#f7df1e] to-yellow-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiJavascript className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#38bdf8] to-teal-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiTailwindcss className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#f24e1e] to-orange-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiFigma className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4">
+              <SiNotion className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+            <div className="bg-gradient-to-r from-[#0079bf] to-blue-600 p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4">
+              <SiTrello className="text-white text-2xl md:text-3xl lg:text-4xl" />
+            </div>
+          </div>
+        </div>
+      ),
+      images: [
+        "/images/projets/Click-n-party/Click-n-party2.png",
+        "/images/projets/Click-n-party/Click-n-party3.png",
+        "/images/projets/Click-n-party/Click-n-party2.png"
+      ],
+      pdf: "/images/projets/Click-n-party/Dossier-de-projet-Théotime-Pagies.pdf",
+      githubLink: "https://github.com/Pagiestm/Click-n-Party",
+      siteLink: "https://click-n-party.mds-lille.yt/"
+    },
+    {
+      title: "Click'n Party 3",
+      description: "Description pour le troisième projet.",
+      cardImage: "/images/projets/Click-n-party.png",
+      modalTitle: "Click'n Party 3",
+      modalContent: (
+        <div>
+          <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
+          <ul className="list-disc list-inside">
+            <li>Technologies utilisées : React, Node.js, MongoDB</li>
+            <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
+            <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
+            <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
+            <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
+          </ul>
+        </div>
+      ),
+      images: [
+        "/images/projets/Click-n-party2.png",
+        "/images/projets/Click-n-party3.png",
+        "/images/projets/Click-n-party2.png"
+      ],
+      githubLink: "https://github.com/Pagiestm/Click-n-Party-3",
+      siteLink: "https://click-n-party-3.mds-lille.yt/"
+    },
+    {
+      title: "Click'n Party 3",
+      description: "Description pour le troisième projet.",
+      cardImage: "/images/projets/Click-n-party.png",
+      modalTitle: "Click'n Party 3",
+      modalContent: (
+        <div>
+          <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
+          <ul className="list-disc list-inside">
+            <li>Technologies utilisées : React, Node.js, MongoDB</li>
+            <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
+            <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
+            <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
+            <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
+          </ul>
+        </div>
+      ),
+      images: [
+        "/images/projets/Click-n-party2.png",
+        "/images/projets/Click-n-party3.png",
+        "/images/projets/Click-n-party2.png"
+      ],
+      githubLink: "https://github.com/Pagiestm/Click-n-Party-3",
+      siteLink: "https://click-n-party-3.mds-lille.yt/"
+    }
+  ];
+
+  // Fonction pour afficher plus de projets
+  const showMoreProjects = () => {
+    setProjectsToShow((prev) => Math.min(prev + 3, allProjects.length));
   };
 
   return (
@@ -41,144 +174,68 @@ const SectionPortfolio = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 mt-10 mb-10">
-        <TripModal
-          title="Click'n Party"
-          description="Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements."
-          buttonText="Details"
-          cardImage="/images/projets/Click-n-party.png"
-          modalTitle="Click'n Party"
-          modalContent={
-            <div>
-              <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
-              <ul className="list-disc list-inside">
-                <li>Technologies utilisées : React, Node.js, MongoDB</li>
-                <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
-                <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
-                <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
-                <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
-              </ul>
-            </div>
-          }
-          images={[
-            "/images/projets/Click-n-party2.png",
-            "/images/projets/Click-n-party3.png",
-            "/images/projets/Click-n-party2.png"
-          ]}
-        >
-          <motion.a
-            href="https://github.com/Pagiestm/Click-n-Party"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+        {/* Affiche mes projets selon la limite définie par projectsToShow */}
+        {allProjects.slice(0, projectsToShow).map((project, index) => (
+          <TripModal
+            key={index}
+            title={project.title}
+            description={project.description}
+            cardImage={project.cardImage}
+            modalTitle={project.modalTitle}
+            modalContent={project.modalContent}
+            images={project.images}
           >
-            Code source
-          </motion.a>
-          <motion.a
-            href="https://click-n-party.mds-lille.yt/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Consulter le site
-          </motion.a>
-        </TripModal>
-
-        <TripModal
-          title="Click'n Party"
-          description="Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements."
-          buttonText="Details"
-          cardImage="/images/projets/Click-n-party.png"
-          modalTitle="Click'n Party"
-          modalContent={
-            <div>
-              <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
-              <ul className="list-disc list-inside">
-                <li>Technologies utilisées : React, Node.js, MongoDB</li>
-                <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
-                <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
-                <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
-                <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
-              </ul>
-            </div>
-          }
-          images={[
-            "/images/projets/Click-n-party2.png",
-            "/images/projets/Click-n-party3.png",
-            "/images/projets/Click-n-party2.png"
-          ]}
-        >
-          <motion.a
-            href="https://github.com/Pagiestm/Click-n-Party"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Code source
-          </motion.a>
-          <motion.a
-            href="https://click-n-party.mds-lille.yt/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Consulter le site
-          </motion.a>
-        </TripModal>
-
-        <TripModal
-          title="Click'n Party"
-          description="Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements."
-          buttonText="Details"
-          cardImage="/images/projets/Click-n-party.png"
-          modalTitle="Click'n Party"
-          modalContent={
-            <div>
-              <p>Click'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p>
-              <ul className="list-disc list-inside">
-                <li>Technologies utilisées : React, Node.js, MongoDB</li>
-                <li>Fonctionnalités principales : Authentification, CRUD, API REST</li>
-                <li>Défis rencontrés : Optimisation des performances, gestion des états</li>
-                <li>Solutions apportées : Utilisation de Redux, mise en cache</li>
-                <li>Prochaines étapes : Ajout de tests unitaires, déploiement sur AWS</li>
-              </ul>
-            </div>
-          }
-          images={[
-            "/images/projets/Click-n-party2.png",
-            "/images/projets/Click-n-party3.png",
-            "/images/projets/Click-n-party2.png"
-          ]}
-        >
-          <motion.a
-            href="https://github.com/Pagiestm/Click-n-Party"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Code source
-          </motion.a>
-          <motion.a
-            href="https://click-n-party.mds-lille.yt/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Consulter le site
-          </motion.a>
-        </TripModal>
+            {project.pdf && (
+              <motion.a
+                href={project.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+              >
+                Dossier de projet
+              </motion.a>
+            )}
+            {project.githubLink && (
+              <motion.a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+              >
+                Code source
+              </motion.a>
+            )}
+            {project.siteLink && (
+              <motion.a
+                href={project.siteLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+              >
+                Consulter le site
+              </motion.a>
+            )}
+          </TripModal>
+        ))}
       </div>
+
+      {/* Bouton pour afficher plus de projets */}
+      {projectsToShow < allProjects.length && (
+        <Button
+          borderRadius="1.75rem"
+          onClick={showMoreProjects}
+          className="px-4 py-2 bg-slate-900 text-black text-white border-neutral-200 border-slate-800"
+        >
+          Voir plus de projets
+        </Button>
+      )}
+
       <CodeEditor code={code} setCode={setCode} executeCode={executeCode} output={output} />
     </section>
   );
