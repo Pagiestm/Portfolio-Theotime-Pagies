@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardSpotlight } from "./ui/card-spotlight";
 import { FaVuejs, FaReact, FaSymfony, FaNodeJs, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiPrisma, SiPostgresql, SiNestjs, SiFlutter, SiSass } from 'react-icons/si';
@@ -6,6 +6,15 @@ import { DiMysql } from 'react-icons/di';
 
 
 const SectionAbout = () => {
+  const [hoveredIcon, setHoveredIcon] = useState('');
+
+  const handleMouseEnter = (iconName) => {
+    setHoveredIcon(iconName);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIcon('');
+  };
 
   return (
     <section id="about" className="flex flex-col justify-center items-center min-h-screen p-6 bg-gray-800">
@@ -47,46 +56,110 @@ const SectionAbout = () => {
             </a>
           </div>
         </div>
-        <CardSpotlight className="h-96 w-80 flex flex-col items-center justify-center">
-          <div className="grid grid-cols-3 gap-4 mt-4 z-20">
-            <div className="bg-gradient-to-r from-[#42b883] to-green-600 p-4 rounded-full flex items-center justify-center">
-              <FaVuejs className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#58c4dc] to-blue-600 p-4 rounded-full flex items-center justify-center">
-              <FaReact className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-gray-700 to-gray-900 p-4 rounded-full flex items-center justify-center">
-              <FaSymfony className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#38bdf8] to-teal-600 p-4 rounded-full flex items-center justify-center">
-              <SiTailwindcss className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#84ba64] to-green-700 p-4 rounded-full flex items-center justify-center">
-              <FaNodeJs className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center">
-              <SiExpress className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#2f265f] to-blue-700 p-4 rounded-full flex items-center justify-center">
-              <SiPrisma className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-orange-400 to-orange-600 p-4 rounded-full flex items-center justify-center">
-              <DiMysql className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#699eca] to-blue-800 p-4 rounded-full flex items-center justify-center">
-              <SiPostgresql className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#ea2845] to-red-700 p-4 rounded-full flex items-center justify-center">
-              <SiNestjs className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#02569B] to-blue-600 p-4 rounded-full flex items-center justify-center">
-              <SiFlutter className="text-white text-4xl" />
-            </div>
-            <div className="bg-gradient-to-r from-[#CF649A] to-pink-600 p-4 rounded-full flex items-center justify-center">
-              <SiSass className="text-white text-4xl" />
-            </div>
+        <div>
+          <div className="h-8 mb-4 flex items-center justify-center">
+            {hoveredIcon && <div className="text-white text-xl">{hoveredIcon}</div>}
           </div>
-        </CardSpotlight>
+          <CardSpotlight className="h-96 w-80 flex flex-col items-center justify-center">
+            <div className="grid grid-cols-3 gap-4 mt-4 z-20">
+            <div
+                className="bg-gradient-to-r from-[#42b883] to-green-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Vue.js')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Vue.js')}
+              >
+                <FaVuejs className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#58c4dc] to-blue-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('React')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('React')}
+              >
+                <FaReact className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-gray-700 to-gray-900 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Symfony')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Symfony')}
+              >
+                <FaSymfony className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#38bdf8] to-teal-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Tailwind CSS')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Tailwind CSS')}
+              >
+                <SiTailwindcss className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#84ba64] to-green-700 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Node.js')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Node.js')}
+              >
+                <FaNodeJs className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#000000] to-gray-800 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Express')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Express')}
+              >
+                <SiExpress className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#2f265f] to-blue-700 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Prisma')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Prisma')}
+              >
+                <SiPrisma className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-orange-400 to-orange-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('MySQL')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('MySQL')}
+              >
+                <DiMysql className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#699eca] to-blue-800 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('PostgreSQL')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('PostgreSQL')}
+              >
+                <SiPostgresql className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#ea2845] to-red-700 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('NestJS')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('NestJS')}
+              >
+                <SiNestjs className="text-white text-4xl" />
+              </div>
+              <div
+                className="bg-gradient-to-r from-[#02569B] to-blue-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Flutter')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Flutter')}
+              >
+                <SiFlutter className="text-white text-4xl" />
+              </div>
+              <div className="bg-gradient-to-r from-[#CF649A] to-pink-600 p-4 rounded-full flex items-center justify-center"
+                onMouseEnter={() => handleMouseEnter('Sass')}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleMouseEnter('Sass')}
+              >
+                <SiSass className="text-white text-4xl" />
+              </div>
+            </div>
+          </CardSpotlight>
+        </div>
       </div>
     </section>
   );
