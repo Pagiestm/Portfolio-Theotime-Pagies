@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardSpotlight } from "./ui/card-spotlight";
-import { FaVuejs, FaReact, FaSymfony, FaNodeJs } from 'react-icons/fa';
+import { FaVuejs, FaReact, FaSymfony, FaNodeJs, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { SiTailwindcss, SiExpress, SiPrisma, SiPostgresql, SiNestjs, SiFlutter, SiSass } from 'react-icons/si';
 import { DiMysql } from 'react-icons/di';
 
@@ -32,6 +32,20 @@ const SectionAbout = () => {
             <br />Actuellement, je suis étudiant en <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">MBA Développeur Full Stack "Manager de projet web digital" de niveau 7 (BAC+5)</span>.<br />
             Je suis également en alternance chez Ailoop, où j'acquiers une expérience professionnelle précieuse en développement web et gestion de projets digitaux.
           </p>
+          <div className="flex space-x-6 mb-4 mt-10">
+            <a href="https://www.linkedin.com/in/th%C3%A9otime-pagies-7352bb221/" target="_blank" rel="noopener noreferrer" className="relative group">
+              <FaLinkedin className="text-3xl xl:text-4xl text-white group-hover:text-black transition-colors duration-300 relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 rounded-full z-0"></div>
+            </a>
+            <a href="https://github.com/Pagiestm" target="_blank" rel="noopener noreferrer" className="relative group">
+              <FaGithub className="text-3xl xl:text-4xl text-white group-hover:text-black transition-colors duration-300 relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 rounded-full z-0"></div>
+            </a>
+            <a href="mailto:pagiestm@gmail.com" className="relative group">
+              <FaEnvelope className="text-3xl xl:text-4xl text-white group-hover:text-black transition-colors duration-300 relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300 rounded-full z-0"></div>
+            </a>
+          </div>
         </div>
         <CardSpotlight className="h-96 w-80 flex flex-col items-center justify-center">
           <div className="grid grid-cols-3 gap-4 mt-4 z-20">
