@@ -72,6 +72,7 @@ const SectionContact = () => {
             .then(
                 () => {
                     toast.success('Email envoyé avec succès !');
+                    form.current.reset();
                 },
                 (error) => {
                     toast.error(`Échec de l'envoi de l'email : ${error.text}`);

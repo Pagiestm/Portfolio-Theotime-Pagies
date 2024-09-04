@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import TripModal from './TripModal';
-import CodeEditor from './CodeEditor';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
 import { FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
@@ -290,8 +289,6 @@ const SectionPortfolio = () => {
           Voir plus de petits projets
         </Button>
       )}
-
-      <CodeEditor code={code} setCode={setCode} executeCode={executeCode} output={output} />
     </section>
   );
 };
