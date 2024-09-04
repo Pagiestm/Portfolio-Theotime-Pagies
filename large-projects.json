@@ -55,7 +55,7 @@
             },
             {
                 "icon": "SiJavascript",
-                "color": "from-[#f7df1e] to-yellow-600"
+                "color": "from-green-400 to-green-600"
             },
             {
                 "icon": "SiTailwindcss",
@@ -93,7 +93,7 @@
             },
             {
                 "icon": "SiMongodb",
-                "color": "from-[#47a248] to-green-700"
+                "color": "from-[#84ba64] to-green-700"
             },
             {
                 "icon": "SiExpress",
@@ -101,11 +101,11 @@
             },
             {
                 "icon": "SiDart",
-                "color": "from-[#00c4b3] to-blue-600"
+                "color": "from-[#58c4dc] to-blue-600"
             },
             {
                 "icon": "SiFlutter",
-                "color": "from-[#02569b] to-blue-800"
+                "color": "from-[#58c4dc] to-blue-600"
             }
         ],
         "images": [

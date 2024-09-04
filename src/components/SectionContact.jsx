@@ -4,11 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { Button } from './ui/moving-border';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const SectionContact = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const form = useRef();
     const [errors, setErrors] = useState({});
+    const [captchaVerified, setCaptchaVerified] = useState(false);
 
     const handleMouseMove = (event) => {
         setMousePosition({ x: event.clientX, y: event.clientY });
@@ -53,7 +55,10 @@ const SectionContact = () => {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        if (!validateForm()) {
+        if (!validateForm() || !captchaVerified) {
+            if (!captchaVerified) {
+                toast.error('Veuillez vérifier le CAPTCHA.');
+            }
             return;
         }
 
@@ -72,6 +77,10 @@ const SectionContact = () => {
                     toast.error(`Échec de l'envoi de l'email : ${error.text}`);
                 },
             );
+    };
+
+    const handleCaptchaChange = (value) => {
+        setCaptchaVerified(!!value);
     };
 
     return (
@@ -123,6 +132,12 @@ const SectionContact = () => {
                                 required
                             />
                             {errors.message && <p className="text-red-500">{errors.message}</p>}
+                            <div className="mb-4">
+                                <ReCAPTCHA
+                                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                                    onChange={handleCaptchaChange}
+                                />
+                            </div>
                             <div className="flex justify-center w-full">
                                 <Button
                                     type="submit"

@@ -3,15 +3,17 @@ import TripModal from './TripModal';
 import CodeEditor from './CodeEditor';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
-import { FaVuejs, FaSymfony, FaNodeJs } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql } from 'react-icons/si';
-import { DiMysql } from 'react-icons/di';
-import projectsData from '../../projects.json';
+import { FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiScikitlearn, SiPlaywright } from 'react-icons/si';
+import { DiMysql, DiSass } from 'react-icons/di';
+import largeprojectsData from '../../large-projects.json';
+import smallprojectsData from '../../small-projects.json';
 
 const iconComponents = {
   FaVuejs,
   FaSymfony,
   FaNodeJs,
+  FaReact,
   SiJavascript,
   SiTailwindcss,
   SiExpress,
@@ -20,7 +22,10 @@ const iconComponents = {
   SiMongodb,
   SiPrisma,
   SiPostgresql,
-  DiMysql
+  DiMysql,
+  DiSass,
+  SiScikitlearn,
+  SiPlaywright
 };
 
 const SectionPortfolio = () => {
@@ -38,7 +43,7 @@ const SectionPortfolio = () => {
 
   useEffect(() => {
     // Charger les projets depuis le fichier JSON
-    setAllProjects(projectsData);
+    setAllProjects([...largeprojectsData, ...smallprojectsData]);
   }, []);
 
   const executeCode = () => {
@@ -202,7 +207,7 @@ const SectionPortfolio = () => {
                     const IconComponent = iconComponents[logo.icon];
                     return (
                       <div key={idx} className={`bg-gradient-to-r ${logo.color} p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4`}>
-                        <IconComponent className="text-white text-2xl md:text-3xl lg:text-4xl" />
+                        <IconComponent className="text-2xl md:text-3xl lg:text-4xl" style={{ color: logo.color.split(' ')[1] }} />
                       </div>
                     );
                   })}
