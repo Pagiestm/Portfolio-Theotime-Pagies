@@ -2,7 +2,7 @@
     {
         "title": "Calculatrice qualité logiciel et tests - juin 2024",
         "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
-        "cardImage": "/images/projets/CarbonTrack/CarbonTrack.png",
+        "cardImage": "/images/projets/Calculatrice/calculatrice.png",
         "modalTitle": "Calculatrice qualité logiciel et tests ",
         "size": "small",
         "modalContent": "<div><p>L'objectif était de concevoir une calculatrice permettant aux utilisateurs de réaliser des sommes, des soustractions et des multiplications. Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. Le choix des technologies était libre. La logique métier devait être testée unitairement. L'interface graphique devait être testée en E2E avec un outil comme Cypress ou Playwright. L'ensemble du développement devait être réalisé en TDD. Le projet devait avoir un linter permettant de vérifier la qualité du code.</p><ul><li>Projet réalisé en cours seul</li><li>Objectifs du projet: Tester de façon unitaire son code, Tester une interface grâce aux tests e2e, Maîtriser une méthodologie de test: Test Driven Development (TDD), Linter et méthode de refactoring.</li></div>",
