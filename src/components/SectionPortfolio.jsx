@@ -3,7 +3,6 @@ import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
 import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
-import { MdRefresh } from 'react-icons/md';
 import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import Select from 'react-select';
@@ -53,7 +52,7 @@ const SectionPortfolio = () => {
 
   // Filtre les petits et les gros projets
   const filteredProjects = allProjects.filter(project =>
-    (selectedOptions.length === 0 || selectedOptions.some(option => project.logos.some(logo => logo.icon === option.value) || project.badge === option.value)) &&
+    (selectedOptions.length === 0 || selectedOptions.some(option => project.logos.some(logo => logo.icon === option.value))) &&
     (searchQuery === '' || project.title.toLowerCase().includes(searchQuery.toLowerCase()) || project.logos.some(logo => logo.icon.toLowerCase().includes(searchQuery.toLowerCase())))
   );
   const smallProjects = filteredProjects.filter(project => project.size === 'small');
@@ -180,25 +179,6 @@ const SectionPortfolio = () => {
             }),
           }}
         />
-      </div>
-
-      {/* Composant de filtre pour les types de projets */}
-      <div className="flex flex-wrap justify-center mb-4">
-        {['Projet perso', 'Projet scolaire'].map((type, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedOptions(selectedOptions.some(option => option.value === type) ? selectedOptions.filter(option => option.value !== type) : [...selectedOptions, { value: type, label: type }])}
-            className={`px-2 py-1 m-2 rounded-full ${selectedOptions.some(option => option.value === type) ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
-          >
-            {type}
-          </button>
-        ))}
-        <button
-          onClick={() => setSelectedOptions([])}
-          className="p-2 m-2 rounded-full bg-red-500 hover:bg-red-700 transition-colors text-white flex items-center justify-center"
-        >
-          <MdRefresh className="text-white text-2xl" />
-        </button>
       </div>
 
       {/* Affiche un message si aucun projet n'est trouvé */}
