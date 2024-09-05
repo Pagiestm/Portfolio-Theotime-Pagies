@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
 import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
 import { MdRefresh } from 'react-icons/md';
-import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiScikitlearn, SiPlaywright } from 'react-icons/si';
+import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
+import Select from 'react-select';
 import largeprojectsData from '../../large-projects.json';
 import smallprojectsData from '../../small-projects.json';
 
@@ -32,7 +33,7 @@ const SectionPortfolio = () => {
   const [largeProjectsToShow, setLargeProjectsToShow] = useState(3);
   const [smallProjectsToShow, setSmallProjectsToShow] = useState(3);
   const [allProjects, setAllProjects] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -40,10 +41,19 @@ const SectionPortfolio = () => {
     setAllProjects([...largeprojectsData, ...smallprojectsData]);
   }, []);
 
+  const options = Object.keys(iconComponents).map(iconKey => ({
+    value: iconKey,
+    label: iconKey,
+    IconComponent: iconComponents[iconKey],
+  }));
+
+  const handleChange = (selected) => {
+    setSelectedOptions(selected || []);
+  };
 
   // Filtre les petits et les gros projets
   const filteredProjects = allProjects.filter(project =>
-    (filter === '' || project.logos.some(logo => logo.icon === filter) || project.badge === filter) &&
+    (selectedOptions.length === 0 || selectedOptions.some(option => project.logos.some(logo => logo.icon === option.value) || project.badge === option.value)) &&
     (searchQuery === '' || project.title.toLowerCase().includes(searchQuery.toLowerCase()) || project.logos.some(logo => logo.icon.toLowerCase().includes(searchQuery.toLowerCase())))
   );
   const smallProjects = filteredProjects.filter(project => project.size === 'small');
@@ -75,7 +85,7 @@ const SectionPortfolio = () => {
 
       {/* Barre de recherche */}
       <div className="w-full flex justify-center mb-6">
-        <div className="relative w-full md:w-1/2 lg:w-1/3">
+        <div className="relative w-full md:w-4/5 lg:w-2/3 2xl:w-1/3">
           <input
             type="text"
             placeholder="Rechercher par titre ou langage..."
@@ -88,25 +98,88 @@ const SectionPortfolio = () => {
       </div>
 
       {/* Composant de filtre */}
-      <div className="flex flex-wrap justify-center mb-4">
-        {Object.keys(iconComponents).map((iconKey, index) => {
-          const IconComponent = iconComponents[iconKey];
-          return (
-            <button
-              key={index}
-              onClick={() => setFilter(filter === iconKey ? '' : iconKey)}
-              className={`p-2 m-2 rounded-full ${filter === iconKey ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
-            >
-              <IconComponent className="text-white text-2xl" />
-            </button>
-          );
-        })}
-        <button
-          onClick={() => setFilter('')}
-          className="p-2 m-2 rounded-full bg-red-500 hover:bg-red-700 transition-colors text-white flex items-center justify-center"
-        >
-          <MdRefresh className="text-white text-2xl" />
-        </button>
+      <div className="flex flex-wrap justify-center mb-4 w-full md:w-3/4 lg:w-2/4 2xl:w-1/4">
+        <Select
+          isMulti
+          options={options}
+          onChange={handleChange}
+          getOptionLabel={option => (
+            <div className="flex items-center">
+              <option.IconComponent className="mr-2" />
+              {option.label.substring(2)}
+            </div>
+          )}
+          getOptionValue={option => option.value}
+          className="w-full"
+          placeholder="Filtrer en fonction des langages, frameworks..."
+          styles={{
+            control: (provided) => ({
+              ...provided,
+              backgroundColor: '#4B5563',
+              borderColor: '#4B5563', 
+              color: '#FFFFFF',
+              borderRadius: '1rem',
+              '&:hover': {
+                borderColor: '#4B5563', 
+              },
+              boxShadow: 'none',
+            }),
+            placeholder: (provided) => ({
+              ...provided,
+              color: '#D1D5DB',
+            }),
+            input: (provided) => ({
+              ...provided,
+              color: '#FFFFFF',
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              backgroundColor: '#4B5563',
+              color: '#FFFFFF',
+            }),
+            multiValueLabel: (provided) => ({
+              ...provided,
+              color: '#FFFFFF',
+            }),
+            multiValueRemove: (provided) => ({
+              ...provided,
+              color: '#FFFFFF',
+              '&:hover': {
+                backgroundColor: 'rgb(233, 22, 22)',
+                color: '#FFFFFF',
+              },
+            }),
+            menu: (provided) => ({
+              ...provided,
+              backgroundColor: '#1F2937',
+              color: '#FFFFFF',
+            }),
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isSelected ? '#4B5563' : state.isFocused ? '#4B5563' : '#1F2937',
+              color: '#FFFFFF',
+              '&:hover': {
+                backgroundColor: '#4B5563',
+              },
+            }),
+            dropdownIndicator: (provided) => ({
+              ...provided,
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#FFFFFF',
+              },
+            }),
+            clearIndicator: (provided) => ({
+              ...provided,
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#FFFFFF',
+              },
+            }),
+          }}
+        />
       </div>
 
       {/* Composant de filtre pour les types de projets */}
@@ -114,12 +187,18 @@ const SectionPortfolio = () => {
         {['Projet perso', 'Projet scolaire'].map((type, index) => (
           <button
             key={index}
-            onClick={() => setFilter(filter === type ? '' : type)}
-            className={`px-2 py-1 m-2 rounded-full ${filter === type ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
+            onClick={() => setSelectedOptions(selectedOptions.some(option => option.value === type) ? selectedOptions.filter(option => option.value !== type) : [...selectedOptions, { value: type, label: type }])}
+            className={`px-2 py-1 m-2 rounded-full ${selectedOptions.some(option => option.value === type) ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
           >
             {type}
           </button>
         ))}
+        <button
+          onClick={() => setSelectedOptions([])}
+          className="p-2 m-2 rounded-full bg-red-500 hover:bg-red-700 transition-colors text-white flex items-center justify-center"
+        >
+          <MdRefresh className="text-white text-2xl" />
+        </button>
       </div>
 
       {/* Affiche un message si aucun projet n'est trouvé */}
