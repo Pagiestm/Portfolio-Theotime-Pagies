@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <nav className="w-full flex justify-center items-center p-6 fixed top-0 z-50">
+    <nav className="w-full flex justify-center items-center fixed top-0 z-50">
       <ul className="flex space-x-10 bg-gray-800 p-4 rounded-3xl list-none">
         <li className="relative group">
           <a href="#home" className="text-white text-2xl">
