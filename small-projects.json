@@ -2,6 +2,7 @@
     {
         "title": "Calculatrice qualité logiciel et tests - juin 2024",
         "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
+        "badge": "Projet scolaire",
         "cardImage": "/images/projets/Calculatrice/calculatrice.png",
         "modalTitle": "Calculatrice qualité logiciel et tests ",
         "size": "small",

@@ -15,6 +15,7 @@ import 'react-medium-image-zoom/dist/styles.css';
 const TripModal = ({
     title = "Default Title",
     description = "Default Description",
+    badge = "Projet perso",
     buttonText = "Détails",
     cardImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     modalTitle = "Book your trip",
@@ -52,16 +53,13 @@ const TripModal = ({
                     </CardItem>
                     <div className="flex justify-between items-center mt-10">
                         <CardItem
-                            translateZ={20}
-                            href="https://twitter.com/mannupaaji"
-                            target="__blank"
-                            className="px-4 py-2 rounded-xl text-xs font-normal text-white"
+                            className="px-2 py-1 text-sm font-semibold text-white bg-gray-700 rounded-full mt-2"
                         >
-                            Consulter →
+                            {badge}
                         </CardItem>
                         <ModalTrigger>
                             <CardItem
-                                translateZ={20}
+                                translateZ="50"
                                 as="button"
                                 className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
                             >

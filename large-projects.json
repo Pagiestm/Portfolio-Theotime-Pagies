@@ -2,6 +2,7 @@
     {
         "title": "CarbonTrack - juillet à août 2024",
         "description": "CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.",
+        "badge": "Projet perso",
         "cardImage": "/images/projets/CarbonTrack/CarbonTrack.png",
         "modalTitle": "CarbonTrack",
         "size": "large",
@@ -44,6 +45,7 @@
     {
         "title": "Click'n Party - avril à juin 2024",
         "description": "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements. En connectant directement les propriétaires de lieux exceptionnels avec les organisateurs d'événements.",
+        "badge": "Projet scolaire",
         "cardImage": "/images/projets/Click-n-party/Click-n-party.png",
         "modalTitle": "Click'n Party",
         "size": "large",
@@ -82,6 +84,7 @@
     {
         "title": "Luminous Movies - mai à juin 2024",
         "description": "Luminous-Movies est une application permettant d'accéder aux informations sur des films. Elle offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche. De plus, une interface d'administration a été développée pour la gestion des films et des catégories.",
+        "badge": "Projet scolaire",
         "cardImage": "/images/projets/Luminous-Movies/Luminous-Movies.png",
         "modalTitle": "Luminous Movies",
         "size": "large",

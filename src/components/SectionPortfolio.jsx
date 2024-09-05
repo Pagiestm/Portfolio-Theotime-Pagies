@@ -43,7 +43,7 @@ const SectionPortfolio = () => {
 
   // Filtre les petits et les gros projets
   const filteredProjects = allProjects.filter(project =>
-    (filter === '' || project.logos.some(logo => logo.icon === filter)) &&
+    (filter === '' || project.logos.some(logo => logo.icon === filter) || project.badge === filter) &&
     (searchQuery === '' || project.title.toLowerCase().includes(searchQuery.toLowerCase()) || project.logos.some(logo => logo.icon.toLowerCase().includes(searchQuery.toLowerCase())))
   );
   const smallProjects = filteredProjects.filter(project => project.size === 'small');
@@ -88,14 +88,14 @@ const SectionPortfolio = () => {
       </div>
 
       {/* Composant de filtre */}
-      <div className="flex flex-wrap justify-center mb-10">
+      <div className="flex flex-wrap justify-center mb-4">
         {Object.keys(iconComponents).map((iconKey, index) => {
           const IconComponent = iconComponents[iconKey];
           return (
             <button
               key={index}
               onClick={() => setFilter(filter === iconKey ? '' : iconKey)}
-              className={`p-2 m-2 rounded-full ${filter === iconKey ? 'bg-blue-500' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
+              className={`p-2 m-2 rounded-full ${filter === iconKey ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
             >
               <IconComponent className="text-white text-2xl" />
             </button>
@@ -107,6 +107,19 @@ const SectionPortfolio = () => {
         >
           <MdRefresh className="text-white text-2xl" />
         </button>
+      </div>
+
+      {/* Composant de filtre pour les types de projets */}
+      <div className="flex flex-wrap justify-center mb-4">
+        {['Projet perso', 'Projet scolaire'].map((type, index) => (
+          <button
+            key={index}
+            onClick={() => setFilter(filter === type ? '' : type)}
+            className={`px-2 py-1 m-2 rounded-full ${filter === type ? 'bg-gradient-to-r from-purple-500 to-blue-500 transition-transform transform scale-110' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
+          >
+            {type}
+          </button>
+        ))}
       </div>
 
       {/* Affiche un message si aucun projet n'est trouvé */}
@@ -126,6 +139,7 @@ const SectionPortfolio = () => {
                 key={index}
                 title={project.title}
                 description={project.description}
+                badge={project.badge}
                 cardImage={project.cardImage}
                 modalTitle={project.modalTitle}
                 modalContent={
@@ -232,6 +246,7 @@ const SectionPortfolio = () => {
                 key={index}
                 title={project.title}
                 description={project.description}
+                badge={project.badge}
                 cardImage={project.cardImage}
                 modalTitle={project.modalTitle}
                 modalContent={
