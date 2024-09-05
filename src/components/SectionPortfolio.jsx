@@ -3,6 +3,7 @@ import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
 import { FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
+import { MdFilterList, MdRefresh } from 'react-icons/md';
 import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiScikitlearn, SiPlaywright } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import largeprojectsData from '../../large-projects.json';
@@ -23,7 +24,6 @@ const iconComponents = {
   SiPostgresql,
   DiMysql,
   DiSass,
-  SiScikitlearn,
   SiPlaywright
 };
 
@@ -34,33 +34,23 @@ const SectionPortfolio = () => {
   
   console.log(greet('tout le monde'));`;
 
-  const [code, setCode] = useState(initialScript);
-  const [output, setOutput] = useState('');
   const [largeProjectsToShow, setLargeProjectsToShow] = useState(3);
   const [smallProjectsToShow, setSmallProjectsToShow] = useState(3);
   const [allProjects, setAllProjects] = useState([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     // Charger les projets depuis le fichier JSON
     setAllProjects([...largeprojectsData, ...smallprojectsData]);
   }, []);
 
-  const executeCode = () => {
-    try {
-      const consoleLog = [];
-      const console = {
-        log: (msg) => consoleLog.push(msg),
-      };
-      eval(code);
-      setOutput(consoleLog.join('\n'));
-    } catch (error) {
-      setOutput(error.message);
-    }
-  };
 
   // Filtre les petits et les gros projets
-  const smallProjects = allProjects.filter(project => project.size === 'small');
-  const largeProjects = allProjects.filter(project => project.size === 'large');
+  const filteredProjects = allProjects.filter(project =>
+    filter === '' || project.logos.some(logo => logo.icon === filter)
+  );
+  const smallProjects = filteredProjects.filter(project => project.size === 'small');
+  const largeProjects = filteredProjects.filter(project => project.size === 'large');
 
   // Fonction pour afficher plus de gros projets
   const showMoreLargeProjects = () => {
@@ -86,96 +76,122 @@ const SectionPortfolio = () => {
         </div>
       </div>
 
-      {/* Section pour les gros projets */}
-      <h2 className="text-2xl lg:text-3xl font-bold text-center text-white mt-10 mb-6">Gros Projets</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-10 mb-10">
-        {largeProjects.slice(0, largeProjectsToShow).map((project, index) => (
-          <TripModal
-            key={index}
-            title={project.title}
-            description={project.description}
-            cardImage={project.cardImage}
-            modalTitle={project.modalTitle}
-            modalContent={
-              <div>
-                <div dangerouslySetInnerHTML={{ __html: project.modalContent }} />
-                <div className="flex flex-wrap mt-6">
-                  {project.logos.map((logo, idx) => {
-                    const IconComponent = iconComponents[logo.icon];
-                    return (
-                      <div key={idx} className={`bg-gradient-to-r ${logo.color} p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4`}>
-                        <IconComponent className="text-white text-2xl md:text-3xl lg:text-4xl" />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            }
-            images={project.images}
-          >
-            {project.pdf && (
-              <motion.a
-                href={project.pdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Dossier de projet
-              </motion.a>
-            )}
-            {project.api && (
-              <motion.a
-                href={project.api}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Documentation API
-              </motion.a>
-            )}
-            {project.figma && (
-              <motion.a
-                href={project.figma}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Maquette
-              </motion.a>
-            )}
-            {project.githubLink && (
-              <motion.a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Code source
-              </motion.a>
-            )}
-            {project.siteLink && (
-              <motion.a
-                href={project.siteLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Consulter le site
-              </motion.a>
-            )}
-          </TripModal>
-        ))}
+      {/* Composant de filtre */}
+      <div className="flex flex-wrap justify-center mb-10">
+        {Object.keys(iconComponents).map((iconKey, index) => {
+          const IconComponent = iconComponents[iconKey];
+          return (
+            <button
+              key={index}
+              onClick={() => setFilter(filter === iconKey ? '' : iconKey)}
+              className={`p-2 m-2 rounded-full ${filter === iconKey ? 'bg-blue-500' : 'bg-gray-700'} hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 transition-transform transform hover:scale-110`}
+            >
+              <IconComponent className="text-white text-2xl" />
+            </button>
+          );
+        })}
+        <button
+          onClick={() => setFilter('')}
+          className="p-2 m-2 rounded-full bg-red-500 hover:bg-red-700 transition-colors text-white flex items-center justify-center"
+        >
+          <MdRefresh className="text-white text-2xl" />
+        </button>
       </div>
+
+      {/* Section pour les gros projets */}
+      {largeProjects.length > 0 && (
+        <>
+          <h2 className="text-2xl lg:text-3xl font-bold text-center text-white mt-10 mb-6">Gros Projets</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-10 mb-10">
+            {largeProjects.slice(0, largeProjectsToShow).map((project, index) => (
+              <TripModal
+                key={index}
+                title={project.title}
+                description={project.description}
+                cardImage={project.cardImage}
+                modalTitle={project.modalTitle}
+                modalContent={
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: project.modalContent }} />
+                    <div className="flex flex-wrap mt-6">
+                      {project.logos.map((logo, idx) => {
+                        const IconComponent = iconComponents[logo.icon];
+                        return (
+                          <div key={idx} className={`bg-gradient-to-r ${logo.color} p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4`}>
+                            <IconComponent className="text-white text-2xl md:text-3xl lg:text-4xl" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                }
+                images={project.images}
+              >
+                {project.pdf && (
+                  <motion.a
+                    href={project.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Dossier de projet
+                  </motion.a>
+                )}
+                {project.api && (
+                  <motion.a
+                    href={project.api}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Documentation API
+                  </motion.a>
+                )}
+                {project.figma && (
+                  <motion.a
+                    href={project.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Maquette
+                  </motion.a>
+                )}
+                {project.githubLink && (
+                  <motion.a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Code source
+                  </motion.a>
+                )}
+                {project.siteLink && (
+                  <motion.a
+                    href={project.siteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Consulter le site
+                  </motion.a>
+                )}
+              </TripModal>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Bouton pour afficher plus de gros projets */}
       {largeProjectsToShow < largeProjects.length && (
@@ -189,95 +205,99 @@ const SectionPortfolio = () => {
       )}
 
       {/* Section pour les petits projets */}
-      <h2 className="text-2xl lg:text-3xl font-bold text-center text-white mt-10 mb-6">Petits Projets</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-10 mb-10">
-        {smallProjects.slice(0, smallProjectsToShow).map((project, index) => (
-          <TripModal
-            key={index}
-            title={project.title}
-            description={project.description}
-            cardImage={project.cardImage}
-            modalTitle={project.modalTitle}
-            modalContent={
-              <div>
-                <div dangerouslySetInnerHTML={{ __html: project.modalContent }} />
-                <div className="flex flex-wrap mt-6">
-                  {project.logos.map((logo, idx) => {
-                    const IconComponent = iconComponents[logo.icon];
-                    return (
-                      <div key={idx} className={`bg-gradient-to-r ${logo.color} p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4`}>
-                        <IconComponent className="text-2xl md:text-3xl lg:text-4xl" style={{ color: logo.color.split(' ')[1] }} />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            }
-            images={project.images}
-          >
-            {project.pdf && (
-              <motion.a
-                href={project.pdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+      {smallProjects.length > 0 && (
+        <>
+          <h2 className="text-2xl lg:text-3xl font-bold text-center text-white mt-10 mb-6">Petits Projets</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-10 mb-10">
+            {smallProjects.slice(0, smallProjectsToShow).map((project, index) => (
+              <TripModal
+                key={index}
+                title={project.title}
+                description={project.description}
+                cardImage={project.cardImage}
+                modalTitle={project.modalTitle}
+                modalContent={
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: project.modalContent }} />
+                    <div className="flex flex-wrap mt-6">
+                      {project.logos.map((logo, idx) => {
+                        const IconComponent = iconComponents[logo.icon];
+                        return (
+                          <div key={idx} className={`bg-gradient-to-r ${logo.color} p-4 rounded-full flex items-center justify-center w-14 h-14 mb-4 mr-4`}>
+                            <IconComponent className="text-2xl md:text-3xl lg:text-4xl" style={{ color: logo.color.split(' ')[1] }} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                }
+                images={project.images}
               >
-                Dossier de projet
-              </motion.a>
-            )}
-            {project.api && (
-              <motion.a
-                href={project.api}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Documentation API
-              </motion.a>
-            )}
-            {project.figma && (
-              <motion.a
-                href={project.figma}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Maquette
-              </motion.a>
-            )}
-            {project.githubLink && (
-              <motion.a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Code source
-              </motion.a>
-            )}
-            {project.siteLink && (
-              <motion.a
-                href={project.siteLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
-              >
-                Consulter le site
-              </motion.a>
-            )}
-          </TripModal>
-        ))}
-      </div>
+                {project.pdf && (
+                  <motion.a
+                    href={project.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Dossier de projet
+                  </motion.a>
+                )}
+                {project.api && (
+                  <motion.a
+                    href={project.api}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Documentation API
+                  </motion.a>
+                )}
+                {project.figma && (
+                  <motion.a
+                    href={project.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Maquette
+                  </motion.a>
+                )}
+                {project.githubLink && (
+                  <motion.a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Code source
+                  </motion.a>
+                )}
+                {project.siteLink && (
+                  <motion.a
+                    href={project.siteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-bold"
+                  >
+                    Consulter le site
+                  </motion.a>
+                )}
+              </TripModal>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Bouton pour afficher plus de petits projets */}
       {smallProjectsToShow < smallProjects.length && (
