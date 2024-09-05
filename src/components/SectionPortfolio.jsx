@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
-import { FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
-import { MdFilterList, MdRefresh } from 'react-icons/md';
+import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
+import { MdRefresh } from 'react-icons/md';
 import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiScikitlearn, SiPlaywright } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import largeprojectsData from '../../large-projects.json';
@@ -28,16 +28,12 @@ const iconComponents = {
 };
 
 const SectionPortfolio = () => {
-  const initialScript = `function greet(name) {
-    return 'Bonjour, ' + name + '!';
-  }
-  
-  console.log(greet('tout le monde'));`;
 
   const [largeProjectsToShow, setLargeProjectsToShow] = useState(3);
   const [smallProjectsToShow, setSmallProjectsToShow] = useState(3);
   const [allProjects, setAllProjects] = useState([]);
   const [filter, setFilter] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     // Charger les projets depuis le fichier JSON
@@ -47,7 +43,8 @@ const SectionPortfolio = () => {
 
   // Filtre les petits et les gros projets
   const filteredProjects = allProjects.filter(project =>
-    filter === '' || project.logos.some(logo => logo.icon === filter)
+    (filter === '' || project.logos.some(logo => logo.icon === filter)) &&
+    (searchQuery === '' || project.title.toLowerCase().includes(searchQuery.toLowerCase()) || project.logos.some(logo => logo.icon.toLowerCase().includes(searchQuery.toLowerCase())))
   );
   const smallProjects = filteredProjects.filter(project => project.size === 'small');
   const largeProjects = filteredProjects.filter(project => project.size === 'large');
@@ -76,6 +73,20 @@ const SectionPortfolio = () => {
         </div>
       </div>
 
+      {/* Barre de recherche */}
+      <div className="w-full flex justify-center mb-6">
+        <div className="relative w-full md:w-1/2 lg:w-1/3">
+          <input
+            type="text"
+            placeholder="Rechercher par titre ou langage..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-4 pr-10 rounded-2xl bg-gray-700 bg-opacity-30 text-white placeholder-gray-400 w-full focus:outline-none focus:ring-2 focus:border-purple-500"
+          />
+          <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white" />
+        </div>
+      </div>
+
       {/* Composant de filtre */}
       <div className="flex flex-wrap justify-center mb-10">
         {Object.keys(iconComponents).map((iconKey, index) => {
@@ -97,6 +108,13 @@ const SectionPortfolio = () => {
           <MdRefresh className="text-white text-2xl" />
         </button>
       </div>
+
+      {/* Affiche un message si aucun projet n'est trouvé */}
+      {filteredProjects.length === 0 && (
+        <div className="text-white text-center mt-10">
+          Aucun projet trouvé pour votre recherche.
+        </div>
+      )}
 
       {/* Section pour les gros projets */}
       {largeProjects.length > 0 && (
