@@ -61,6 +61,33 @@
         "siteLink": "https://mydigitalschool-v2.mds-lille.yt/"
     },
     {
+        "title": "Le jeu du pendu - février 2024",
+        "description": "Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une naviguation qui permet de naviguer de page en page. Nous avions la 'home' : affiche la règle du jeu, 'jouer' : le jeu se passera ici, 'statistiques': affichage des statistiques du joueur et ces scores et pour finir nous devions faire la gestion de la page 404.",
+        "badge": "Projet scolaire",
+        "cardImage": "/images/projets/Le-pendu/Le-pendu.png",
+        "modalTitle": "Le jeu du pendu",
+        "size": "small",
+        "modalContent": "<div><p>Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une naviguation qui permet de naviguer de page en page.</p><ul><li>Projet réalisé par groupe de 2.</li><li>Objectif du projet: Trouver une API qui renvoie un mot au hasard, gestion de la victoire et de l'échec, statistique des joueurs.</li><li>Réalisation : Page d'accueil pour présenter les régles du jeu, une page jouer qui permet de jouer soit en cliquant sur les lettres ou avec le clavier (possibilité d'écrire le mot directement) et page statistiques pour afficher le nom de l'utilisateur et comptabiliser son score total.</li></div>",
+        "logos": [
+            {
+                "icon": "FaReact",
+                "color": "from-[#58c4dc] to-blue-600"
+            },
+            {
+                "icon": "DiSass",
+                "color": "from-[#CF649A] to-pink-600"
+            }
+        ],
+        "images": [
+            "/images/projets/Le-pendu/Le-pendu2.png",
+            "/images/projets/Le-pendu/Le-pendu5.png",
+            "/images/projets/Le-pendu/Le-pendu3.png",
+            "/images/projets/Le-pendu/Le-pendu4.png"
+        ],
+        "githubLink": "https://github.com/Pagiestm/le-pendu",
+        "siteLink": "https://le-pendu.mds-lille.yt/"
+    },
+    {
         "title": "ILEVIA Simulator - janvier 2024",
         "description": "Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métro et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification et permet d'assigner un agent.",
         "badge": "Projet scolaire",
