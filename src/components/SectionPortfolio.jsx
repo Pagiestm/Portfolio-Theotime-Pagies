@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
-import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact } from 'react-icons/fa';
+import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact, FaFigma } from 'react-icons/fa';
 import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import Select from 'react-select';
@@ -14,6 +14,7 @@ const iconComponents = {
   FaSymfony,
   FaNodeJs,
   FaReact,
+  FaFigma,
   SiJavascript,
   SiTailwindcss,
   SiExpress,
@@ -133,7 +134,8 @@ const SectionPortfolio = () => {
             }),
             multiValue: (provided) => ({
               ...provided,
-              backgroundColor: '#4B5563',
+              backgroundColor: '#192231',
+              borderRadius: '1rem',
               color: '#FFFFFF',
             }),
             multiValueLabel: (provided) => ({
@@ -144,7 +146,8 @@ const SectionPortfolio = () => {
               ...provided,
               color: '#FFFFFF',
               '&:hover': {
-                backgroundColor: 'rgb(233, 22, 22)',
+                backgroundColor: '#192231',
+                borderRadius: '1rem',
                 color: '#FFFFFF',
               },
             }),

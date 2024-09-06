@@ -4,7 +4,7 @@
         "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
         "badge": "Projet scolaire",
         "cardImage": "/images/projets/Calculatrice/calculatrice.png",
-        "modalTitle": "Calculatrice qualité logiciel et tests ",
+        "modalTitle": "Calculatrice qualité logiciel et tests",
         "size": "small",
         "modalContent": "<div><p>L'objectif était de concevoir une calculatrice permettant aux utilisateurs de réaliser des sommes, des soustractions et des multiplications. Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. Le choix des technologies était libre. La logique métier devait être testée unitairement. L'interface graphique devait être testée en E2E avec un outil comme Cypress ou Playwright. L'ensemble du développement devait être réalisé en TDD. Le projet devait avoir un linter permettant de vérifier la qualité du code.</p><ul><li>Projet réalisé en cours seul.</li><li>Objectifs du projet: Tester de façon unitaire son code, Tester une interface grâce aux tests e2e, Maîtriser une méthodologie de test: Test Driven Development (TDD), Linter et méthode de refactoring.</li></div>",
         "logos": [
@@ -27,5 +27,37 @@
             "/images/projets/Calculatrice/calculatrice3.png"
         ],
         "githubLink": "https://github.com/Pagiestm/Qualite-logiciel-et-tests/tree/master/calculatrice"
+    },
+    {
+        "title": "MyDigitalSchool-V2 - juin 2024",
+        "description": "Nous devions refaire le site de MyDigitalSchool en réalisant une maquette en passant par les différentes étapes : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette. Nous devions ensuite réaliser le site web. Concernant les technologies, nous avons donc choisi d'utiliser Tailwind CSS et React et utiliser l'approche 'Mobile First'.",
+        "badge": "Projet scolaire",
+        "cardImage": "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2.png",
+        "modalTitle": "MyDigitalSchool-V2",
+        "size": "small",
+        "modalContent": "<div><p>L'objectif du projet était de reprendre le site de MyDigitalSchool et de refaire une maquette et coder le frontend du site tout en respectant la maquette.</p><ul><li>Projet réalisé par groupe de 3.</li><li>Réalisation des étapes de la maquette : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette.</li><li>Site responsive : s'adapte sur tout type d'écran.</li><li>Réalisation du site avec un Framework CSS : utilisation de React pour utiliser les composants réutilisables et son DOM virtuel pour optimiser les mises à jour de l'interface utilisateur. Et utilisation de Tailwind CSS pour son approche utilitaire, son approche 'mobile first' et sa large documentation.</li></div>",
+        "logos": [
+            {
+                "icon": "FaFigma",
+                "color": "from-[#a259ff] to-purple-600"
+            },
+            {
+                "icon": "FaReact",
+                "color": "from-[#58c4dc] to-blue-600"
+            },
+            {
+                "icon": "SiTailwindcss",
+                "color": "from-[#38bdf8] to-teal-600"
+            }
+        ],
+        "images": [
+            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-2.png",
+            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-3.png",
+            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-4.png",
+            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-5.png"
+        ],
+        "figma": "https://www.figma.com/design/KVgkfqPlytuDs0yUH1mDrL/MyDigitalSchool-V2?node-id=0-1&node-type=CANVAS&t=fAUP1nt0nrEVbu31-0",
+        "githubLink": "https://github.com/Pagiestm/Qualite-logiciel-et-tests/tree/master/calculatrice",
+        "siteLink": "https://mydigitalschool-v2.mds-lille.yt/"
     }
 ]
