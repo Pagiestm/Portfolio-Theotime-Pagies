@@ -61,7 +61,7 @@ const HeroSection = () => {
                 {/* Carte des compétences */}
                 <div className="bg-white bg-opacity-20 backdrop-blur-lg p-3 rounded-2xl shadow-lg mb-8">
                     <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white text-center">
-                        Développeur Informatique • WEB • Full Stack
+                        Développeur • Web • Full Stack
                     </p>
                 </div>
 

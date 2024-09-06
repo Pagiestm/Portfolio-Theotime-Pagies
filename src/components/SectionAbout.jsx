@@ -58,7 +58,7 @@ const SectionAbout = () => {
         </div>
         <div>
           <div className="h-8 mb-4 flex items-center justify-center">
-            {hoveredIcon && <div className="text-white text-xl">{hoveredIcon}</div>}
+            {hoveredIcon && <div className="px-2 py-1 text-sm font-semibold text-white text-lg bg-gray-900 rounded-full mb-2">{hoveredIcon}</div>}
           </div>
           <CardSpotlight className="h-96 w-80 flex flex-col items-center justify-center">
             <div className="grid grid-cols-3 gap-4 mt-4 z-20">
