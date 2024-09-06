@@ -74,16 +74,20 @@
                 "color": "from-[#a259ff] to-purple-600"
             },
             {
-                "icon": "FaAngular",
-                "color": "from-[#ea2845] to-red-700"
+                "icon": "SiTauri",
+                "color": "from-[#38bdf8] to-blue-600"
             },
             {
                 "icon": "FaRust",
                 "color": "from-white to-black"
             },
             {
-                "icon": "SiTauri",
-                "color": "from-[#38bdf8] to-blue-600"
+                "icon": "DiMysql",
+                "color": "from-orange-400 to-orange-600"
+            },
+            {
+                "icon": "FaAngular",
+                "color": "from-[#ea2845] to-red-700"
             }
         ],
         "images": [

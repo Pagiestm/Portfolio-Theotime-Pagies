@@ -39,7 +39,7 @@ const SectionAbout = () => {
             <br />Titulaire d'un <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">BTS SIO « Services Informatiques aux Organisations »</span> en option <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">SLAM « Solution Logicielles et Applications Métiers » </span>que j'ai obtenu au lycée Dampierre à Valenciennes. Pendant cette période, j'ai pu réaliser deux stages à la CAF du Nord.<br />
             <br />J'ai poursuivi mes études avec un <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Bachelor Développeur Web | TP - Concepteur Développeur d'Applications de niveau 6 (BAC+3/4)</span>. J'ai eu l'opportunité de faire une alternance chez Yoozly de juillet 2023 à août 2024.<br />
             <br />Actuellement, je suis étudiant en <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">MBA Développeur Full Stack "Manager de projet web digital" de niveau 7 (BAC+5)</span>.<br />
-            Je suis également en alternance chez Ailoop, où j'acquiers une expérience professionnelle précieuse en développement web et gestion de projets digitaux.
+            Je suis également en alternance chez Ailoop, où je vais acquérir une expérience professionnelle précieuse en développement web et gestion de projets digitaux.
           </p>
           <div className="flex space-x-6 mb-4 mt-10">
             <a href="https://www.linkedin.com/in/th%C3%A9otime-pagies-7352bb221/" target="_blank" rel="noopener noreferrer" className="relative group">
