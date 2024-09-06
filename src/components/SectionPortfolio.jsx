@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
-import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact, FaFigma } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright } from 'react-icons/si';
+import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact, FaFigma, FaAngular, FaRust } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright, SiTauri } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import Select from 'react-select';
 import largeprojectsData from '../../large-projects.json';
@@ -15,6 +15,8 @@ const iconComponents = {
   FaNodeJs,
   FaReact,
   FaFigma,
+  FaAngular,
+  FaRust,
   SiJavascript,
   SiTailwindcss,
   SiExpress,
@@ -25,7 +27,8 @@ const iconComponents = {
   SiPostgresql,
   DiMysql,
   DiSass,
-  SiPlaywright
+  SiPlaywright,
+  SiTauri
 };
 
 const SectionPortfolio = () => {

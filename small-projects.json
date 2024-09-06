@@ -57,7 +57,43 @@
             "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-5.png"
         ],
         "figma": "https://www.figma.com/design/KVgkfqPlytuDs0yUH1mDrL/MyDigitalSchool-V2?node-id=0-1&node-type=CANVAS&t=fAUP1nt0nrEVbu31-0",
-        "githubLink": "https://github.com/Pagiestm/Qualite-logiciel-et-tests/tree/master/calculatrice",
+        "githubLink": "https://github.com/Pagiestm/MyDigitalSchool-V2",
         "siteLink": "https://mydigitalschool-v2.mds-lille.yt/"
+    },
+    {
+        "title": "ILEVIA Simulator - janvier 2024",
+        "description": "Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métro et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification et permet d'assigner un agent.",
+        "badge": "Projet scolaire",
+        "cardImage": "/images/projets/Ilevia-simulator/Ilevia-simulator.png",
+        "modalTitle": "ILEVIA Simulator",
+        "size": "small",
+        "modalContent": "<div><p>Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métro et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification en cas de problème sur l'une des stations et permet également d'assigner un agent en quelques clics.</p><ul><li>Projet réalisé par groupe de 4.</li><li>Objectif du projet: Réaliser une application de bureau, afficher de la data et ajouter de la simulation.</li><li>Réalisation de la maquette sur figma.</li><li>Création de la base de données : MCD, MLD, MPD.</li><li>Fonctionnalités principales : Page d'accueil affichage des stations, gestion des bornes, gestion des problèmes dans les stations, notifications, attribution d'un agent à une station + disponibilité, simulation de l'intervention d'un agent...</li></div>",
+        "logos": [
+            {
+                "icon": "FaFigma",
+                "color": "from-[#a259ff] to-purple-600"
+            },
+            {
+                "icon": "FaAngular",
+                "color": "from-[#ea2845] to-red-700"
+            },
+            {
+                "icon": "FaRust",
+                "color": "from-white to-black"
+            },
+            {
+                "icon": "SiTauri",
+                "color": "from-[#38bdf8] to-blue-600"
+            }
+        ],
+        "images": [
+            "/images/projets/Ilevia-simulator/Ilevia-simulator2.png",
+            "/images/projets/Ilevia-simulator/Ilevia-simulator3.png",
+            "/images/projets/Ilevia-simulator/Ilevia-simulator4.png",
+            "/images/projets/Ilevia-simulator/Ilevia-simulator5.png"
+        ],
+        "pdf": "/images/projets/Ilevia-simulator/Ilevia Simulator.pdf",
+        "figma": "https://www.figma.com/design/boMAmcYyRdGsGGOidhRKWF/Ilevia-Simulator?node-id=0-1&node-type=CANVAS&t=jqRZ3kQ6nM79ON9h-0",
+        "githubLink": "https://github.com/B3DevSubwaySurfer/Ilevia-simulator"
     }
 ]
