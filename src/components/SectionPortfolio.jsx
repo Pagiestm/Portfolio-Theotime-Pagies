@@ -101,7 +101,7 @@ const SectionPortfolio = () => {
       </div>
 
       {/* Composant de filtre */}
-      <div className="flex flex-wrap justify-center mb-4 w-full md:w-3/4 lg:w-2/4 2xl:w-1/4">
+      <div className="flex flex-wrap justify-center mb-4 w-full md:w-3/4 lg:w-2/4">
         <Select
           isMulti
           options={options}

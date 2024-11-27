@@ -1,5 +1,30 @@
 [
     {
+        "title": "SmartLille - Octobre à Novembre 2024",
+        "description": "L'objectif était de concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Nous étions chargé de centraliser les données d'événements, automatiser les processus clés comme les notifications et rappels et créer une interface simple et accesible pour les citoyens, les associations, et les modérateurs.",
+        "badge": "Projet scolaire",
+        "cardImage": "/images/projets/SmartLille/SmartLille.png",
+        "modalTitle": "SmartLille",
+        "size": "small",
+        "modalContent": "<div><p>En tant qu'expert no-code, votre mission consiste à concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Vous serez chargé de centraliser les données d’événements, automatiser les processus clés comme les notifications et rappels, et créer une interface simple et accessible pour les citoyens, les associations, et les modérateurs. Ce projet vous permettra d'appliquer vos compétences techniques et de structuration à une problématique réelle, tout en offrant une solution moderne et efficace aux défis de la gestion municipale. Vous devrez répondre aux besoins métier de manière précise et innovante.</p><ul><li>Centraliser les événements citoyens : Offrir un espace où les citoyens peuvent soumettre et consulter des événements.</li><li>Automatiser les workflows : Les modérateurs doivent recevoir des notifications à chaque nouvelle soumission, et les citoyens inscrits doivent recevoir des rappels.</li><li>Simplifier la gestion : Créer une interface intuitive pour les administrateurs de la ville pour approuver et gérer les événements.</li><li>Documenter le projet : Garantir que chaque étape soit documentée pour assurer une clarté et une continuité.</li><li>Outils utilisés : Airtable, Zapier et Softr</li></div>",
+        "logos": [
+        ],
+        "images": [
+            "/images/projets/SmartLille/SmartLille2.png",
+            "/images/projets/SmartLille/SmartLille3.png",
+            "/images/projets/SmartLille/SmartLille4.png",
+            "/images/projets/SmartLille/SmartLille5.png",
+            "/images/projets/SmartLille/SmartLille6.png",
+            "/images/projets/SmartLille/SmartLille7.png",
+            "/images/projets/SmartLille/SmartLille8.png",
+            "/images/projets/SmartLille/SmartLille9.png",
+            "/images/projets/SmartLille/SmartLille10.png",
+            "/images/projets/SmartLille/SmartLille11.png"
+        ],
+        "siteLink": "https://lon87307.softr.app/",
+        "pdf": "/images/projets/SmartLille/SmartLille.pdf"
+    },
+    {
         "title": "Calculatrice qualité logicielle et tests - juin 2024",
         "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
         "badge": "Projet scolaire",
