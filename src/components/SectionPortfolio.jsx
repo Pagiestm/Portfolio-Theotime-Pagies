@@ -6,8 +6,6 @@ import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact, FaFigma, FaAngular, Fa
 import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright, SiTauri } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import Select from 'react-select';
-import largeprojectsData from '../../large-projects.json';
-import smallprojectsData from '../../small-projects.json';
 
 const iconComponents = {
   FaVuejs,
@@ -40,8 +38,50 @@ const SectionPortfolio = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Charger les projets depuis le fichier JSON
-    setAllProjects([...largeprojectsData, ...smallprojectsData]);
+    const fetchProjects = async () => {
+      try {
+        const url = `${import.meta.env.VITE_STRAPI_URL}/api/large-projects?populate=*`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (!data.data || !Array.isArray(data.data)) {
+          console.error("Format de données incorrect:", data);
+          return;
+        }
+
+        const formattedProjects = data.data.map(project => {
+          
+          return {
+            title: project.title || '',
+            description: project.description || '',
+            badge: project.badge || '',
+            cardImage: project.cardImage?.url 
+              ? `${import.meta.env.VITE_STRAPI_URL}${project.cardImage.url}`
+              : null,
+            modalTitle: project.modalTitle || '',
+            modalContent: project.modalContent || '',
+            size: project.size || 'large',
+            logos: project.logos || [],
+            images: project.images 
+              ? project.images.map(
+                  image => `${import.meta.env.VITE_STRAPI_URL}${image.url}`
+                )
+              : [],
+            pdf: project.pdf?.url || null,
+            api: project.api || '',
+            figma: project.figma || '',
+            githubLink: project.githubLink || '',
+            siteLink: project.siteLink || '',
+          };
+        });
+        setAllProjects(formattedProjects);
+      } catch (error) {
+        console.error("Erreur détaillée:", error);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
   const options = Object.keys(iconComponents).map(iconKey => ({

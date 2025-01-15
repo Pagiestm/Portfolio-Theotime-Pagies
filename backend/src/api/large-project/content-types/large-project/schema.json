@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "large_projects",
+  "info": {
+    "singularName": "large-project",
+    "pluralName": "large-projects",
+    "displayName": "project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "badge": {
+      "type": "string"
+    },
+    "cardImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "modalTitle": {
+      "type": "string"
+    },
+    "modalContent": {
+      "type": "richtext"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "large",
+        "small"
+      ]
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pdf": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "api": {
+      "type": "string"
+    },
+    "figma": {
+      "type": "string"
+    },
+    "githubLink": {
+      "type": "string"
+    },
+    "siteLink": {
+      "type": "string"
+    },
+    "logos": {
+      "type": "json"
+    }
+  }
+}
