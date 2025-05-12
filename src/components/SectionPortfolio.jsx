@@ -3,7 +3,7 @@ import TripModal from './TripModal';
 import { motion } from "framer-motion";
 import { Button } from './ui/moving-border';
 import { FaSearch, FaVuejs, FaSymfony, FaNodeJs, FaReact, FaFigma, FaAngular, FaRust } from 'react-icons/fa';
-import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright, SiTauri } from 'react-icons/si';
+import { SiJavascript, SiTailwindcss, SiExpress, SiDart, SiFlutter, SiMongodb, SiPrisma, SiPostgresql, SiPlaywright, SiTauri, SiNextdotjs, SiAppwrite, SiNestjs } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 import Select from 'react-select';
 import largeprojectsData from '../../large-projects.json';
@@ -28,7 +28,10 @@ const iconComponents = {
   DiMysql,
   DiSass,
   SiPlaywright,
-  SiTauri
+  SiTauri,
+  SiNextdotjs,
+  SiAppwrite,
+  SiNestjs
 };
 
 const SectionPortfolio = () => {

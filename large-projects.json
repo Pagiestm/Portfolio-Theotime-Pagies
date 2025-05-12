@@ -1,129 +1,196 @@
 [
-    {
-        "title": "CarbonTrack - juillet à août 2024",
-        "description": "CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.",
-        "badge": "Projet perso",
-        "cardImage": "/images/projets/CarbonTrack/CarbonTrack.png",
-        "modalTitle": "CarbonTrack",
-        "size": "large",
-        "modalContent": "<div><p>CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.</p><ul><li>Projet pour monter en compétences sur vue, prisma et express.</li><li>Méthode Merise : MCD, MLD et MPD.</li><li>Fonctionnalités principales : authentification + auth avec google, mot de passe oublié, envoie d'email, Gestion de vos projets, visualisations des données (graphiques), gestion du profil, gestion des matériaux et catégories (Admin) ...</li><li>Le projet est en production sur render pour l'api, vercel pour le front et supabase pour la base de données.</li><li>Le site est entièrement responsive et donc s'adapte sur tout type d'écran.</li></ul><p class=\"attention\"> Attention pour les tests du site en production : l'api est déployé sur render (version gratuite), le serveur démarre au bout de 40 secondes et il y a des lenteurs ce qui est normal avec la version gratuite !</p></div>",
-        "logos": [
-            {
-                "icon": "FaNodeJs",
-                "color": "from-[#84ba64] to-green-700"
-            },
-            {
-                "icon": "SiExpress",
-                "color": "from-[#000000] to-gray-800"
-            },
-            {
-                "icon": "SiPrisma",
-                "color": "from-[#2f265f] to-blue-700"
-            },
-            {
-                "icon": "SiPostgresql",
-                "color": "from-[#699eca] to-blue-800"
-            },
-            {
-                "icon": "FaVuejs",
-                "color": "from-[#42b883] to-green-600"
-            }
-        ],
-        "images": [
-            "/images/projets/CarbonTrack/CarbonTrack3.png",
-            "/images/projets/CarbonTrack/CarbonTrack2.png",
-            "/images/projets/CarbonTrack/CarbonTrack4.png",
-            "/images/projets/CarbonTrack/CarbonTrack5.png",
-            "/images/projets/CarbonTrack/CarbonTrack6.png",
-            "/images/projets/CarbonTrack/CarbonTrack7.png",
-            "/images/projets/CarbonTrack/CarbonTrack8.png"
-        ],
-        "api": "https://carbontrack.onrender.com/api-docs",
-        "githubLink": "https://github.com/Pagiestm/CarbonTrack",
-        "siteLink": "https://carbon-track-pagiestms-projects.vercel.app/"
-    },
-    {
-        "title": "Click'n Party - avril à juin 2024",
-        "description": "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements. En connectant directement les propriétaires de lieux exceptionnels avec les organisateurs d'événements.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/Click-n-party/Click-n-party.png",
-        "modalTitle": "Click'n Party",
-        "size": "large",
-        "modalContent": "<div><p>Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p><ul><li>Groupe de 6 personnes constitué d'un designer, deux marketings, deux chefs de projet et moi-même en développement.</li><li>Réalisation : diagrammes de cas d'utilisation, de séquence, d'activité.</li><li>Méthode Merise : MCD, MLD et MPD.</li><li>Fonctionnalités principales : authentification, location, réservation, paiement, facturation, commentaire, administration...</li><li>Le site est entièrement responsive et donc s'adapte sur tout type d'écran.</li></ul></div>",
-        "logos": [
-            {
-                "icon": "FaSymfony",
-                "color": "from-gray-700 to-gray-900"
-            },
-            {
-                "icon": "SiJavascript",
-                "color": "from-green-400 to-green-600"
-            },
-            {
-                "icon": "SiTailwindcss",
-                "color": "from-[#38bdf8] to-teal-600"
-            },
-            {
-                "icon": "DiMysql",
-                "color": "from-orange-400 to-orange-600"
-            }
-        ],
-        "images": [
-            "/images/projets/Click-n-party/Click-n-party2.png",
-            "/images/projets/Click-n-party/Click-n-party7.png",
-            "/images/projets/Click-n-party/Click-n-party8.png",
-            "/images/projets/Click-n-party/Click-n-party3.png",
-            "/images/projets/Click-n-party/Click-n-party4.png",
-            "/images/projets/Click-n-party/Click-n-party5.png",
-            "/images/projets/Click-n-party/Click-n-party6.png"
-        ],
-        "pdf": "/images/projets/Click-n-party/Dossier-de-projet-Théotime-Pagies.pdf",
-        "githubLink": "https://github.com/Pagiestm/Click-n-Party",
-        "siteLink": "https://click-n-party.mds-lille.yt/"
-    },
-    {
-        "title": "Luminous Movies - mai à juin 2024",
-        "description": "Luminous-Movies est une application permettant d'accéder aux informations sur des films. Elle offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche. De plus, une interface d'administration a été développée pour la gestion des films et des catégories.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/Luminous-Movies/Luminous-Movies.png",
-        "modalTitle": "Luminous Movies",
-        "size": "large",
-        "modalContent": "<div><p>Luminous-Movies est une application permettant d'accéder aux informations sur des films. Cette application offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche de films. De plus, une interface d'administration a été développée pour la gestion complète des films et des catégories.</p><ul><li>Ce projet à était réalisé par groupe de 3 personnes pendant le cours de développement mobile.</li><li>Création de la maquette sur figma.</li><li>Réalisation : diagramme de cas d'utilisation.</li><li>Fonctionnalités principales : authentification, consultation des détails d'un film, notation (sur 5), favoris, recherche, gestion du profil, gestion des films et catégories (Admin).</li></ul></div>",
-        "logos": [
-            {
-                "icon": "FaNodeJs",
-                "color": "from-[#84ba64] to-green-700"
-            },
-            {
-                "icon": "SiMongodb",
-                "color": "from-[#84ba64] to-green-700"
-            },
-            {
-                "icon": "SiExpress",
-                "color": "from-[#000000] to-gray-800"
-            },
-            {
-                "icon": "SiDart",
-                "color": "from-[#58c4dc] to-blue-600"
-            },
-            {
-                "icon": "SiFlutter",
-                "color": "from-[#58c4dc] to-blue-600"
-            }
-        ],
-        "images": [
-            "/images/projets/Luminous-Movies/Luminous-Movies2.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies3.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies7.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies8.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies4.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies5.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies6.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies7.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies9.png",
-            "/images/projets/Luminous-Movies/Luminous-Movies10.png"
-        ],
-        "figma": "https://www.figma.com/design/zhMUnAN6hLZLXXYG8TjufX/Application-Mobile?node-id=1-24&node-type=CANVAS&t=WgTDf6b9B2ZUPuGZ-0",
-        "githubLink": "https://github.com/Pagiestm/Luminous-Movies"
-    }
+  {
+    "title": "LinguaGo - mars 2025",
+    "description": "Lors de notre cours sur les Progressive Web Apps (définition : application web qui peut apparaître à l'utilisateur de la même manière que les applications natives ou mobiles.) nous avons développé LinguaGo une application d'apprentissage des langues développée avec Vue.js et NestJS.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/LinguaGo/Linguago.png",
+    "modalTitle": "LinguaGo",
+    "size": "large",
+    "modalContent": "<div><p>Lors de notre cours sur les Progressive Web Apps (PWA) à MyDigitalSchool Lille, nous avons développé LinguaGo, une application qui permet d’apprendre l'anglais.</p><ul>💡 Qu'est-ce qu'une PWA ?<p>Une Progressive Web App (PWA) est une application web qui combine les avantages du web et du mobile :</p><li>✅ Accès rapide via un navigateur, sans téléchargement.</li><li>✅ Installation en 1 clic, sans passer par un store.</li><li>✅ Mode hors ligne, pour apprendre même sans connexion.</li><li>✅ Expérience rapide et fluide, optimisée pour tous les appareils.</li><li>✅ Mises à jour automatiques, sans intervention de l'utilisateur.</li></ul><ul><p>Fonctionnalités principales :</p><li>Installation PWA : Ajout en un clic sur ordinateur et mobile, avec mode hors ligne.</li><li>Apprentissage interactif : Exercices variés (QCM, traduction, vrai/faux), reconnaissance vocale et validation intelligente via IA.</li><li>Mode hors-ligne : Accès aux favoris sans connexion, sauvegarde locale des progrès et synchronisation automatique.</li><li>Personnalisation & profil : Modification du pseudo, choix d'avatar, gestion des favoris.</li><li>Notifications intelligentes : Rappels configurables pour maintenir la motivation.</li><li>Suivi des progrès : Tableau de bord, statistiques détaillées et historique d’activité.</li><li>Classement et gamification : Points, niveaux, défis et comparaison avec la communauté.</li><li>Visualisation des données : Graphiques dynamiques pour suivre l'évolution des performances.</li></ul><ul><p>📥Comment installer LinguaGo en tant que PWA ?</p><p>💻 Sur ordinateur (Chrome, Edge, Brave, etc.) :</p><li>1️⃣ Ouvrez LinguaGo dans votre navigateur.</li><li>2️⃣ Cliquez sur l’icône d’installation dans la barre d’adresse.</li><li>3️⃣ Confirmez l’installation et retrouvez l’application sur votre bureau !</li></ul><ul><p>📱 Sur mobile (Android, Chrome) :</p><li>1️⃣ Ouvrez LinguaGo sur Chrome.</li><li>2️⃣ Appuyez sur 'Ajouter à l'écran d'accueil' dans le menu.</li><li>3️⃣ Une icône apparaîtra sur votre écran d'accueil, comme une application native !</li></ul><p>📌 Sur iOS (Safari), il suffit d’ajouter la page à l’écran d’accueil via le menu 'Partager'.</p></div>",
+    "logos": [
+      {
+        "icon": "SiNestjs",
+        "color": "from-[#ea2845] to-red-700"
+      },
+      {
+        "icon": "SiPostgresql",
+        "color": "from-[#699eca] to-blue-800"
+      },
+      {
+        "icon": "FaVuejs",
+        "color": "from-[#42b883] to-green-600"
+      },
+      {
+        "icon": "SiTailwindcss",
+        "color": "from-[#38bdf8] to-teal-600"
+      }
+    ],
+    "images": [
+      "/images/projets/LinguaGo/Linguago.png",
+      "/images/projets/LinguaGo/Linguago2.png",
+      "/images/projets/LinguaGo/Linguago3.png",
+      "/images/projets/LinguaGo/Linguago4.png"
+    ],
+    "githubLink": "https://github.com/Pagiestm/LinguaGo",
+    "siteLink": "https://linguago.mds-lille.yt/",
+    "api": "https://api-linguago.mds-lille.yt/api"
+  },
+  {
+    "title": "Boardify - novembre à décembre 2024",
+    "description": "Boardify est une application de gestion de tâches inspirée de Jira, créée à partir d’un tutoriel enrichi de fonctionnalités supplémentaires. Elle intègre Kanban boards, gestion des tâches, calendriers, analyses, système d'invitation avec rôles, et plus encore.",
+    "badge": "Projet perso",
+    "cardImage": "/images/projets/Boardify/Boardify.png",
+    "modalTitle": "Boardify",
+    "size": "large",
+    "modalContent": "<div><p>Boardify est une application de gestion de tâches inspirée de Jira, créée à partir d’un tutoriel enrichi de fonctionnalités supplémentaires. Ce projet a été conçu pour m’aider à mieux organiser mes différents projets personnels, que ce soit en développement, en gestion ou en exploration de nouvelles idées.</p><ul><li>Kanban Boards 🗂️</li><li>Gestion complète des tâches ✅</li><li>Intégration de calendriers 📅</li><li>Analyses pour le suivi de mes projets 📊</li><li>Système d'invitation avec rôles 🔑</li></ul><ul>Les technologies utilisées : <li>Next.js : L’occasion parfaite d’apprendre et de maîtriser ce framework puissant pour le développement frontend.</li><li>Appwrite : Un serveur backend open source auto-hébergé, utilisé pour gérer ma base de données et l’authentification des utilisateurs.</li><li>Tailwind CSS : Pour un design moderne et réactif.</li></ul></div>",
+    "logos": [
+      {
+        "icon": "SiNextdotjs",
+        "color": "from-black to-gray-800"
+      },
+      {
+        "icon": "SiAppwrite",
+        "color": "from-[#ea2845] to-red-700"
+      },
+      {
+        "icon": "SiTailwindcss",
+        "color": "from-[#38bdf8] to-teal-600"
+      }
+    ],
+    "images": [
+      "/images/projets/Boardify/Boardify.png",
+      "/images/projets/Boardify/Boardify2.png",
+      "/images/projets/Boardify/Boardify3.png",
+      "/images/projets/Boardify/Boardify4.png"
+    ],
+    "githubLink": "https://github.com/Pagiestm/Boardify",
+    "siteLink": "https://boardify-tau.vercel.app/"
+  },
+  {
+    "title": "CarbonTrack - juillet à août 2024",
+    "description": "CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.",
+    "badge": "Projet perso",
+    "cardImage": "/images/projets/CarbonTrack/CarbonTrack.png",
+    "modalTitle": "CarbonTrack",
+    "size": "large",
+    "modalContent": "<div><p>CarbonTrack est une application innovante destinée à aider les personnes à calculer, suivre et réduire l'empreinte carbone des matériaux utilisés dans leurs projets de construction. Elle permet une gestion efficace des projets tout en favorisant des pratiques de construction durables.</p><ul><li>Projet pour monter en compétences sur vue, prisma et express.</li><li>Méthode Merise : MCD, MLD et MPD.</li><li>Fonctionnalités principales : authentification + auth avec google, mot de passe oublié, envoie d'email, Gestion de vos projets, visualisations des données (graphiques), gestion du profil, gestion des matériaux et catégories (Admin) ...</li><li>Le projet est en production sur render pour l'api, vercel pour le front et supabase pour la base de données.</li><li>Le site est entièrement responsive et donc s'adapte sur tout type d'écran.</li></ul><p class=\"attention\"> Attention pour les tests du site en production : l'api est déployé sur render (version gratuite), le serveur démarre au bout de 40 secondes et il y a des lenteurs ce qui est normal avec la version gratuite !</p></div>",
+    "logos": [
+      {
+        "icon": "FaNodeJs",
+        "color": "from-[#84ba64] to-green-700"
+      },
+      {
+        "icon": "SiExpress",
+        "color": "from-[#000000] to-gray-800"
+      },
+      {
+        "icon": "SiPrisma",
+        "color": "from-[#2f265f] to-blue-700"
+      },
+      {
+        "icon": "SiPostgresql",
+        "color": "from-[#699eca] to-blue-800"
+      },
+      {
+        "icon": "FaVuejs",
+        "color": "from-[#42b883] to-green-600"
+      }
+    ],
+    "images": [
+      "/images/projets/CarbonTrack/CarbonTrack3.png",
+      "/images/projets/CarbonTrack/CarbonTrack2.png",
+      "/images/projets/CarbonTrack/CarbonTrack4.png",
+      "/images/projets/CarbonTrack/CarbonTrack5.png",
+      "/images/projets/CarbonTrack/CarbonTrack6.png",
+      "/images/projets/CarbonTrack/CarbonTrack7.png",
+      "/images/projets/CarbonTrack/CarbonTrack8.png"
+    ],
+    "api": "https://carbontrack.onrender.com/api-docs",
+    "githubLink": "https://github.com/Pagiestm/CarbonTrack",
+    "siteLink": "https://carbon-track-pagiestms-projects.vercel.app/"
+  },
+  {
+    "title": "Click'n Party - avril à juin 2024",
+    "description": "Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements. En connectant directement les propriétaires de lieux exceptionnels avec les organisateurs d'événements.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/Click-n-party/Click-n-party.png",
+    "modalTitle": "Click'n Party",
+    "size": "large",
+    "modalContent": "<div><p>Clik'n Party est une plateforme dédiée à la location d'espaces événementiels uniques, où les utilisateurs peuvent proposer leurs biens pour divers types d'événements.</p><ul><li>Groupe de 6 personnes constitué d'un designer, deux marketings, deux chefs de projet et moi-même en développement.</li><li>Réalisation : diagrammes de cas d'utilisation, de séquence, d'activité.</li><li>Méthode Merise : MCD, MLD et MPD.</li><li>Fonctionnalités principales : authentification, location, réservation, paiement, facturation, commentaire, administration...</li><li>Le site est entièrement responsive et donc s'adapte sur tout type d'écran.</li></ul></div>",
+    "logos": [
+      {
+        "icon": "FaSymfony",
+        "color": "from-gray-700 to-gray-900"
+      },
+      {
+        "icon": "SiJavascript",
+        "color": "from-green-400 to-green-600"
+      },
+      {
+        "icon": "SiTailwindcss",
+        "color": "from-[#38bdf8] to-teal-600"
+      },
+      {
+        "icon": "DiMysql",
+        "color": "from-orange-400 to-orange-600"
+      }
+    ],
+    "images": [
+      "/images/projets/Click-n-party/Click-n-party2.png",
+      "/images/projets/Click-n-party/Click-n-party7.png",
+      "/images/projets/Click-n-party/Click-n-party8.png",
+      "/images/projets/Click-n-party/Click-n-party3.png",
+      "/images/projets/Click-n-party/Click-n-party4.png",
+      "/images/projets/Click-n-party/Click-n-party5.png",
+      "/images/projets/Click-n-party/Click-n-party6.png"
+    ],
+    "pdf": "/images/projets/Click-n-party/Dossier-de-projet-Théotime-Pagies.pdf",
+    "githubLink": "https://github.com/Pagiestm/Click-n-Party",
+    "siteLink": "https://click-n-party.mds-lille.yt/"
+  },
+  {
+    "title": "Luminous Movies - mai à juin 2024",
+    "description": "Luminous-Movies est une application permettant d'accéder aux informations sur des films. Elle offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche. De plus, une interface d'administration a été développée pour la gestion des films et des catégories.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/Luminous-Movies/Luminous-Movies.png",
+    "modalTitle": "Luminous Movies",
+    "size": "large",
+    "modalContent": "<div><p>Luminous-Movies est une application permettant d'accéder aux informations sur des films. Cette application offre des fonctionnalités telles que l'inscription, l'authentification, l'ajout de films aux favoris et la recherche de films. De plus, une interface d'administration a été développée pour la gestion complète des films et des catégories.</p><ul><li>Ce projet à était réalisé par groupe de 3 personnes pendant le cours de développement mobile.</li><li>Création de la maquette sur figma.</li><li>Réalisation : diagramme de cas d'utilisation.</li><li>Fonctionnalités principales : authentification, consultation des détails d'un film, notation (sur 5), favoris, recherche, gestion du profil, gestion des films et catégories (Admin).</li></ul></div>",
+    "logos": [
+      {
+        "icon": "FaNodeJs",
+        "color": "from-[#84ba64] to-green-700"
+      },
+      {
+        "icon": "SiMongodb",
+        "color": "from-[#84ba64] to-green-700"
+      },
+      {
+        "icon": "SiExpress",
+        "color": "from-[#000000] to-gray-800"
+      },
+      {
+        "icon": "SiDart",
+        "color": "from-[#58c4dc] to-blue-600"
+      },
+      {
+        "icon": "SiFlutter",
+        "color": "from-[#58c4dc] to-blue-600"
+      }
+    ],
+    "images": [
+      "/images/projets/Luminous-Movies/Luminous-Movies2.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies3.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies7.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies8.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies4.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies5.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies6.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies7.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies9.png",
+      "/images/projets/Luminous-Movies/Luminous-Movies10.png"
+    ],
+    "figma": "https://www.figma.com/design/zhMUnAN6hLZLXXYG8TjufX/Application-Mobile?node-id=1-24&node-type=CANVAS&t=WgTDf6b9B2ZUPuGZ-0",
+    "githubLink": "https://github.com/Pagiestm/Luminous-Movies"
+  }
 ]
