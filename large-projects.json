@@ -1,5 +1,48 @@
 [
   {
+    "title": "MyGPT - avril à mai 2025",
+    "description": "MyGPT est une application web permettant de converser avec un modèle d'intelligence artificielle via une interface intuitive et élégante. Développée avec des technologies modernes, elle offre une expérience utilisateur fluide et des fonctionnalités avancées pour tirer le meilleur parti des modèles d'IA.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/MyGPT/MyGPT.png",
+    "modalTitle": "MyGPT",
+    "size": "large",
+    "modalContent": "<div><p>MyGPT est une application web permettant aux utilisateurs de converser avec un modèle d'intelligence artificielle via une interface intuitive et élégante. Développée avec des technologies modernes, elle offre une expérience utilisateur fluide et des fonctionnalités avancées pour tirer le meilleur parti des modèles d'IA conversationnels.</p><ul><p>🌟 Fonctionnalités clés :</p><li>Conversations IA interactives</li><li>Authentification complète</li><li>Gestion de profil personnalisée</li><li>Organisation par conversations</li><li>Historique persistent</li><li>Recherche avancée</li><li>Partage de conversations</li><li>Formatage Markdown optimisé</li><li>Design responsive</li><li>Édition interactive</li></ul><ul><p>🧪 Tests et méthodologie TDD</p><p>Le projet suit une approche Test-Driven Development (TDD), où les tests sont écrits avant l'implémentation du code. Cette méthodologie garantit une meilleure qualité de code, une couverture de test complète et une conception plus robuste.</p></ul><ul><p>🧹 Standards de code et CI/CD</p><p>Le projet utilise plusieurs outils pour maintenir une qualité de code élevée et assurer l'intégration continue.</p><li>Formattage et linting (eslint & prettier)</li><li>Hooks Git avec Husky (exécution automatique avant chaque commit pour vérifier le formatage du code, la qualité et le respect des conventions pour les commits)</li></ul></div>",
+    "logos": [
+      {
+        "icon": "SiNestjs",
+        "color": "from-[#ea2845] to-red-700"
+      },
+      {
+        "icon": "SiPostgresql",
+        "color": "from-[#699eca] to-blue-800"
+      },
+      {
+        "icon": "FaVuejs",
+        "color": "from-[#42b883] to-green-600"
+      },
+      {
+        "icon": "SiTailwindcss",
+        "color": "from-[#38bdf8] to-teal-600"
+      },
+      {
+        "icon": "SiPlaywright",
+        "color": "from-[#84ba64] to-green-600"
+      }
+    ],
+    "images": [
+      "/images/projets/MyGPT/MyGPT.png",
+      "/images/projets/MyGPT/MyGPT2.png",
+      "/images/projets/MyGPT/MyGPT3.png",
+      "/images/projets/MyGPT/MyGPT4.png",
+      "/images/projets/MyGPT/MyGPT5.png",
+      "/images/projets/MyGPT/MyGPT6.png",
+      "/images/projets/MyGPT/MyGPT7.png",
+      "/images/projets/MyGPT/MyGPT8.png",
+      "/images/projets/MyGPT/MyGPT9.png"
+    ],
+    "githubLink": "https://github.com/Pagiestm/MyGPT"
+  },
+  {
     "title": "LinguaGo - mars 2025",
     "description": "Lors de notre cours sur les Progressive Web Apps (définition : application web qui peut apparaître à l'utilisateur de la même manière que les applications natives ou mobiles.) nous avons développé LinguaGo une application d'apprentissage des langues développée avec Vue.js et NestJS.",
     "badge": "Projet scolaire",
