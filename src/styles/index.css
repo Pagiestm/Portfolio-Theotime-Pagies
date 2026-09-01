@@ -5,8 +5,13 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
+
+    /* Le défilement fluide n'est appliqué qu'aux visiteurs qui n'ont pas
+       demandé de réduire les animations. */
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
     }
 
     body {

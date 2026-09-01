@@ -84,6 +84,9 @@ const Header = () => {
                 key={item.to}
                 to={item.to}
                 end={item.to === paths.home}
+                // Fermeture explicite : taper l'entrée de la route courante ne
+                // change pas `pathname`, l'effet ci-dessus ne se déclencherait pas.
+                onClick={() => setMenuOpen(false)}
                 className="border-b border-line-soft py-4 text-left text-[15px] font-bold uppercase tracking-[.05em] text-ink"
               >
                 {item.label}
@@ -93,6 +96,7 @@ const Header = () => {
               <LangSwitch size="md" />
               <Link
                 to={paths.contact}
+                onClick={() => setMenuOpen(false)}
                 className="flex-1 border-2 border-accent bg-accent px-[18px] py-[14px] text-left text-[13px] font-bold uppercase tracking-[.04em] text-ink"
               >
                 {t.cta}

@@ -42,16 +42,20 @@ const HeroScene = ({
     const group = new THREE.Group();
     scene.add(group);
 
-    // Deux icosaèdres filaires en contre-rotation.
+    // Deux icosaèdres filaires en contre-rotation. La géométrie source n'est
+    // jamais attachée à un objet : `scene.traverse` ne la verrait pas au
+    // démontage, on la libère donc dès qu'`EdgesGeometry` l'a consommée.
     const shells = [1.9, 2.55].map((radius, i) => {
+      const source = new THREE.IcosahedronGeometry(radius, 1);
       const shell = new THREE.LineSegments(
-        new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(radius, 1)),
+        new THREE.EdgesGeometry(source),
         new THREE.LineBasicMaterial({
           color: i ? accent2Color : accentColor,
           transparent: true,
           opacity: i ? 0.16 : 0.34,
         })
       );
+      source.dispose();
       group.add(shell);
       return shell;
     });
@@ -113,7 +117,11 @@ const HeroScene = ({
     };
     resize();
 
-    const resizeObserver = new ResizeObserver(resize);
+    // `setSize` efface le canvas : en mode figé, rien ne le repeindrait ensuite.
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+      if (reduced && visible) renderer.render(scene, camera);
+    });
     resizeObserver.observe(host);
 
     let visible = true;
@@ -122,13 +130,16 @@ const HeroScene = ({
     }, { threshold: 0 });
     visibility.observe(host);
 
+    // Les deux abonnements ne servent qu'à animer : inutile de les poser quand
+    // l'utilisateur demande moins de mouvement, ou quand la scène ignore le
+    // scroll (c'est le cas de `SceneBackground`, monté sur toutes les pages).
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
     const onPointerMove = (e) => {
       const r = host.getBoundingClientRect();
       pointer.tx = ((e.clientX - r.left) / Math.max(r.width, 1)) * 2 - 1;
       pointer.ty = ((e.clientY - r.top) / Math.max(r.height, 1)) * 2 - 1;
     };
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    if (!reduced) window.addEventListener('pointermove', onPointerMove, { passive: true });
 
     let scroll = 0;
     let scrollTarget = 0;
@@ -136,21 +147,29 @@ const HeroScene = ({
       const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       scrollTarget = Math.min(window.scrollY / max, 1);
     };
-    document.addEventListener('scroll', onScroll, { passive: true, capture: true });
-    onScroll();
+    const listensToScroll = scrollDriven && !reduced;
+    if (listensToScroll) {
+      document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+      onScroll();
+    }
 
     const clock = new THREE.Clock();
     let raf = 0;
 
+    let rendered = false;
+
     const tick = () => {
-      raf = requestAnimationFrame(tick);
+      // En mode « animations réduites » la scène est figée : on continue de
+      // solliciter des frames jusqu'à ce qu'elle soit visible et rendue une
+      // fois, puis on laisse tomber la boucle.
+      if (!reduced || !rendered) raf = requestAnimationFrame(tick);
       if (!visible) return;
 
       const t = reduced ? 0 : clock.getElapsedTime();
       pointer.x += (pointer.tx - pointer.x) * 0.045;
       pointer.y += (pointer.ty - pointer.y) * 0.045;
       scroll += (scrollTarget - scroll) * 0.06;
-      const s = scrollDriven ? scroll : 0;
+      const s = listensToScroll ? scroll : 0;
 
       camera.position.z = restZ - s * 1.5;
       camera.position.y = s * 0.9;
@@ -169,13 +188,14 @@ const HeroScene = ({
       dust.rotation.x = pointer.y * 0.08;
 
       renderer.render(scene, camera);
+      rendered = true;
     };
     tick();
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onPointerMove);
-      document.removeEventListener('scroll', onScroll, true);
+      if (listensToScroll) document.removeEventListener('scroll', onScroll, true);
       resizeObserver.disconnect();
       visibility.disconnect();
       scene.traverse((obj) => {
@@ -185,6 +205,10 @@ const HeroScene = ({
           materials.forEach((m) => m.dispose());
         }
       });
+      // `dispose()` ne relâche pas le contexte WebGL en three r168 : sans ce
+      // `forceContextLoss()`, chaque retour sur l'accueil en crée un nouveau
+      // jusqu'à ce que le navigateur tue le plus ancien — le fond permanent.
+      renderer.forceContextLoss();
       renderer.dispose();
       canvas.remove();
     };

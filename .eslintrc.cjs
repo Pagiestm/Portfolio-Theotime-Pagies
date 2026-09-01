@@ -25,14 +25,5 @@ module.exports = {
       files: ['src/routes/**'],
       rules: { 'react-refresh/only-export-components': 'off' },
     },
-    {
-      // Primitives Aceternity UI reprises telles quelles : on ne les réécrit pas,
-      // on désactive donc les règles de style qui ne s'appliquent qu'à notre code.
-      files: ['src/components/ui/**'],
-      rules: {
-        'react-refresh/only-export-components': 'off',
-        'react-hooks/exhaustive-deps': 'off',
-      },
-    },
   ],
 };

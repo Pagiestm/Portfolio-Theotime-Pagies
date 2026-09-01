@@ -19,7 +19,16 @@ const Field = ({ id, label, error, children }) => (
 
 const ContactForm = () => {
   const { t } = useTranslation();
-  const { formRef, errors, status, submit, onCaptchaChange, showCaptcha } = useContactForm();
+  const {
+    formRef,
+    captchaRef,
+    errors,
+    status,
+    submit,
+    onCaptchaChange,
+    onCaptchaExpired,
+    showCaptcha,
+  } = useContactForm();
 
   return (
     <form
@@ -42,7 +51,13 @@ const ContactForm = () => {
 
       {showCaptcha && (
         <div>
-          <ReCAPTCHA sitekey={env.recaptcha.siteKey} theme="dark" onChange={onCaptchaChange} />
+          <ReCAPTCHA
+            ref={captchaRef}
+            sitekey={env.recaptcha.siteKey}
+            theme="dark"
+            onChange={onCaptchaChange}
+            onExpired={onCaptchaExpired}
+          />
           {errors.captcha && <p className="m-0 mt-2 text-[13px] text-accent-2">{errors.captcha}</p>}
         </div>
       )}

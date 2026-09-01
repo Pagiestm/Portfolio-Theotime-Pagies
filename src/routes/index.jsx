@@ -3,12 +3,13 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import HomePage from '../pages/HomePage';
 import NotFoundPage from '../pages/NotFoundPage';
+import ErrorPage from '../pages/ErrorPage';
 import { paths } from './paths';
 
 /**
  * L'accueil et la page 404 sont dans le bundle initial ; les autres pages
- * sont chargées à la demande. Cela sort notamment react-select, EmailJS et
- * la galerie zoomable du premier chargement.
+ * sont chargées à la demande. Cela sort notamment EmailJS, reCAPTCHA et la
+ * galerie zoomable du premier chargement.
  */
 const WorkPage = lazy(() => import('../pages/WorkPage'));
 const ProjectPage = lazy(() => import('../pages/ProjectPage'));
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
   {
     path: paths.home,
     element: <MainLayout />,
-    errorElement: <NotFoundPage />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
       { path: paths.work, element: lazyRoute(<WorkPage />) },

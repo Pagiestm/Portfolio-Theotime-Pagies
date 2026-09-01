@@ -39,24 +39,20 @@ const chapterState = (index, progress, count) => {
 
 const HeroStage = () => {
   const { t, localize } = useTranslation();
-  const [stageRef, progress] = useScrollProgress({ stickyOffset: HEADER_HEIGHT });
+  const { stageRef, pinRef, progress, scrollToProgress } = useScrollProgress({
+    stickyOffset: HEADER_HEIGHT,
+  });
 
   const count = chapters.length;
   const activeIndex = Math.min(count - 1, Math.floor(progress * count + 0.0001));
 
-  const goToChapter = (index) => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    const travel = Math.max(stage.offsetHeight - (window.innerHeight - HEADER_HEIGHT), 1);
-    window.scrollTo({
-      top: stage.offsetTop + travel * ((index + 0.45) / count),
-      behavior: 'smooth',
-    });
-  };
+  // 0.45 vise le milieu du segment du chapitre plutôt que sa toute première frame.
+  const goToChapter = (index) => scrollToProgress((index + 0.45) / count);
 
   return (
     <section ref={stageRef} className="relative" style={{ height: '440vh' }}>
       <div
+        ref={pinRef}
         className="sticky overflow-hidden border-b-2 border-line"
         style={{ top: HEADER_HEIGHT, height: `calc(100vh - ${HEADER_HEIGHT}px)`, minHeight: 540 }}
       >

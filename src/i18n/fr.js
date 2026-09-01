@@ -74,6 +74,12 @@ export default {
   fErrSend: "L'envoi a échoué. Réessayez ou écrivez-moi directement.",
   fErrConfig: "Le formulaire n'est pas configuré. Écrivez-moi directement par email.",
 
+  errorKicker: 'Erreur',
+  errorTitle: 'Quelque chose a mal tourné',
+  errorBody:
+    "La page n'a pas pu se charger. C'est peut-être passager : réessayez, ou revenez à l'accueil.",
+  errorRetry: 'Réessayer',
+
   notFoundTitle: 'Page introuvable',
   notFoundBody: "Cette adresse ne mène nulle part. Revenez à l'accueil.",
   backHome: "Retour à l'accueil",

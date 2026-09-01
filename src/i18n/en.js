@@ -73,6 +73,12 @@ export default {
   fErrSend: 'Sending failed. Try again or write to me directly.',
   fErrConfig: 'The form is not configured. Please write to me directly by email.',
 
+  errorKicker: 'Error',
+  errorTitle: 'Something went wrong',
+  errorBody:
+    'This page failed to load. It may be temporary: try again, or head back to the homepage.',
+  errorRetry: 'Try again',
+
   notFoundTitle: 'Page not found',
   notFoundBody: 'This address leads nowhere. Head back to the homepage.',
   backHome: 'Back to the homepage',

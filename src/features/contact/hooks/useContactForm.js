@@ -12,6 +12,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const useContactForm = () => {
   const { t } = useTranslation();
   const formRef = useRef(null);
+  const captchaRef = useRef(null);
 
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -43,6 +44,10 @@ export const useContactForm = () => {
       try {
         await sendContactEmail(formRef.current);
         formRef.current.reset();
+        // Le widget reCAPTCHA garde son état résolu tant qu'on ne le réinitialise
+        // pas explicitement : sans ça il ne rappellerait plus `onChange`, et le
+        // second message resterait bloqué sur « validez le CAPTCHA ».
+        captchaRef.current?.reset();
         setCaptchaVerified(!isRecaptchaConfigured);
         setStatus('sent');
       } catch (error) {
@@ -57,10 +62,12 @@ export const useContactForm = () => {
 
   return {
     formRef,
+    captchaRef,
     errors,
     status,
     submit,
     onCaptchaChange: (value) => setCaptchaVerified(Boolean(value)),
+    onCaptchaExpired: () => setCaptchaVerified(false),
     showCaptcha: isRecaptchaConfigured,
   };
 };

@@ -33,6 +33,7 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
     if (!stage || !frame || !track) return null;
 
     const frameWidth = frame.clientWidth;
+    const rect = stage.getBoundingClientRect();
     return {
       stage,
       frame,
@@ -41,6 +42,8 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       centre: frameWidth / 2,
       shift: Math.max(track.scrollWidth - frameWidth, 0),
       travel: Math.max(stage.offsetHeight - frame.offsetHeight, 1),
+      top: rect.top,
+      documentTop: rect.top + window.scrollY,
       cards: cardRefs.current.filter(Boolean),
     };
   }, []);
@@ -48,18 +51,25 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
   useEffect(() => {
     let raf = 0;
     let offset = null;
+    let settledAt = null;
 
-    const frame = () => {
-      raf = requestAnimationFrame(frame);
+    const draw = () => {
       const g = geometry();
       if (!g) return;
 
-      const progress = clamp(-g.stage.getBoundingClientRect().top / g.travel, 0, 1);
+      // Le cadre s'épingle à `top: stickyOffset` : la progression démarre là.
+      const progress = clamp((stickyOffset - g.top) / g.travel, 0, 1);
       const target = -progress * g.shift;
 
       if (offset === null || reduced) offset = target;
       else offset += (target - offset) * 0.13;
-      if (Math.abs(target - offset) < 0.35) offset = target;
+      const settled = Math.abs(target - offset) < 0.35;
+      if (settled) offset = target;
+
+      // Rien n'a bougé et l'interpolation est stabilisée : on évite de forcer
+      // un recalcul de layout pour chaque carte à chaque frame.
+      if (settled && settledAt === progress) return;
+      settledAt = settled ? progress : null;
 
       g.track.style.transform = `translate3d(${offset.toFixed(1)}px,0,0)`;
 
@@ -85,16 +95,15 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
           body.style.transform = 'none';
           body.style.opacity = '1';
           body.style.filter = 'none';
-          return;
+        } else {
+          const focus = Math.max(0, 1 - distance * 3.2);
+          const z = -Math.min(distance, 1.4) * 320;
+          const rotateY = clamp(-dx * 28, -22, 22);
+          body.style.transform = `translate3d(0,${(distance * 18).toFixed(1)}px,${z.toFixed(1)}px) rotateY(${rotateY.toFixed(2)}deg) scale(${(1 + focus * 0.05).toFixed(3)})`;
+          body.style.opacity = Math.max(0.1, 1 - distance * 1.05).toFixed(3);
+          body.style.filter =
+            distance > 0.3 ? `blur(${Math.min(3.4, (distance - 0.3) * 5.5).toFixed(2)}px)` : 'none';
         }
-
-        const focus = Math.max(0, 1 - distance * 3.2);
-        const z = -Math.min(distance, 1.4) * 320;
-        const rotateY = clamp(-dx * 28, -22, 22);
-        body.style.transform = `translate3d(0,${(distance * 18).toFixed(1)}px,${z.toFixed(1)}px) rotateY(${rotateY.toFixed(2)}deg) scale(${(1 + focus * 0.05).toFixed(3)})`;
-        body.style.opacity = Math.max(0.1, 1 - distance * 1.05).toFixed(3);
-        body.style.filter =
-          distance > 0.3 ? `blur(${Math.min(3.4, (distance - 0.3) * 5.5).toFixed(2)}px)` : 'none';
 
         // Le repère passe à la couleur accent une fois franchi le centre.
         const node = card.querySelector('[data-card-node]');
@@ -116,9 +125,32 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       setActiveIndex((current) => (current === nearest ? current : nearest));
     };
 
-    frame();
-    return () => cancelAnimationFrame(raf);
-  }, [geometry, reduced]);
+    const frame = () => {
+      raf = requestAnimationFrame(frame);
+      draw();
+    };
+
+    // Sans ce garde, la boucle continuerait de forcer le layout à 60 fps
+    // tant que la page reste montée, même couloir hors écran.
+    const start = () => {
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    const visibility = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0 }
+    );
+    if (frameRef.current) visibility.observe(frameRef.current);
+
+    return () => {
+      stop();
+      visibility.disconnect();
+    };
+  }, [geometry, reduced, stickyOffset]);
 
   /** Amène la carte suivante / précédente au centre du couloir. */
   const step = useCallback(
@@ -133,11 +165,11 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       const centreX = card.offsetLeft + card.offsetWidth / 2;
       const progress = clamp((centreX - g.centre) / g.shift, 0, 1);
       window.scrollTo({
-        top: g.stage.offsetTop + progress * g.travel,
-        behavior: 'smooth',
+        top: g.documentTop - stickyOffset + progress * g.travel,
+        behavior: reduced ? 'auto' : 'smooth',
       });
     },
-    [activeIndex, geometry]
+    [activeIndex, geometry, reduced, stickyOffset]
   );
 
   return {
@@ -149,6 +181,5 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
     registerCard,
     activeIndex,
     step,
-    stickyOffset,
   };
 };
