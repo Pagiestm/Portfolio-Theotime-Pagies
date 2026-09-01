@@ -1,50 +1,43 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
-
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        rubik: ['Rubik', 'sans-serif'],
+      // Les valeurs vivent dans src/styles/tokens.css - ici on ne fait que les exposer.
+      colors: {
+        bg: "var(--color-bg)",
+        surface: "var(--color-surface)",
+        "surface-2": "var(--color-surface-2)",
+        ink: "var(--color-text)",
+        muted: "var(--color-muted)",
+        accent: "var(--color-accent)",
+        "accent-2": "var(--color-accent-2)",
+        line: "var(--color-line)",
+        "line-soft": "var(--color-line-soft)",
       },
-      animation: {
-        spotlight: "spotlight 2s ease .75s 1 forwards",
+      fontFamily: {
+        sans: ["Archivo", "system-ui", "sans-serif"],
+      },
+      borderRadius: {
+        // Modernist : aucun arrondi, nulle part.
+        none: "0px",
+      },
+      maxWidth: {
+        shell: "1280px",
+      },
+      spacing: {
+        header: "68px",
       },
       keyframes: {
-        spotlight: {
-          "0%": {
-            opacity: 0,
-            transform: "translate(-72%, -62%) scale(0.5)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translate(-50%,-40%) scale(1)",
-          },
+        rise: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "none" },
         },
+      },
+      animation: {
+        rise: "rise .7s cubic-bezier(.22,.61,.36,1) both",
       },
     },
   },
-  plugins: [
-    addVariablesForColors,
-  ],
-}
-
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
- 
-  addBase({
-    ":root": newVars,
-  });
-}
+  plugins: [],
+};
