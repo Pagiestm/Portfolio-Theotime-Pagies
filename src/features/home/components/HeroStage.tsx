@@ -31,8 +31,7 @@ const chapterState = (index, progress, count) => {
   }
 
   // Effet « machine à écrire » : on découvre le texte de gauche à droite.
-  const typed =
-    index === 0 ? clamp((local + 0.345) / 0.34) : clamp((local - 0.04) / 0.42);
+  const typed = index === 0 ? clamp((local + 0.345) / 0.34) : clamp((local - 0.04) / 0.42);
 
   return { opacity, translateY, typed, caretVisible: typed > 0.02 && typed < 0.995 };
 };
@@ -98,7 +97,9 @@ const HeroStage = () => {
                 <div className="max-w-[46ch] border-l-2 border-accent py-1 pl-5">
                   <span
                     className="inline-block text-[clamp(15px,1.3vw,19px)] text-muted"
-                    style={{ clipPath: `inset(0 ${((1 - state.typed) * 100).toFixed(1)}% -0.2em 0)` }}
+                    style={{
+                      clipPath: `inset(0 ${((1 - state.typed) * 100).toFixed(1)}% -0.2em 0)`,
+                    }}
                   >
                     {localize(chapter.bubble)}
                   </span>
@@ -113,12 +114,7 @@ const HeroStage = () => {
           })}
         </div>
 
-        <ProgressRail
-          hint={t.scrollHint}
-          index={activeIndex}
-          total={count}
-          progress={progress}
-        />
+        <ProgressRail hint={t.scrollHint} index={activeIndex} total={count} progress={progress} />
 
         <div className="absolute top-1/2 flex -translate-y-1/2 flex-col gap-[10px] right-[clamp(24px,4vw,60px)]">
           {chapters.map((chapter, index) => (
@@ -128,7 +124,9 @@ const HeroStage = () => {
               onClick={() => goToChapter(index)}
               aria-label={localize(chapter.kicker)}
               className={`h-3 w-3 cursor-pointer border-2 p-0 transition-colors duration-200 ${
-                index === activeIndex ? 'border-accent bg-accent' : 'border-line bg-transparent hover:border-accent'
+                index === activeIndex
+                  ? 'border-accent bg-accent'
+                  : 'border-line bg-transparent hover:border-accent'
               }`}
             />
           ))}

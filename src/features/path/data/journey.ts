@@ -38,7 +38,7 @@ export const journey = [
     org: 'Yoozly',
     role: { fr: 'Développeur web en alternance', en: 'Web developer, apprenticeship' },
     detail: {
-      fr: "Première expérience longue en entreprise : développement web et participation à la gestion de projets digitaux.",
+      fr: 'Première expérience longue en entreprise : développement web et participation à la gestion de projets digitaux.',
       en: 'First long-form experience in a company: web development and involvement in digital project management.',
     },
   },

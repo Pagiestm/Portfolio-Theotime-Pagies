@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Revue de code automatique CodeRabbit — gratuit sur les repos publics.
+language: fr-FR
+
+reviews:
+  # « chill » = revue posée qui ne bloque pas la PR (pas de "request changes").
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  poem: false
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - master
+  # On ne relit pas les données brutes ni les artefacts de build.
+  path_filters:
+    - '!dist/**'
+    - '!**/*.min.*'
+    - '!src/features/work/data/*.json'
+  path_instructions:
+    - path: 'src/**/*.{ts,tsx}'
+      instructions: >-
+        Projet React 18 + TypeScript + Vite, design "Modernist" (Tailwind, aucun
+        arrondi). Signale les bugs, problèmes d'accessibilité, de performance et
+        de lisibilité. Vérifie la cohérence des types et le respect des conventions
+        existantes plutôt que d'imposer de nouveaux styles.
+
+chat:
+  auto_reply: true

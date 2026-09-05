@@ -20,7 +20,9 @@ const PageHeader = ({ kicker, title, body, note, children }: PageHeaderProps) =>
       {title}
     </h1>
     {body && <p className="m-0 mb-[14px] max-w-[58ch] text-[18px] text-muted">{body}</p>}
-    {note && <p className="m-0 text-[13px] uppercase tracking-[.18em] text-muted opacity-80">{note}</p>}
+    {note && (
+      <p className="m-0 text-[13px] uppercase tracking-[.18em] text-muted opacity-80">{note}</p>
+    )}
     {children}
   </Reveal>
 );

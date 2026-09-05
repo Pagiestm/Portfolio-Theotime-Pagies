@@ -1,4 +1,3 @@
-
 /**
  * Grille de cellules `label / valeur` - le motif « modular grid » du design system,
  * réutilisé par la bande d'accueil, les faits de la page À propos et la méta d'un projet.

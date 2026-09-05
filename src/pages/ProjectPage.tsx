@@ -60,17 +60,17 @@ const ProjectPage = () => {
 
       <div
         className="grid gap-[52px]"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', perspective: '1600px' }}
+        style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+          perspective: '1600px',
+        }}
       >
         <Reveal variant="left">
           <h2 className="m-0 mb-5 border-b-2 border-line pb-[14px] text-[12.5px] font-bold uppercase tracking-[.2em] text-accent-2">
             {t.aboutProject}
           </h2>
           {/* Contenu rédigé par l'auteur du portfolio, stocké en HTML dans les JSON projets. */}
-          <div
-            className="project-prose"
-            dangerouslySetInnerHTML={{ __html: project.content }}
-          />
+          <div className="project-prose" dangerouslySetInnerHTML={{ __html: project.content }} />
         </Reveal>
 
         <Reveal variant="right">

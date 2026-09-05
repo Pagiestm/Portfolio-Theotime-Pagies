@@ -8,15 +8,10 @@ import { env, isEmailConfigured } from '../config/env';
  * @param {HTMLFormElement} form le formulaire à sérialiser.
  * @returns {Promise<void>} rejette si l'envoi échoue ou si la config est absente.
  */
-export const sendContactEmail = async (form) => {
+export const sendContactEmail = async (form: HTMLFormElement) => {
   if (!isEmailConfigured) {
     throw new Error('EMAIL_NOT_CONFIGURED');
   }
 
-  await emailjs.sendForm(
-    env.emailjs.serviceId,
-    env.emailjs.templateId,
-    form,
-    env.emailjs.userId
-  );
+  await emailjs.sendForm(env.emailjs.serviceId, env.emailjs.templateId, form, env.emailjs.userId);
 };

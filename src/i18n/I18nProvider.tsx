@@ -32,7 +32,9 @@ const I18nProvider = ({ children }) => {
   /** Résout une valeur localisée : soit une chaîne, soit `{ fr, en }`. */
   const localize = useCallback(
     (value) =>
-      value && typeof value === 'object' && !Array.isArray(value) ? value[lang] ?? value.fr : value,
+      value && typeof value === 'object' && !Array.isArray(value)
+        ? (value[lang] ?? value.fr)
+        : value,
     [lang]
   );
 

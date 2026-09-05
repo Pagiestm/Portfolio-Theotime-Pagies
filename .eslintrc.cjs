@@ -6,16 +6,28 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    // Toujours en dernier : désactive les règles ESLint qui entrent en conflit
+    // avec Prettier (le formatage est délégué à Prettier).
+    'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
+  // ESLint n'est pas configuré en mode type-aware (pas de `project`) : le vrai
+  // type-check reste `tsc --noEmit`. Le parser sert à comprendre la syntaxe TS.
+  parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react/jsx-no-target-blank': 'off',
-    // Projet en JavaScript pur, sans PropTypes : le contrat des composants est
-    // documenté en JSDoc. Activer la règle imposerait un schéma par composant.
+    // Contrat des composants documenté via les types TypeScript, pas PropTypes.
     'react/prop-types': 'off',
+    // Version TS-aware : ne signale pas à tort les noms de paramètres dans les
+    // signatures de type. Préfixer par `_` pour ignorer volontairement.
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
   overrides: [

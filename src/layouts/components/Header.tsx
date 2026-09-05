@@ -13,11 +13,15 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => setMenuOpen(false), [location.pathname]);
-  useEffect(() => { if (wide) setMenuOpen(false); }, [wide]);
+  useEffect(() => {
+    if (wide) setMenuOpen(false);
+  }, [wide]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [menuOpen]);
 
   const navItems = NAV_ITEMS.map(([to, fr, en]) => ({ to, label: lang === 'fr' ? fr : en }));
@@ -49,7 +53,9 @@ const Header = () => {
                   {({ isActive }) => (
                     <>
                       <span>{item.label}</span>
-                      {isActive && <span className="absolute inset-x-3 bottom-[2px] h-[2px] bg-accent" />}
+                      {isActive && (
+                        <span className="absolute inset-x-3 bottom-[2px] h-[2px] bg-accent" />
+                      )}
                     </>
                   )}
                 </NavLink>

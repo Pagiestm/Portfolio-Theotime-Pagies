@@ -18,7 +18,14 @@ interface RevealProps {
   [key: string]: unknown;
 }
 
-const Reveal = ({ as: Tag = 'div', variant = 'up', delay = 0, style, children, ...rest }: RevealProps) => {
+const Reveal = ({
+  as: Tag = 'div',
+  variant = 'up',
+  delay = 0,
+  style,
+  children,
+  ...rest
+}: RevealProps) => {
   const ref = useRef(null);
   const reduced = usePrefersReducedMotion();
   const [shown, setShown] = useState(false);
@@ -49,7 +56,7 @@ const Reveal = ({ as: Tag = 'div', variant = 'up', delay = 0, style, children, .
       ref={ref}
       style={{
         opacity: shown ? 1 : 0,
-        transform: shown ? 'none' : HIDDEN_TRANSFORM[variant] ?? HIDDEN_TRANSFORM.up,
+        transform: shown ? 'none' : (HIDDEN_TRANSFORM[variant] ?? HIDDEN_TRANSFORM.up),
         transition: reduced
           ? undefined
           : `opacity 1s cubic-bezier(.22,.61,.36,1) ${delay}ms, transform 1.15s cubic-bezier(.22,.61,.36,1) ${delay}ms`,

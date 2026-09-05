@@ -80,7 +80,10 @@ const ContactForm = () => {
       )}
 
       {errors.form && (
-        <div role="alert" className="border-2 border-accent px-4 py-[14px] text-[14.5px] text-accent">
+        <div
+          role="alert"
+          className="border-2 border-accent px-4 py-[14px] text-[14.5px] text-accent"
+        >
           {errors.form}
         </div>
       )}
