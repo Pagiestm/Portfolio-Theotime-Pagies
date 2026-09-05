@@ -30,12 +30,12 @@ const StepButton = ({
 );
 
 /* ─── Le couloir horizontal, piloté par le scroll — même effet sur tous les écrans ─── */
-const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
+const JourneyCorridor = () => {
   const { t } = useTranslation();
   const { stageRef, frameRef, trackRef, railFillRef, barRef, registerCard, activeIndex, step } =
     useHorizontalStage({ stickyOffset: HEADER_HEIGHT });
 
-  const total = entries.length + 1;
+  const total = journey.length + 1;
 
   return (
     <section ref={stageRef} className="relative" style={{ height: '400vh' }}>
@@ -45,10 +45,7 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
         style={{
           top: HEADER_HEIGHT,
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-          // Le minimum ne doit jamais dépasser le viewport : sinon, sur un écran
-          // court (mobile paysage), la barre passerait sous le pli et deviendrait
-          // inaccessible à cause de overflow-hidden.
-          minHeight: `min(520px, calc(100vh - ${HEADER_HEIGHT}px))`,
+          minHeight: 520,
         }}
       >
         {/* Région du couloir — les cartes vivent ici, au-dessus de la barre */}
@@ -78,12 +75,12 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
               }}
             />
 
-            {entries.map((entry, index) => (
+            {journey.map((entry, index) => (
               <JourneyCard key={`${entry.org}-${index}`} ref={registerCard(index)} entry={entry} />
             ))}
 
             <div
-              ref={registerCard(entries.length)}
+              ref={registerCard(journey.length)}
               className="flex flex-none flex-col items-center"
               style={{ width: CARD_WIDTH }}
             >

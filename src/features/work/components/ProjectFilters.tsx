@@ -1,4 +1,5 @@
 import { ElementType, useMemo, useState } from 'react';
+import { availableTech } from '../data/projects';
 import { TECH } from '../../../constants/tech';
 import { useTranslation } from '../../../i18n/useTranslation';
 
@@ -9,8 +10,6 @@ interface ProjectFiltersProps {
   onToggleTech: (t: string) => void;
   onReset: () => void;
   isFiltering: boolean;
-  /** Technologies proposees, du plus utilise au moins utilise. */
-  availableTech: string[];
 }
 
 /** Nombre de technos affichées par défaut, avant « Voir tout ». */
@@ -27,7 +26,6 @@ const ProjectFilters = ({
   onToggleTech,
   onReset,
   isFiltering,
-  availableTech,
 }: ProjectFiltersProps) => {
   const { t } = useTranslation();
   const [showAll, setShowAll] = useState(false);
@@ -40,7 +38,7 @@ const ProjectFilters = ({
     const primary = availableTech.slice(0, PRIMARY_COUNT);
     const selectedOutside = selectedTech.filter((tech) => !primary.includes(tech));
     return [...primary, ...selectedOutside];
-  }, [availableTech, showAll, selectedTech]);
+  }, [showAll, selectedTech]);
 
   return (
     <div className="mb-9">

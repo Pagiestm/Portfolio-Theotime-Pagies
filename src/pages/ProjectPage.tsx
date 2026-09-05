@@ -88,7 +88,8 @@ const ProjectPage = () => {
           <h2 className="m-0 mb-5 border-b-2 border-line pb-[14px] text-[12.5px] font-bold uppercase tracking-[.2em] text-accent-2">
             {t.aboutProject}
           </h2>
-          <ProjectContent blocks={content} />
+          {/* Contenu rédigé par l'auteur du portfolio, stocké en HTML dans les JSON projets. */}
+          <div className="project-prose" dangerouslySetInnerHTML={{ __html: project.content }} />
         </Reveal>
 
         <Reveal variant="right">

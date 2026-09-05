@@ -51,11 +51,9 @@ const AboutPage = () => {
         </Reveal>
 
         <Reveal variant="right" className="sticky top-[104px]">
-          {portrait && (
-            <div className="overflow-hidden border-2 border-line">
-              <img src={portrait} alt={t.portraitAlt} className="block h-auto w-full" />
-            </div>
-          )}
+          <div className="border-2 border-line overflow-hidden">
+            <img src={portrait} alt={t.portraitAlt} className="block w-full h-auto" />
+          </div>
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">
             {settings.name} — {new Date().getFullYear()}
           </div>

@@ -37,13 +37,10 @@ const I18nProvider = ({ children }) => {
    * l'afficher tel quel laisserait un blanc dans la page.
    */
   const localize = useCallback(
-    (value) => {
-      if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
-      const translated = value[lang];
-      return translated === null || translated === undefined || translated === ''
-        ? value.fr
-        : translated;
-    },
+    (value) =>
+      value && typeof value === 'object' && !Array.isArray(value)
+        ? (value[lang] ?? value.fr)
+        : value,
     [lang]
   );
 
