@@ -45,7 +45,10 @@ const JourneyCorridor = () => {
         style={{
           top: HEADER_HEIGHT,
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-          minHeight: 520,
+          // Le minimum ne doit jamais dépasser le viewport : sinon, sur un écran
+          // court (mobile paysage), la barre passerait sous le pli et deviendrait
+          // inaccessible à cause de overflow-hidden.
+          minHeight: `min(520px, calc(100vh - ${HEADER_HEIGHT}px))`,
         }}
       >
         {/* Région du couloir — les cartes vivent ici, au-dessus de la barre */}

@@ -4,6 +4,12 @@ on:
   push:
     branches: [master]
 
+# Sérialise les releases : deux exécutions concurrentes pourraient se marcher
+# dessus (bump de version, commit de CHANGELOG, tag) et provoquer un rejet du push.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 permissions:
   contents: write
   issues: write
@@ -23,11 +29,21 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      # On ne publie que si toute la qualité passe.
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Prettier check
+        run: npm run format:check
 
       - name: Build
         run: npm run build

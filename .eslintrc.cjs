@@ -11,21 +11,23 @@ module.exports = {
     'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  // Parser TypeScript pour la syntaxe (interfaces, annotations, `as`).
-  // Le plugin type-aware n'est pas chargé : son `ts-api-utils` est incompatible
-  // avec le compilateur natif TypeScript 7. Le vrai type-check reste `tsc --noEmit`.
+  // ESLint n'est pas configuré en mode type-aware (pas de `project`) : le vrai
+  // type-check reste `tsc --noEmit`. Le parser sert à comprendre la syntaxe TS.
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react/jsx-no-target-blank': 'off',
     // Contrat des composants documenté via les types TypeScript, pas PropTypes.
     'react/prop-types': 'off',
-    // Le core `no-unused-vars` n'est pas TS-aware : il signale à tort les noms de
-    // paramètres dans les signatures de type (`(v: string) => void`). Le vrai
-    // contrôle des variables inutilisées est délégué à `tsc --noEmit`.
+    // Version TS-aware : ne signale pas à tort les noms de paramètres dans les
+    // signatures de type. Préfixer par `_` pour ignorer volontairement.
     'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
   overrides: [
