@@ -65,7 +65,7 @@ const LINK_FIELDS = [
 
 const normalize = (raw) => {
   const iconKeys = (raw.logos ?? []).map((logo) => logo.icon);
-  const stack = iconKeys.length ? iconKeys.map(techLabel) : raw.stack ?? [];
+  const stack = iconKeys.length ? iconKeys.map(techLabel) : (raw.stack ?? []);
   const period = extractPeriod(raw.title);
 
   return {
@@ -101,7 +101,22 @@ export const projects = [...largeProjects, ...smallProjects]
 
 export const getProjectById = (id) => projects.find((project) => project.id === id);
 
-/** Technologies présentes dans au moins un projet, triées alphabétiquement. */
-export const availableTech = Array.from(
-  new Set(projects.flatMap((project) => project.stack))
-).sort((a, b) => a.localeCompare(b, 'fr'));
+/** Nombre de projets où chaque techno apparaît. */
+const techFrequency = projects.reduce(
+  (acc, project) => {
+    project.stack.forEach((tech) => {
+      acc[tech] = (acc[tech] ?? 0) + 1;
+    });
+    return acc;
+  },
+  {} as Record<string, number>
+);
+
+/**
+ * Technologies présentes dans au moins un projet, des plus utilisées aux
+ * moins utilisées. L'ordre de fréquence permet de n'exposer d'emblée que les
+ * filtres les plus pertinents.
+ */
+export const availableTech = Array.from(new Set(projects.flatMap((project) => project.stack))).sort(
+  (a, b) => techFrequency[b] - techFrequency[a] || a.localeCompare(b, 'fr')
+);

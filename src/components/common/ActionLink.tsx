@@ -21,7 +21,14 @@ interface ActionLinkProps {
   [key: string]: unknown;
 }
 
-const ActionLink = ({ to, href, variant = 'solid', className = '', children, ...rest }: ActionLinkProps) => {
+const ActionLink = ({
+  to,
+  href,
+  variant = 'solid',
+  className = '',
+  children,
+  ...rest
+}: ActionLinkProps) => {
   const cls = `${BASE} ${VARIANTS[variant]} ${className}`;
 
   if (to) {

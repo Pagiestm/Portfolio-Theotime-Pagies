@@ -12,7 +12,10 @@ const SkillsPage = () => {
 
       <div
         className="relative mt-14 grid gap-[2px]"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', perspective: '1500px' }}
+        style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          perspective: '1500px',
+        }}
       >
         {skillGroups.map((group, index) => (
           <SkillGroupCard key={index} group={group} delay={index * 70} />

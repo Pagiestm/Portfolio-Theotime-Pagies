@@ -125,9 +125,12 @@ const HeroScene = ({
     resizeObserver.observe(host);
 
     let visible = true;
-    const visibility = new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting;
-    }, { threshold: 0 });
+    const visibility = new IntersectionObserver(
+      ([e]) => {
+        visible = e.isIntersecting;
+      },
+      { threshold: 0 }
+    );
     visibility.observe(host);
 
     // Les deux abonnements ne servent qu'à animer : inutile de les poser quand
@@ -215,7 +218,9 @@ const HeroScene = ({
     };
   }, [accent, accent2, density, scrollDriven, reduced]);
 
-  return <div ref={hostRef} aria-hidden="true" className={`relative block h-full w-full ${className}`} />;
+  return (
+    <div ref={hostRef} aria-hidden="true" className={`relative block h-full w-full ${className}`} />
+  );
 };
 
 export default HeroScene;

@@ -19,7 +19,8 @@ export const useContactForm = () => {
   const [captchaVerified, setCaptchaVerified] = useState(!isRecaptchaConfigured);
 
   const validate = useCallback(() => {
-    const fields = (formRef.current as HTMLFormElement).elements as HTMLFormControlsCollection & Record<string, HTMLInputElement>;
+    const fields = (formRef.current as HTMLFormElement).elements as HTMLFormControlsCollection &
+      Record<string, HTMLInputElement>;
     const next: Record<string, string> = {};
 
     if (!fields.user_name.value.trim()) next.user_name = t.fErrName;

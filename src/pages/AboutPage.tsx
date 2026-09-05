@@ -12,7 +12,10 @@ const AboutPage = () => {
     <section className="relative mx-auto max-w-shell overflow-hidden px-6 pb-[86px] pt-[68px]">
       <div
         className="relative grid items-start gap-[52px]"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', perspective: '1600px' }}
+        style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          perspective: '1600px',
+        }}
       >
         <Reveal variant="left">
           <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
@@ -42,11 +45,7 @@ const AboutPage = () => {
 
         <Reveal variant="right" className="sticky top-[104px]">
           <div className="border-2 border-line overflow-hidden">
-            <img
-              src={portrait}
-              alt={t.portraitAlt}
-              className="block w-full h-auto"
-            />
+            <img src={portrait} alt={t.portraitAlt} className="block w-full h-auto" />
           </div>
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">
             {site.name} — {site.year}

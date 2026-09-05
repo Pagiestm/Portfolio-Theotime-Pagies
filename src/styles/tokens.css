@@ -4,13 +4,13 @@
  * Ces variables sont relues par tailwind.config.js : ne jamais dupliquer un hex ailleurs.
  */
 :root {
-    --color-bg: #010001;
-    --color-surface: #192231;
-    --color-surface-2: #0c1119;
-    --color-text: #fefeff;
-    --color-muted: #8d9aad;
-    --color-accent: #5c7fae;
-    --color-accent-2: #c3cede;
-    --color-line: #222c3c;
-    --color-line-soft: rgba(254, 254, 255, 0.11);
+  --color-bg: #010001;
+  --color-surface: #192231;
+  --color-surface-2: #0c1119;
+  --color-text: #fefeff;
+  --color-muted: #8d9aad;
+  --color-accent: #5c7fae;
+  --color-accent-2: #c3cede;
+  --color-line: #222c3c;
+  --color-line-soft: rgba(254, 254, 255, 0.11);
 }

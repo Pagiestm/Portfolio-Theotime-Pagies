@@ -22,9 +22,12 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const reduced = usePrefersReducedMotion();
 
-  const registerCard = useCallback((index) => (el) => {
-    cardRefs.current[index] = el;
-  }, []);
+  const registerCard = useCallback(
+    (index) => (el) => {
+      cardRefs.current[index] = el;
+    },
+    []
+  );
 
   const geometry = useCallback(() => {
     const stage = stageRef.current;
@@ -79,7 +82,8 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
 
       g.cards.forEach((card, index) => {
         const rect = card.getBoundingClientRect();
-        const dx = (rect.left - frameRect.left + rect.width / 2 - g.centre) / Math.max(g.frameWidth, 1);
+        const dx =
+          (rect.left - frameRect.left + rect.width / 2 - g.centre) / Math.max(g.frameWidth, 1);
         const distance = Math.abs(dx);
         if (distance < bestDistance) {
           bestDistance = distance;

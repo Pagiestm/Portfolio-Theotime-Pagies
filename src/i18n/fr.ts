@@ -16,11 +16,13 @@ export default {
   workKicker: 'Réalisations',
   workTitle: "Ce que j'ai livré",
   workBody:
-    "Chaque projet est décrit avec son contexte, mon rôle exact et les décisions techniques qui ont compté. Cliquez pour le détail.",
+    'Chaque projet est décrit avec son contexte, mon rôle exact et les décisions techniques qui ont compté. Cliquez pour le détail.',
   searchLabel: 'Rechercher',
   searchPlaceholder: 'Rechercher par titre ou technologie…',
   noResult: 'Aucun projet ne correspond à cette recherche.',
   reset: 'Réinitialiser',
+  filterShowAll: 'Voir tout',
+  filterShowLess: 'Voir moins',
   allFilter: 'Tout',
   allProjects: 'Toutes mes réalisations',
   showMore: 'Voir plus',
@@ -43,7 +45,7 @@ export default {
   pathKicker: 'Parcours & formations',
   pathTitle: "D'où je viens",
   pathBody:
-    "Formation, alternances et missions sur une seule ligne de temps, d’aujourd’hui vers mes débuts.",
+    'Formation, alternances et missions sur une seule ligne de temps, d’aujourd’hui vers mes débuts.',
   experience: 'Expérience',
   education: 'Formation',
 

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fond transparent : seule la sphère filaire reste visible -->
+  <!-- Sphère filaire — la « bulle spatiale » de la scène 3D d'accueil -->
+  <g fill="none" stroke="#5c7fae" stroke-width="2">
+    <circle cx="32" cy="32" r="21"/>
+    <ellipse cx="32" cy="32" rx="8.5" ry="21"/>
+    <ellipse cx="32" cy="32" rx="21" ry="8.5"/>
+  </g>
+  <!-- Cœur lumineux -->
+  <circle cx="32" cy="32" r="2.6" fill="#c3cede"/>
+</svg>

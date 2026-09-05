@@ -3,7 +3,8 @@ import { useTranslation } from '../../i18n/useTranslation';
 
 const LangSwitch = ({ size = 'sm' }) => {
   const { lang, setLang } = useTranslation();
-  const padding = size === 'sm' ? 'px-[10px] py-[6px] text-[12px]' : 'px-[14px] py-[10px] text-[13px]';
+  const padding =
+    size === 'sm' ? 'px-[10px] py-[6px] text-[12px]' : 'px-[14px] py-[10px] text-[13px]';
 
   return (
     <span className="flex border-2 border-line">

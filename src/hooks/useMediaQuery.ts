@@ -20,5 +20,4 @@ export const useMediaQuery = (query) => {
 /** Le breakpoint « wide » de la maquette : la nav complète s'affiche à partir de 1180px. */
 export const useIsWide = () => useMediaQuery('(min-width: 1180px)');
 
-export const usePrefersReducedMotion = () =>
-  useMediaQuery('(prefers-reduced-motion: reduce)');
+export const usePrefersReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');

@@ -21,6 +21,8 @@ export default {
   searchPlaceholder: 'Search by title or technology…',
   noResult: 'No project matches this search.',
   reset: 'Reset',
+  filterShowAll: 'Show all',
+  filterShowLess: 'Show less',
   allFilter: 'All',
   allProjects: 'All my work',
   showMore: 'Show more',
@@ -57,8 +59,7 @@ export default {
 
   contactKicker: 'Contact',
   contactTitle: 'Let us talk about your project',
-  contactBody:
-    'A question, a mission, an opportunity: write to me and I answer within 48 hours.',
+  contactBody: 'A question, a mission, an opportunity: write to me and I answer within 48 hours.',
   fName: 'Name',
   fMail: 'Email',
   fMsg: 'Message',

@@ -5,117 +5,126 @@
 @tailwind utilities;
 
 @layer base {
-
-    /* Le défilement fluide n'est appliqué qu'aux visiteurs qui n'ont pas
+  /* Le défilement fluide n'est appliqué qu'aux visiteurs qui n'ont pas
        demandé de réduire les animations. */
-    @media (prefers-reduced-motion: no-preference) {
-        html {
-            scroll-behavior: smooth;
-        }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
     }
+  }
 
-    body {
-        margin: 0;
-        background: var(--color-bg);
-        color: var(--color-text);
-        font-family: 'Archivo', system-ui, sans-serif;
-        font-size: 16px;
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
-        text-wrap: pretty;
-    }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+  }
 
-    a {
-        color: var(--color-accent);
-        text-decoration: none;
-    }
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
 
-    a:hover {
-        color: #93aecf;
-    }
+  a:hover {
+    color: #93aecf;
+  }
 
-    ::selection {
-        background: rgba(92, 127, 174, 0.35);
-    }
+  ::selection {
+    background: rgba(92, 127, 174, 0.35);
+  }
 
-    *:focus-visible {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 3px;
-    }
+  *:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
 
-    input,
-    textarea,
-    button {
-        font-family: inherit;
-        font-size: inherit;
-    }
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
-    /**
+  /**
      * Contenu riche des projets (`modalContent` des JSON, injecté en HTML).
      * Le design Modernist n'a pas de prose par défaut : on la définit ici une fois.
      */
-    .project-prose p {
-        margin: 0 0 16px;
-        color: var(--color-muted);
-        font-size: 16.5px;
-    }
+  .project-prose p {
+    margin: 0 0 16px;
+    color: var(--color-muted);
+    font-size: 16.5px;
+  }
 
-    .project-prose ul {
-        margin: 0 0 22px;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
+  .project-prose ul {
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    /* Dans les JSON projets, un <ul> commence par un <p> qui sert d'intitulé ;
+  /* Dans les JSON projets, un <ul> commence par un <p> qui sert d'intitulé ;
        les <p> suivants sont du texte courant et gardent le style de prose. */
-    .project-prose ul>p:first-child {
-        margin: 0 0 4px;
-        color: var(--color-accent-2);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-    }
+  .project-prose ul > p:first-child {
+    margin: 0 0 4px;
+    color: var(--color-accent-2);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
 
-    .project-prose li {
-        position: relative;
-        padding-left: 22px;
-        color: var(--color-muted);
-        font-size: 16px;
-    }
+  .project-prose li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--color-muted);
+    font-size: 16px;
+  }
 
-    .project-prose li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 7px;
-        height: 7px;
-        background: var(--color-accent);
-    }
+  .project-prose li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 7px;
+    height: 7px;
+    background: var(--color-accent);
+  }
 
-    .project-prose .attention {
-        margin-top: 16px;
-        padding: 12px 14px;
-        border: 1px solid var(--color-accent-2);
-        color: var(--color-accent-2);
-        font-size: 14.5px;
-    }
+  .project-prose .attention {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border: 1px solid var(--color-accent-2);
+    color: var(--color-accent-2);
+    font-size: 14.5px;
+  }
 }
 
 @keyframes rise {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 
-    to {
-        opacity: 1;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

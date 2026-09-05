@@ -13,10 +13,5 @@ export const sendContactEmail = async (form) => {
     throw new Error('EMAIL_NOT_CONFIGURED');
   }
 
-  await emailjs.sendForm(
-    env.emailjs.serviceId,
-    env.emailjs.templateId,
-    form,
-    env.emailjs.userId
-  );
+  await emailjs.sendForm(env.emailjs.serviceId, env.emailjs.templateId, form, env.emailjs.userId);
 };

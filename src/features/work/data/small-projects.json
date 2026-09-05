@@ -1,156 +1,155 @@
 [
-    {
-        "title": "SmartLille - Octobre à Novembre 2024",
-        "description": "L'objectif était de concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Nous étions chargé de centraliser les données d'événements, automatiser les processus clés comme les notifications et rappels et créer une interface simple et accesible pour les citoyens, les associations, et les modérateurs.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/SmartLille/SmartLille.png",
-        "modalTitle": "SmartLille",
-        "size": "small",
-        "modalContent": "<div><p>En tant qu'expert no-code, votre mission consiste à concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Vous serez chargé de centraliser les données d’événements, automatiser les processus clés comme les notifications et rappels, et créer une interface simple et accessible pour les citoyens, les associations, et les modérateurs. Ce projet vous permettra d'appliquer vos compétences techniques et de structuration à une problématique réelle, tout en offrant une solution moderne et efficace aux défis de la gestion municipale. Vous devrez répondre aux besoins métier de manière précise et innovante.</p><ul><li>Centraliser les événements citoyens : Offrir un espace où les citoyens peuvent soumettre et consulter des événements.</li><li>Automatiser les workflows : Les modérateurs doivent recevoir des notifications à chaque nouvelle soumission, et les citoyens inscrits doivent recevoir des rappels.</li><li>Simplifier la gestion : Créer une interface intuitive pour les administrateurs de la ville pour approuver et gérer les événements.</li><li>Documenter le projet : Garantir que chaque étape soit documentée pour assurer une clarté et une continuité.</li><li>Outils utilisés : Airtable, Zapier et Softr</li></div>",
-        "logos": [
-        ],
-        "stack": ["Airtable", "Zapier", "Softr"],
-        "images": [
-            "/images/projets/SmartLille/SmartLille2.png",
-            "/images/projets/SmartLille/SmartLille3.png",
-            "/images/projets/SmartLille/SmartLille4.png",
-            "/images/projets/SmartLille/SmartLille5.png",
-            "/images/projets/SmartLille/SmartLille6.png",
-            "/images/projets/SmartLille/SmartLille7.png",
-            "/images/projets/SmartLille/SmartLille8.png",
-            "/images/projets/SmartLille/SmartLille9.png",
-            "/images/projets/SmartLille/SmartLille10.png",
-            "/images/projets/SmartLille/SmartLille11.png"
-        ],
-        "siteLink": "https://lon87307.softr.app/",
-        "pdf": "/images/projets/SmartLille/SmartLille.pdf"
-    },
-    {
-        "title": "Calculatrice qualité logicielle et tests - juin 2024",
-        "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/Calculatrice/calculatrice.png",
-        "modalTitle": "Calculatrice qualité logicielle et tests",
-        "size": "small",
-        "modalContent": "<div><p>L'objectif était de concevoir une calculatrice permettant aux utilisateurs de réaliser des sommes, des soustractions et des multiplications. Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. Le choix des technologies était libre. La logique métier devait être testée unitairement. L'interface graphique devait être testée en E2E avec un outil comme Cypress ou Playwright. L'ensemble du développement devait être réalisé en TDD. Le projet devait avoir un linter permettant de vérifier la qualité du code.</p><ul><li>Projet réalisé en cours seul.</li><li>Objectifs du projet : tester de façon unitaire son code, tester une interface grâce aux tests E2E, maîtriser une méthodologie de test : Test Driven Development (TDD), Linter et méthode de refactoring.</li></div>",
-        "logos": [
-            {
-                "icon": "FaReact",
-                "color": "from-[#58c4dc] to-blue-600"
-            },
-            {
-                "icon": "DiSass",
-                "color": "from-[#CF649A] to-pink-600"
-            },
-            {
-                "icon": "SiPlaywright",
-                "color": "from-[#84ba64] to-green-600"
-            }
-        ],
-        "images": [
-            "/images/projets/Calculatrice/calculatrice4.png",
-            "/images/projets/Calculatrice/calculatrice2.png",
-            "/images/projets/Calculatrice/calculatrice3.png"
-        ],
-        "githubLink": "https://github.com/Pagiestm/Qualite-logiciel-et-tests/tree/master/calculatrice"
-    },
-    {
-        "title": "MyDigitalSchool-V2 - juin 2024",
-        "description": "Nous devions refaire le site de MyDigitalSchool en réalisant une maquette en passant par les différentes étapes : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette. Nous devions ensuite réaliser le site web. Concernant les technologies, nous avons donc choisi d'utiliser Tailwind CSS et React et utiliser l'approche 'Mobile First'.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2.png",
-        "modalTitle": "MyDigitalSchool-V2",
-        "size": "small",
-        "modalContent": "<div><p>L'objectif du projet était de reprendre le site de MyDigitalSchool et de refaire une maquette et coder le frontend du site tout en respectant la maquette.</p><ul><li>Projet réalisé par groupe de 3.</li><li>Réalisation des étapes de la maquette : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette.</li><li>Site responsive : s'adapte sur tout type d'écran.</li><li>Réalisation du site avec un Framework CSS : utilisation de React pour utiliser les composants réutilisables et son DOM virtuel pour optimiser les mises à jour de l'interface utilisateur. Et utilisation de Tailwind CSS pour son approche utilitaire, son approche 'mobile first' et sa large documentation.</li></div>",
-        "logos": [
-            {
-                "icon": "FaFigma",
-                "color": "from-[#a259ff] to-purple-600"
-            },
-            {
-                "icon": "FaReact",
-                "color": "from-[#58c4dc] to-blue-600"
-            },
-            {
-                "icon": "SiTailwindcss",
-                "color": "from-[#38bdf8] to-teal-600"
-            }
-        ],
-        "images": [
-            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-2.png",
-            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-3.png",
-            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-4.png",
-            "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-5.png"
-        ],
-        "figma": "https://www.figma.com/design/KVgkfqPlytuDs0yUH1mDrL/MyDigitalSchool-V2?node-id=0-1&node-type=CANVAS&t=fAUP1nt0nrEVbu31-0",
-        "githubLink": "https://github.com/Pagiestm/MyDigitalSchool-V2",
-        "siteLink": "https://mydigitalschool-v2.mds-lille.yt/"
-    },
-    {
-        "title": "Le jeu du pendu - février 2024",
-        "description": "Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une navigation qui permet de naviguer de page en page. Nous avions la 'home' : affiche la règle du jeu, 'jouer' : le jeu se passera ici, 'statistiques': affichage des statistiques du joueur et ces scores et pour finir nous devions faire la gestion de la page 404.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/Le-pendu/Le-pendu.png",
-        "modalTitle": "Le jeu du pendu",
-        "size": "small",
-        "modalContent": "<div><p>Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une navigation qui permet de naviguer de page en page.</p><ul><li>Projet réalisé par groupe de 2.</li><li>Objectif du projet : trouver une API qui renvoie un mot au hasard, gestion de la victoire et de l'échec, statistique des joueurs.</li><li>Réalisation : page d'accueil pour présenter les règles du jeu, une page jouer qui permet de jouer soit en cliquant sur les lettres ou avec le clavier (possibilité d'écrire le mot directement) et page statistiques pour afficher le nom de l'utilisateur et comptabiliser son score total.</li></div>",
-        "logos": [
-            {
-                "icon": "FaReact",
-                "color": "from-[#58c4dc] to-blue-600"
-            },
-            {
-                "icon": "DiSass",
-                "color": "from-[#CF649A] to-pink-600"
-            }
-        ],
-        "images": [
-            "/images/projets/Le-pendu/Le-pendu2.png",
-            "/images/projets/Le-pendu/Le-pendu5.png",
-            "/images/projets/Le-pendu/Le-pendu3.png",
-            "/images/projets/Le-pendu/Le-pendu4.png"
-        ],
-        "githubLink": "https://github.com/Pagiestm/le-pendu",
-        "siteLink": "https://le-pendu.mds-lille.yt/"
-    },
-    {
-        "title": "ILEVIA Simulator - janvier 2024",
-        "description": "Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métros et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification et permet d'assigner un agent.",
-        "badge": "Projet scolaire",
-        "cardImage": "/images/projets/Ilevia-simulator/Ilevia-simulator.png",
-        "modalTitle": "ILEVIA Simulator",
-        "size": "small",
-        "modalContent": "<div><p>Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métros et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification en cas de problème sur l'une des stations et permet également d'assigner un agent en quelques clics.</p><ul><li>Projet réalisé par groupe de 4.</li><li>Objectif du projet : réaliser une application de bureau, afficher de la data et ajouter de la simulation.</li><li>Réalisation de la maquette sur figma.</li><li>Création de la base de données : MCD, MLD, MPD.</li><li>Fonctionnalités principales : page d'accueil affichage des stations, gestion des bornes, gestion des problèmes dans les stations, notifications, attribution d'un agent à une station + disponibilité, simulation de l'intervention d'un agent...</li></div>",
-        "logos": [
-            {
-                "icon": "FaFigma",
-                "color": "from-[#a259ff] to-purple-600"
-            },
-            {
-                "icon": "SiTauri",
-                "color": "from-[#38bdf8] to-blue-600"
-            },
-            {
-                "icon": "FaRust",
-                "color": "from-white to-black"
-            },
-            {
-                "icon": "DiMysql",
-                "color": "from-orange-400 to-orange-600"
-            },
-            {
-                "icon": "FaAngular",
-                "color": "from-[#ea2845] to-red-700"
-            }
-        ],
-        "images": [
-            "/images/projets/Ilevia-simulator/Ilevia-simulator2.png",
-            "/images/projets/Ilevia-simulator/Ilevia-simulator3.png",
-            "/images/projets/Ilevia-simulator/Ilevia-simulator4.png",
-            "/images/projets/Ilevia-simulator/Ilevia-simulator5.png"
-        ],
-        "pdf": "/images/projets/Ilevia-simulator/Ilevia Simulator.pdf",
-        "figma": "https://www.figma.com/design/boMAmcYyRdGsGGOidhRKWF/Ilevia-Simulator?node-id=0-1&node-type=CANVAS&t=jqRZ3kQ6nM79ON9h-0",
-        "githubLink": "https://github.com/B3DevSubwaySurfer/Ilevia-simulator"
-    }
+  {
+    "title": "SmartLille - Octobre à Novembre 2024",
+    "description": "L'objectif était de concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Nous étions chargé de centraliser les données d'événements, automatiser les processus clés comme les notifications et rappels et créer une interface simple et accesible pour les citoyens, les associations, et les modérateurs.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/SmartLille/SmartLille.png",
+    "modalTitle": "SmartLille",
+    "size": "small",
+    "modalContent": "<div><p>En tant qu'expert no-code, votre mission consiste à concevoir une solution complète pour améliorer la gestion des événements citoyens à Lille. Vous serez chargé de centraliser les données d’événements, automatiser les processus clés comme les notifications et rappels, et créer une interface simple et accessible pour les citoyens, les associations, et les modérateurs. Ce projet vous permettra d'appliquer vos compétences techniques et de structuration à une problématique réelle, tout en offrant une solution moderne et efficace aux défis de la gestion municipale. Vous devrez répondre aux besoins métier de manière précise et innovante.</p><ul><li>Centraliser les événements citoyens : Offrir un espace où les citoyens peuvent soumettre et consulter des événements.</li><li>Automatiser les workflows : Les modérateurs doivent recevoir des notifications à chaque nouvelle soumission, et les citoyens inscrits doivent recevoir des rappels.</li><li>Simplifier la gestion : Créer une interface intuitive pour les administrateurs de la ville pour approuver et gérer les événements.</li><li>Documenter le projet : Garantir que chaque étape soit documentée pour assurer une clarté et une continuité.</li><li>Outils utilisés : Airtable, Zapier et Softr</li></div>",
+    "logos": [],
+    "stack": ["Airtable", "Zapier", "Softr"],
+    "images": [
+      "/images/projets/SmartLille/SmartLille2.png",
+      "/images/projets/SmartLille/SmartLille3.png",
+      "/images/projets/SmartLille/SmartLille4.png",
+      "/images/projets/SmartLille/SmartLille5.png",
+      "/images/projets/SmartLille/SmartLille6.png",
+      "/images/projets/SmartLille/SmartLille7.png",
+      "/images/projets/SmartLille/SmartLille8.png",
+      "/images/projets/SmartLille/SmartLille9.png",
+      "/images/projets/SmartLille/SmartLille10.png",
+      "/images/projets/SmartLille/SmartLille11.png"
+    ],
+    "siteLink": "https://lon87307.softr.app/",
+    "pdf": "/images/projets/SmartLille/SmartLille.pdf"
+  },
+  {
+    "title": "Calculatrice qualité logicielle et tests - juin 2024",
+    "description": "Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. La logique métier a été testée unitairement, l'interface graphique a été testée en E2E avec Playwright et utilisation de la méthode TDD.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/Calculatrice/calculatrice.png",
+    "modalTitle": "Calculatrice qualité logicielle et tests",
+    "size": "small",
+    "modalContent": "<div><p>L'objectif était de concevoir une calculatrice permettant aux utilisateurs de réaliser des sommes, des soustractions et des multiplications. Nous devions réaliser la logique métier permettant de réaliser les calculs et l'interface graphique permettant à l'utilisateur d'entrer les nombres et les opérations. Le choix des technologies était libre. La logique métier devait être testée unitairement. L'interface graphique devait être testée en E2E avec un outil comme Cypress ou Playwright. L'ensemble du développement devait être réalisé en TDD. Le projet devait avoir un linter permettant de vérifier la qualité du code.</p><ul><li>Projet réalisé en cours seul.</li><li>Objectifs du projet : tester de façon unitaire son code, tester une interface grâce aux tests E2E, maîtriser une méthodologie de test : Test Driven Development (TDD), Linter et méthode de refactoring.</li></div>",
+    "logos": [
+      {
+        "icon": "FaReact",
+        "color": "from-[#58c4dc] to-blue-600"
+      },
+      {
+        "icon": "DiSass",
+        "color": "from-[#CF649A] to-pink-600"
+      },
+      {
+        "icon": "SiPlaywright",
+        "color": "from-[#84ba64] to-green-600"
+      }
+    ],
+    "images": [
+      "/images/projets/Calculatrice/calculatrice4.png",
+      "/images/projets/Calculatrice/calculatrice2.png",
+      "/images/projets/Calculatrice/calculatrice3.png"
+    ],
+    "githubLink": "https://github.com/Pagiestm/Qualite-logiciel-et-tests/tree/master/calculatrice"
+  },
+  {
+    "title": "MyDigitalSchool-V2 - juin 2024",
+    "description": "Nous devions refaire le site de MyDigitalSchool en réalisant une maquette en passant par les différentes étapes : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette. Nous devions ensuite réaliser le site web. Concernant les technologies, nous avons donc choisi d'utiliser Tailwind CSS et React et utiliser l'approche 'Mobile First'.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2.png",
+    "modalTitle": "MyDigitalSchool-V2",
+    "size": "small",
+    "modalContent": "<div><p>L'objectif du projet était de reprendre le site de MyDigitalSchool et de refaire une maquette et coder le frontend du site tout en respectant la maquette.</p><ul><li>Projet réalisé par groupe de 3.</li><li>Réalisation des étapes de la maquette : Zonning, Moodboard, Charte Graphique, Wireframe, Maquette.</li><li>Site responsive : s'adapte sur tout type d'écran.</li><li>Réalisation du site avec un Framework CSS : utilisation de React pour utiliser les composants réutilisables et son DOM virtuel pour optimiser les mises à jour de l'interface utilisateur. Et utilisation de Tailwind CSS pour son approche utilitaire, son approche 'mobile first' et sa large documentation.</li></div>",
+    "logos": [
+      {
+        "icon": "FaFigma",
+        "color": "from-[#a259ff] to-purple-600"
+      },
+      {
+        "icon": "FaReact",
+        "color": "from-[#58c4dc] to-blue-600"
+      },
+      {
+        "icon": "SiTailwindcss",
+        "color": "from-[#38bdf8] to-teal-600"
+      }
+    ],
+    "images": [
+      "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-2.png",
+      "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-3.png",
+      "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-4.png",
+      "/images/projets/MyDigitalSchool-V2/mydigitalschool-v2-5.png"
+    ],
+    "figma": "https://www.figma.com/design/KVgkfqPlytuDs0yUH1mDrL/MyDigitalSchool-V2?node-id=0-1&node-type=CANVAS&t=fAUP1nt0nrEVbu31-0",
+    "githubLink": "https://github.com/Pagiestm/MyDigitalSchool-V2",
+    "siteLink": "https://mydigitalschool-v2.mds-lille.yt/"
+  },
+  {
+    "title": "Le jeu du pendu - février 2024",
+    "description": "Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une navigation qui permet de naviguer de page en page. Nous avions la 'home' : affiche la règle du jeu, 'jouer' : le jeu se passera ici, 'statistiques': affichage des statistiques du joueur et ces scores et pour finir nous devions faire la gestion de la page 404.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/Le-pendu/Le-pendu.png",
+    "modalTitle": "Le jeu du pendu",
+    "size": "small",
+    "modalContent": "<div><p>Le but de ce projet était de coder le jeu du pendu ! Le projet devait avoir 3 pages avec une navigation qui permet de naviguer de page en page.</p><ul><li>Projet réalisé par groupe de 2.</li><li>Objectif du projet : trouver une API qui renvoie un mot au hasard, gestion de la victoire et de l'échec, statistique des joueurs.</li><li>Réalisation : page d'accueil pour présenter les règles du jeu, une page jouer qui permet de jouer soit en cliquant sur les lettres ou avec le clavier (possibilité d'écrire le mot directement) et page statistiques pour afficher le nom de l'utilisateur et comptabiliser son score total.</li></div>",
+    "logos": [
+      {
+        "icon": "FaReact",
+        "color": "from-[#58c4dc] to-blue-600"
+      },
+      {
+        "icon": "DiSass",
+        "color": "from-[#CF649A] to-pink-600"
+      }
+    ],
+    "images": [
+      "/images/projets/Le-pendu/Le-pendu2.png",
+      "/images/projets/Le-pendu/Le-pendu5.png",
+      "/images/projets/Le-pendu/Le-pendu3.png",
+      "/images/projets/Le-pendu/Le-pendu4.png"
+    ],
+    "githubLink": "https://github.com/Pagiestm/le-pendu",
+    "siteLink": "https://le-pendu.mds-lille.yt/"
+  },
+  {
+    "title": "ILEVIA Simulator - janvier 2024",
+    "description": "Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métros et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification et permet d'assigner un agent.",
+    "badge": "Projet scolaire",
+    "cardImage": "/images/projets/Ilevia-simulator/Ilevia-simulator.png",
+    "modalTitle": "ILEVIA Simulator",
+    "size": "small",
+    "modalContent": "<div><p>Le projet “ILEVIA Simulator” est une solution qui permet de gérer une flotte de métros et les incidents aléatoires pouvant se produire dans les différentes stations. L’application possède une interface simple qui offre une lisibilité sur les lignes de métro pour faciliter leur gestion. Elle intègre un système de notification en cas de problème sur l'une des stations et permet également d'assigner un agent en quelques clics.</p><ul><li>Projet réalisé par groupe de 4.</li><li>Objectif du projet : réaliser une application de bureau, afficher de la data et ajouter de la simulation.</li><li>Réalisation de la maquette sur figma.</li><li>Création de la base de données : MCD, MLD, MPD.</li><li>Fonctionnalités principales : page d'accueil affichage des stations, gestion des bornes, gestion des problèmes dans les stations, notifications, attribution d'un agent à une station + disponibilité, simulation de l'intervention d'un agent...</li></div>",
+    "logos": [
+      {
+        "icon": "FaFigma",
+        "color": "from-[#a259ff] to-purple-600"
+      },
+      {
+        "icon": "SiTauri",
+        "color": "from-[#38bdf8] to-blue-600"
+      },
+      {
+        "icon": "FaRust",
+        "color": "from-white to-black"
+      },
+      {
+        "icon": "DiMysql",
+        "color": "from-orange-400 to-orange-600"
+      },
+      {
+        "icon": "FaAngular",
+        "color": "from-[#ea2845] to-red-700"
+      }
+    ],
+    "images": [
+      "/images/projets/Ilevia-simulator/Ilevia-simulator2.png",
+      "/images/projets/Ilevia-simulator/Ilevia-simulator3.png",
+      "/images/projets/Ilevia-simulator/Ilevia-simulator4.png",
+      "/images/projets/Ilevia-simulator/Ilevia-simulator5.png"
+    ],
+    "pdf": "/images/projets/Ilevia-simulator/Ilevia Simulator.pdf",
+    "figma": "https://www.figma.com/design/boMAmcYyRdGsGGOidhRKWF/Ilevia-Simulator?node-id=0-1&node-type=CANVAS&t=jqRZ3kQ6nM79ON9h-0",
+    "githubLink": "https://github.com/B3DevSubwaySurfer/Ilevia-simulator"
+  }
 ]
