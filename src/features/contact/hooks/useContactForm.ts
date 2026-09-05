@@ -14,13 +14,13 @@ export const useContactForm = () => {
   const formRef = useRef(null);
   const captchaRef = useRef(null);
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
   const [captchaVerified, setCaptchaVerified] = useState(!isRecaptchaConfigured);
 
   const validate = useCallback(() => {
-    const fields = formRef.current.elements;
-    const next = {};
+    const fields = (formRef.current as HTMLFormElement).elements as HTMLFormControlsCollection & Record<string, HTMLInputElement>;
+    const next: Record<string, string> = {};
 
     if (!fields.user_name.value.trim()) next.user_name = t.fErrName;
 

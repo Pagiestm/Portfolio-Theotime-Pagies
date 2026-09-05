@@ -1,9 +1,14 @@
+import { ReactNode } from 'react';
 
-/**
- * Le rail de progression du bas de scène : indice « 01 / 04 » + barre accent.
- * Partagé par la scène d'accueil et le couloir du parcours.
- */
-const ProgressRail = ({ hint, index, total, progress, children }) => (
+interface ProgressRailProps {
+  hint?: ReactNode;
+  index?: number;
+  total?: number;
+  progress?: number;
+  children?: ReactNode;
+}
+
+const ProgressRail = ({ hint, index = 0, total = 1, progress = 0, children }: ProgressRailProps) => (
   <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto max-w-shell px-6 pb-[22px]">
     <div className="mb-3 flex items-center justify-between gap-4">
       <span className="text-[11px] uppercase tracking-[.18em] text-muted">{hint}</span>

@@ -1,12 +1,15 @@
-import { useCallback, useRef } from 'react';
+import { CSSProperties, ReactNode, useCallback, useRef } from 'react';
 import { usePrefersReducedMotion } from '../../hooks/useMediaQuery';
 import { scene } from '../../config/site';
 
-/**
- * Carte qui s'incline légèrement sous le curseur (`tilt` / `untilt` de la maquette).
- * Désactivée si l'utilisateur a demandé moins d'animations.
- */
-const TiltCard = ({ className = '', style, children, ...rest }) => {
+interface TiltCardProps {
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+  [key: string]: unknown;
+}
+
+const TiltCard = ({ className = '', style, children, ...rest }: TiltCardProps) => {
   const ref = useRef(null);
   const reduced = usePrefersReducedMotion();
   const enabled = scene.cardTilt && !reduced;

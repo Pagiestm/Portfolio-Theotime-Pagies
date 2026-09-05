@@ -1,18 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { CSSProperties, ElementType, ReactNode, useEffect, useRef, useState } from 'react';
 import { usePrefersReducedMotion } from '../../hooks/useMediaQuery';
 
-const HIDDEN_TRANSFORM = {
+const HIDDEN_TRANSFORM: Record<string, string> = {
   up: 'translate3d(0,22px,0)',
   left: 'translate3d(-24px,0,0)',
   right: 'translate3d(24px,0,0)',
   tilt: 'perspective(1400px) rotateX(4deg) translate3d(0,26px,-22px)',
 };
 
-/**
- * Apparition à l'entrée dans le viewport - équivalent React du `[data-reveal]`
- * de Portfolio.dc.html. Respecte `prefers-reduced-motion`.
- */
-const Reveal = ({ as: Tag = 'div', variant = 'up', delay = 0, style, children, ...rest }) => {
+interface RevealProps {
+  as?: ElementType;
+  variant?: string;
+  delay?: number;
+  style?: CSSProperties;
+  children?: ReactNode;
+  className?: string;
+  [key: string]: unknown;
+}
+
+const Reveal = ({ as: Tag = 'div', variant = 'up', delay = 0, style, children, ...rest }: RevealProps) => {
   const ref = useRef(null);
   const reduced = usePrefersReducedMotion();
   const [shown, setShown] = useState(false);

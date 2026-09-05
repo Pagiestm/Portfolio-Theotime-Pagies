@@ -41,11 +41,11 @@ const AboutPage = () => {
         </Reveal>
 
         <Reveal variant="right" className="sticky top-[104px]">
-          <div className="border-2 border-line" style={{ height: 'clamp(340px,56vh,520px)' }}>
+          <div className="border-2 border-line overflow-hidden">
             <img
               src={portrait}
               alt={t.portraitAlt}
-              className="block h-full w-full object-cover"
+              className="block w-full h-auto"
             />
           </div>
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">

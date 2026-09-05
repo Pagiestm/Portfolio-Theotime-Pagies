@@ -199,9 +199,10 @@ const HeroScene = ({
       resizeObserver.disconnect();
       visibility.disconnect();
       scene.traverse((obj) => {
-        if (obj.geometry) obj.geometry.dispose();
-        if (obj.material) {
-          const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+        const mesh = obj as THREE.Mesh;
+        if (mesh.geometry) mesh.geometry.dispose();
+        if (mesh.material) {
+          const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
           materials.forEach((m) => m.dispose());
         }
       });

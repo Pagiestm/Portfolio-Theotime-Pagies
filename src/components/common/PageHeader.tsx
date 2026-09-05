@@ -1,7 +1,15 @@
+import { ReactNode } from 'react';
 import Reveal from './Reveal';
 
-/** Le bloc d'ouverture commun à toutes les pages : kicker, titre, chapô. */
-const PageHeader = ({ kicker, title, body, note, children }) => (
+interface PageHeaderProps {
+  kicker?: ReactNode;
+  title?: ReactNode;
+  body?: ReactNode;
+  note?: ReactNode;
+  children?: ReactNode;
+}
+
+const PageHeader = ({ kicker, title, body, note, children }: PageHeaderProps) => (
   <Reveal variant="up" className="relative">
     {kicker && (
       <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
