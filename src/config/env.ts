@@ -11,6 +11,10 @@ export const env = {
   recaptcha: {
     siteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
   },
+  sanity: {
+    projectId: import.meta.env.SANITY_PROJECT_ID,
+    dataset: import.meta.env.SANITY_DATASET ?? 'production',
+  },
 };
 
 export const isEmailConfigured = Boolean(

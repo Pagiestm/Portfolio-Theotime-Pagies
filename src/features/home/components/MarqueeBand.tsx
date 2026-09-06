@@ -1,9 +1,9 @@
 import Reveal from '../../../components/common/Reveal';
-import { marquee } from '../data/chapters';
 import { useTranslation } from '../../../i18n/useTranslation';
+import type { HomeContent } from '../../../lib/sanity/types';
 
 /** La bande de repères sous la scène d'accueil. */
-const MarqueeBand = () => {
+const MarqueeBand = ({ items }: { items: HomeContent['marquee'] }) => {
   const { localize } = useTranslation();
 
   return (
@@ -12,7 +12,7 @@ const MarqueeBand = () => {
         className="mx-auto grid max-w-shell px-6"
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
       >
-        {marquee.map((item, index) => (
+        {items.map((item, index) => (
           <Reveal
             key={index}
             variant="up"
