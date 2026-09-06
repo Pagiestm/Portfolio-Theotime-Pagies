@@ -14,6 +14,7 @@ import {
   FaVuejs,
 } from 'react-icons/fa';
 import {
+  SiAirtable,
   SiAppwrite,
   SiDart,
   SiEslint,
@@ -29,6 +30,7 @@ import {
   SiTailwindcss,
   SiTauri,
   SiVite,
+  SiZapier,
 } from 'react-icons/si';
 import { DiMysql, DiSass } from 'react-icons/di';
 
@@ -84,6 +86,10 @@ export const TECH = {
   Cicd: { label: 'CI/CD', Icon: FaCodeBranch },
   Merise: { label: 'Merise', Icon: FaDatabase },
   ProjectManagement: { label: 'Project management', Icon: FaTasks },
+
+  // — No-code
+  Airtable: { label: 'Airtable', Icon: SiAirtable },
+  Zapier: { label: 'Zapier', Icon: SiZapier },
 };
 
 export const techLabel = (key) => TECH[key]?.label ?? key;

@@ -1,15 +1,8 @@
 import { forwardRef, Ref } from 'react';
 import { useTranslation } from '../../../i18n/useTranslation';
+import type { JourneyEntry } from '../../../lib/sanity/types';
 
 const CARD_WIDTH = 'clamp(280px,30vw,384px)';
-
-interface JourneyEntry {
-  kind: string;
-  period: { fr: string; en: string };
-  org: string;
-  role: { fr: string; en: string };
-  detail: { fr: string; en: string };
-}
 
 const JourneyCard = forwardRef(({ entry }: { entry: JourneyEntry }, ref: Ref<HTMLDivElement>) => {
   const { t, localize } = useTranslation();

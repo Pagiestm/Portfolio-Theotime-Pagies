@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import JourneyCard from './JourneyCard';
 import ActionLink from '../../../components/common/ActionLink';
-import { journey } from '../data/journey';
+import type { JourneyEntry } from '../../../lib/sanity/types';
 import { useHorizontalStage } from '../hooks/useHorizontalStage';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
@@ -30,12 +30,12 @@ const StepButton = ({
 );
 
 /* ─── Le couloir horizontal, piloté par le scroll — même effet sur tous les écrans ─── */
-const JourneyCorridor = () => {
+const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
   const { t } = useTranslation();
   const { stageRef, frameRef, trackRef, railFillRef, barRef, registerCard, activeIndex, step } =
     useHorizontalStage({ stickyOffset: HEADER_HEIGHT });
 
-  const total = journey.length + 1;
+  const total = entries.length + 1;
 
   return (
     <section ref={stageRef} className="relative" style={{ height: '400vh' }}>
@@ -78,12 +78,12 @@ const JourneyCorridor = () => {
               }}
             />
 
-            {journey.map((entry, index) => (
+            {entries.map((entry, index) => (
               <JourneyCard key={`${entry.org}-${index}`} ref={registerCard(index)} entry={entry} />
             ))}
 
             <div
-              ref={registerCard(journey.length)}
+              ref={registerCard(entries.length)}
               className="flex flex-none flex-col items-center"
               style={{ width: CARD_WIDTH }}
             >

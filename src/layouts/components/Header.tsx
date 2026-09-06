@@ -4,10 +4,11 @@ import LangSwitch from './LangSwitch';
 import { useIsWide } from '../../hooks/useMediaQuery';
 import { useTranslation } from '../../i18n/useTranslation';
 import { NAV_ITEMS, paths } from '../../routes/paths';
-import { site } from '../../config/site';
+import { useSettings } from '../../lib/sanity/useContent';
 
 const Header = () => {
   const { lang, t } = useTranslation();
+  const settings = useSettings();
   const wide = useIsWide();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ const Header = () => {
             to={paths.home}
             className="flex flex-none items-center gap-[10px] whitespace-nowrap text-ink hover:text-ink"
           >
-            <span className="text-[18px] font-black tracking-[-.02em]">{site.name}</span>
+            <span className="text-[18px] font-black tracking-[-.02em]">{settings.name}</span>
           </Link>
 
           {wide ? (

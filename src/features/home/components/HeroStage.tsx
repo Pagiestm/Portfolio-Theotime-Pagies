@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import ProgressRail from '../../../components/common/ProgressRail';
-import { chapters } from '../data/chapters';
+import type { HomeContent } from '../../../lib/sanity/types';
 import { useScrollProgress } from '../../../hooks/useScrollProgress';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { scene } from '../../../config/site';
@@ -36,7 +36,7 @@ const chapterState = (index, progress, count) => {
   return { opacity, translateY, typed, caretVisible: typed > 0.02 && typed < 0.995 };
 };
 
-const HeroStage = () => {
+const HeroStage = ({ chapters }: { chapters: HomeContent['chapters'] }) => {
   const { t, localize } = useTranslation();
   const { stageRef, pinRef, progress, scrollToProgress } = useScrollProgress({
     stickyOffset: HEADER_HEIGHT,

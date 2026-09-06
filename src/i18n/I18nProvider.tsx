@@ -29,12 +29,21 @@ const I18nProvider = ({ children }) => {
     }
   }, [lang]);
 
-  /** Résout une valeur localisée : soit une chaîne, soit `{ fr, en }`. */
+  /**
+   * Résout une valeur localisée : soit une chaîne, soit `{ fr, en }`.
+   *
+   * Retombe sur le français quand la traduction est absente **ou vide** : dans
+   * le Studio, un champ anglais laissé de côté vaut la chaîne vide, et
+   * l'afficher tel quel laisserait un blanc dans la page.
+   */
   const localize = useCallback(
-    (value) =>
-      value && typeof value === 'object' && !Array.isArray(value)
-        ? (value[lang] ?? value.fr)
-        : value,
+    (value) => {
+      if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
+      const translated = value[lang];
+      return translated === null || translated === undefined || translated === ''
+        ? value.fr
+        : translated;
+    },
     [lang]
   );
 
