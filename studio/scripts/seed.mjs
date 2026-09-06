@@ -133,7 +133,6 @@ export const aboutPage = {
       'Full-stack developer with a product instinct'
     ),
   },
-  portraitFile: 'src/assets/Theotime.png',
   paragraphs: [
     L(
       "Je suis Théotime Pagies, développeur web full-stack. Je suis actuellement en alternance chez Ailoop, où je travaille sur des outils digitaux sur mesure pour l'analyse de cycle de vie et les déclarations environnementales, tout en poursuivant un MBA Développeur Full Stack « Manager de projet web digital ».",

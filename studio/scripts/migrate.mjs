@@ -133,12 +133,24 @@ const buildTechnologies = (push) => {
   log('*', `${Object.keys(seed.technologies).length} technologies`);
 };
 
+/**
+ * Les réalisations ont été migrées une fois, puis leurs JSON ont été retirés
+ * du dépôt : Sanity en est désormais la seule source. Cette étape ne fait donc
+ * plus rien, sauf si les fichiers sont remis en place pour réamorcer un
+ * dataset vide.
+ */
 const buildProjects = async (push, upload) => {
-  const read = (file) => JSON.parse(readFileSync(join(REPO, file), 'utf8'));
-  const raw = [
-    ...read('src/features/work/data/large-projects.json'),
-    ...read('src/features/work/data/small-projects.json'),
-  ];
+  const sources = [
+    'src/features/work/data/large-projects.json',
+    'src/features/work/data/small-projects.json',
+  ].map((file) => join(REPO, file));
+
+  if (!sources.every(existsSync)) {
+    log('=', 'réalisations ignorées — elles vivent dans Sanity, plus dans le dépôt');
+    return;
+  }
+
+  const raw = sources.flatMap((path) => JSON.parse(readFileSync(path, 'utf8')));
 
   // Retrouve une clé d'icône depuis un libellé : SmartLille liste des noms
   // (« Airtable », « Zapier ») au lieu de logos, sa stack serait sinon perdue.
@@ -238,7 +250,6 @@ const buildSingletons = async (push, upload) => {
     _id: 'aboutPage',
     _type: 'aboutPage',
     header: seed.aboutPage.header,
-    portrait: await upload('image', seed.aboutPage.portraitFile),
     paragraphs: keyed(seed.aboutPage.paragraphs.map((p) => ({ _type: 'paragraph', ...p }))),
     facts: keyed(seed.aboutPage.facts.map((f) => ({ _type: 'fact', ...f }))),
   });
