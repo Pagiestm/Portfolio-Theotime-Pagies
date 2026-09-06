@@ -1,7 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
 import Reveal from '../components/common/Reveal';
 import MetaGrid from '../components/common/MetaGrid';
-import fallbackPortrait from '../assets/Theotime.png';
 import { useTranslation } from '../i18n/useTranslation';
 import { imageUrl } from '../lib/sanity/image';
 import { useSettings } from '../lib/sanity/useContent';
@@ -12,9 +11,9 @@ const AboutPage = () => {
   const { about } = useLoaderData() as { about: AboutContent };
   const settings = useSettings();
 
-  // Le portrait local reste en secours tant qu'aucune image n'a été déposée
-  // dans le Studio : la page ne doit pas afficher un cadre vide.
-  const portrait = imageUrl(about?.portrait ?? undefined, 900) ?? fallbackPortrait;
+  // Le portrait vit dans le Studio. Tant qu'aucune image n'y est déposée, le
+  // cadre est simplement omis plutôt que de montrer un rectangle vide.
+  const portrait = imageUrl(about?.portrait ?? undefined, 900);
 
   return (
     <section className="relative mx-auto max-w-shell overflow-hidden px-6 pb-[86px] pt-[68px]">
@@ -52,9 +51,11 @@ const AboutPage = () => {
         </Reveal>
 
         <Reveal variant="right" className="sticky top-[104px]">
-          <div className="overflow-hidden border-2 border-line">
-            <img src={portrait} alt={t.portraitAlt} className="block h-auto w-full" />
-          </div>
+          {portrait && (
+            <div className="overflow-hidden border-2 border-line">
+              <img src={portrait} alt={t.portraitAlt} className="block h-auto w-full" />
+            </div>
+          )}
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">
             {settings.name} — {new Date().getFullYear()}
           </div>
