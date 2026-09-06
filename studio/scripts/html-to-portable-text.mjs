@@ -51,6 +51,7 @@ export const htmlToPortableText = (html) => {
 
   const blocks = [];
   let insideList = false;
+  let listLabelled = false;
 
   // Découpe le flux en balises et en texte nu, dans l'ordre du document.
   const tokens = html.match(/<\/?[a-zA-Z][^>]*>|[^<]+/g) ?? [];
@@ -62,7 +63,10 @@ export const htmlToPortableText = (html) => {
 
     if (openTag) {
       const [, tag, attrs] = openTag;
-      if (tag === 'ul' || tag === 'ol') insideList = true;
+      if (tag === 'ul' || tag === 'ol') {
+        insideList = true;
+        listLabelled = false;
+      }
       if (tag === 'p' || tag === 'li') pending = { tag, attrs, text: '' };
       continue;
     }
@@ -74,9 +78,16 @@ export const htmlToPortableText = (html) => {
       if ((tag === 'p' || tag === 'li') && pending) {
         const text = decode(pending.text);
         if (text) {
-          if (pending.tag === 'li') blocks.push(block(text, { listItem: 'bullet' }));
-          else if (insideList) blocks.push(block(text, { style: 'h4' }));
-          else blocks.push(block(text));
+          if (pending.tag === 'li') {
+            blocks.push(block(text, { listItem: 'bullet' }));
+          } else if (insideList && !listLabelled) {
+            // Seul le premier <p> du <ul> est un intitule ; les suivants
+            // sont du texte courant et gardent le style de paragraphe.
+            blocks.push(block(text, { style: 'h4' }));
+            listLabelled = true;
+          } else {
+            blocks.push(block(text));
+          }
         }
         pending = null;
       }
@@ -88,7 +99,11 @@ export const htmlToPortableText = (html) => {
       pending.text += token;
     } else {
       const text = decode(token);
-      if (text) blocks.push(block(text, { style: insideList ? 'h4' : 'normal' }));
+      if (text) {
+        const asLabel = insideList && !listLabelled;
+        blocks.push(block(text, { style: asLabel ? 'h4' : 'normal' }));
+        if (asLabel) listLabelled = true;
+      }
     }
   }
 

@@ -9,7 +9,8 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "migrate": "node scripts/migrate.mjs"
+    "migrate": "sanity exec scripts/migrate-cli.mjs --with-user-token",
+    "migrate:dry": "sanity exec scripts/migrate-cli.mjs --with-user-token -- --dry-run"
   },
   "dependencies": {
     "@sanity/vision": "^6.12.0",
