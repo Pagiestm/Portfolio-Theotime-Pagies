@@ -10,7 +10,9 @@ module.exports = {
     // avec Prettier (le formatage est délégué à Prettier).
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  // Le Studio Sanity est un paquet autonome : son propre toolchain (React 19,
+  // contexte Node) et sa propre config. Le linter du site n'a rien a y dire.
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'studio'],
   // ESLint n'est pas configuré en mode type-aware (pas de `project`) : le vrai
   // type-check reste `tsc --noEmit`. Le parser sert à comprendre la syntaxe TS.
   parser: '@typescript-eslint/parser',

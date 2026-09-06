@@ -1,12 +1,20 @@
+import { useLoaderData } from 'react-router-dom';
 import Reveal from '../components/common/Reveal';
 import MetaGrid from '../components/common/MetaGrid';
-import portrait from '../assets/Theotime.png';
-import { aboutParagraphs, facts } from '../features/about/data/about';
+import fallbackPortrait from '../assets/Theotime.png';
 import { useTranslation } from '../i18n/useTranslation';
-import { site } from '../config/site';
+import { imageUrl } from '../lib/sanity/image';
+import { useSettings } from '../lib/sanity/useContent';
+import type { AboutContent } from '../lib/sanity/types';
 
 const AboutPage = () => {
   const { t, localize } = useTranslation();
+  const { about } = useLoaderData() as { about: AboutContent };
+  const settings = useSettings();
+
+  // Le portrait local reste en secours tant qu'aucune image n'a été déposée
+  // dans le Studio : la page ne doit pas afficher un cadre vide.
+  const portrait = imageUrl(about?.portrait ?? undefined, 900) ?? fallbackPortrait;
 
   return (
     <section className="relative mx-auto max-w-shell overflow-hidden px-6 pb-[86px] pt-[68px]">
@@ -19,14 +27,14 @@ const AboutPage = () => {
       >
         <Reveal variant="left">
           <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
-            {t.aboutKicker}
+            {localize(about?.header?.kicker)}
           </div>
           <h1 className="m-0 mb-[30px] text-[clamp(34px,5vw,62px)] font-black leading-[1.02] tracking-[-.035em]">
-            {t.aboutTitle}
+            {localize(about?.header?.title)}
           </h1>
 
           <div className="flex max-w-[56ch] flex-col gap-5 text-[17.5px] text-muted">
-            {aboutParagraphs.map((paragraph, index) => (
+            {(about?.paragraphs ?? []).map((paragraph, index) => (
               <p key={index} className="m-0">
                 {localize(paragraph)}
               </p>
@@ -36,7 +44,7 @@ const AboutPage = () => {
           <MetaGrid
             className="mt-[42px]"
             minWidth={150}
-            items={facts.map((fact) => ({
+            items={(about?.facts ?? []).map((fact) => ({
               label: localize(fact.label),
               value: localize(fact.value),
             }))}
@@ -44,11 +52,11 @@ const AboutPage = () => {
         </Reveal>
 
         <Reveal variant="right" className="sticky top-[104px]">
-          <div className="border-2 border-line overflow-hidden">
-            <img src={portrait} alt={t.portraitAlt} className="block w-full h-auto" />
+          <div className="overflow-hidden border-2 border-line">
+            <img src={portrait} alt={t.portraitAlt} className="block h-auto w-full" />
           </div>
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">
-            {site.name} — {site.year}
+            {settings.name} — {new Date().getFullYear()}
           </div>
         </Reveal>
       </div>
