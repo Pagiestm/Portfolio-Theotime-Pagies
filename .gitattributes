@@ -1,0 +1,16 @@
+# Fins de ligne : LF partout, quelle que soit la plateforme.
+# Prettier exige LF ; avec core.autocrlf=true sous Windows, git reecrivait chaque
+# fichier en CRLF au checkout, ce qui faisait echouer format:check sur une centaine
+# de fichiers et pouvait casser les hooks Husky (un \r en fin de commande).
+* text=auto eol=lf
+
+# Binaires : aucune conversion, jamais.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
