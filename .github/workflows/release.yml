@@ -19,6 +19,11 @@ jobs:
   release:
     name: semantic-release
     runs-on: ubuntu-latest
+    env:
+      SANITY_STUDIO_PROJECT_ID: svhdk2l2
+      SANITY_STUDIO_DATASET: production
+      SANITY_PROJECT_ID: svhdk2l2
+      SANITY_DATASET: production
     steps:
       - uses: actions/checkout@v4
         with:
