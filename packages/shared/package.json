@@ -1,0 +1,18 @@
+{
+  "name": "@portfolio/shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Ce que le site et le Studio consomment tous les deux : le type Locale et le registre des technologies. Aucune dépendance à React ni à Sanity.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ]
+}
