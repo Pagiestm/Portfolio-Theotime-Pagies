@@ -15,18 +15,35 @@ reviews:
     drafts: false
     base_branches:
       - master
-  # On ne relit pas les données brutes ni les artefacts de build.
+  # On ne relit ni les artefacts de build ni les fichiers générés.
   path_filters:
-    - '!dist/**'
+    - '!**/dist/**'
     - '!**/*.min.*'
-    - '!src/features/work/data/*.json'
+    - '!package-lock.json'
+    - '!CHANGELOG.md'
   path_instructions:
-    - path: 'src/**/*.{ts,tsx}'
+    - path: 'apps/web/src/**/*.{ts,tsx}'
       instructions: >-
-        Projet React 18 + TypeScript + Vite, design "Modernist" (Tailwind, aucun
-        arrondi). Signale les bugs, problèmes d'accessibilité, de performance et
-        de lisibilité. Vérifie la cohérence des types et le respect des conventions
-        existantes plutôt que d'imposer de nouveaux styles.
+        Site React 18 + TypeScript + Vite, design « Modernist » (Tailwind, aucun
+        arrondi, tokens dans styles/tokens.css). Architecture feature-based :
+        UI → hooks → services → API. Vérifie qu'aucun composant n'appelle une API
+        directement, qu'aucune feature n'importe une autre feature, que
+        `import.meta.env` n'apparaît que dans config/env.ts, et que les textes
+        passent par `localize()`. Signale bugs, accessibilité (dont
+        prefers-reduced-motion), performance et fuites (observateurs, WebGL).
+    - path: 'apps/studio/**/*.ts'
+      instructions: >-
+        Schémas Sanity du back-office. Vérifie que chaque champ éditorial a un
+        `title` et une `description` compréhensibles par un non-développeur, que
+        les champs indispensables au rendu du site sont `required()`, et que les
+        champs projetés par apps/web/src/services/sanity/queries.ts existent bien
+        dans les schémas. Les identifiants de documents ne doivent jamais
+        contenir de point.
+    - path: 'packages/shared/**'
+      instructions: >-
+        Code consommé par le site ET le Studio. Aucune dépendance à React, Sanity
+        ou au DOM n'est acceptable ici. Toute valeur dupliquée entre apps/web et
+        apps/studio devrait remonter dans ce paquet.
 
 chat:
   auto_reply: true

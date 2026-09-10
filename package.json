@@ -2,67 +2,47 @@
   "name": "portfolio-theotime-pagies",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
+  "description": "Portfolio de Théotime Pagies — site (apps/web), back-office Sanity (apps/studio), code partagé (packages/shared)",
   "engines": {
     "node": ">=22.14.0"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "typecheck": "tsc --noEmit",
+    "dev": "concurrently -n web,studio -c blue,magenta \"npm run dev -w @portfolio/web\" \"npm run dev -w @portfolio/studio\"",
+    "dev:web": "npm run dev -w @portfolio/web",
+    "dev:studio": "npm run dev -w @portfolio/studio",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "preview": "vite preview",
+    "preview": "npm run preview -w @portfolio/web",
+    "deploy:studio": "npm run deploy -w @portfolio/studio",
+    "migrate": "npm run migrate -w @portfolio/studio",
+    "migrate:dry": "npm run migrate:dry -w @portfolio/studio",
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "apps/web/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,css,md,html,yml,yaml}": [
+    "*.{js,jsx,ts,tsx,mjs,cjs,json,css,md,html,yml,yaml}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@portabletext/react": "^6.2.0",
-    "@sanity/client": "^8.5.0",
-    "@sanity/image-url": "^2.1.1",
-    "@types/three": "^0.168.0",
-    "groq": "^6.12.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-google-recaptcha": "^3.1.0",
-    "react-icons": "^5.3.0",
-    "react-medium-image-zoom": "^5.2.9",
-    "react-router-dom": "^7.18.3",
-    "three": "^0.168.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
+    "concurrently": "^9.1.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
-    "postcss": "^8.4.42",
     "prettier": "^3.9.6",
-    "semantic-release": "^25.0.9",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.9.3",
-    "vite": "^8.2.2"
+    "semantic-release": "^25.0.9"
   }
 }
