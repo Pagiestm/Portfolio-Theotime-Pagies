@@ -72,14 +72,46 @@ export const homePage = defineType({
     }),
     defineField({
       name: 'selectionKicker',
-      title: 'Surtitre de la sélection',
-      description: 'Le petit texte au-dessus de l’index des réalisations.',
+      title: 'Sélection — surtitre',
+      description: 'Le petit texte au-dessus des cartes de projets, par exemple « Sélection ».',
       type: 'localeString',
     }),
     defineField({
       name: 'indexTitle',
-      title: 'Titre de l’index',
+      title: 'Sélection — titre',
+      description:
+        'Le grand titre au-dessus des cartes. Les projets affichés sont ceux cochés « À la une » dans Réalisations.',
       type: 'localeString',
+    }),
+    defineField({
+      name: 'showStack',
+      title: 'Afficher la section « Technologies »',
+      description:
+        'La bande des technologies les plus utilisées dans vos réalisations. Calculée automatiquement.',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'stackTitle',
+      title: 'Technologies — titre',
+      description: 'Laissez vide pour le titre par défaut.',
+      type: 'localeString',
+      hidden: ({ document }) => document?.showStack === false,
+    }),
+    defineField({
+      name: 'showJourney',
+      title: 'Afficher la section « Parcours en bref »',
+      description:
+        'Les trois étapes les plus récentes du parcours, avec un lien vers la page complète.',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'journeyTitle',
+      title: 'Parcours en bref — titre',
+      description: 'Laissez vide pour le titre par défaut.',
+      type: 'localeString',
+      hidden: ({ document }) => document?.showJourney === false,
     }),
     defineField({
       name: 'closingTitle',
