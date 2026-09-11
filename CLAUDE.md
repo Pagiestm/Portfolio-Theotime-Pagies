@@ -1,8 +1,10 @@
 # Portfolio Théotime Pagies
 
-Monorepo npm workspaces. Le site (`apps/web`, React 18 + Vite + Tailwind + React
-Router) lit son contenu dans Sanity ; le back-office (`apps/studio`, Sanity Studio,
-React 19) l'édite ; `packages/shared` porte ce que les deux consomment.
+Monorepo npm workspaces, orchestré par Turborepo. Le site (`apps/web`, React 19
+
+- Vite + Tailwind + React Router) lit son contenu dans Sanity ; le back-office
+  (`apps/studio`, Sanity Studio, React 19) l'édite ; `packages/shared` porte ce que
+  les deux consomment.
 
 Architecture du site : **Feature-Based**, d'après « React Architecture: A Complete
 Guide for Scalable Front-End Applications » (Rohit Kuwar). Tout ce qui suit en
@@ -28,10 +30,21 @@ découle.
 | Commande                | Effet                                                |
 | ----------------------- | ---------------------------------------------------- |
 | `npm install`           | installe les trois workspaces                        |
+| `npm run lint`          | ESLint sur le site, via Turborepo                    |
 | `npm run dev`           | site sur :5173 et Studio sur :3333 en parallèle      |
 | `npm run build`         | construit le site et le Studio (valide les schémas)  |
 | `npm run deploy:studio` | publie le Studio sur sanity.studio                   |
 | `npm run migrate:dry`   | simule le réamorçage d'un dataset vide, n'écrit rien |
+
+`dev`, `build`, `lint` et `typecheck` passent par Turborepo : il lit le graphe
+des workspaces, lance ce qui est indépendant en parallèle et met en cache le
+résultat de chaque tâche. Un second `npm run build` sans modification ne
+reconstruit rien. Cibler un seul workspace : `--filter=@portfolio/web`.
+
+Toute variable d'environnement qui change le résultat d'un build doit être
+déclarée dans `turbo.json` (`env`). Sans cela le cache resservirait un bundle
+construit avec d'autres valeurs — un site pointant vers le mauvais dataset,
+sans le moindre message d'erreur.
 
 Passer des arguments à travers un script racine ne marche pas (`npm run preview --
 --port` perd `--port`) : lancer la commande depuis `apps/web` ou `apps/studio`.
@@ -39,7 +52,8 @@ Passer des arguments à travers un script racine ne marche pas (`npm run preview
 ## Structure du dépôt
 
 ```
-apps/web/          le site           React 18, Vite, Tailwind, React Router
+turbo.json         orchestration     graphe des tâches, cache, variables d'env
+apps/web/          le site           React 19, Vite, Tailwind, React Router
 apps/studio/       le back-office    Sanity Studio, React 19, toolchain propre
 packages/shared/   partagé           type Locale, registre TECHNOLOGIES
 ```
@@ -51,9 +65,21 @@ packages/shared/   partagé           type Locale, registre TECHNOLOGIES
   son menu déroulant, le site y associe les logos dans `constants/tech.ts`, et `tsc`
   refuse une clé sans logo. Ajouter une techno = une ligne dans `shared` + un logo
   dans le site.
-- React 18 est hissé à la racine de `node_modules`, React 19 imbriqué sous
-  `apps/studio`. `resolve.dedupe` dans `apps/web/vite.config.ts` garantit une seule
-  copie de React dans le bundle du site. Ne pas le retirer.
+- Le site et le Studio sont tous deux en React 19, mais chacun le déclare dans son
+  workspace : rien n'oblige les deux versions à rester identiques, et npm est libre
+  d'en hisser une et d'en imbriquer une autre. `resolve.dedupe` dans
+  `apps/web/vite.config.ts` garantit une seule copie de React dans le bundle du
+  site. Ne pas le retirer.
+- `react-icons` est épinglé à `5.3.0`, sans accent circonflexe : les versions
+  suivantes ont retiré `SiPlaywright`, utilisé par `constants/tech.ts`.
+- `overrides.typescript` à la racine force toute la ligne 5.9. La chaîne Sanity
+  déclare des `peerDependencies` très larges (`typescript >=5`, `^5 || ^6 || ^7`) :
+  sans cette contrainte npm hisse un TypeScript majeur plus récent à la racine, et
+  `@typescript-eslint` 7 s'y casse — le lint échoue avant d'avoir lu une ligne de
+  code.
+- `prepare` tolère l'absence de husky (`husky || echo …`). Un build distant qui
+  n'installe pas les devDependencies ferait autrement échouer `npm install` en
+  entier sur un outil qui ne sert qu'en local.
 
 ## Architecture du site (`apps/web/src`)
 

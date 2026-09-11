@@ -6,17 +6,18 @@
   "engines": {
     "node": ">=22.14.0"
   },
+  "packageManager": "npm@12.0.2",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n web,studio -c blue,magenta \"npm run dev -w @portfolio/web\" \"npm run dev -w @portfolio/studio\"",
-    "dev:web": "npm run dev -w @portfolio/web",
-    "dev:studio": "npm run dev -w @portfolio/studio",
-    "build": "npm run build --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@portfolio/web",
+    "dev:studio": "turbo run dev --filter=@portfolio/studio",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "npm run preview -w @portfolio/web",
@@ -34,15 +35,18 @@
       "prettier --write"
     ]
   },
+  "overrides": {
+    "typescript": "^5.9.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "concurrently": "^9.1.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "prettier": "^3.9.6",
-    "semantic-release": "^25.0.9"
+    "semantic-release": "^25.0.9",
+    "turbo": "^2.5.8"
   }
 }

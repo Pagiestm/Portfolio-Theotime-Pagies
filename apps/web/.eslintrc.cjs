@@ -15,7 +15,7 @@ module.exports = {
   // type-check reste `tsc --noEmit`. Le parser sert à comprendre la syntaxe TS.
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
+  settings: { react: { version: '19.2' } },
   plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react/jsx-no-target-blank': 'off',
