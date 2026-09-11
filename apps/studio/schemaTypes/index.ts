@@ -1,5 +1,6 @@
 import { localeBlock, localeString, localeText } from './objects/locale';
 import { pageHeader } from './objects/pageHeader';
+import { documentFile, externalLink } from './objects/resources';
 import { journeyEntry } from './documents/journeyEntry';
 import { project } from './documents/project';
 import { skillGroup } from './documents/skillGroup';
@@ -25,6 +26,8 @@ export const schemaTypes = [
   localeText,
   localeBlock,
   pageHeader,
+  externalLink,
+  documentFile,
   // Collections
   project,
   journeyEntry,

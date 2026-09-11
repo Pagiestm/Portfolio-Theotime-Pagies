@@ -10,15 +10,6 @@ import { imageUrl } from '../services/sanity/image';
 import { paths } from '../routes/paths';
 import type { Project } from '../services/sanity/types';
 
-/** Liens externes du projet, dans l'ordre d'affichage. */
-const LINKS = [
-  ['pdf', 'linkPdf'],
-  ['api', 'linkApi'],
-  ['figma', 'linkFigma'],
-  ['github', 'linkGithub'],
-  ['site', 'linkSite'],
-] as const;
-
 const ProjectPage = () => {
   const { t, localize } = useTranslation();
   const { project, siblings } = useLoaderData() as {
@@ -32,7 +23,12 @@ const ProjectPage = () => {
   // Pas d'« envergure » ici : la page projet ne hiérarchise pas les
   // réalisations, comme l'index.
   const meta = [
-    { label: t.metaRole, value: localize(project.kicker) },
+    { label: t.metaCategory, value: t.category[project.category] },
+    {
+      label: t.metaKind,
+      value: (project.kinds ?? []).map((kind) => t.kind[kind]).join(', ') || '—',
+    },
+    { label: t.metaTeam, value: project.team ? t.team[project.team] : '—' },
     { label: t.metaPeriod, value: localize(project.period) || '—' },
     {
       label: t.metaStack,
@@ -40,10 +36,11 @@ const ProjectPage = () => {
     },
   ];
 
-  const links = LINKS.map(([field, labelKey]) => {
-    const href = field === 'pdf' ? project.links?.pdfUrl : project.links?.[field];
-    return href ? { href, labelKey } : null;
-  }).filter(Boolean) as Array<{ href: string; labelKey: string }>;
+  // L'ordre et les intitulés viennent du Studio : le site n'impose plus rien.
+  const links = (project.resources ?? []).flatMap((resource) => {
+    const href = resource.url ?? resource.fileUrl;
+    return href ? [{ key: resource._key, href, label: localize(resource.label) }] : [];
+  });
 
   const cover = imageUrl(project.cover ?? undefined, 1600);
   const content = localize(project.content);
@@ -58,7 +55,7 @@ const ProjectPage = () => {
       </Link>
 
       <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
-        {localize(project.kicker)}
+        {t.category[project.category]}
       </div>
       <h1 className="m-0 mb-6 max-w-[20ch] text-[clamp(36px,6vw,74px)] font-black leading-none tracking-[-.035em]">
         {project.title}
@@ -105,12 +102,12 @@ const ProjectPage = () => {
               <div className="flex flex-wrap gap-[2px]">
                 {links.map((link) => (
                   <ActionLink
-                    key={link.labelKey}
+                    key={link.key}
                     href={link.href}
                     variant="outline"
                     className="text-[12px]"
                   >
-                    {t[link.labelKey]}
+                    {link.label}
                   </ActionLink>
                 ))}
               </div>

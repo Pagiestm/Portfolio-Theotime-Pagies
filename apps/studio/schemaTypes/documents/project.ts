@@ -1,4 +1,12 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
+import {
+  PROJECT_CATEGORIES,
+  PROJECT_KINDS,
+  TEAM_MODES,
+  type ProjectCategory,
+  type ProjectKind,
+  type TeamMode,
+} from '@portfolio/shared';
 
 /**
  * Une réalisation du portfolio.
@@ -6,7 +14,35 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
  * Le tri de l'index se fait sur `endDate`, une vraie date, et non plus en
  * devinant le dernier mois cité dans un titre du genre « avril à mai 2025 ».
  * `period` reste affiché tel quel, mais ne pilote plus l'ordre.
+ *
+ * Le cadre, le type de livrable et le mode de réalisation sont des listes
+ * fermées : ce sont les filtres de la page Réalisations, et un filtre ne
+ * supporte pas les variantes d'orthographe. Les libellés affichés sur le site
+ * vivent dans son `i18n/`, traduits ; ici seuls les intitulés du formulaire.
  */
+
+const CATEGORY_TITLES: Record<ProjectCategory, string> = {
+  school: 'Projet scolaire',
+  personal: 'Projet perso',
+  professional: 'Projet professionnel',
+};
+
+const KIND_TITLES: Record<ProjectKind, string> = {
+  web: 'Application ou site web',
+  mobile: 'Application mobile',
+  desktop: 'Application de bureau',
+  api: 'API',
+  nocode: 'No-code',
+};
+
+const TEAM_TITLES: Record<TeamMode, string> = {
+  solo: 'En solo',
+  team: 'En équipe',
+};
+
+const asOptions = <T extends string>(values: readonly T[], titles: Record<T, string>) =>
+  values.map((value) => ({ value, title: titles[value] }));
+
 export const project = defineType({
   name: 'project',
   title: 'Réalisation',
@@ -34,11 +70,46 @@ export const project = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'kicker',
-      title: 'Type de projet',
-      description: 'Par exemple « Projet scolaire » ou « Projet perso ».',
-      type: 'localeString',
+      name: 'featured',
+      title: 'À la une',
+      description:
+        'Les projets à la une composent la sélection de la page d’accueil, complétée par les plus récents. Trois ou quatre suffisent.',
+      type: 'boolean',
       group: 'content',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'category',
+      title: 'Cadre',
+      type: 'string',
+      group: 'content',
+      options: {
+        list: asOptions(PROJECT_CATEGORIES, CATEGORY_TITLES),
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'kinds',
+      title: 'Type de livrable',
+      description: 'Plusieurs choix possibles, par exemple un site et son API.',
+      type: 'array',
+      group: 'content',
+      of: [defineArrayMember({ type: 'string' })],
+      options: { list: asOptions(PROJECT_KINDS, KIND_TITLES), layout: 'grid' },
+      validation: (rule) => rule.min(1).error('Choisissez au moins un type.'),
+    }),
+    defineField({
+      name: 'team',
+      title: 'Réalisation',
+      type: 'string',
+      group: 'content',
+      options: {
+        list: asOptions(TEAM_MODES, TEAM_TITLES),
+        layout: 'radio',
+        direction: 'horizontal',
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -103,22 +174,15 @@ export const project = defineType({
     }),
 
     defineField({
-      name: 'links',
-      title: 'Liens',
-      type: 'object',
+      name: 'resources',
+      title: 'Liens et documents',
+      description:
+        'Ce que le visiteur peut ouvrir depuis la page projet, dans l’ordre d’affichage. Glissez une entrée pour la déplacer.',
+      type: 'array',
       group: 'links',
-      options: { collapsible: false },
-      fields: [
-        defineField({ name: 'site', title: 'Site en ligne', type: 'url' }),
-        defineField({ name: 'github', title: 'Code source (GitHub)', type: 'url' }),
-        defineField({ name: 'api', title: 'Documentation API', type: 'url' }),
-        defineField({ name: 'figma', title: 'Maquette (Figma)', type: 'url' }),
-        defineField({
-          name: 'pdf',
-          title: 'Dossier de projet (PDF)',
-          type: 'file',
-          options: { accept: '.pdf' },
-        }),
+      of: [
+        defineArrayMember({ type: 'externalLink' }),
+        defineArrayMember({ type: 'documentFile' }),
       ],
     }),
   ],
@@ -128,8 +192,21 @@ export const project = defineType({
       name: 'endDateDesc',
       by: [{ field: 'endDate', direction: 'desc' }],
     },
+    {
+      title: 'À la une d’abord',
+      name: 'featuredFirst',
+      by: [
+        { field: 'featured', direction: 'desc' },
+        { field: 'endDate', direction: 'desc' },
+      ],
+    },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'period.fr', media: 'cover' },
+    select: { title: 'title', subtitle: 'period.fr', media: 'cover', featured: 'featured' },
+    prepare: ({ title, subtitle, media, featured }) => ({
+      title: featured ? `★ ${title}` : title,
+      subtitle,
+      media,
+    }),
   },
 });

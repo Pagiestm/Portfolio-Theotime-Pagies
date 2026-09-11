@@ -1,3 +1,5 @@
+import type { ProjectCategory, ProjectKind, TeamMode } from '@portfolio/shared';
+
 export default {
   role: 'Développeur web full-stack',
   cta: 'Me contacter',
@@ -10,6 +12,13 @@ export default {
   selection: 'Sélection',
   indexTitle: 'Index des réalisations',
   seeAll: 'Tout voir',
+  seeOtherProjects: 'Voir les autres réalisations',
+  otherProjectsCount: 'autres réalisations à découvrir',
+  stackTitle: 'Avec quoi je travaille',
+  stackHint: 'projets',
+  seeSkills: 'Voir toutes les compétences',
+  journeyTitle: 'Parcours en bref',
+  seePath: 'Voir tout le parcours',
   closeTitle: 'Disponible pour un CDI ou une mission freelance.',
   closeCta: 'Écrivez-moi',
 
@@ -18,7 +27,7 @@ export default {
   workBody:
     'Chaque projet est décrit avec son contexte, mon rôle exact et les décisions techniques qui ont compté. Cliquez pour le détail.',
   searchLabel: 'Rechercher',
-  searchPlaceholder: 'Rechercher par titre ou technologie…',
+  searchPlaceholder: 'Titre ou technologie…',
   noResult: 'Aucun projet ne correspond à cette recherche.',
   reset: 'Réinitialiser',
   filterShowAll: 'Voir tout',
@@ -33,12 +42,9 @@ export default {
   stack: 'Technologies',
   links: 'Liens',
   nextProject: 'Projet suivant',
-  linkPdf: 'Dossier de projet',
-  linkApi: 'Documentation API',
-  linkFigma: 'Maquette',
-  linkGithub: 'Code source',
-  linkSite: 'Consulter le site',
-  metaRole: 'Type',
+  metaCategory: 'Cadre',
+  metaKind: 'Type',
+  metaTeam: 'Réalisation',
   metaPeriod: 'Période',
   metaStack: 'Stack',
 
@@ -85,4 +91,30 @@ export default {
   notFoundTitle: 'Page introuvable',
   notFoundBody: "Cette adresse ne mène nulle part. Revenez à l'accueil.",
   backHome: "Retour à l'accueil",
+
+  // Page Réalisations : filtres
+  allOption: 'Tous',
+  removeFilter: 'Retirer le filtre',
+  projectOne: 'projet',
+  projectMany: 'projets',
+  filters: 'Filtres',
+  filterCategory: 'Cadre',
+  filterKind: 'Type',
+  filterTeam: 'Réalisation',
+  category: {
+    school: 'Projet scolaire',
+    personal: 'Projet perso',
+    professional: 'Projet professionnel',
+  } satisfies Record<ProjectCategory, string>,
+  kind: {
+    web: 'Web',
+    mobile: 'Mobile',
+    desktop: 'Desktop',
+    api: 'API',
+    nocode: 'No-code',
+  } satisfies Record<ProjectKind, string>,
+  team: {
+    solo: 'En solo',
+    team: 'En équipe',
+  } satisfies Record<TeamMode, string>,
 };
