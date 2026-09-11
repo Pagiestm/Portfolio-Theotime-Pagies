@@ -21,6 +21,12 @@ découle.
   ne pas se contenter du build.
 - Commits au format Conventional Commits, en français, corps expliquant le pourquoi
   (`feat(cms): …`, `fix(web): …`, `refactor(repo): …`). Husky vérifie.
+- Le type du commit décide de la version publiée par semantic-release au merge
+  dans `master` : `fix` et `perf` donnent un correctif, `feat` une version
+  mineure, un `!` après le type (`feat(web)!: …`) ou un pied `BREAKING CHANGE:`
+  une version majeure. `refactor`, `chore`, `docs`, `style`, `test` et `ci` ne
+  publient rien. En fusion _squash_, c'est le titre du squash qui est analysé,
+  pas les commits d'origine : un `feat` s'y perd facilement.
 - `master` déploie en production sur Vercel à chaque push : tout travail se fait sur
   une branche `feat/…` ou `fix/…`.
 - Commentaires et documentation en français. Expliquer le _pourquoi_, pas le _quoi_.

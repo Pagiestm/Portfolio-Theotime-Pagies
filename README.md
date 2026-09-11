@@ -72,7 +72,17 @@ Les quatre tournent en CI sur chaque PR, et avant chaque release. En local,
 Husky formate et lint les fichiers modifiés à chaque commit, et vérifie que le
 message suit les [Conventional Commits](https://www.conventionalcommits.org/)
 (`feat(cms): …`, `fix(web): …`). C'est de ces messages que semantic-release
-déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master`.
+déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master` :
+
+| Commit                                     | Version        |
+| ------------------------------------------ | -------------- |
+| `fix(…)`, `perf(…)`                        | correctif      |
+| `feat(…)`                                  | mineure        |
+| `feat(…)!`, ou un pied `BREAKING CHANGE:`  | majeure        |
+| `refactor`, `chore`, `docs`, `style`, `ci` | aucune release |
+
+Vérifier avant de fusionner, sans rien publier :
+`GITHUB_TOKEN=… npx semantic-release --dry-run --no-ci`.
 
 ## Déployer
 
