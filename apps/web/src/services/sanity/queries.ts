@@ -17,15 +17,17 @@ export const PROJECTS_QUERY = groq`
   *[_type == "project" && defined(slug.current)] | order(endDate desc) {
     "id": slug.current,
     title,
-    kicker ${LOCALE},
+    featured, category, kinds, team,
     period ${LOCALE},
     endDate,
     summary ${LOCALE},
     cover,
     "stack": stack[]->${TECH},
-    links {
-      site, github, api, figma,
-      "pdfUrl": pdf.asset->url
+    resources[] {
+      _key, _type,
+      label ${LOCALE},
+      url,
+      "fileUrl": file.asset->url
     }
   }
 `;
@@ -35,7 +37,7 @@ export const PROJECT_QUERY = groq`
   *[_type == "project" && slug.current == $slug][0] {
     "id": slug.current,
     title,
-    kicker ${LOCALE},
+    category, kinds, team,
     period ${LOCALE},
     endDate,
     summary ${LOCALE},
@@ -43,9 +45,11 @@ export const PROJECT_QUERY = groq`
     cover,
     gallery,
     "stack": stack[]->${TECH},
-    links {
-      site, github, api, figma,
-      "pdfUrl": pdf.asset->url
+    resources[] {
+      _key, _type,
+      label ${LOCALE},
+      url,
+      "fileUrl": file.asset->url
     }
   }
 `;
@@ -64,6 +68,10 @@ export const HOME_QUERY = groq`
     marquee[] { label ${LOCALE}, value ${LOCALE} },
     selectionKicker ${LOCALE},
     indexTitle ${LOCALE},
+    showStack,
+    stackTitle ${LOCALE},
+    showJourney,
+    journeyTitle ${LOCALE},
     closingTitle ${LOCALE},
     closingCta ${LOCALE}
   }
@@ -86,6 +94,15 @@ export const ABOUT_QUERY = groq`
     portrait,
     "paragraphs": paragraphs[] ${LOCALE},
     facts[] { label ${LOCALE}, value ${LOCALE} }
+  }
+`;
+
+/** Les trois étapes les plus récentes, pour l'aperçu de l'accueil. */
+export const JOURNEY_PREVIEW_QUERY = groq`
+  *[_type == "journeyEntry"] | order(startDate desc) [0...3] {
+    kind, org,
+    period ${LOCALE},
+    role ${LOCALE}
   }
 `;
 

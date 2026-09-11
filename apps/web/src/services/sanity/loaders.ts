@@ -3,6 +3,7 @@ import {
   ABOUT_QUERY,
   CONTACT_PAGE_QUERY,
   HOME_QUERY,
+  JOURNEY_PREVIEW_QUERY,
   JOURNEY_QUERY,
   PATH_PAGE_QUERY,
   PROJECTS_QUERY,
@@ -38,11 +39,12 @@ export const rootLoader = async () => ({
 });
 
 export const homeLoader = async () => {
-  const [home, projects] = await Promise.all([
+  const [home, projects, journey] = await Promise.all([
     sanityClient.fetch<HomeContent>(HOME_QUERY),
     sanityClient.fetch<Project[]>(PROJECTS_QUERY),
+    sanityClient.fetch<JourneyEntry[]>(JOURNEY_PREVIEW_QUERY),
   ]);
-  return { home, projects };
+  return { home, projects, journey };
 };
 
 export const workLoader = async () => {

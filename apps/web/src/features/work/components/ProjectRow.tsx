@@ -9,7 +9,7 @@ import type { Project } from '../../../services/sanity/types';
  * pile technique à droite. Toute la ligne est cliquable.
  */
 const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
-  const { localize } = useTranslation();
+  const { t, localize } = useTranslation();
 
   return (
     <Reveal variant="tilt">
@@ -19,13 +19,14 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}
       >
         <div className="min-w-0">
-          <div className="mb-[10px] flex items-center gap-[10px]">
-            <span className="text-[11px] uppercase tracking-[.16em] text-muted">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <span className="text-[11px] uppercase tracking-[.16em] text-accent-2">
-              {localize(project.kicker)}
-            </span>
+          <div className="mb-[10px] flex flex-wrap items-center gap-x-[10px] gap-y-1 text-[11px] uppercase tracking-[.16em]">
+            <span className="text-muted">{String(index + 1).padStart(2, '0')}</span>
+            <span className="text-accent-2">{t.category[project.category]}</span>
+            {(project.kinds ?? []).map((kind) => (
+              <span key={kind} className="text-muted">
+                · {t.kind[kind]}
+              </span>
+            ))}
           </div>
           <h3 className="m-0 text-[clamp(22px,2.8vw,32px)] font-extrabold tracking-[-.025em]">
             {project.title}

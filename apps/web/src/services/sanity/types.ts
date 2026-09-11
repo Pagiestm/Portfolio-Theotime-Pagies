@@ -1,10 +1,12 @@
 import type { PortableTextBlock } from '@portabletext/react';
-import type { Locale } from '@portfolio/shared';
+import type { Locale, ProjectCategory, ProjectKind, TeamMode } from '@portfolio/shared';
 
 /** Réexporté pour que les consommateurs du site n'aient qu'un seul point d'import. */
 export type { Locale };
 
 export type SanityImage = {
+  /** Identifiant de l'entrée quand l'image est dans un tableau (galerie). */
+  _key?: string;
   asset?: { _ref?: string; _id?: string; url?: string };
   alt?: string;
 };
@@ -14,18 +16,27 @@ export type Technology = {
   iconKey?: string | null;
 };
 
-export type ProjectLinks = {
-  site?: string | null;
-  github?: string | null;
-  api?: string | null;
-  figma?: string | null;
-  pdfUrl?: string | null;
+/**
+ * Une entrée de la liste « Liens et documents » d'une réalisation.
+ * `url` est renseigné pour un lien, `fileUrl` pour un document : la requête
+ * résout déjà la référence vers le fichier, le composant n'a qu'à choisir.
+ */
+export type ProjectResource = {
+  _key: string;
+  _type: 'externalLink' | 'documentFile';
+  label: Locale;
+  url?: string | null;
+  fileUrl?: string | null;
 };
 
 export type Project = {
   id: string;
   title: string;
-  kicker: Locale;
+  /** Coché dans le Studio : entre dans la sélection de l'accueil. */
+  featured?: boolean | null;
+  category: ProjectCategory;
+  kinds?: ProjectKind[] | null;
+  team?: TeamMode | null;
   period: Locale;
   endDate: string;
   summary: Locale;
@@ -33,7 +44,7 @@ export type Project = {
   cover?: SanityImage | null;
   gallery?: SanityImage[] | null;
   stack: Technology[];
-  links: ProjectLinks;
+  resources?: ProjectResource[] | null;
 };
 
 export type JourneyEntry = {
@@ -69,6 +80,11 @@ export type HomeContent = {
   marquee: Array<{ label: Locale; value: Locale }>;
   selectionKicker?: Locale | null;
   indexTitle?: Locale | null;
+  /** Sections optionnelles ; `undefined` vaut affiché, un document ancien ne les cache pas. */
+  showStack?: boolean | null;
+  stackTitle?: Locale | null;
+  showJourney?: boolean | null;
+  journeyTitle?: Locale | null;
   closingTitle: Locale;
   closingCta: Locale;
 };

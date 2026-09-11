@@ -25,7 +25,8 @@ const ProjectGallery = ({ images, title }: { images?: SanityImage[] | null; titl
 
         return (
           <Reveal
-            key={image.asset?._ref ?? index}
+            // La même image peut figurer deux fois dans une galerie : la clé du tableau, pas celle de l'asset.
+            key={image._key ?? index}
             variant="up"
             delay={Math.min(index, 5) * 60}
             className="flex items-center justify-center bg-surface-2"

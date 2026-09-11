@@ -1,3 +1,5 @@
+import type { ProjectCategory, ProjectKind, TeamMode } from '@portfolio/shared';
+
 export default {
   role: 'Full-stack web developer',
   cta: 'Get in touch',
@@ -10,6 +12,13 @@ export default {
   selection: 'Selection',
   indexTitle: 'Work index',
   seeAll: 'See all',
+  seeOtherProjects: 'See the other projects',
+  otherProjectsCount: 'more projects to discover',
+  stackTitle: 'What I work with',
+  stackHint: 'projects',
+  seeSkills: 'See all skills',
+  journeyTitle: 'Path in brief',
+  seePath: 'See the full path',
   closeTitle: 'Available for a full-time role or freelance work.',
   closeCta: 'Write to me',
 
@@ -18,7 +27,7 @@ export default {
   workBody:
     'Every project comes with its context, my exact role and the technical decisions that mattered. Click through for the detail.',
   searchLabel: 'Search',
-  searchPlaceholder: 'Search by title or technology…',
+  searchPlaceholder: 'Title or technology…',
   noResult: 'No project matches this search.',
   reset: 'Reset',
   filterShowAll: 'Show all',
@@ -33,12 +42,9 @@ export default {
   stack: 'Stack',
   links: 'Links',
   nextProject: 'Next project',
-  linkPdf: 'Project report',
-  linkApi: 'API documentation',
-  linkFigma: 'Design file',
-  linkGithub: 'Source code',
-  linkSite: 'Visit the site',
-  metaRole: 'Type',
+  metaCategory: 'Context',
+  metaKind: 'Type',
+  metaTeam: 'Team',
   metaPeriod: 'Period',
   metaStack: 'Stack',
 
@@ -83,4 +89,30 @@ export default {
   notFoundTitle: 'Page not found',
   notFoundBody: 'This address leads nowhere. Head back to the homepage.',
   backHome: 'Back to the homepage',
+
+  // Work page: filters
+  allOption: 'All',
+  removeFilter: 'Remove filter',
+  projectOne: 'project',
+  projectMany: 'projects',
+  filters: 'Filters',
+  filterCategory: 'Context',
+  filterKind: 'Type',
+  filterTeam: 'Team',
+  category: {
+    school: 'School project',
+    personal: 'Personal project',
+    professional: 'Professional project',
+  } satisfies Record<ProjectCategory, string>,
+  kind: {
+    web: 'Web',
+    mobile: 'Mobile',
+    desktop: 'Desktop',
+    api: 'API',
+    nocode: 'No-code',
+  } satisfies Record<ProjectKind, string>,
+  team: {
+    solo: 'Solo',
+    team: 'Team',
+  } satisfies Record<TeamMode, string>,
 };
