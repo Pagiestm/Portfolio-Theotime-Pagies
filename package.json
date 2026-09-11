@@ -23,7 +23,7 @@
     "deploy:studio": "npm run deploy -w @portfolio/studio",
     "migrate": "npm run migrate -w @portfolio/studio",
     "migrate:dry": "npm run migrate:dry -w @portfolio/studio",
-    "prepare": "husky"
+    "prepare": "husky || echo \"husky absent : hooks Git non installés (build distant)\""
   },
   "lint-staged": {
     "apps/web/**/*.{js,jsx,ts,tsx}": [
