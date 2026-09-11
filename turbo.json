@@ -1,0 +1,23 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "stream",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "env": [
+        "SANITY_PROJECT_ID",
+        "SANITY_DATASET",
+        "SANITY_STUDIO_PROJECT_ID",
+        "SANITY_STUDIO_DATASET",
+        "VITE_*"
+      ]
+    },
+    "lint": {},
+    "typecheck": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

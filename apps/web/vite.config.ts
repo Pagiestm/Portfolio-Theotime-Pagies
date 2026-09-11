@@ -6,12 +6,15 @@ export default defineConfig({
 
   resolve: {
     /**
-     * Monorepo : le Studio exige React 19, que npm hisse à la racine de
-     * `node_modules` ; le React 18 de ce site est imbriqué ici. Sans `dedupe`,
-     * une dépendance hissée (`react-router-dom`, `@portabletext/react`)
-     * importerait le React racine et le bundle embarquerait deux copies — les
+     * Monorepo : chaque workspace déclare son React, et npm est libre d'en
+     * hisser une copie à la racine de `node_modules` et d'en imbriquer une
+     * autre. Sans `dedupe`, une dépendance hissée (`react-router-dom`,
+     * `@portabletext/react`) importerait la copie racine et le bundle en
+     * embarquerait deux — deux React ne partagent pas leur état interne, les
      * hooks échoueraient au premier rendu. Toute importation de `react` est
-     * donc forcée vers la copie de ce site.
+     * donc forcée vers la copie de ce site. Le site et le Studio sont
+     * aujourd'hui tous deux en React 19, mais rien ne garantit qu'ils le
+     * resteront : ne pas retirer cette ligne.
      */
     dedupe: ['react', 'react-dom'],
   },

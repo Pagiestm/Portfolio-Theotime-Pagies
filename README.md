@@ -6,12 +6,14 @@ son contenu est administré dans un back-office Sanity.
 
 ## Structure
 
-Monorepo **npm workspaces**, une application par dossier :
+Monorepo **npm workspaces**, orchestré par **Turborepo**, une application par
+dossier :
 
 ```
 portfolio/
+├── turbo.json      graphe des tâches, cache de build, variables d'environnement
 ├── apps/
-│   ├── web/        le site — Vite, React 18, Tailwind, React Router
+│   ├── web/        le site — Vite, React 19, Tailwind, React Router
 │   └── studio/     le back-office — Sanity Studio, React 19
 ├── packages/
 │   └── shared/     ce que les deux consomment : type Locale, registre des technologies
@@ -33,6 +35,12 @@ npm run dev          # site sur :5173 et Studio sur :3333, en parallèle
 ```
 
 Ou séparément : `npm run dev:web`, `npm run dev:studio`.
+
+`dev`, `build`, `lint` et `typecheck` passent par Turborepo, qui lance en
+parallèle ce qui est indépendant et met en cache le résultat de chaque tâche :
+relancer `npm run build` sans rien avoir modifié ne reconstruit rien. Vercel
+réutilise ce cache d'un déploiement à l'autre. Pour ne viser qu'une
+application : `npx turbo run build --filter=@portfolio/web`.
 
 Variables d'environnement, dans `apps/web/.env` (jamais commité) :
 
@@ -57,11 +65,24 @@ npm run format:check # Prettier sur tout le dépôt
 npm run build        # construit le site et le Studio
 ```
 
+Les trois premières, sauf `format:check`, passent par Turborepo et sont donc
+mises en cache.
+
 Les quatre tournent en CI sur chaque PR, et avant chaque release. En local,
 Husky formate et lint les fichiers modifiés à chaque commit, et vérifie que le
 message suit les [Conventional Commits](https://www.conventionalcommits.org/)
 (`feat(cms): …`, `fix(web): …`). C'est de ces messages que semantic-release
-déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master`.
+déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master` :
+
+| Commit                                     | Version        |
+| ------------------------------------------ | -------------- |
+| `fix(…)`, `perf(…)`                        | correctif      |
+| `feat(…)`                                  | mineure        |
+| `feat(…)!`, ou un pied `BREAKING CHANGE:`  | majeure        |
+| `refactor`, `chore`, `docs`, `style`, `ci` | aucune release |
+
+Vérifier avant de fusionner, sans rien publier :
+`GITHUB_TOKEN=… npx semantic-release --dry-run --no-ci`.
 
 ## Déployer
 
