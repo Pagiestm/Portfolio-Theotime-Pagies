@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.0.0...v1.0.1) (2026-09-11)
+
+### Bug Fixes
+
+* **repo:** ne plus faire échouer npm install quand husky est absent ([7cd8ed4](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/7cd8ed4108b2d5dc388e783772198f118422b873))
+* **repo:** rétablir la génération des notes de release ([74dbd38](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/74dbd38e91a846f09938aa4dcd3f2db2aba888a9))
+
 # 1.0.0 (2026-09-05)
 
 
