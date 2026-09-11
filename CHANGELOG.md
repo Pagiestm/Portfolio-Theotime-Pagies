@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.0.1...v1.1.0) (2026-09-11)
+
+### Features
+
+* **cms:** qualifier les réalisations et libérer leurs liens ([4a7e506](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/4a7e506a48bcd2fff7b9bc209867b3dcacc86151))
+* **web:** filtres à facettes, sélection à la une et sections d'accueil ([14c1188](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/14c1188d34093c58c7e0d57fd91d6707f5cb0611))
+
 ## [1.0.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.0.0...v1.0.1) (2026-09-11)
 
 ### Bug Fixes

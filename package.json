@@ -1,7 +1,7 @@
 {
   "name": "portfolio-theotime-pagies",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Portfolio de Théotime Pagies — site (apps/web), back-office Sanity (apps/studio), code partagé (packages/shared)",
   "engines": {
     "node": ">=22.14.0"
