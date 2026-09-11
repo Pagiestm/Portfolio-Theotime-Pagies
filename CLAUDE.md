@@ -22,13 +22,12 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) ·
 
 ## Commandes
 
-| Commande                | Effet                                  |
-| ----------------------- | -------------------------------------- |
-| `npm install`           | installe les trois workspaces          |
-| `npm run dev`           | site sur :5173 et Studio sur :3333     |
-| `npm run build`         | site + Studio, en cache Turborepo      |
-| `npm run deploy:studio` | publie le Studio sur sanity.studio     |
-| `npm run migrate:dry`   | simule le réamorçage d'un dataset vide |
+| Commande                | Effet                              |
+| ----------------------- | ---------------------------------- |
+| `npm install`           | installe les trois workspaces      |
+| `npm run dev`           | site sur :5173 et Studio sur :3333 |
+| `npm run build`         | site + Studio, en cache Turborepo  |
+| `npm run deploy:studio` | publie le Studio sur sanity.studio |
 
 `dev`, `build`, `lint` et `typecheck` passent par Turborepo (graphe, parallélisme,
 cache ; cibler avec `--filter=@portfolio/web`). Toute variable qui change un bundle

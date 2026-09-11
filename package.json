@@ -22,8 +22,6 @@
     "format:check": "prettier --check .",
     "preview": "npm run preview -w @portfolio/web",
     "deploy:studio": "npm run deploy -w @portfolio/studio",
-    "migrate": "npm run migrate -w @portfolio/studio",
-    "migrate:dry": "npm run migrate:dry -w @portfolio/studio",
     "prepare": "husky || echo \"husky absent : hooks Git non installés (build distant)\""
   },
   "lint-staged": {
