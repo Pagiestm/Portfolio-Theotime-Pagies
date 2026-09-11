@@ -8,6 +8,9 @@ a plus rien à modifier dans le code pour changer un texte ou ajouter un projet.
 - **Studio en local** : `npm run dev` → http://localhost:3333
 - **Studio en ligne** : `npm run deploy`
 
+Pour **faire évoluer** ce qui est modifiable (ajouter un champ, un type de lien,
+un document), le guide est dans [docs/sanity.md](../../docs/sanity.md).
+
 ## Au quotidien
 
 ```bash
@@ -21,16 +24,16 @@ Un déploiement du site n'est nécessaire que si le **code** change.
 
 ## Ce qui est modifiable
 
-| Dans le Studio                                              | Effet sur le site                                                    |
-| ----------------------------------------------------------- | -------------------------------------------------------------------- |
-| **Pages › Accueil**                                         | chapitres de la scène, bande de repères, bannière de clôture         |
-| **Pages › Réalisations / Parcours / Compétences / Contact** | surtitre, titre et chapô de la page                                  |
-| **Pages › À propos**                                        | biographie, faits, portrait                                          |
-| **Pages › Réglages du site**                                | nom, intitulé de poste, email, GitHub, LinkedIn                      |
-| **Réalisations**                                            | un document par projet : textes, images, technologies, liens         |
-| **Parcours**                                                | les étapes de la frise horizontale                                   |
-| **Groupes de compétences**                                  | les quatre colonnes de la page Compétences                           |
-| **Technologies**                                            | le référentiel partagé, référencé par les projets et les compétences |
+| Dans le Studio                                              | Effet sur le site                                                                   |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Pages › Accueil**                                         | chapitres de la scène, bande de repères, bannière de clôture                        |
+| **Pages › Réalisations / Parcours / Compétences / Contact** | surtitre, titre et chapô de la page                                                 |
+| **Pages › À propos**                                        | biographie, faits, portrait                                                         |
+| **Pages › Réglages du site**                                | nom, intitulé de poste, email, GitHub, LinkedIn                                     |
+| **Réalisations**                                            | un document par projet : textes, images, technologies, liens, cadre, type, à la une |
+| **Parcours**                                                | les étapes de la frise horizontale                                                  |
+| **Groupes de compétences**                                  | les quatre colonnes de la page Compétences                                          |
+| **Technologies**                                            | le référentiel partagé, référencé par les projets et les compétences                |
 
 Ce qui **reste dans le code** : les micro-libellés d'interface (« Envoyer »,
 « Voir plus », messages d'erreur du formulaire), dans `src/i18n/`. Les exposer
@@ -70,29 +73,19 @@ autorisées, sans identifiants : `localhost:5173`, `localhost:4173`, le domaine
 Vercel de production et le motif de ses déploiements de prévisualisation. Pour
 en ajouter une : sanity.io/manage › API › CORS origins.
 
-## Réamorcer un dataset vide
+## Sauvegarde
+
+Sanity est la seule source du contenu : les JSON et images d'origine ont été
+retirés du dépôt après la migration initiale. Pour une sauvegarde :
 
 ```bash
-npm run migrate:dry   # simulation, n'écrit rien
-npm run migrate       # écrit
+cd apps/studio
+npx sanity dataset export production sauvegarde.tar.gz
 ```
 
-La migration s'authentifie via `sanity exec --with-user-token`, donc avec votre
-session `sanity login` : **aucun jeton d'écriture à créer**.
-
-Trois limites à connaître avant de la relancer :
-
-- **Elle écrase le contenu éditorial** par l'instantané figé dans
-  `scripts/seed.mjs`. Chaque document a un identifiant déterministe et se fait
-  remplacer : tout ce qui a été écrit dans le Studio depuis est perdu.
-- **Elle ne recrée plus les réalisations.** Leurs JSON ont été retirés du dépôt
-  une fois la migration faite, Sanity en est la seule source. L'étape est
-  ignorée avec un message, elle ne plante pas.
-- **Elle vide le portrait** de la page À propos, dont le fichier local a lui
-  aussi été supprimé.
-
-Pour une vraie sauvegarde du contenu, `npx sanity dataset export` plutôt que ce
-script.
+Pour faire évoluer un champ existant, `scripts/migrate-links.mjs` sert de
+modèle : rejouable, avec `--dry-run`, authentifié par votre session
+`sanity login`.
 
 ## À savoir sur le plan gratuit
 
