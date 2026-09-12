@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.1.0...v1.2.0) (2026-09-12)
+
+### Features
+
+* **web:** étendre le registre des technologies ([0a09f58](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/0a09f5856c3d890957bd134293a581c2c3ecb5ab))
+
 ## [1.1.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.0.1...v1.1.0) (2026-09-11)
 
 ### Features
