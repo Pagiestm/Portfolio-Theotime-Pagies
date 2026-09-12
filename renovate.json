@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Mises à jour de dépendances : correctifs et mineures fusionnés seuls quand la CI est verte, majeures à la main, failles traitées sans attendre. Détail dans docs/versions.md.",
+  "extends": ["config:recommended", ":dependencyDashboard", "group:monorepos"],
+  "timezone": "Europe/Paris",
+  "schedule": ["before 8am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "rangeStrategy": "bump",
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "minimumReleaseAge": "3 days",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 8am on the first day of the month"],
+    "automerge": true
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["dependencies", "security"],
+    "schedule": ["at any time"],
+    "minimumReleaseAge": null,
+    "automerge": true
+  },
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Correctifs et mineures : une seule PR le lundi, fusionnée seule si la CI passe.",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "mineures et correctifs",
+      "automerge": true
+    },
+    {
+      "description": "Majeures : une PR par paquet, jamais fusionnée sans lecture des notes de version.",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "description": "Épinglé : les versions suivantes ont retiré SiPlaywright (constants/tech.ts).",
+      "matchPackageNames": ["react-icons"],
+      "enabled": false
+    },
+    {
+      "description": "Ligne TypeScript 5.9 tenue par overrides : au-delà, ESLint casse.",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
+    },
+    {
+      "description": "Majeure 9 imposée par release-notes-generator, voir docs/versions.md.",
+      "matchPackageNames": ["conventional-changelog-conventionalcommits"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "Actions GitHub : une PR mensuelle, fusionnée seule.",
+      "matchManagers": ["github-actions"],
+      "schedule": ["before 8am on the first day of the month"],
+      "groupName": "actions GitHub",
+      "automerge": true
+    }
+  ]
+}
