@@ -1,6 +1,5 @@
 import { useChannels } from '../../../hooks/useSettings';
 
-/** Les points de contact, en lignes pleine largeur à filets 2px. */
 const ChannelList = () => {
   const channels = useChannels();
 

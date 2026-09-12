@@ -1,9 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/**
- * L'en-tête éditorial commun aux pages : le kicker en petites capitales,
- * le grand titre, et le chapô sous le titre.
- */
 export const pageHeader = defineType({
   name: 'pageHeader',
   title: 'En-tête de page',

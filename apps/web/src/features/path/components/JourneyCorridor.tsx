@@ -29,7 +29,6 @@ const StepButton = ({
   </button>
 );
 
-/* ─── Le couloir horizontal, piloté par le scroll — même effet sur tous les écrans ─── */
 const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
   const { t } = useTranslation();
   const { stageRef, frameRef, trackRef, railFillRef, barRef, registerCard, activeIndex, step } =
@@ -51,7 +50,6 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
           minHeight: `min(520px, calc(100vh - ${HEADER_HEIGHT}px))`,
         }}
       >
-        {/* Région du couloir — les cartes vivent ici, au-dessus de la barre */}
         <div
           className="relative flex-1"
           style={{ perspective: '1250px', perspectiveOrigin: '50% 44%' }}
@@ -108,7 +106,6 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
           </div>
         </div>
 
-        {/* Barre de progression — bande opaque placée SOUS les cartes */}
         <div className="relative z-[9] shrink-0 border-t-2 border-line bg-bg">
           <div className="mx-auto max-w-shell px-6 py-[18px]">
             <div className="mb-3 flex items-center justify-between gap-4">

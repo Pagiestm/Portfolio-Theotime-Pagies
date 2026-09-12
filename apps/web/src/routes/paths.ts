@@ -1,4 +1,4 @@
-/** Table des routes — seule source de vérité pour les URL et le menu. */
+/** Table des routes - seule source de vérité pour les URL et le menu. */
 export const paths = {
   home: '/',
   work: '/realisations',
@@ -10,7 +10,6 @@ export const paths = {
   contact: '/contact',
 };
 
-/** Entrées du menu principal : [chemin, libellé FR, libellé EN]. */
 export const NAV_ITEMS = [
   [paths.home, 'Accueil', 'Home'],
   [paths.work, 'Réalisations', 'Work'],

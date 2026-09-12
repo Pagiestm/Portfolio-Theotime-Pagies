@@ -1,6 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/** Une étape du parcours : expérience ou formation. */
 export const journeyEntry = defineType({
   name: 'journeyEntry',
   title: 'Étape de parcours',
@@ -31,7 +30,7 @@ export const journeyEntry = defineType({
     defineField({
       name: 'period',
       title: 'Période affichée',
-      description: 'Par exemple « 2025 — aujourd’hui » ou « Juillet 2023 — Août 2024 ».',
+      description: 'Par exemple « 2025 - aujourd’hui » ou « Juillet 2023 - Août 2024 ».',
       type: 'localeString',
       validation: (rule) => rule.required(),
     }),

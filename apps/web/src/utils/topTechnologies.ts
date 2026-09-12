@@ -2,13 +2,6 @@ import type { Project, Technology } from '../services/sanity/types';
 
 export type TechnologyUsage = Technology & { count: number };
 
-/**
- * Les technologies les plus présentes dans les réalisations, de la plus
- * utilisée à la moins utilisée, à égalité par ordre alphabétique.
- *
- * Rien à saisir dans le Studio : la bande de l'accueil reflète ce que les
- * projets contiennent réellement, et se met à jour toute seule.
- */
 export const topTechnologies = (projects: Project[], limit: number): TechnologyUsage[] => {
   const usage = new Map<string, TechnologyUsage>();
 

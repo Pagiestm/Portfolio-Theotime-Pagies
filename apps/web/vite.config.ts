@@ -10,7 +10,7 @@ export default defineConfig({
      * hisser une copie à la racine de `node_modules` et d'en imbriquer une
      * autre. Sans `dedupe`, une dépendance hissée (`react-router-dom`,
      * `@portabletext/react`) importerait la copie racine et le bundle en
-     * embarquerait deux — deux React ne partagent pas leur état interne, les
+     * embarquerait deux - deux React ne partagent pas leur état interne, les
      * hooks échoueraient au premier rendu. Toute importation de `react` est
      * donc forcée vers la copie de ce site. Le site et le Studio sont
      * aujourd'hui tous deux en React 19, mais rien ne garantit qu'ils le
@@ -26,7 +26,7 @@ export default defineConfig({
    *
    * Ce sont les noms complets, pas un préfixe `SANITY_` : un jeton d'écriture
    * nommé `SANITY_WRITE_TOKEN` se retrouverait sinon embarqué dans le bundle
-   * JavaScript, donc public. Ces deux-là sont sans risque — l'identifiant de
+   * JavaScript, donc public. Ces deux-là sont sans risque - l'identifiant de
    * projet et le nom du dataset apparaissent de toute façon dans les requêtes
    * que le navigateur envoie à l'API.
    */

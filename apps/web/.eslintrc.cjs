@@ -19,7 +19,6 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react/jsx-no-target-blank': 'off',
-    // Contrat des composants documenté via les types TypeScript, pas PropTypes.
     'react/prop-types': 'off',
     // Version TS-aware : ne signale pas à tort les noms de paramètres dans les
     // signatures de type. Préfixer par `_` pour ignorer volontairement.

@@ -4,10 +4,6 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
 import type { Project } from '../../../services/sanity/types';
 
-/**
- * Une ligne de l'index des réalisations : titre pleine largeur, résumé,
- * pile technique à droite. Toute la ligne est cliquable.
- */
 const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
   const { t, localize } = useTranslation();
 

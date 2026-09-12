@@ -20,23 +20,20 @@ const ProjectPage = () => {
   const index = siblings.findIndex((p) => p.id === project.id);
   const next = siblings[(index + 1) % siblings.length] ?? project;
 
-  // Pas d'« envergure » ici : la page projet ne hiérarchise pas les
-  // réalisations, comme l'index.
   const meta = [
     { label: t.metaCategory, value: t.category[project.category] },
     {
       label: t.metaKind,
-      value: (project.kinds ?? []).map((kind) => t.kind[kind]).join(', ') || '—',
+      value: (project.kinds ?? []).map((kind) => t.kind[kind]).join(', ') || '-',
     },
-    { label: t.metaTeam, value: project.team ? t.team[project.team] : '—' },
-    { label: t.metaPeriod, value: localize(project.period) || '—' },
+    { label: t.metaTeam, value: project.team ? t.team[project.team] : '-' },
+    { label: t.metaPeriod, value: localize(project.period) || '-' },
     {
       label: t.metaStack,
-      value: (project.stack ?? []).map((tech) => tech.label).join(', ') || '—',
+      value: (project.stack ?? []).map((tech) => tech.label).join(', ') || '-',
     },
   ];
 
-  // L'ordre et les intitulés viennent du Studio : le site n'impose plus rien.
   const links = (project.resources ?? []).flatMap((resource) => {
     const href = resource.url ?? resource.fileUrl;
     return href ? [{ key: resource._key, href, label: localize(resource.label) }] : [];

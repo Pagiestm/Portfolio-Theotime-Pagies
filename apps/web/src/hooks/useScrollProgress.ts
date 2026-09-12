@@ -1,14 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePrefersReducedMotion } from './useMediaQuery';
 
-/**
- * Progression [0..1] de la traversée d'une section « pinnée » (sticky) par le scroll.
- *
- * @param {object} options
- * @param {number} options.stickyOffset décalage du sticky (hauteur du header).
- * @returns {{stageRef, pinRef, progress, scrollToProgress}}
- *   `stageRef` va sur la section haute, `pinRef` sur l'enfant sticky.
- */
 export const useScrollProgress = ({ stickyOffset = 0 } = {}) => {
   const stageRef = useRef(null);
   const pinRef = useRef(null);

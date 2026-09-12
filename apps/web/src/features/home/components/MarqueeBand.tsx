@@ -2,7 +2,6 @@ import Reveal from '../../../components/common/Reveal';
 import { useTranslation } from '../../../i18n/useTranslation';
 import type { HomeContent } from '../../../services/sanity/types';
 
-/** La bande de repères sous la scène d'accueil. */
 const MarqueeBand = ({ items }: { items: HomeContent['marquee'] }) => {
   const { localize } = useTranslation();
 

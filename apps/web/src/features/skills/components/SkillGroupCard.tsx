@@ -4,12 +4,6 @@ import { TECH } from '../../../constants/tech';
 import { useTranslation } from '../../../i18n/useTranslation';
 import type { SkillGroup } from '../../../services/sanity/types';
 
-/**
- * Un groupe de compétences : titre en filet accent, puis logo + nom par entrée.
- *
- * Volontairement sans niveau ni jauge. Une technologie sans logo connu
- * s'affiche avec son seul libellé plutôt que de disparaître.
- */
 const SkillGroupCard = ({ group, delay = 0 }: { group: SkillGroup; delay?: number }) => {
   const { localize } = useTranslation();
 

@@ -4,11 +4,6 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
 import type { JourneyEntry } from '../../../services/sanity/types';
 
-/**
- * Les étapes les plus récentes du parcours, une ligne chacune : période,
- * nature, organisation, rôle. La frise complète reste sur la page Parcours ;
- * ici on donne la trame que les cartes de projets ne racontent pas.
- */
 const JourneyPreview = ({ entries }: { entries: JourneyEntry[] }) => {
   const { t, localize } = useTranslation();
 

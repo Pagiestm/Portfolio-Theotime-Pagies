@@ -1,12 +1,6 @@
 import { useTranslation } from '../../../i18n/useTranslation';
 import type { ProjectFiltersState } from '../hooks/useProjectFilters';
 
-/**
- * La barre au-dessus des résultats quand un filtre est actif : le nombre de
- * projets trouvés, chaque filtre appliqué en puce retirable d'un clic, et
- * « Réinitialiser » pour tout effacer. Le visiteur voit ce qu'il a demandé
- * sans avoir à relire le panneau.
- */
 const AppliedFilters = ({ filters }: { filters: ProjectFiltersState }) => {
   const { t } = useTranslation();
   const count = filters.filtered.length;

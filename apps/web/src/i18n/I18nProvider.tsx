@@ -16,7 +16,6 @@ const readStoredLang = () => {
   return nav.startsWith('en') ? 'en' : 'fr';
 };
 
-/** Fournit la langue, le dictionnaire et le résolveur de valeurs localisées. */
 const I18nProvider = ({ children }) => {
   const [lang, setLang] = useState(readStoredLang);
 

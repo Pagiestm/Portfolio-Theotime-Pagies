@@ -5,11 +5,6 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
 import type { TechnologyUsage } from '../../../utils/topTechnologies';
 
-/**
- * Les technologies les plus utilisées dans les réalisations, en tuiles avec
- * logo et nombre de projets. Un recruteur qui cherche un mot-clé le trouve
- * ici sans ouvrir la page Compétences ; le lien y mène pour le reste.
- */
 const TechBand = ({ items }: { items: TechnologyUsage[] }) => {
   const { t } = useTranslation();
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-/** S'abonne à une media query CSS et renvoie son état courant. */
 export const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(
     () => typeof window !== 'undefined' && window.matchMedia(query).matches

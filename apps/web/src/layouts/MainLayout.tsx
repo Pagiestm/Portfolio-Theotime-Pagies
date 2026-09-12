@@ -4,7 +4,6 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import SceneBackground from '../features/scene/components/SceneBackground';
 
-/** Coquille commune : fond 3D fixe, header sticky, contenu routé, footer. */
 const MainLayout = () => (
   <div className="relative flex min-h-screen flex-col bg-bg">
     <SceneBackground />

@@ -1,6 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/** Identité du site : ce qui apparaît dans l'en-tête, le pied de page et la page contact. */
 export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Réglages du site',

@@ -3,10 +3,6 @@ import ActionLink from '../../../components/common/ActionLink';
 import { usePagination } from '../hooks/usePagination';
 import { useTranslation } from '../../../i18n/useTranslation';
 
-/**
- * La liste unique des réalisations, du plus récent au plus ancien,
- * dévoilée par paliers via « Voir plus ».
- */
 const ProjectList = ({ projects, step = 6 }) => {
   const { t } = useTranslation();
   const { items, hasMore, showMore } = usePagination(projects, step);

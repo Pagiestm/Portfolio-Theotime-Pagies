@@ -31,7 +31,7 @@ packages/shared/   partagé           type Locale, registre TECHNOLOGIES
 - `overrides.typescript` à la racine force toute la ligne 5.9. La chaîne Sanity
   déclare des `peerDependencies` très larges (`typescript >=5`, `^5 || ^6 || ^7`) :
   sans cette contrainte npm hisse un TypeScript majeur plus récent à la racine, et
-  `@typescript-eslint` 7 s'y casse — le lint échoue avant d'avoir lu une ligne de
+  `@typescript-eslint` 7 s'y casse - le lint échoue avant d'avoir lu une ligne de
   code.
 - `prepare` tolère l'absence de husky (`husky || echo …`). Un build distant qui
   n'installe pas les devDependencies ferait autrement échouer `npm install` en

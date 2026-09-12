@@ -1,6 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
-/** L'accueil : les chapitres de la scène, la bande de repères, la bannière de clôture. */
 export const homePage = defineType({
   name: 'homePage',
   title: 'Page d’accueil',
@@ -72,13 +71,13 @@ export const homePage = defineType({
     }),
     defineField({
       name: 'selectionKicker',
-      title: 'Sélection — surtitre',
+      title: 'Sélection - surtitre',
       description: 'Le petit texte au-dessus des cartes de projets, par exemple « Sélection ».',
       type: 'localeString',
     }),
     defineField({
       name: 'indexTitle',
-      title: 'Sélection — titre',
+      title: 'Sélection - titre',
       description:
         'Le grand titre au-dessus des cartes. Les projets affichés sont ceux cochés « À la une » dans Réalisations.',
       type: 'localeString',
@@ -93,7 +92,7 @@ export const homePage = defineType({
     }),
     defineField({
       name: 'stackTitle',
-      title: 'Technologies — titre',
+      title: 'Technologies - titre',
       description: 'Laissez vide pour le titre par défaut.',
       type: 'localeString',
       hidden: ({ document }) => document?.showStack === false,
@@ -108,20 +107,20 @@ export const homePage = defineType({
     }),
     defineField({
       name: 'journeyTitle',
-      title: 'Parcours en bref — titre',
+      title: 'Parcours en bref - titre',
       description: 'Laissez vide pour le titre par défaut.',
       type: 'localeString',
       hidden: ({ document }) => document?.showJourney === false,
     }),
     defineField({
       name: 'closingTitle',
-      title: 'Bannière de clôture — titre',
+      title: 'Bannière de clôture - titre',
       type: 'localeString',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'closingCta',
-      title: 'Bannière de clôture — bouton',
+      title: 'Bannière de clôture - bouton',
       type: 'localeString',
       validation: (rule) => rule.required(),
     }),

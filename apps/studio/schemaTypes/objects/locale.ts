@@ -6,7 +6,7 @@ import { defineField, defineType } from 'sanity';
  * Un simple objet `{ fr, en }` plutôt que le plugin d'internationalisation :
  * c'est exactement la forme que `localize()` attend déjà côté front, donc
  * aucun composant n'a besoin de changer. Le français est requis, l'anglais
- * est facultatif — une valeur EN vide retombe sur le FR à l'affichage.
+ * est facultatif - une valeur EN vide retombe sur le FR à l'affichage.
  */
 
 export const localeString = defineType({
@@ -41,7 +41,6 @@ export const localeText = defineType({
   ],
 });
 
-/** Blocs de contenu riche (Portable Text), une version par langue. */
 export const localeBlock = defineType({
   name: 'localeBlock',
   title: 'Contenu riche bilingue',

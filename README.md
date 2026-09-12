@@ -1,4 +1,4 @@
-# Portfolio — Théotime Pagies
+# Portfolio - Théotime Pagies
 
 Développeur web full-stack à Lille. Le site est en ligne sur
 [portfolio-theotime-pagies.vercel.app](https://portfolio-theotime-pagies.vercel.app/),
@@ -13,8 +13,8 @@ dossier :
 portfolio/
 ├── turbo.json      graphe des tâches, cache de build, variables d'environnement
 ├── apps/
-│   ├── web/        le site — Vite, React 19, Tailwind, React Router
-│   └── studio/     le back-office — Sanity Studio, React 19
+│   ├── web/        le site - Vite, React 19, Tailwind, React Router
+│   └── studio/     le back-office - Sanity Studio, React 19
 ├── packages/
 │   └── shared/     ce que les deux consomment : type Locale, registre des technologies
 ├── .github/        CI (lint · types · format · build) et release automatique

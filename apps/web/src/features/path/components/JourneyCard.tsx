@@ -21,11 +21,9 @@ const JourneyCard = forwardRef(({ entry }: { entry: JourneyEntry }, ref: Ref<HTM
         className="w-full border-2 border-line bg-[rgba(25,34,49,.86)] px-[24px] pb-[22px] pt-[22px] backdrop-blur-[10px]"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {/* Gros titre : la période */}
         <div className="mb-[10px] text-[clamp(22px,2.5vw,31px)] font-black leading-none tracking-[-.035em]">
           {localize(entry.period)}
         </div>
-        {/* Petit label expérience / formation, sous le titre */}
         <span
           className={`mb-[18px] inline-block px-[10px] py-[5px] text-[11px] font-extrabold uppercase tracking-[.2em] ${
             isExperience ? 'bg-accent text-ink' : 'border border-accent-2 text-accent-2'

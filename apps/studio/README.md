@@ -43,7 +43,7 @@ dans un CMS ferait courir le risque qu'un champ vide casse l'interface.
 
 Chaque champ éditorial a une version française (obligatoire) et une version
 anglaise (facultative). Un champ anglais laissé vide retombe automatiquement sur
-le français à l'affichage — traduire peut donc se faire progressivement.
+le français à l'affichage - traduire peut donc se faire progressivement.
 
 ## Icônes des technologies
 
@@ -63,7 +63,7 @@ SANITY_DATASET=production
 
 Elles n'ont pas le préfixe `VITE_`, que Vite exige normalement pour exposer une
 variable au navigateur. Elles sont donc déclarées **nommément** dans `envPrefix`
-(`vite.config.ts`) — nommément, et non via un préfixe `SANITY_`, pour qu'un
+(`vite.config.ts`) - nommément, et non via un préfixe `SANITY_`, pour qu'un
 éventuel `SANITY_WRITE_TOKEN` ne se retrouve jamais embarqué dans le bundle.
 
 ### Origines autorisées (CORS)
@@ -98,6 +98,6 @@ déposez rien de confidentiel. L'écriture reste protégée par votre compte.
 ## Identifiants de documents
 
 Un identifiant ne doit **jamais** contenir de point. Un point en fait un chemin,
-et Sanity rend privés tous les documents situés dans un chemin — c'est le
+et Sanity rend privés tous les documents situés dans un chemin - c'est le
 mécanisme qui protège `drafts.*`. Un document ainsi nommé serait écrit, lisible
 avec un jeton, et totalement invisible pour le site, qui lit sans.

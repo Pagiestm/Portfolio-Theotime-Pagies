@@ -109,7 +109,6 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
             distance > 0.3 ? `blur(${Math.min(3.4, (distance - 0.3) * 5.5).toFixed(2)}px)` : 'none';
         }
 
-        // Le repère passe à la couleur accent une fois franchi le centre.
         const node = card.querySelector('[data-card-node]');
         if (node) {
           const nodeRect = node.getBoundingClientRect();
@@ -156,7 +155,6 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
     };
   }, [geometry, reduced, stickyOffset]);
 
-  /** Amène la carte suivante / précédente au centre du couloir. */
   const step = useCallback(
     (direction) => {
       const g = geometry();

@@ -4,7 +4,7 @@ export default {
   role: 'Full-stack web developer',
   cta: 'Get in touch',
   scrollHint: 'Scroll',
-  corridorHint: 'The path runs horizontally — keep scrolling',
+  corridorHint: 'The path runs horizontally - keep scrolling',
   prev: 'Previous step',
   next: 'Next step',
   menu: 'Menu',
@@ -71,7 +71,7 @@ export default {
   fMsg: 'Message',
   fSend: 'Send message',
   fSending: 'Sending…',
-  fSent: 'Message sent. Thanks — I will come back to you shortly.',
+  fSent: 'Message sent. Thanks - I will come back to you shortly.',
   fErrName: 'Name is required.',
   fErrMailRequired: 'Email is required.',
   fErrMailFormat: 'This email address is not valid.',
@@ -90,7 +90,6 @@ export default {
   notFoundBody: 'This address leads nowhere. Head back to the homepage.',
   backHome: 'Back to the homepage',
 
-  // Work page: filters
   allOption: 'All',
   removeFilter: 'Remove filter',
   projectOne: 'project',

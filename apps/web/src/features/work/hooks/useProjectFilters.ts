@@ -3,7 +3,6 @@ import { PROJECT_CATEGORIES, PROJECT_KINDS, TEAM_MODES } from '@portfolio/shared
 import type { ProjectCategory, ProjectKind, TeamMode } from '@portfolio/shared';
 import type { Project } from '../../../services/sanity/types';
 
-/** Une valeur de filtre et le nombre de projets qui la portent. */
 export type FilterOption<T extends string> = { value: T; count: number };
 
 const toggleIn = <T>(list: T[], item: T) =>
@@ -30,10 +29,6 @@ const optionsOf = <T extends string>(
     .map((value) => ({ value, count: counts.get(value)! }));
 };
 
-/**
- * Technologies présentes dans au moins un projet, des plus utilisées aux
- * moins utilisées : les filtres les plus pertinents arrivent en premier.
- */
 const techOptionsOf = (projects: Project[]): FilterOption<string>[] => {
   const frequency = new Map<string, number>();
   projects.forEach((project) =>
