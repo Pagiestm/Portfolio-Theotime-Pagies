@@ -37,3 +37,27 @@ exige `conventional-changelog-writer` 9, alors que
 dépend de la 8 : la release échoue alors à l'étape `generateNotes`, après avoir
 calculé la version mais avant d'écrire quoi que ce soit. Ne remonter le preset
 que si le générateur de notes accepte un jour le writer 9.
+
+## Mises à jour de dépendances
+
+Renovate (app GitHub, config dans `renovate.json`) tient les dépendances à jour :
+
+| Quoi                              | Quand                   | Fusion                             |
+| --------------------------------- | ----------------------- | ---------------------------------- |
+| Correctifs et mineures, en une PR | le lundi matin          | seule, si la CI est verte          |
+| Faille connue (OSV ou GitHub)     | dès qu'elle est publiée | seule, si la CI est verte          |
+| Majeure, une PR par paquet        | le lundi matin          | à la main, après lecture des notes |
+| Lockfile entier (transitives)     | le 1er du mois          | seule, si la CI est verte          |
+| Actions GitHub des workflows      | le 1er du mois          | seule, si la CI est verte          |
+
+Une version doit avoir **trois jours** d'existence avant d'être proposée : un
+paquet compromis est presque toujours retiré du registre dans ce délai. Les
+failles font exception et arrivent tout de suite.
+
+Les épingles de `CLAUDE.md` (`react-icons`, la ligne TypeScript 5.9, le preset
+de changelog en majeure 9) sont exclues : aucune PR ne les concernera. Retirer
+une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
+
+Les commits sont des `chore(deps)` : aucune release, le changelog les ignore.
+L'issue « Dependency Dashboard » du dépôt liste tout ce qui est en attente ou
+bloqué ; cocher une case y force une PR hors calendrier.
