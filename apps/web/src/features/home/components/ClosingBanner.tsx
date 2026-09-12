@@ -3,7 +3,6 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
 import type { Locale } from '../../../services/sanity/types';
 
-/** La bannière de clôture : la seule surface pleine du design. */
 const ClosingBanner = ({ title, cta }: { title?: Locale; cta?: Locale }) => {
   const { t, localize } = useTranslation();
 

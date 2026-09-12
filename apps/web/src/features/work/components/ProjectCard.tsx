@@ -5,14 +5,8 @@ import { imageUrl } from '../../../services/sanity/image';
 import { paths } from '../../../routes/paths';
 import type { Project } from '../../../services/sanity/types';
 
-/** Technologies affichées sur la carte avant le « +N ». */
 const STACK_PREVIEW = 4;
 
-/**
- * Une réalisation en carte : image, cadre et type, titre, résumé, stack.
- * C'est le format de la sélection de l'accueil, où l'image doit accrocher
- * l'œil ; l'index complet garde ses lignes, plus denses.
- */
 const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number }) => {
   const { t, localize } = useTranslation();
   const cover = imageUrl(project.cover ?? undefined, 900);

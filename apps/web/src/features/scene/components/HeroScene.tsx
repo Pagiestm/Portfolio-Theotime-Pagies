@@ -72,7 +72,6 @@ const HeroScene = ({
     horizon.rotation.x = Math.PI / 2.35;
     group.add(horizon);
 
-    // Halo de particules.
     const positions = new Float32Array(density * 3);
     for (let i = 0; i < density; i += 1) {
       const r = 3.1 + Math.random() * 5.6;
@@ -211,7 +210,7 @@ const HeroScene = ({
       });
       // `dispose()` ne relâche pas le contexte WebGL en three r168 : sans ce
       // `forceContextLoss()`, chaque retour sur l'accueil en crée un nouveau
-      // jusqu'à ce que le navigateur tue le plus ancien — le fond permanent.
+      // jusqu'à ce que le navigateur tue le plus ancien - le fond permanent.
       renderer.forceContextLoss();
       renderer.dispose();
       canvas.remove();

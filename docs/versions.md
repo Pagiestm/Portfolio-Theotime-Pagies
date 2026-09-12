@@ -15,14 +15,14 @@ chercher à faire coller une sémantique de bibliothèque.
 | Un chargement allégé, une image ou un chunk optimisés      | `perf(web)`     | correctif |
 | Une page, une section, une fonctionnalité visible en plus  | `feat(web)`     | mineure   |
 | Un champ ou un type de document dans le Studio             | `feat(cms)`     | mineure   |
-| Un texte éditorial                                         | rien à commiter | —         |
+| Un texte éditorial                                         | rien à commiter | -         |
 | Des fichiers déplacés, un hook extrait, sans effet visible | `refactor(…)`   | aucune    |
 | Une dépendance montée, l'outillage, la CI                  | `chore` / `ci`  | aucune    |
 | Le README, un commentaire, cette documentation             | `docs`          | aucune    |
 | Les URL publiques, qui casse les liens existants           | `feat(web)!`    | majeure   |
 
 Le contenu éditorial vit dans Sanity : le modifier ne produit aucun commit et
-ne change aucune version — c'est visible en ligne dans la seconde.
+ne change aucune version - c'est visible en ligne dans la seconde.
 
 La version majeure n'a presque aucun sens sur ce dépôt. Ne l'employer que pour
 une refonte qui invalide des adresses partagées à l'extérieur.

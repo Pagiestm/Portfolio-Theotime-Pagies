@@ -99,7 +99,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Backdrop */}
       <div
         role="presentation"
         onClick={() => setMenuOpen(false)}
@@ -108,7 +107,6 @@ const Header = () => {
         }`}
       />
 
-      {/* Side Drawer */}
       <div
         aria-modal={menuOpen}
         aria-hidden={!menuOpen}

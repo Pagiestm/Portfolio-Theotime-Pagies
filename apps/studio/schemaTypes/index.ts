@@ -9,7 +9,6 @@ import { homePage } from './singletons/homePage';
 import { siteSettings } from './singletons/siteSettings';
 import { aboutPage, contactPage, pathPage, skillsPage, workPage } from './singletons/simplePages';
 
-/** Les documents qui n'existent qu'en un seul exemplaire. */
 export const SINGLETON_TYPES: readonly string[] = [
   'siteSettings',
   'homePage',
@@ -21,19 +20,16 @@ export const SINGLETON_TYPES: readonly string[] = [
 ];
 
 export const schemaTypes = [
-  // Objets réutilisables
   localeString,
   localeText,
   localeBlock,
   pageHeader,
   externalLink,
   documentFile,
-  // Collections
   project,
   journeyEntry,
   skillGroup,
   technology,
-  // Documents uniques
   siteSettings,
   homePage,
   workPage,

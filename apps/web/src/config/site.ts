@@ -1,6 +1,3 @@
-/**
- * Constantes d'identité du site : liens, coordonnées, réglages de la scène 3D.
- */
 export const site = {
   name: 'Théotime Pagies',
   email: 'pagiestm@gmail.com',
@@ -17,7 +14,6 @@ export const channels = [
   { label: 'Portfolio', value: 'portfolio-theotime-pagies.vercel.app', href: site.url },
 ];
 
-/** Paramètres de la scène three.js du fond (cf. features/scene). */
 export const scene = {
   density: 700,
   backgroundDensity: 380,

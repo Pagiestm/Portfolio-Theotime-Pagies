@@ -11,7 +11,7 @@ const dataset = process.env.SANITY_STUDIO_DATASET ?? 'production';
 // `sanity init` et `sanity login` de tourner. On se contente d'avertir, et
 // Sanity signalera l'identifiant manquant avec son propre message.
 if (!projectId) {
-  console.warn('SANITY_STUDIO_PROJECT_ID manquant — renseignez studio/.env (voir .env.example).');
+  console.warn('SANITY_STUDIO_PROJECT_ID manquant - renseignez studio/.env (voir .env.example).');
 }
 
 export default defineConfig({

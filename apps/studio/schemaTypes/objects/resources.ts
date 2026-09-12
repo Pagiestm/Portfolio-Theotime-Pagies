@@ -10,7 +10,6 @@ import { defineField, defineType } from 'sanity';
  * se contente d'afficher la liste telle qu'elle est saisie.
  */
 
-/** Un lien externe dont l'éditeur choisit l'intitulé. */
 export const externalLink = defineType({
   name: 'externalLink',
   title: 'Lien',
@@ -33,7 +32,6 @@ export const externalLink = defineType({
   preview: { select: { title: 'label.fr', subtitle: 'url' } },
 });
 
-/** Un fichier à consulter : PDF, présentation, archive, peu importe le format. */
 export const documentFile = defineType({
   name: 'documentFile',
   title: 'Document',

@@ -8,11 +8,6 @@ import { useProjectFilters } from '../features/work/hooks/useProjectFilters';
 import { useTranslation } from '../i18n/useTranslation';
 import type { PageHeader as PageHeaderContent, Project } from '../services/sanity/types';
 
-/**
- * Page Réalisations : panneau de filtres en colonne à gauche sur grand écran,
- * replié derrière un bouton « Filtres » sur mobile ; résultats à droite avec
- * les filtres appliqués rappelés en puces.
- */
 const WorkPage = () => {
   const { t, localize } = useTranslation();
   const { header, projects } = useLoaderData() as {

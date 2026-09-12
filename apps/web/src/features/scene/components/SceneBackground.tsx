@@ -4,10 +4,6 @@ import { scene } from '../../../config/site';
 // three.js pèse l'essentiel du bundle : on le sort du chargement initial.
 const HeroScene = lazy(() => import('./HeroScene'));
 
-/**
- * Le fond fixe de toutes les pages : scène 3D atténuée, filets horizontaux,
- * montant vertical de la grille et voile de dégradés.
- */
 const SceneBackground = () => (
   <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 opacity-30">

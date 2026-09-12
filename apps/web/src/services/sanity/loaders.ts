@@ -33,7 +33,6 @@ import type {
  * composants. Une requête qui échoue remonte à `ErrorPage` via le routeur.
  */
 
-/** Chargé une fois pour toute l'application : en-tête, pied de page, contact. */
 export const rootLoader = async () => ({
   settings: await sanityClient.fetch<SiteSettings>(SITE_SETTINGS_QUERY),
 });

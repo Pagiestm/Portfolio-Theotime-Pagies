@@ -10,10 +10,6 @@ const HeroScene = lazy(() => import('../../scene/components/HeroScene'));
 const HEADER_HEIGHT = 68;
 const clamp = (v) => Math.max(0, Math.min(1, v));
 
-/**
- * Calcule l'état visuel d'un chapitre pour une progression donnée.
- * Transcription directe de `_stage()` dans Portfolio.dc.html.
- */
 const chapterState = (index, progress, count) => {
   const segment = 1 / count;
   const raw = (progress - index * segment) / segment;
@@ -30,7 +26,6 @@ const chapterState = (index, progress, count) => {
     translateY = index === 0 ? eased * -56 : (0.62 - eased) * -74;
   }
 
-  // Effet « machine à écrire » : on découvre le texte de gauche à droite.
   const typed = index === 0 ? clamp((local + 0.345) / 0.34) : clamp((local - 0.04) / 0.42);
 
   return { opacity, translateY, typed, caretVisible: typed > 0.02 && typed < 0.995 };

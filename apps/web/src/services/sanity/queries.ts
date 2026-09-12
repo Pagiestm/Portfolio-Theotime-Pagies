@@ -12,7 +12,6 @@ const LOCALE = '{ fr, en }';
 const HEADER = `{ kicker ${LOCALE}, title ${LOCALE}, body ${LOCALE} }`;
 const TECH = '{ label, iconKey }';
 
-/** Les réalisations, de la plus récente à la plus ancienne. */
 export const PROJECTS_QUERY = groq`
   *[_type == "project" && defined(slug.current)] | order(endDate desc) {
     "id": slug.current,
@@ -32,7 +31,6 @@ export const PROJECTS_QUERY = groq`
   }
 `;
 
-/** Une réalisation complète, contenu riche et galerie inclus. */
 export const PROJECT_QUERY = groq`
   *[_type == "project" && slug.current == $slug][0] {
     "id": slug.current,
@@ -54,7 +52,6 @@ export const PROJECT_QUERY = groq`
   }
 `;
 
-/** Slugs voisins, pour le lien « Projet suivant ». */
 export const PROJECT_SLUGS_QUERY = groq`
   *[_type == "project" && defined(slug.current)] | order(endDate desc) {
     "id": slug.current,
@@ -97,7 +94,6 @@ export const ABOUT_QUERY = groq`
   }
 `;
 
-/** Les trois étapes les plus récentes, pour l'aperçu de l'accueil. */
 export const JOURNEY_PREVIEW_QUERY = groq`
   *[_type == "journeyEntry"] | order(startDate desc) [0...3] {
     kind, org,

@@ -1,9 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
-/**
- * Les pages dont le contenu éditorial se réduit à un en-tête.
- * Une définition par page pour qu'elles apparaissent séparément dans le Studio.
- */
 const headerOnlyPage = (name: string, title: string) =>
   defineType({
     name,
@@ -24,7 +20,6 @@ export const workPage = headerOnlyPage('workPage', 'Page Réalisations');
 export const skillsPage = headerOnlyPage('skillsPage', 'Page Compétences');
 export const contactPage = headerOnlyPage('contactPage', 'Page Contact');
 
-/** Le parcours ajoute l'indication « le parcours se déroule à l'horizontale ». */
 export const pathPage = defineType({
   name: 'pathPage',
   title: 'Page Parcours',
@@ -46,7 +41,6 @@ export const pathPage = defineType({
   preview: { prepare: () => ({ title: 'Page Parcours' }) },
 });
 
-/** La page À propos : en-tête, biographie, faits et portrait. */
 export const aboutPage = defineType({
   name: 'aboutPage',
   title: 'Page À propos',

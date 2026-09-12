@@ -13,7 +13,6 @@ import { paths } from '../routes/paths';
 import { topTechnologies } from '../utils/topTechnologies';
 import type { HomeContent, JourneyEntry, Project } from '../services/sanity/types';
 
-/** Nombre de tuiles dans la bande des technologies : une rangée pleine sur grand écran. */
 const TECH_COUNT = 10;
 
 /**
@@ -32,7 +31,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-[34px]">
     <div className="mb-[14px] text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
-      {String(number).padStart(2, '0')} — {kicker}
+      {String(number).padStart(2, '0')} - {kicker}
     </div>
     <h2 className="m-0 text-[clamp(26px,3.6vw,46px)] font-black tracking-[-.03em]">{title}</h2>
   </div>
@@ -50,8 +49,6 @@ const HomePage = () => {
   const tech = topTechnologies(projects, TECH_COUNT);
   const others = projects.length - selection.length;
 
-  // Les sections dans l'ordre de la page ; celles masquées dans le Studio
-  // (ou sans contenu) sont retirées avant la numérotation.
   const sections: Array<{ kicker: string; title: string; body: ReactNode }> = [
     {
       kicker: localize(home?.selectionKicker) || t.selection,

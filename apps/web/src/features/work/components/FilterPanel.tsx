@@ -3,7 +3,6 @@ import { TECH } from '../../../constants/tech';
 import { useTranslation } from '../../../i18n/useTranslation';
 import type { FilterOption, ProjectFiltersState } from '../hooks/useProjectFilters';
 
-/** Technologies affichées par défaut dans la facette, avant « Voir tout ». */
 const PRIMARY_TECH_COUNT = 8;
 
 const labelToIcon: Record<string, ElementType> = Object.fromEntries(
@@ -70,11 +69,6 @@ const Option = ({ type, name, label, count, checked, onChange, Icon }: OptionPro
   </label>
 );
 
-/**
- * Le panneau de filtres de la page Réalisations : une recherche, puis une
- * facette par famille, à la manière d'une navigation à facettes classique.
- * Les résultats se mettent à jour à chaque clic, sans bouton « Appliquer ».
- */
 const FilterPanel = ({ filters }: { filters: ProjectFiltersState }) => {
   const { t } = useTranslation();
   const [showAllTech, setShowAllTech] = useState(false);

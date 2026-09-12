@@ -1,7 +1,6 @@
 import type { PortableTextBlock } from '@portabletext/react';
 import type { Locale, ProjectCategory, ProjectKind, TeamMode } from '@portfolio/shared';
 
-/** Réexporté pour que les consommateurs du site n'aient qu'un seul point d'import. */
 export type { Locale };
 
 export type SanityImage = {
@@ -16,11 +15,6 @@ export type Technology = {
   iconKey?: string | null;
 };
 
-/**
- * Une entrée de la liste « Liens et documents » d'une réalisation.
- * `url` est renseigné pour un lien, `fileUrl` pour un document : la requête
- * résout déjà la référence vers le fichier, le composant n'a qu'à choisir.
- */
 export type ProjectResource = {
   _key: string;
   _type: 'externalLink' | 'documentFile';
@@ -32,7 +26,6 @@ export type ProjectResource = {
 export type Project = {
   id: string;
   title: string;
-  /** Coché dans le Studio : entre dans la sélection de l'accueil. */
   featured?: boolean | null;
   category: ProjectCategory;
   kinds?: ProjectKind[] | null;

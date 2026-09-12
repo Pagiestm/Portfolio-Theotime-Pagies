@@ -1,13 +1,6 @@
 import { TECH } from '../../../constants/tech';
 import type { Technology } from '../../../services/sanity/types';
 
-/**
- * Les technologies d'un projet, icône + libellé, encadrées à la Modernist.
- *
- * L'icône vient du registre local via `iconKey` ; une clé inconnue — une
- * technologie ajoutée dans le Studio sans logo correspondant — affiche
- * simplement le libellé, sans casser la mise en page.
- */
 const StackBadges = ({ stack }: { stack?: Technology[] | null }) => {
   if (!stack?.length) return null;
 

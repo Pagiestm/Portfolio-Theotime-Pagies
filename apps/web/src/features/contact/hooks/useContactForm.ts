@@ -5,10 +5,6 @@ import { useTranslation } from '../../../i18n/useTranslation';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/**
- * Validation, CAPTCHA et envoi du formulaire de contact.
- * Toute la logique est ici : `ContactForm` ne fait que du rendu.
- */
 export const useContactForm = () => {
   const { t } = useTranslation();
   const formRef = useRef(null);

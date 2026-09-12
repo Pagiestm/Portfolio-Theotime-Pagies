@@ -17,7 +17,6 @@ const dryRun = process.argv.includes('--dry-run');
 const client = getCliClient({ apiVersion: '2024-10-01' });
 const key = () => randomUUID().slice(0, 12);
 
-/** Intitulés repris du code du site, tels qu'ils étaient affichés. */
 const LABELS = {
   pdf: { fr: 'Dossier de projet', en: 'Project report' },
   api: { fr: 'Documentation API', en: 'API documentation' },

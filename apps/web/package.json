@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Le site — Vite, React 18, Tailwind. Lit son contenu dans Sanity.",
+  "description": "Le site - Vite, React 18, Tailwind. Lit son contenu dans Sanity.",
   "engines": {
     "node": ">=22.14.0"
   },

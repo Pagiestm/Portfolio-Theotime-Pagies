@@ -1,18 +1,11 @@
 import { useRouteLoaderData } from 'react-router-dom';
 import type { SiteSettings } from '../services/sanity/types';
 
-/**
- * Les réglages du site, chargés une seule fois par la route racine.
- *
- * L'en-tête, le pied de page et la liste des canaux de contact y accèdent
- * sans que chaque page ait à les redemander.
- */
 export const useSettings = (): SiteSettings => {
   const data = useRouteLoaderData('root') as { settings: SiteSettings } | undefined;
   return data?.settings ?? ({} as SiteSettings);
 };
 
-/** Les canaux de contact, dérivés des réglages. */
 export const useChannels = () => {
   const settings = useSettings();
   return [

@@ -57,7 +57,7 @@ const AboutPage = () => {
             </div>
           )}
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">
-            {settings.name} — {new Date().getFullYear()}
+            {settings.name} - {new Date().getFullYear()}
           </div>
         </Reveal>
       </div>

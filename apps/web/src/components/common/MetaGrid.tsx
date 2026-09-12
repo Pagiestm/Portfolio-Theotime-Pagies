@@ -1,10 +1,3 @@
-/**
- * Grille de cellules `label / valeur` - le motif « modular grid » du design system,
- * réutilisé par la bande d'accueil, les faits de la page À propos et la méta d'un projet.
- *
- * @param {Array<{label: string, value: React.ReactNode}>} items
- * @param {'boxed'|'bare'} tone  `boxed` = encadré 2px, `bare` = simple filet haut.
- */
 const MetaGrid = ({ items, tone = 'bare', minWidth = 180, className = '' }) => (
   <div
     className={[

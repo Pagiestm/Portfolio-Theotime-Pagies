@@ -4,7 +4,7 @@ export default {
   role: 'Développeur web full-stack',
   cta: 'Me contacter',
   scrollHint: 'Faites défiler',
-  corridorHint: 'Le parcours se déroule à l’horizontale — faites défiler',
+  corridorHint: 'Le parcours se déroule à l’horizontale - faites défiler',
   prev: 'Étape précédente',
   next: 'Étape suivante',
   menu: 'Menu',
@@ -92,7 +92,6 @@ export default {
   notFoundBody: "Cette adresse ne mène nulle part. Revenez à l'accueil.",
   backHome: "Retour à l'accueil",
 
-  // Page Réalisations : filtres
   allOption: 'Tous',
   removeFilter: 'Retirer le filtre',
   projectOne: 'projet',

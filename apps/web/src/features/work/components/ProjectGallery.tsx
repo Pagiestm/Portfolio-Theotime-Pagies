@@ -34,7 +34,7 @@ const ProjectGallery = ({ images, title }: { images?: SanityImage[] | null; titl
             <Zoom zoomImg={{ src: full }}>
               <img
                 src={thumb}
-                alt={image.alt ?? `${title} — capture ${index + 1}`}
+                alt={image.alt ?? `${title} - capture ${index + 1}`}
                 loading="lazy"
                 className="block h-full w-full object-contain"
               />
