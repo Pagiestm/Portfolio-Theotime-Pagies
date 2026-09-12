@@ -14,7 +14,6 @@
  * n'ont pas de logo officiel et portent un nom métier.
  */
 export const TECHNOLOGIES = [
-  // — Front-end
   { key: 'FaReact', label: 'React' },
   { key: 'FaVuejs', label: 'Vue.js' },
   { key: 'SiNextdotjs', label: 'Next.js' },
@@ -22,8 +21,8 @@ export const TECHNOLOGIES = [
   { key: 'SiTailwindcss', label: 'Tailwind CSS' },
   { key: 'DiSass', label: 'Sass' },
   { key: 'SiJavascript', label: 'JavaScript' },
+  { key: 'SiTypescript', label: 'TypeScript' },
 
-  // — Back-end & données
   { key: 'SiNestjs', label: 'NestJS' },
   { key: 'FaNodeJs', label: 'Node.js' },
   { key: 'SiExpress', label: 'Express' },
@@ -34,14 +33,12 @@ export const TECHNOLOGIES = [
   { key: 'SiMongodb', label: 'MongoDB' },
   { key: 'SiAppwrite', label: 'Appwrite' },
 
-  // — Mobile & desktop
   { key: 'SiFlutter', label: 'Flutter' },
   { key: 'SiDart', label: 'Dart' },
   { key: 'SiTauri', label: 'Tauri' },
   { key: 'FaRust', label: 'Rust' },
   { key: 'Pwa', label: 'PWA' },
 
-  // — Outillage & méthodes
   { key: 'FaGithub', label: 'Git / GitHub' },
   { key: 'SiVite', label: 'Vite' },
   { key: 'SiPlaywright', label: 'Playwright' },
@@ -51,8 +48,21 @@ export const TECHNOLOGIES = [
   { key: 'Cicd', label: 'CI/CD' },
   { key: 'Merise', label: 'Merise' },
   { key: 'ProjectManagement', label: 'Project management' },
+  { key: 'Scrum', label: 'Scrum' },
 
-  // — No-code
+  { key: 'SiDocker', label: 'Docker' },
+  { key: 'SiTerraform', label: 'Terraform' },
+  { key: 'SiAmazonwebservices', label: 'AWS' },
+  { key: 'SiFirebase', label: 'Firebase' },
+  { key: 'SiRedis', label: 'Redis' },
+  { key: 'SiStripe', label: 'Stripe' },
+  { key: 'SiSocketdotio', label: 'Socket.IO' },
+  { key: 'SiPlaycanvas', label: 'PlayCanvas' },
+  { key: 'SiSqlite', label: 'SQLite' },
+  { key: 'SiTelegram', label: 'Telegram' },
+  { key: 'SiNginx', label: 'Nginx' },
+  { key: 'SiPuppeteer', label: 'Puppeteer' },
+  { key: 'Ollama', label: 'Ollama' },
   { key: 'Airtable', label: 'Airtable' },
   { key: 'Zapier', label: 'Zapier' },
 ] as const;
@@ -62,6 +72,5 @@ export type TechKey = Technology['key'];
 
 export const TECH_KEYS = TECHNOLOGIES.map((tech) => tech.key) as readonly TechKey[];
 
-/** Libellé d'une clé, ou la clé elle-même si elle est inconnue du registre. */
 export const techLabelOf = (key: string): string =>
   TECHNOLOGIES.find((tech) => tech.key === key)?.label ?? key;

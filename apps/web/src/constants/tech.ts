@@ -8,6 +8,8 @@ import {
   FaMobileAlt,
   FaNodeJs,
   FaReact,
+  FaSyncAlt,
+  FaRobot,
   FaRust,
   FaSymfony,
   FaTasks,
@@ -16,12 +18,25 @@ import {
 } from 'react-icons/fa';
 import {
   SiAirtable,
+  SiDocker,
+  SiTerraform,
+  SiAmazonwebservices,
+  SiFirebase,
+  SiRedis,
+  SiStripe,
+  SiSocketdotio,
+  SiPlaycanvas,
+  SiSqlite,
+  SiTelegram,
+  SiNginx,
+  SiPuppeteer,
   SiAppwrite,
   SiDart,
   SiEslint,
   SiExpress,
   SiFlutter,
   SiJavascript,
+  SiTypescript,
   SiMongodb,
   SiNestjs,
   SiNextdotjs,
@@ -54,6 +69,7 @@ const ICONS: Record<TechKey, IconType> = {
   SiTailwindcss,
   DiSass,
   SiJavascript,
+  SiTypescript,
   SiNestjs,
   FaNodeJs,
   SiExpress,
@@ -77,7 +93,21 @@ const ICONS: Record<TechKey, IconType> = {
   Cicd: FaCodeBranch,
   Merise: FaDatabase,
   ProjectManagement: FaTasks,
+  Scrum: FaSyncAlt,
   Airtable: SiAirtable,
+  SiDocker: SiDocker,
+  SiTerraform: SiTerraform,
+  SiAmazonwebservices: SiAmazonwebservices,
+  SiFirebase: SiFirebase,
+  SiRedis: SiRedis,
+  SiStripe: SiStripe,
+  SiSocketdotio: SiSocketdotio,
+  SiPlaycanvas: SiPlaycanvas,
+  SiSqlite: SiSqlite,
+  SiTelegram: SiTelegram,
+  SiNginx: SiNginx,
+  SiPuppeteer: SiPuppeteer,
+  Ollama: FaRobot,
   Zapier: SiZapier,
 };
 
@@ -90,7 +120,6 @@ export const TECH = Object.fromEntries(
   TECHNOLOGIES.map((tech) => [tech.key, { label: tech.label, Icon: ICONS[tech.key] }])
 ) as Record<TechKey, { label: string; Icon: IconType }>;
 
-/** Logo d'une clé venue de Sanity, ou `undefined` si elle est inconnue du site. */
 export const techIcon = (key: string | null | undefined): IconType | undefined =>
   key && key in TECH ? TECH[key as TechKey].Icon : undefined;
 
