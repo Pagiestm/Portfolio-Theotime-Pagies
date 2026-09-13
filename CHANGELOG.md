@@ -1,3 +1,14 @@
+## [1.3.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.2.0...v1.3.0) (2026-09-13)
+
+### Features
+
+* **api:** créer le workspace @portfolio/api pour l'assistant du site ([98cb3b9](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/98cb3b97b96c7c87af19bd607b5804a09c675986))
+* **web:** ajouter l'assistant « Une question ? » sur toutes les pages ([f4f9360](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/f4f9360e1ac4e6d011c7ea5305d3b2dfb9db6347))
+
+### Bug Fixes
+
+* **web:** supprimer le débordement horizontal à 320 px ([f7070ea](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/f7070ea556460bedf2f988a9d4192660675cf5e6))
+
 ## [1.2.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.1.0...v1.2.0) (2026-09-12)
 
 ### Features
