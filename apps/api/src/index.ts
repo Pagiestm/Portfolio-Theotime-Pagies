@@ -1,5 +1,5 @@
+import { getRequestListener } from '@hono/node-server';
 import { Hono } from 'hono';
-import { handle } from 'hono/vercel';
 import { errorHandler, notFoundHandler } from './middlewares/error.middleware.ts';
 import { registerRoutes } from './routes/index.ts';
 
@@ -14,4 +14,10 @@ app.onError(errorHandler);
 app.notFound(notFoundHandler);
 registerRoutes(app);
 
-export const handler = handle(app);
+/**
+ * Le runtime Node de Vercel appelle une exportation par défaut avec le couple
+ * `(req, res)` de Node, pas avec une `Request` Web : l'adaptateur `hono/vercel`
+ * attendait la seconde, la requête n'était jamais lue et la fonction expirait.
+ * Le listener de `@hono/node-server` fait la conversion dans les deux sens.
+ */
+export const handler = getRequestListener(app.fetch);

@@ -24,7 +24,10 @@ un service ne connaît pas HTTP.
 ## Où elle tourne
 
 - **En production**, comme fonction Vercel du site : `apps/web/api/[[...route]].ts`
-  ne fait qu'exporter `handler`. Vercel compile `dist/`, produit par `npm run build`.
+  ne fait qu'exporter `handler`, un listener Node `(req, res)` : le runtime Node de Vercel
+  appelle l'exportation par défaut avec cette signature, pas avec une `Request` Web.
+  Vercel compile `dist/`, produit par `npm run build`. `maxDuration` est porté à
+  30 s dans `apps/web/vercel.json` : un appel au modèle prend 3 à 7 s, plus le démarrage.
 - **En développement**, le serveur Vite du site charge `src/index.ts` et lui
   passe toute requête `/api/*` : `npm run dev` à la racine suffit.
 
