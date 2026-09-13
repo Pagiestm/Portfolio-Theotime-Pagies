@@ -11,10 +11,16 @@ garde que les règles qui gouvernent chaque session.
 turbo.json         orchestration     graphe des tâches, cache, variables d'env
 apps/web/          le site           React 19, Vite, Tailwind, React Router
 apps/studio/       le back-office    Sanity Studio, React 19, toolchain propre
+apps/api/          l'API             Hono ; routes, contrôleurs, services, modèles, middlewares
 packages/shared/   partagé           type Locale, registre TECHNOLOGIES
 ```
 
 - `apps/web` n'importe jamais `apps/studio`, ni l'inverse.
+- `apps/api` suit une architecture en couches classique (voir `apps/api/README.md`) :
+  une route mène à un contrôleur, qui valide et délègue à un service ; les modèles
+  portent les types et les erreurs HTTP. Elle n'a pas de serveur propre : le site
+  la déploie en fonction Vercel (`apps/web/api/[[...route]].ts`) et Vite la sert en
+  développement. Ses tests sont en `node:test`, sans réseau.
 - `packages/shared` n'a aucune dépendance à React, Sanity ou au DOM. Toute valeur
   dupliquée entre web et studio y remonte.
 - Registre des technologies : la liste des clés est dans `shared`, le Studio en fait
@@ -54,25 +60,26 @@ ne contient pas de requête GROQ.
 
 # Où va quoi
 
-| Ce que j'ajoute                        | Dossier                          | Exemple                                    |
-| -------------------------------------- | -------------------------------- | ------------------------------------------ |
-| Un écran routé                         | `pages/`                         | `pages/WorkPage.tsx`                       |
-| Un composant propre à un domaine       | `features/<domaine>/components/` | `features/work/components/ProjectRow.tsx`  |
-| Un hook propre à un domaine            | `features/<domaine>/hooks/`      | `features/work/hooks/useProjectFilters.ts` |
-| Un composant générique sans métier     | `components/common/`             | `components/common/Reveal.tsx`             |
-| Un hook utilisé par plusieurs features | `hooks/`                         | `hooks/useScrollProgress.ts`               |
-| Un appel API ou SDK externe            | `services/`                      | `services/emailService.ts`                 |
-| Une requête GROQ                       | `services/sanity/queries.ts`     |                                            |
-| Un chargeur de route                   | `services/sanity/loaders.ts`     |                                            |
-| Un type venant de l'API                | `services/sanity/types.ts`       | `Project`, réexporte `Locale`              |
-| La coquille commune                    | `layouts/`                       | `layouts/MainLayout.tsx`                   |
-| Une URL                                | `routes/paths.ts`                | source unique, aucune URL en dur ailleurs  |
-| Une variable d'environnement           | `config/env.ts`                  | seul fichier qui lit `import.meta.env`     |
-| Une constante partagée entre features  | `constants/`                     | `constants/tech.ts`                        |
-| Un utilitaire pur sans React           | `utils/`                         | `utils/slugify.ts`                         |
-| Un libellé d'interface                 | `i18n/fr.ts` et `i18n/en.ts`     | « Envoyer », « Voir plus »                 |
-| Un token de design                     | `styles/tokens.css`              | exposé à Tailwind                          |
-| Une valeur partagée avec le Studio     | `packages/shared/src/`           | `TECHNOLOGIES`, `Locale`                   |
+| Ce que j'ajoute                        | Dossier                          | Exemple                                           |
+| -------------------------------------- | -------------------------------- | ------------------------------------------------- |
+| Un écran routé                         | `pages/`                         | `pages/WorkPage.tsx`                              |
+| Un composant propre à un domaine       | `features/<domaine>/components/` | `features/work/components/ProjectRow.tsx`         |
+| Un hook propre à un domaine            | `features/<domaine>/hooks/`      | `features/work/hooks/useProjectFilters.ts`        |
+| Un composant générique sans métier     | `components/common/`             | `components/common/Reveal.tsx`                    |
+| Un hook utilisé par plusieurs features | `hooks/`                         | `hooks/useScrollProgress.ts`                      |
+| Un appel API ou SDK externe            | `services/`                      | `services/emailService.ts`                        |
+| Une route d'API, une clé secrète       | `apps/api/src/`                  | `routes/`, `controllers/`, `services/`, `models/` |
+| Une requête GROQ                       | `services/sanity/queries.ts`     |                                                   |
+| Un chargeur de route                   | `services/sanity/loaders.ts`     |                                                   |
+| Un type venant de l'API                | `services/sanity/types.ts`       | `Project`, réexporte `Locale`                     |
+| La coquille commune                    | `layouts/`                       | `layouts/MainLayout.tsx`                          |
+| Une URL                                | `routes/paths.ts`                | source unique, aucune URL en dur ailleurs         |
+| Une variable d'environnement           | `config/env.ts`                  | seul fichier qui lit `import.meta.env`            |
+| Une constante partagée entre features  | `constants/`                     | `constants/tech.ts`                               |
+| Un utilitaire pur sans React           | `utils/`                         | `utils/slugify.ts`                                |
+| Un libellé d'interface                 | `i18n/fr.ts` et `i18n/en.ts`     | « Envoyer », « Voir plus »                        |
+| Un token de design                     | `styles/tokens.css`              | exposé à Tailwind                                 |
+| Une valeur partagée avec le Studio     | `packages/shared/src/`           | `TECHNOLOGIES`, `Locale`                          |
 
 Si un fichier ne rentre dans aucune case, le dire plutôt que de forcer.
 

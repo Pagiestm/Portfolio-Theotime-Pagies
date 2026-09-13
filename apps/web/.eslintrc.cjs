@@ -30,6 +30,7 @@ module.exports = {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
   overrides: [
+    { files: ['api/**', 'vite.config.ts'], env: { node: true, browser: false } },
     {
       // La table de routes déclare des composants `lazy()` sans les exporter :
       // le Fast Refresh ne s'y applique pas, la règle y est un faux positif.

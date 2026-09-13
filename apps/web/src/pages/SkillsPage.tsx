@@ -22,7 +22,7 @@ const SkillsPage = () => {
       <div
         className="relative mt-14 grid gap-[2px]"
         style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(250px, 100%), 1fr))',
           perspective: '1500px',
         }}
       >

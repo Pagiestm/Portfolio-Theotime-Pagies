@@ -5,7 +5,7 @@ const MetaGrid = ({ items, tone = 'bare', minWidth = 180, className = '' }) => (
       tone === 'boxed' ? 'border-2 border-t-0 border-line' : 'border-t-2 border-line',
       className,
     ].join(' ')}
-    style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))` }}
+    style={{ gridTemplateColumns: `repeat(auto-fit, minmax(min(${minWidth}px, 100%), 1fr))` }}
   >
     {items.map((item) => (
       <div

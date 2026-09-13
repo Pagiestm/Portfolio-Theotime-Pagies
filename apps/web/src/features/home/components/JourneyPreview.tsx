@@ -14,7 +14,7 @@ const JourneyPreview = ({ entries }: { entries: JourneyEntry[] }) => {
           <Reveal key={`${entry.org}-${index}`} variant="up" delay={index * 60}>
             <div
               className="grid items-baseline gap-x-8 gap-y-2 border-b-2 border-line py-6"
-              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))' }}
             >
               <div className="text-[11px] uppercase tracking-[.16em] text-muted">
                 {localize(entry.period)}

@@ -9,7 +9,7 @@ const MarqueeBand = ({ items }: { items: HomeContent['marquee'] }) => {
     <section className="border-b-2 border-line">
       <div
         className="mx-auto grid max-w-shell px-6"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))' }}
       >
         {items.map((item, index) => (
           <Reveal

@@ -1,5 +1,6 @@
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useContactForm } from '../hooks/useContactForm';
+import { useMediaQuery } from '../../../hooks/useMediaQuery';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { env } from '../../../config/env';
 
@@ -19,6 +20,8 @@ const Field = ({ id, label, error, children }) => (
 
 const ContactForm = () => {
   const { t } = useTranslation();
+  /* Le widget reCAPTCHA fait 304 px de large : sous 400 px, sa version compacte (164 px) évite de déborder du formulaire. */
+  const captchaSize = useMediaQuery('(max-width: 400px)') ? 'compact' : 'normal';
   const {
     formRef,
     captchaRef,
@@ -52,8 +55,10 @@ const ContactForm = () => {
       {showCaptcha && (
         <div>
           <ReCAPTCHA
+            key={captchaSize}
             ref={captchaRef}
             sitekey={env.recaptcha.siteKey}
+            size={captchaSize}
             theme="dark"
             onChange={onCaptchaChange}
             onExpired={onCaptchaExpired}
