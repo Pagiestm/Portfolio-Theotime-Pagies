@@ -1,3 +1,9 @@
+## [1.3.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.3.0...v1.3.1) (2026-09-13)
+
+### Bug Fixes
+
+* **api:** répondre au runtime Node de Vercel au lieu d'expirer ([4fb20f7](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/4fb20f79e0fab6919195657ee1450a430806f7cc))
+
 ## [1.3.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.2.0...v1.3.0) (2026-09-13)
 
 ### Features
