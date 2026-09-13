@@ -114,4 +114,23 @@ export default {
     solo: 'Solo',
     team: 'Team',
   } satisfies Record<TeamMode, string>,
+
+  assistantOpen: 'A question?',
+  assistantKicker: 'Assistant IA ',
+  assistantTitle: 'Ask me a question',
+  assistantIntro: 'I answer from the content of this site: projects, path, skills...',
+  assistantSuggestions: [
+    'Which projects use NestJS?',
+    'What does he do at Ponera?',
+    'Has he shipped a payment flow to production?',
+  ],
+  assistantPlaceholder: 'Your question…',
+  assistantSend: 'Send',
+  assistantClose: 'Close',
+  assistantThinking: 'Looking through the projects',
+  assistantError: 'I could not answer. Please try again in a moment.',
+  assistantLimit: 'Too many questions at once: try again in an hour.',
+  assistantSources: 'Sources',
+  assistantDisclaimer: 'Answers generated from the content of this site.',
+  assistantNew: 'New conversation',
 };

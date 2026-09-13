@@ -116,4 +116,24 @@ export default {
     solo: 'En solo',
     team: 'En équipe',
   } satisfies Record<TeamMode, string>,
+
+  assistantOpen: 'Une question ?',
+  assistantKicker: 'Assistant IA de Théotime',
+  assistantTitle: 'Posez-moi une question',
+  assistantIntro:
+    'Je réponds à partir du contenu de ce site : réalisations, parcours, compétences...',
+  assistantSuggestions: [
+    'Quels projets utilisent NestJS ?',
+    'Que fait-il chez Ponera ?',
+    'A-t-il déjà mis un paiement en production ?',
+  ],
+  assistantPlaceholder: 'Votre question…',
+  assistantSend: 'Envoyer',
+  assistantClose: 'Fermer',
+  assistantThinking: 'Je cherche dans les fiches',
+  assistantError: "Je n'ai pas pu répondre. Réessayez dans un instant.",
+  assistantLimit: "Beaucoup de questions d'un coup : réessayez dans une heure.",
+  assistantSources: 'Sources',
+  assistantDisclaimer: 'Réponses générées à partir du contenu du site.',
+  assistantNew: 'Nouvelle conversation',
 };

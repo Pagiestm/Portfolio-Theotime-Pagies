@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import SceneBackground from '../features/scene/components/SceneBackground';
+import AssistantWidget from '../features/assistant/components/AssistantWidget';
 
 const MainLayout = () => (
   <div className="relative flex min-h-screen flex-col bg-bg">
@@ -13,6 +14,7 @@ const MainLayout = () => (
       <Outlet />
     </main>
     <Footer />
+    <AssistantWidget />
   </div>
 );
 
