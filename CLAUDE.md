@@ -2,8 +2,11 @@
 
 Monorepo npm workspaces orchestré par Turborepo. `apps/web` (React 19, Vite,
 Tailwind, React Router) lit son contenu dans Sanity ; `apps/studio` l'édite ;
-`packages/shared` porte ce que les deux consomment, sans React, Sanity ni DOM.
-Les deux applications ne s'importent jamais l'une l'autre.
+`apps/api` (Hono, couches routes → contrôleurs → services → modèles) répond aux
+questions des visiteurs et est déployée en fonction Vercel par le site ;
+`packages/shared` porte ce que tous consomment, sans React, Sanity ni DOM. Les
+applications ne s'importent jamais entre elles, à une exception près : le site
+expose l'API via `apps/web/api/[[...route]].ts`.
 
 Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) ·
 [versions](docs/versions.md).
@@ -13,7 +16,7 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) ·
 - **Ne jamais commiter ni pousser sans demande explicite**, à chaque fois, même
   si un commit précédent a été demandé.
 - Avant de proposer un changement, les quatre commandes passent depuis la racine :
-  `npm run lint && npm run typecheck && npm run format:check && npm run build`.
+  `npm run lint && npm run typecheck && npm test && npm run format:check && npm run build`.
 - Vérifier le rendu dans le navigateur dès que l'affichage change, pas juste le build.
 - Commits Conventional Commits, en français, corps expliquant le _pourquoi_.
   Le type décide de la version publiée : voir [docs/versions.md](docs/versions.md).
@@ -24,7 +27,8 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) ·
 
 | Commande                | Effet                              |
 | ----------------------- | ---------------------------------- |
-| `npm install`           | installe les trois workspaces      |
+| `npm install`           | installe les quatre workspaces     |
+| `npm test`              | tests de l'API (Node natif)        |
 | `npm run dev`           | site sur :5173 et Studio sur :3333 |
 | `npm run build`         | site + Studio, en cache Turborepo  |
 | `npm run deploy:studio` | publie le Studio sur sanity.studio |
@@ -44,6 +48,8 @@ avec d'autres valeurs, sans erreur.
   `SiPlaywright`, utilisé par `constants/tech.ts`.
 - `conventional-changelog-conventionalcommits` est tenu en majeure 9 : la 10
   exige un writer que `release-notes-generator` ne fournit pas encore.
+- `GEMINI_API_KEY` n'entre jamais dans `envPrefix` : seule `apps/api` la lit, côté
+  serveur. Tout ce qui passe par `envPrefix` finit dans le bundle.
 - Un identifiant de document Sanity ne contient **jamais de point**.
 - Toute couleur vient de `styles/tokens.css`. **Aucun arrondi.** Toute animation
   vérifie `usePrefersReducedMotion()`.
