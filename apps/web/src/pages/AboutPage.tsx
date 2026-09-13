@@ -20,7 +20,7 @@ const AboutPage = () => {
       <div
         className="relative grid items-start gap-[52px]"
         style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
           perspective: '1600px',
         }}
       >

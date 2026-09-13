@@ -12,7 +12,7 @@ const ContactPage = () => {
     <section className="mx-auto max-w-shell px-6 pb-[86px] pt-[68px]">
       <div
         className="grid items-start gap-[52px]"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))' }}
       >
         <div>
           <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">

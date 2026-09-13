@@ -74,7 +74,7 @@ const ProjectPage = () => {
       <div
         className="grid gap-[52px]"
         style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(290px, 100%), 1fr))',
           perspective: '1600px',
         }}
       >

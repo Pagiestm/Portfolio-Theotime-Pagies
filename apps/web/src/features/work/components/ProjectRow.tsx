@@ -12,7 +12,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
       <Link
         to={paths.project(project.id)}
         className="group grid w-full items-center gap-[22px] border-b-2 border-line px-2 py-7 text-left text-ink transition-all duration-200 hover:bg-surface hover:pl-5 hover:text-ink"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(230px, 100%), 1fr))' }}
       >
         <div className="min-w-0">
           <div className="mb-[10px] flex flex-wrap items-center gap-x-[10px] gap-y-1 text-[11px] uppercase tracking-[.16em]">

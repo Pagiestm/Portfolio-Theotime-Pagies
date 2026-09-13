@@ -57,7 +57,7 @@ const HomePage = () => {
         <>
           <div
             className="grid gap-[2px]"
-            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))' }}
           >
             {selection.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
