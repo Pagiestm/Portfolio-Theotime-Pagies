@@ -1,7 +1,7 @@
 import { getEnv } from '../config/env.ts';
 import type { AskRequest, AskResponse, Lang } from '../models/ask.model.ts';
 import { loadCorpus } from './content.service.ts';
-import { generate } from './gemini.service.ts';
+import { generate } from './llm.service.ts';
 import { buildContext } from './retrieval.service.ts';
 
 const systemPrompt = (
@@ -28,7 +28,7 @@ export const answer = async ({ question, lang }: AskRequest): Promise<AskRespons
   const corpus = await loadCorpus(env);
   const context = buildContext(corpus, question, lang);
   const text = await generate(
-    env,
+    env.models,
     systemPrompt(lang),
     `CONTEXTE :\n${context}\n\nQUESTION : ${question}`
   );
