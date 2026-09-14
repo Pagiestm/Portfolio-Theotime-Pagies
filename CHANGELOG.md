@@ -1,3 +1,13 @@
+## [1.5.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.4.0...v1.5.0) (2026-09-14)
+
+### Features
+
+* **web:** dire au visiteur ce qui a empêché la réponse ([7d36a6f](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/7d36a6f9c2b8864ae7b9b0ae0c8d74c67b4dbb28))
+
+### Bug Fixes
+
+* **api:** remplacer le modèle inexistant par la liste réelle des modèles ([47bb961](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/47bb961f8495da726d32333e0e0d498a5bacd4ad))
+
 ## [1.4.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.3.1...v1.4.0) (2026-09-14)
 
 ### Features
