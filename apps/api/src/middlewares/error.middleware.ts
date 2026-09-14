@@ -9,7 +9,7 @@ import { HttpError } from '../models/errors.model.ts';
 export const errorHandler = (error: Error, c: Context) => {
   if (error instanceof HttpError) {
     if (error.status >= 500) console.error('[api]', error.code, error.message);
-    return c.json({ error: error.code }, error.status as 400 | 429 | 500 | 502);
+    return c.json({ error: error.code }, error.status as 400 | 429 | 500 | 502 | 503);
   }
   console.error('[api]', error);
   return c.json({ error: 'internal' }, 500);

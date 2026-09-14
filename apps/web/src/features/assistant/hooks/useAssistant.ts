@@ -1,5 +1,10 @@
 import { useCallback, useState } from 'react';
-import { askAssistant, type AssistantSource } from '../../../services/assistantService';
+import {
+  askAssistant,
+  AssistantError,
+  type AssistantErrorCode,
+  type AssistantSource,
+} from '../../../services/assistantService';
 
 export type AssistantMessage = {
   id: number;
@@ -8,11 +13,13 @@ export type AssistantMessage = {
   sources?: AssistantSource[];
 };
 
-type Status = 'idle' | 'loading' | 'error' | 'limited';
+type Status = 'idle' | 'loading' | 'error';
 
 export const useAssistant = (lang: string) => {
   const [messages, setMessages] = useState<AssistantMessage[]>([]);
   const [status, setStatus] = useState<Status>('idle');
+  /** La cause du dernier échec, pour choisir le message à afficher. */
+  const [errorCode, setErrorCode] = useState<AssistantErrorCode | null>(null);
 
   const ask = useCallback(
     async (question: string) => {
@@ -20,6 +27,7 @@ export const useAssistant = (lang: string) => {
       if (!trimmed || status === 'loading') return;
       setMessages((current) => [...current, { id: Date.now(), role: 'user', text: trimmed }]);
       setStatus('loading');
+      setErrorCode(null);
       try {
         const { answer, sources } = await askAssistant(trimmed, lang);
         setMessages((current) => [
@@ -28,7 +36,8 @@ export const useAssistant = (lang: string) => {
         ]);
         setStatus('idle');
       } catch (error) {
-        setStatus(error instanceof Error && error.message === 'RATE_LIMITED' ? 'limited' : 'error');
+        setErrorCode(error instanceof AssistantError ? error.code : 'unavailable');
+        setStatus('error');
       }
     },
     [lang, status]
@@ -37,7 +46,8 @@ export const useAssistant = (lang: string) => {
   const reset = useCallback(() => {
     setMessages([]);
     setStatus('idle');
+    setErrorCode(null);
   }, []);
 
-  return { messages, status, ask, reset };
+  return { messages, status, errorCode, ask, reset };
 };

@@ -1,4 +1,4 @@
-import { UpstreamError } from '../models/errors.model.ts';
+import { QuotaExhaustedError, UpstreamError } from '../models/errors.model.ts';
 import type { Candidate, Provider } from '../models/llm.model.ts';
 
 const ATTEMPT_TIMEOUT_MS = 15_000;
@@ -144,9 +144,12 @@ export const generate = async (
     : candidates;
 
   let last: unknown;
+  let tried = 0;
+  let refusedForQuota = 0;
   for (const candidate of order) {
     const remaining = deadline - Date.now();
     if (remaining <= 0) break;
+    tried += 1;
     try {
       return await askOne(candidate, system, user, Math.min(ATTEMPT_TIMEOUT_MS, remaining));
     } catch (error) {
@@ -154,8 +157,15 @@ export const generate = async (
       const verdict = (error as { verdict?: Verdict }).verdict;
       // Une erreur de notre côté ne s'arrangera pas ailleurs.
       if (verdict === 'fatal') throw error;
+      if (verdict === 'quota') refusedForQuota += 1;
       console.warn('[api] bascule après', candidate.id, (error as Error).message);
     }
+  }
+
+  // Séparer la limite de la panne : l'une ne se rouvrira que demain et le
+  // visiteur doit l'entendre, l'autre justifie de réessayer tout de suite.
+  if (tried > 0 && refusedForQuota === tried) {
+    throw new QuotaExhaustedError(`quota épuisé sur les ${tried} modèles configurés`);
   }
 
   throw last instanceof Error ? last : new UpstreamError('aucun modèle disponible');
