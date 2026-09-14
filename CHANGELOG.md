@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.3.1...v1.4.0) (2026-09-14)
+
+### Features
+
+* **api:** interroger plusieurs modèles et basculer quand le quota tombe ([f3f707d](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/f3f707dd2b15ac24cc3e36dc939095f9256999c0))
+
 ## [1.3.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.3.0...v1.3.1) (2026-09-13)
 
 ### Bug Fixes
