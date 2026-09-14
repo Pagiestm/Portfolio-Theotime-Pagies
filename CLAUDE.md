@@ -48,8 +48,8 @@ avec d'autres valeurs, sans erreur.
   `SiPlaywright`, utilisé par `constants/tech.ts`.
 - `conventional-changelog-conventionalcommits` est tenu en majeure 9 : la 10
   exige un writer que `release-notes-generator` ne fournit pas encore.
-- `GEMINI_API_KEY` n'entre jamais dans `envPrefix` : seule `apps/api` la lit, côté
-  serveur. Tout ce qui passe par `envPrefix` finit dans le bundle.
+- Aucune clé de modèle (`GEMINI_API_KEY`, `LLM_API_KEY`) n'entre dans `envPrefix` :
+  seule `apps/api` les lit, côté serveur. `envPrefix` finit dans le bundle.
 - Un identifiant de document Sanity ne contient **jamais de point**.
 - Toute couleur vient de `styles/tokens.css`. **Aucun arrondi.** Toute animation
   vérifie `usePrefersReducedMotion()`.

@@ -44,6 +44,7 @@ describe('POST /api/ask', () => {
   beforeEach(() => {
     process.env.SANITY_PROJECT_ID = 'test';
     process.env.GEMINI_API_KEY = 'test-key';
+    process.env.LLM_MODELS = 'google:gemini-test';
     resetCorpusCache();
   });
   afterEach(() => {

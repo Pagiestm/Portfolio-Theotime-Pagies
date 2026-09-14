@@ -33,15 +33,49 @@ un service ne connaît pas HTTP.
 
 ## Variables
 
-| Variable            | Rôle                                        |
-| ------------------- | ------------------------------------------- |
-| `GEMINI_API_KEY`    | clé du modèle, jamais exposée au navigateur |
-| `GEMINI_MODEL`      | optionnel, défaut `gemini-3.6-flash`        |
-| `SANITY_PROJECT_ID` | dataset public lu sur le CDN, sans jeton    |
-| `SANITY_DATASET`    | optionnel, défaut `production`              |
+| Variable            | Rôle                                                 |
+| ------------------- | ---------------------------------------------------- |
+| `GEMINI_API_KEY`    | clé des modèles Google, jamais exposée au navigateur |
+| `LLM_MODELS`        | **obligatoire**, liste ordonnée `fournisseur:modèle` |
+| `LLM_API_KEY`       | optionnel, clé d'un fournisseur au format OpenAI     |
+| `LLM_BASE_URL`      | optionnel, défaut `https://openrouter.ai/api/v1`     |
+| `SANITY_PROJECT_ID` | dataset public lu sur le CDN, sans jeton             |
+| `SANITY_DATASET`    | optionnel, défaut `production`                       |
 
 En local elles vivent dans `apps/web/.env` ; sur Vercel dans les variables du
 projet.
+
+## Choix du modèle et bascule
+
+`LLM_MODELS` énumère les modèles à interroger, du préféré au dernier recours.
+Aucun modèle n'est écrit dans le code : en changer, en ajouter un ou modifier
+leur ordre ne demande qu'une variable d'environnement, sans déploiement. En
+contrepartie la variable est obligatoire — sans elle l'API répond 500 plutôt
+que d'appeler un modèle que personne n'a choisi.
+
+```
+LLM_MODELS=google:gemini-3.6-flash,google:gemini-3.6-flash-lite
+```
+
+Le premier qui répond gagne. Un modèle qui renvoie 429 est noté comme épuisé et
+sauté pendant dix minutes ; une panne passagère fait passer au suivant ; une
+erreur de notre côté (requête invalide, clé refusée) arrête tout de suite, parce
+qu'elle se répéterait à l'identique ailleurs. Si tous sont épuisés, le dernier
+recours consiste à les retenter quand même plutôt que de ne rien répondre.
+
+Chez Google les quotas par requête sont comptés modèle par modèle : passer de
+`flash` à `flash-lite` rouvre un quota. Le plafond en jetons par minute, lui,
+est partagé — la bascule n'y peut rien, et le détail du 429 est journalisé pour
+savoir laquelle des deux limites est atteinte.
+
+`openai` désigne un format d'API, pas une société : OpenRouter, Groq ou Mistral
+le parlent. Ajouter l'un d'eux ne demande qu'une entrée dans `LLM_MODELS`, une
+clé dans `LLM_API_KEY` et son hôte dans `LLM_BASE_URL` — aucun code. Les trois
+vont ensemble : un modèle `openai:` sans hôte est ignoré, pour ne pas appeler
+un fournisseur au hasard en croyant en viser un autre.
+
+L'état des quotas vit en mémoire, donc le temps d'une instance serverless : il
+évite de regaspiller une requête à chaque appel, il ne tient pas de comptabilité.
 
 ## Commandes
 
