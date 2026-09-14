@@ -54,8 +54,14 @@ contrepartie la variable est obligatoire — sans elle l'API répond 500 plutôt
 que d'appeler un modèle que personne n'a choisi.
 
 ```
-LLM_MODELS=google:gemini-3.6-flash,google:gemini-3.6-flash-lite
+LLM_MODELS=google:gemini-3.5-flash-lite,google:gemini-3.1-flash-lite,google:gemini-3.8-flash,google:gemini-3.7-flash,google:gemini-3.6-flash,google:gemini-3.5-flash,google:gemini-2.5-flash,google:gemini-2.5-flash-lite,google:gemini-3-flash-preview
 ```
+
+L'ordre suit le quota journalier plutôt que la puissance. Au palier sans frais,
+un `flash-lite` accepte 500 requêtes par jour quand un `flash` s'arrête à 20 :
+mis en tête, les deux premiers portent l'essentiel du trafic, les autres ne
+servent que lorsqu'ils sont épuisés. Ces plafonds se lisent dans
+[AI Studio](https://aistudio.google.com/rate-limit), modèle par modèle.
 
 Le premier qui répond gagne. Un modèle qui renvoie 429 est noté comme épuisé et
 sauté pendant dix minutes ; une panne passagère fait passer au suivant ; une

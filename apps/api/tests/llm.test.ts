@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import { ConfigError, UpstreamError } from '../src/models/errors.model.ts';
+import { ConfigError, QuotaExhaustedError, UpstreamError } from '../src/models/errors.model.ts';
 import { parseCandidates } from '../src/models/llm.model.ts';
 import { generate, resetModelState } from '../src/services/llm.service.ts';
 
@@ -99,6 +99,18 @@ describe('generate', () => {
     fakeUpstream([quota(), googleText('rouvert')]);
     await assert.rejects(() => generate(seul, 'sys', 'user'));
     assert.equal(await generate(seul, 'sys', 'user'), 'rouvert');
+  });
+
+  it('distingue le quota épuisé de la panne, pour que le visiteur sache quoi faire', async () => {
+    fakeUpstream([quota(), quota()]);
+    await assert.rejects(() => generate(two, 'sys', 'user'), QuotaExhaustedError);
+  });
+
+  it('reste une panne tant qu un modèle a échoué pour une autre raison', async () => {
+    fakeUpstream([quota(), new Response('en rade', { status: 503 })]);
+    const error = await generate(two, 'sys', 'user').catch((e) => e);
+    assert.ok(error instanceof UpstreamError);
+    assert.ok(!(error instanceof QuotaExhaustedError));
   });
 
   it('parle le format OpenAI quand le fournisseur l attend', async () => {

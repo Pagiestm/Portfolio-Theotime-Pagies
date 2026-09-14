@@ -123,16 +123,24 @@ export default {
   assistantIntro:
     'Je réponds à partir du contenu de ce site : réalisations, parcours, compétences...',
   assistantSuggestions: [
-    'Quels projets utilisent NestJS ?',
-    'Que fait-il chez Ponera ?',
-    'A-t-il déjà mis un paiement en production ?',
+    'Quelles technologies maîtrise-t-il ?',
+    'Quel est son parcours ?',
+    'Quelles sont ses réalisations récentes ?',
   ],
   assistantPlaceholder: 'Votre question…',
   assistantSend: 'Envoyer',
   assistantClose: 'Fermer',
   assistantThinking: 'Je cherche dans les fiches',
-  assistantError: "Je n'ai pas pu répondre. Réessayez dans un instant.",
-  assistantLimit: "Beaucoup de questions d'un coup : réessayez dans une heure.",
+  // Un message par cause : chacune appelle une conduite différente, et « une
+  // erreur est survenue » laisse le visiteur sans rien à faire.
+  assistantErrors: {
+    rateLimited: "Beaucoup de questions d'un coup : réessayez dans une heure.",
+    quota:
+      "L'assistant a épuisé ses questions pour aujourd'hui. Revenez demain, ou passez par la page contact.",
+    invalid: 'Question vide ou trop longue : reformulez-la en une phrase.',
+    network: 'La connexion a échoué. Vérifiez votre réseau, puis réessayez.',
+    unavailable: "L'assistant est momentanément indisponible. Réessayez dans un instant.",
+  },
   assistantSources: 'Sources',
   assistantDisclaimer: 'Réponses générées à partir du contenu du site.',
   assistantNew: 'Nouvelle conversation',

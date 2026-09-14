@@ -148,7 +148,7 @@ const Message = ({
 
 const AssistantWidget = () => {
   const { t, lang } = useTranslation();
-  const { messages, status, ask, reset } = useAssistant(lang);
+  const { messages, status, errorCode, ask, reset } = useAssistant(lang);
   const reduced = usePrefersReducedMotion();
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState('');
@@ -284,11 +284,10 @@ const AssistantWidget = () => {
           ))}
 
           {status === 'loading' && <Thinking label={t.assistantThinking} animate={!reduced} />}
-          {status === 'error' && (
-            <p className="m-0 text-[14px] text-accent-2">{t.assistantError}</p>
-          )}
-          {status === 'limited' && (
-            <p className="m-0 text-[14px] text-accent-2">{t.assistantLimit}</p>
+          {status === 'error' && errorCode && (
+            <p className="m-0 text-[14px] text-accent-2" role="alert">
+              {t.assistantErrors[errorCode]}
+            </p>
           )}
           <div ref={endRef} />
         </div>
