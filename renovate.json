@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Mises à jour de dépendances : correctifs et mineures fusionnés seuls quand la CI est verte, majeures à la main, failles traitées sans attendre. Détail dans docs/versions.md.",
+  "mode": "full",
   "extends": ["config:recommended", ":dependencyDashboard", "group:monorepos"],
   "timezone": "Europe/Paris",
   "schedule": ["before 8am on monday"],
@@ -30,6 +31,12 @@
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "mineures et correctifs",
       "automerge": true
+    },
+    {
+      "description": "three.js hors du lot : la CI ne regarde pas l'écran. Lint, types, tests et build passeraient au vert avec une scène d'accueil noire, et l'automerge la déploierait. Une PR à part, relue et vérifiée dans le navigateur.",
+      "matchPackageNames": ["three", "@types/three"],
+      "groupName": "three.js",
+      "automerge": false
     },
     {
       "description": "Majeures : une PR par paquet, jamais fusionnée sans lecture des notes de version.",
