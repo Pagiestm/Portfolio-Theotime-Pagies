@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, it } from 'node:test';
 import { ConfigError, QuotaExhaustedError, UpstreamError } from '../src/models/errors.model.ts';
 import { parseCandidates } from '../src/models/llm.model.ts';
-import { generate, resetModelState } from '../src/services/llm.service.ts';
+import { cooldownFor, generate, resetModelState } from '../src/services/llm.service.ts';
 
 const realFetch = globalThis.fetch;
 
@@ -63,6 +64,29 @@ describe('parseCandidates', () => {
   });
 });
 
+describe('cooldownFor', () => {
+  it('suit le Retry-After du fournisseur quand il est donné', () => {
+    assert.equal(cooldownFor('30', ''), 31_000);
+  });
+
+  it('lit le retryDelay que Google place dans son corps d erreur', () => {
+    const corps = '{"error":{"details":[{"@type":"...RetryInfo","retryDelay":"44s"}]}}';
+    assert.equal(cooldownFor(null, corps), 45_000);
+  });
+
+  it('écarte une minute pour une limite par minute, une heure pour une limite par jour', () => {
+    const minute = cooldownFor(null, '{"quotaId":"GenerateRequestsPerMinutePerProjectPerModel"}');
+    const jour = cooldownFor(null, '{"quotaId":"GenerateRequestsPerDayPerProjectPerModel"}');
+    assert.equal(minute, 60_000);
+    assert.ok(jour > minute * 10, 'une limite journalière ne se rouvre pas en une minute');
+  });
+
+  it('reste prudent quand le fournisseur ne dit rien', () => {
+    const inconnu = cooldownFor(null, 'quota exceeded');
+    assert.ok(inconnu > 60_000 && inconnu < 60 * 60_000);
+  });
+});
+
 describe('generate', () => {
   beforeEach(() => resetModelState());
   afterEach(() => {
@@ -111,6 +135,19 @@ describe('generate', () => {
     const error = await generate(two, 'sys', 'user').catch((e) => e);
     assert.ok(error instanceof UpstreamError);
     assert.ok(!(error instanceof QuotaExhaustedError));
+  });
+
+  it('reste sous le plafond de la fonction Vercel', async () => {
+    const vercel = JSON.parse(
+      readFileSync(new URL('../../web/vercel.json', import.meta.url), 'utf8')
+    );
+    const maxDuration = vercel.functions['api/**/*.ts'].maxDuration * 1000;
+    const source = readFileSync(new URL('../src/services/llm.service.ts', import.meta.url), 'utf8');
+    const budget = Number(/TOTAL_BUDGET_MS = ([\d_]+)/.exec(source)![1]!.replace(/_/g, ''));
+    assert.ok(
+      budget < maxDuration,
+      `le budget (${budget} ms) doit rester sous maxDuration (${maxDuration} ms), sinon Vercel coupe la fonction avant que l API ne réponde`
+    );
   });
 
   it('parle le format OpenAI quand le fournisseur l attend', async () => {
