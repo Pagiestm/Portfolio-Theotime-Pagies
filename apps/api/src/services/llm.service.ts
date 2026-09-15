@@ -1,11 +1,26 @@
 import { QuotaExhaustedError, UpstreamError } from '../models/errors.model.ts';
 import type { Candidate, Provider } from '../models/llm.model.ts';
 
-const ATTEMPT_TIMEOUT_MS = 15_000;
-/** Au-delà, on rend la main : la fonction Vercel expirerait avant nous. */
-const TOTAL_BUDGET_MS = 40_000;
-/** Un quota journalier ne se rouvre pas en dix minutes, mais un quota par minute si. */
-const COOLDOWN_MS = 10 * 60_000;
+const ATTEMPT_TIMEOUT_MS = 12_000;
+/**
+ * `maxDuration` vaut 30 s dans `apps/web/vercel.json` : au-delà, la plateforme
+ * tue la fonction et le visiteur reçoit une erreur brute, sans même notre JSON.
+ * On garde quatre secondes pour le chargement du corpus et la réponse, et on
+ * s'arrête de nous-mêmes avant que Vercel ne le fasse.
+ */
+const TOTAL_BUDGET_MS = 24_000;
+/** En deçà, tenter un modèle de plus n'a plus le temps d'aboutir. */
+const MIN_ATTEMPT_MS = 2_000;
+
+/**
+ * Combien de temps mettre un modèle de côté. Une limite par minute se rouvre
+ * presque aussitôt : l'écarter dix minutes gaspillerait des centaines de
+ * requêtes encore disponibles. Une limite journalière, elle, ne se rouvrira
+ * pas dans la foulée.
+ */
+const COOLDOWN_MINUTE_MS = 60_000;
+const COOLDOWN_DAY_MS = 60 * 60_000;
+const COOLDOWN_UNKNOWN_MS = 5 * 60_000;
 const MAX_OUTPUT_TOKENS = 2048;
 const TEMPERATURE = 0.2;
 
@@ -80,6 +95,24 @@ const verdictOf = (status: number): Verdict => {
 };
 
 /**
+ * Le fournisseur dit souvent lui-même quand revenir : l'en-tête HTTP standard
+ * `Retry-After`, ou le `retryDelay` que Google glisse dans son corps d'erreur.
+ * À défaut, l'intitulé du quota distingue la limite par minute de la limite
+ * par jour. On ne devine que si tout cela manque.
+ */
+export const cooldownFor = (retryAfter: string | null, detail: string): number => {
+  const seconds = Number(retryAfter);
+  if (Number.isFinite(seconds) && seconds > 0) return seconds * 1_000 + 1_000;
+
+  const delay = /"retryDelay"\s*:\s*"(\d+(?:\.\d+)?)s"/.exec(detail);
+  if (delay?.[1]) return Math.ceil(Number(delay[1]) * 1_000) + 1_000;
+
+  if (/per\s*-?\s*day/i.test(detail)) return COOLDOWN_DAY_MS;
+  if (/per\s*-?\s*minute/i.test(detail)) return COOLDOWN_MINUTE_MS;
+  return COOLDOWN_UNKNOWN_MS;
+};
+
+/**
  * Une requête mal formée ou une clé invalide se répéterait à l'identique chez
  * le modèle suivant : inutile de brûler la liste pour rien. Seuls un quota
  * épuisé et une panne passagère justifient de basculer.
@@ -108,8 +141,14 @@ const askOne = async (
       const detail = await res.text().catch(() => '');
       const error = new UpstreamError(`${candidate.id} → ${res.status} ${detail.slice(0, 300)}`);
       if (verdictOf(res.status) === 'quota') {
-        exhaustedUntil.set(candidate.id, Date.now() + COOLDOWN_MS);
-        console.warn('[api] quota atteint', candidate.id, detail.slice(0, 300));
+        const cooldown = cooldownFor(res.headers.get('retry-after'), detail);
+        exhaustedUntil.set(candidate.id, Date.now() + cooldown);
+        console.warn(
+          '[api] quota atteint',
+          candidate.id,
+          `écarté ${Math.round(cooldown / 1000)} s`,
+          detail.slice(0, 300)
+        );
       }
       throw Object.assign(error, { verdict: verdictOf(res.status) });
     }
@@ -146,9 +185,17 @@ export const generate = async (
   let last: unknown;
   let tried = 0;
   let refusedForQuota = 0;
+  let skippedForTime = 0;
   for (const candidate of order) {
     const remaining = deadline - Date.now();
-    if (remaining <= 0) break;
+    // Un modèle refusé pour quota répond en quelques dizaines de millisecondes :
+    // enchaîner toute la liste coûte peu, et c'est ce qui évite de rendre une
+    // erreur alors qu'un modèle suivant aurait répondu. On ne renonce qu'à
+    // l'approche du plafond de la fonction.
+    if (remaining < MIN_ATTEMPT_MS) {
+      skippedForTime += 1;
+      continue;
+    }
     tried += 1;
     try {
       return await askOne(candidate, system, user, Math.min(ATTEMPT_TIMEOUT_MS, remaining));
@@ -162,9 +209,15 @@ export const generate = async (
     }
   }
 
+  if (skippedForTime) {
+    console.warn('[api] budget écoulé,', skippedForTime, 'modèle(s) non tentés');
+  }
+
   // Séparer la limite de la panne : l'une ne se rouvrira que demain et le
   // visiteur doit l'entendre, l'autre justifie de réessayer tout de suite.
-  if (tried > 0 && refusedForQuota === tried) {
+  // La distinction n'est honnête que si toute la liste a été parcourue : un
+  // modèle laissé de côté faute de temps aurait peut-être répondu.
+  if (tried > 0 && refusedForQuota === tried && !skippedForTime) {
     throw new QuotaExhaustedError(`quota épuisé sur les ${tried} modèles configurés`);
   }
 
