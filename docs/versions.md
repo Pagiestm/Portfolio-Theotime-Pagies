@@ -17,7 +17,8 @@ chercher à faire coller une sémantique de bibliothèque.
 | Un champ ou un type de document dans le Studio             | `feat(cms)`     | mineure   |
 | Un texte éditorial                                         | rien à commiter | -         |
 | Des fichiers déplacés, un hook extrait, sans effet visible | `refactor(…)`   | aucune    |
-| Une dépendance montée, l'outillage, la CI                  | `chore` / `ci`  | aucune    |
+| Une dépendance de production montée                        | `fix(deps)`     | correctif |
+| Une dépendance de développement, l'outillage, la CI        | `chore` / `ci`  | aucune    |
 | Le README, un commentaire, cette documentation             | `docs`          | aucune    |
 | Les URL publiques, qui casse les liens existants           | `feat(web)!`    | majeure   |
 
@@ -45,10 +46,15 @@ Renovate (app GitHub, config dans `renovate.json`) tient les dépendances à jou
 | Quoi                              | Quand                   | Fusion                             |
 | --------------------------------- | ----------------------- | ---------------------------------- |
 | Correctifs et mineures, en une PR | le lundi matin          | seule, si la CI est verte          |
+| three.js et ses types             | le lundi matin          | à la main, rendu vérifié à l'écran |
 | Faille connue (OSV ou GitHub)     | dès qu'elle est publiée | seule, si la CI est verte          |
 | Majeure, une PR par paquet        | le lundi matin          | à la main, après lecture des notes |
 | Lockfile entier (transitives)     | le 1er du mois          | seule, si la CI est verte          |
 | Actions GitHub des workflows      | le 1er du mois          | seule, si la CI est verte          |
+
+three.js est le seul paquet sorti du lot automatique : la CI ne regarde pas
+l'écran, et une scène d'accueil noire passerait lint, types, tests et build
+sans qu'un seul indicateur ne rougisse.
 
 Une version doit avoir **trois jours** d'existence avant d'être proposée : un
 paquet compromis est presque toujours retiré du registre dans ce délai. Les
