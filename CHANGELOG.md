@@ -1,3 +1,9 @@
+## [1.5.3](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.2...v1.5.3) (2026-09-15)
+
+### Bug Fixes
+
+* **deps:** update dependency hono to ^4.13.7 [security] ([c96b622](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/c96b6222aeeb87f5bfbfac1fdcb7e6d5572d1b40))
+
 ## [1.5.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.1...v1.5.2) (2026-09-15)
 
 ### Bug Fixes
