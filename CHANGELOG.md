@@ -1,3 +1,9 @@
+## [1.5.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.1...v1.5.2) (2026-09-15)
+
+### Bug Fixes
+
+* **repo:** sortir Renovate du mode silencieux et protéger three.js ([3e37ee2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/3e37ee25f1608646456cd55a95ac2868d80c0db3))
+
 ## [1.5.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.0...v1.5.1) (2026-09-15)
 
 ### Bug Fixes
