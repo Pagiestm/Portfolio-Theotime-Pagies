@@ -1,3 +1,9 @@
+## [1.5.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.0...v1.5.1) (2026-09-15)
+
+### Bug Fixes
+
+* **api:** ne plus rendre d'erreur quand un autre modèle peut répondre ([5d1b98a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/5d1b98a397c3bcf29992ace21474889d5d900740))
+
 ## [1.5.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.4.0...v1.5.0) (2026-09-14)
 
 ### Features
