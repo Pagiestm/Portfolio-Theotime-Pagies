@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Mises à jour de dépendances : correctifs et mineures fusionnés seuls quand la CI est verte, majeures à la main, failles traitées sans attendre. Détail dans docs/versions.md.",
-  "mode": "full",
   "extends": ["config:recommended", ":dependencyDashboard", "group:monorepos"],
   "timezone": "Europe/Paris",
   "schedule": ["before 8am on monday"],
