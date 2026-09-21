@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.6...v1.6.0) (2026-09-21)
+
+### Features
+
+* **repo:** linter les quatre workspaces depuis une seule configuration ([44b013a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/44b013a2a3ebccef92b6275beb725c3230f56132))
+
 ## [1.5.6](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.5...v1.5.6) (2026-09-21)
 
 ### Bug Fixes
