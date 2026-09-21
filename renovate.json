@@ -72,11 +72,6 @@
       "schedule": ["before 8am on the first day of the month"],
       "groupName": "actions GitHub",
       "automerge": true
-    },
-    {
-      "description": "Tenu sous la 0.5, qui réclame ESLint 9 ou 10 quand le projet est en 8. À relever avec la migration vers la configuration à plat.",
-      "matchPackageNames": ["eslint-plugin-react-refresh"],
-      "allowedVersions": "<0.5.0"
     }
   ]
 }

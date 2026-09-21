@@ -66,9 +66,30 @@ Une version doit avoir **trois jours** d'existence avant d'être proposée : un
 paquet compromis est presque toujours retiré du registre dans ce délai. Les
 failles font exception et arrivent tout de suite.
 
-Les épingles de `CLAUDE.md` (`react-icons`, la ligne TypeScript 5.9, le preset
-de changelog en majeure 9) sont exclues : aucune PR ne les concernera. Retirer
-une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
+## Épingles et surcharges
+
+Chacune tient une incompatibilité constatée. Les retirer demande de traiter la
+cause, pas seulement la ligne.
+
+| Contrainte                                                | Pourquoi                                                                                                                                                 |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `react-icons` figé en 5.3.0                               | les versions suivantes ont retiré `SiPlaywright`, utilisé par `constants/tech.ts`                                                                        |
+| `overrides.typescript` en 5.9                             | la chaîne Sanity déclare des peers très larges ; sans cette borne npm hisse un TypeScript majeur plus récent, sur lequel `@typescript-eslint` s'effondre |
+| `conventional-changelog-conventionalcommits` en majeure 9 | la 10 exige un writer que `release-notes-generator` ne fournit pas                                                                                       |
+| `overrides.eslint-plugin-react`                           | le plugin plafonne sa compatibilité à ESLint 9.7 alors qu'il fonctionne avec la 10 ; la surcharge tombera quand il déclarera la 10                       |
+
+Les paquets épinglés sont exclus des mises à jour : aucune PR ne les concernera.
+Retirer une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
+
+## ESLint
+
+La configuration est à plat (`apps/web/eslint.config.js`), sur ESLint 10. Deux
+règles apparues avec `eslint-plugin-react-hooks` 7 y sont désactivées —
+`set-state-in-effect` et `refs` — le temps de traiter les sept occurrences
+qu'elles signalent, dans `Reveal`, `Header`, `useMediaQuery`, `usePagination` et
+`AssistantWidget`. Ce sont de vrais anti-patterns : les corriger demande
+`useSyncExternalStore` pour les media queries et une clé de remontage pour la
+pagination. Les réactiver sans ce travail fera échouer le lint.
 
 Les commits sont des `chore(deps)` : aucune release, le changelog les ignore.
 L'issue « Dependency Dashboard » du dépôt liste tout ce qui est en attente ou
