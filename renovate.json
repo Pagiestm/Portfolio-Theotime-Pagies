@@ -1,77 +1,40 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Mises à jour de dépendances : correctifs et mineures fusionnés seuls quand la CI est verte, majeures à la main, failles traitées sans attendre. Détail dans docs/versions.md.",
-  "extends": ["config:recommended", ":dependencyDashboard", "group:monorepos"],
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    "group:allNonMajor",
+    "group:monorepos",
+    ":maintainLockFilesWeekly",
+    ":automergeMinor",
+    ":prConcurrentLimitNone",
+    ":prHourlyLimitNone"
+  ],
   "timezone": "Europe/Paris",
-  "schedule": ["before 8am on monday"],
-  "labels": ["dependencies"],
-  "prConcurrentLimit": 5,
-  "rangeStrategy": "bump",
-  "semanticCommits": "enabled",
-  "semanticCommitType": "chore",
-  "semanticCommitScope": "deps",
   "minimumReleaseAge": "3 days",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["before 8am on the first day of the month"],
-    "automerge": true
-  },
   "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": ["dependencies", "security"],
-    "schedule": ["at any time"],
-    "minimumReleaseAge": null,
-    "automerge": true
+    "minimumReleaseAge": null
   },
-  "osvVulnerabilityAlerts": true,
+  "ignoreDeps": ["react-icons"],
   "packageRules": [
     {
-      "description": "Correctifs et mineures : une seule PR le lundi, fusionnée seule si la CI passe.",
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "mineures et correctifs",
-      "automerge": true
-    },
-    {
-      "description": "Paquets en 0.x : une version mineure y change ce qu'une majeure changerait ailleurs. eslint-plugin-react-refresh 0.5 a ainsi exigé ESLint 9 et bloqué les 28 autres mises à jour du lot. Ils sortent du fusionnement automatique.",
+      "description": "Avant la 1.0, une mineure peut casser comme une majeure : three.js et eslint-plugin-react-refresh l'ont chacun prouvé. Relecture avant fusion.",
       "matchCurrentVersion": "<1.0.0",
       "matchUpdateTypes": ["minor"],
       "groupName": "paquets 0.x",
       "automerge": false
     },
     {
-      "description": "three.js hors du lot : la CI ne regarde pas l'écran. Lint, types, tests et build passeraient au vert avec une scène d'accueil noire, et l'automerge la déploierait. Une PR à part, relue et vérifiée dans le navigateur.",
-      "matchPackageNames": ["three", "@types/three"],
-      "groupName": "three.js",
-      "automerge": false
-    },
-    {
-      "description": "Majeures : une PR par paquet, jamais fusionnée sans lecture des notes de version.",
-      "matchUpdateTypes": ["major"],
-      "automerge": false
-    },
-    {
-      "description": "Épinglé : les versions suivantes ont retiré SiPlaywright (constants/tech.ts).",
-      "matchPackageNames": ["react-icons"],
-      "enabled": false
-    },
-    {
-      "description": "Ligne TypeScript 5.9 tenue par overrides : au-delà, ESLint casse.",
+      "description": "TypeScript tenu en 5.9 : au-delà, @typescript-eslint s'effondre. Les correctifs restent ouverts.",
       "matchPackageNames": ["typescript"],
       "matchUpdateTypes": ["major", "minor"],
       "enabled": false
     },
     {
-      "description": "Majeure 9 imposée par release-notes-generator, voir docs/versions.md.",
+      "description": "Preset de changelog tenu en majeure 9 : la 10 exige un writer que semantic-release ne fournit pas.",
       "matchPackageNames": ["conventional-changelog-conventionalcommits"],
       "matchUpdateTypes": ["major"],
       "enabled": false
-    },
-    {
-      "description": "Actions GitHub : une PR mensuelle, fusionnée seule.",
-      "matchManagers": ["github-actions"],
-      "schedule": ["before 8am on the first day of the month"],
-      "groupName": "actions GitHub",
-      "automerge": true
     }
   ]
 }
