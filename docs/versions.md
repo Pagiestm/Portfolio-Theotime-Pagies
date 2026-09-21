@@ -47,22 +47,49 @@ Renovate (app GitHub, config dans `renovate.json`) tient les dépendances à jou
 | --------------------------------- | ----------------------- | ---------------------------------- |
 | Correctifs et mineures, en une PR | le lundi matin          | seule, si la CI est verte          |
 | three.js et ses types             | le lundi matin          | à la main, rendu vérifié à l'écran |
+| Paquets en 0.x                    | le lundi matin          | à la main, une minore y casse      |
 | Faille connue (OSV ou GitHub)     | dès qu'elle est publiée | seule, si la CI est verte          |
 | Majeure, une PR par paquet        | le lundi matin          | à la main, après lecture des notes |
 | Lockfile entier (transitives)     | le 1er du mois          | seule, si la CI est verte          |
 | Actions GitHub des workflows      | le 1er du mois          | seule, si la CI est verte          |
 
-three.js est le seul paquet sorti du lot automatique : la CI ne regarde pas
-l'écran, et une scène d'accueil noire passerait lint, types, tests et build
-sans qu'un seul indicateur ne rougisse.
+three.js est sorti du lot automatique parce que la CI ne regarde pas l'écran :
+une scène d'accueil noire passerait lint, types, tests et build sans qu'un seul
+indicateur ne rougisse.
+
+Les paquets en 0.x en sortent pour une autre raison : avant la 1.0, rien
+n'oblige une version mineure à rester compatible. `eslint-plugin-react-refresh`
+0.5 a ainsi réclamé ESLint 9 alors que le dépôt est en 8, et ce seul paquet a
+retenu les 28 autres mises à jour du lot pendant une semaine.
 
 Une version doit avoir **trois jours** d'existence avant d'être proposée : un
 paquet compromis est presque toujours retiré du registre dans ce délai. Les
 failles font exception et arrivent tout de suite.
 
-Les épingles de `CLAUDE.md` (`react-icons`, la ligne TypeScript 5.9, le preset
-de changelog en majeure 9) sont exclues : aucune PR ne les concernera. Retirer
-une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
+## Épingles et surcharges
+
+Chacune tient une incompatibilité constatée. Les retirer demande de traiter la
+cause, pas seulement la ligne.
+
+| Contrainte                                                | Pourquoi                                                                                                                                                 |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `react-icons` figé en 5.3.0                               | les versions suivantes ont retiré `SiPlaywright`, utilisé par `constants/tech.ts`                                                                        |
+| `overrides.typescript` en 5.9                             | la chaîne Sanity déclare des peers très larges ; sans cette borne npm hisse un TypeScript majeur plus récent, sur lequel `@typescript-eslint` s'effondre |
+| `conventional-changelog-conventionalcommits` en majeure 9 | la 10 exige un writer que `release-notes-generator` ne fournit pas                                                                                       |
+| `overrides.eslint-plugin-react`                           | le plugin plafonne sa compatibilité à ESLint 9.7 alors qu'il fonctionne avec la 10 ; la surcharge tombera quand il déclarera la 10                       |
+
+Les paquets épinglés sont exclus des mises à jour : aucune PR ne les concernera.
+Retirer une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
+
+## ESLint
+
+La configuration est à plat (`apps/web/eslint.config.js`), sur ESLint 10. Deux
+règles apparues avec `eslint-plugin-react-hooks` 7 y sont désactivées —
+`set-state-in-effect` et `refs` — le temps de traiter les sept occurrences
+qu'elles signalent, dans `Reveal`, `Header`, `useMediaQuery`, `usePagination` et
+`AssistantWidget`. Ce sont de vrais anti-patterns : les corriger demande
+`useSyncExternalStore` pour les media queries et une clé de remontage pour la
+pagination. Les réactiver sans ce travail fera échouer le lint.
 
 Les commits sont des `chore(deps)` : aucune release, le changelog les ignore.
 L'issue « Dependency Dashboard » du dépôt liste tout ce qui est en attente ou

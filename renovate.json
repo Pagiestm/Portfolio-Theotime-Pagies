@@ -32,6 +32,13 @@
       "automerge": true
     },
     {
+      "description": "Paquets en 0.x : une version mineure y change ce qu'une majeure changerait ailleurs. eslint-plugin-react-refresh 0.5 a ainsi exigé ESLint 9 et bloqué les 28 autres mises à jour du lot. Ils sortent du fusionnement automatique.",
+      "matchCurrentVersion": "<1.0.0",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "paquets 0.x",
+      "automerge": false
+    },
+    {
       "description": "three.js hors du lot : la CI ne regarde pas l'écran. Lint, types, tests et build passeraient au vert avec une scène d'accueil noire, et l'automerge la déploierait. Une PR à part, relue et vérifiée dans le navigateur.",
       "matchPackageNames": ["three", "@types/three"],
       "groupName": "three.js",
