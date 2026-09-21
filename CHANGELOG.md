@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.3...v1.5.4) (2026-09-21)
+
+### Bug Fixes
+
+* **repo:** débloquer les mises à jour retenues par un paquet 0.x ([f187417](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/f187417d4a252968ae6036ad90b0efc0fc2dfb11))
+* **repo:** écrire la plage de la surcharge au lieu d'une référence ([ec1d390](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/ec1d390279f549fc57043e0ea14ef55ff27b5a80))
+
 ## [1.5.3](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.2...v1.5.3) (2026-09-15)
 
 ### Bug Fixes
