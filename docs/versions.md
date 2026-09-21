@@ -47,14 +47,20 @@ Renovate (app GitHub, config dans `renovate.json`) tient les dépendances à jou
 | --------------------------------- | ----------------------- | ---------------------------------- |
 | Correctifs et mineures, en une PR | le lundi matin          | seule, si la CI est verte          |
 | three.js et ses types             | le lundi matin          | à la main, rendu vérifié à l'écran |
+| Paquets en 0.x                    | le lundi matin          | à la main, une minore y casse      |
 | Faille connue (OSV ou GitHub)     | dès qu'elle est publiée | seule, si la CI est verte          |
 | Majeure, une PR par paquet        | le lundi matin          | à la main, après lecture des notes |
 | Lockfile entier (transitives)     | le 1er du mois          | seule, si la CI est verte          |
 | Actions GitHub des workflows      | le 1er du mois          | seule, si la CI est verte          |
 
-three.js est le seul paquet sorti du lot automatique : la CI ne regarde pas
-l'écran, et une scène d'accueil noire passerait lint, types, tests et build
-sans qu'un seul indicateur ne rougisse.
+three.js est sorti du lot automatique parce que la CI ne regarde pas l'écran :
+une scène d'accueil noire passerait lint, types, tests et build sans qu'un seul
+indicateur ne rougisse.
+
+Les paquets en 0.x en sortent pour une autre raison : avant la 1.0, rien
+n'oblige une version mineure à rester compatible. `eslint-plugin-react-refresh`
+0.5 a ainsi réclamé ESLint 9 alors que le dépôt est en 8, et ce seul paquet a
+retenu les 28 autres mises à jour du lot pendant une semaine.
 
 Une version doit avoir **trois jours** d'existence avant d'être proposée : un
 paquet compromis est presque toujours retiré du registre dans ce délai. Les
