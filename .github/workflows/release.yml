@@ -25,7 +25,7 @@ jobs:
       SANITY_PROJECT_ID: svhdk2l2
       SANITY_DATASET: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # semantic-release a besoin de tout l'historique pour analyser les commits.
           fetch-depth: 0
