@@ -22,7 +22,7 @@ const client = getCliClient({ apiVersion: '2024-10-01' });
 // « Projet » contient « pro » : on cherche le mot entier ou l'adjectif complet.
 const categoryOf = (kicker = '') => {
   const text = kicker.toLowerCase();
-  if (/professionnel|pro/.test(text)) return 'professional';
+  if (/professionnel|\bpro\b/.test(text)) return 'professional';
   if (/perso/.test(text)) return 'personal';
   return 'school';
 };
