@@ -37,7 +37,7 @@
   "overrides": {
     "typescript": "^5.9.3",
     "eslint-plugin-react": {
-      "eslint": "$eslint"
+      "eslint": "^10"
     }
   },
   "devDependencies": {
