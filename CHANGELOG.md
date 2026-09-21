@@ -1,3 +1,9 @@
+## [1.5.6](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.5...v1.5.6) (2026-09-21)
+
+### Bug Fixes
+
+* **deps:** update mineures et correctifs ([e666ffc](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/e666ffc4d3fa467df0cc8831723e3e9264c922c1))
+
 ## [1.5.5](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.4...v1.5.5) (2026-09-21)
 
 ### Bug Fixes
