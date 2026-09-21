@@ -1,3 +1,9 @@
+## [1.5.5](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.4...v1.5.5) (2026-09-21)
+
+### Bug Fixes
+
+* **deps:** update three.js to ^0.186.0 ([ff06f97](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/ff06f975d1cdbfda932997a572d25611a7fa1725))
+
 ## [1.5.4](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.3...v1.5.4) (2026-09-21)
 
 ### Bug Fixes
