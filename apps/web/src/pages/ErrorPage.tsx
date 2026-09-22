@@ -4,11 +4,6 @@ import NotFoundPage from './NotFoundPage';
 import { useTranslation } from '../i18n/useTranslation';
 import { paths } from '../routes/paths';
 
-/**
- * Frontière d'erreur des routes. Une vraie 404 garde la page dédiée ; tout le
- * reste (chunk `lazy()` qui échoue après un déploiement, erreur de rendu) est
- * annoncé comme tel plutôt que déguisé en « page introuvable ».
- */
 const ErrorPage = () => {
   const error = useRouteError();
   const { t } = useTranslation();

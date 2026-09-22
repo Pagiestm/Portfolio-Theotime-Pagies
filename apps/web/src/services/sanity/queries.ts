@@ -1,13 +1,5 @@
 import groq from 'groq';
 
-/**
- * Requêtes GROQ.
- *
- * Chaque requête projette exactement les champs consommés par les vues : le
- * document brut n'atteint jamais les composants, et ajouter un champ dans le
- * Studio ne change rien tant qu'il n'est pas demandé ici.
- */
-
 const LOCALE = '{ fr, en }';
 const HEADER = `{ kicker ${LOCALE}, title ${LOCALE}, body ${LOCALE} }`;
 const TECH = '{ label, iconKey }';

@@ -1,12 +1,5 @@
 import type { StructureResolver } from 'sanity/structure';
 
-/**
- * Navigation du Studio.
- *
- * Les documents uniques (réglages, pages) sont épinglés en haut et ouverts
- * directement en édition : sans ça, Sanity les présenterait comme des listes
- * où l'on pourrait créer un second exemplaire par erreur.
- */
 const SINGLETONS: Array<[type: string, title: string, icon: string]> = [
   ['siteSettings', 'Réglages du site', '⚙️'],
   ['homePage', 'Accueil', '🏠'],

@@ -8,11 +8,6 @@ export const useScrollProgress = ({ stickyOffset = 0 } = {}) => {
   const [progress, setProgress] = useState(0);
   const reduced = usePrefersReducedMotion();
 
-  /**
-   * La hauteur épinglée est mesurée, pas déduite de `innerHeight` : l'enfant
-   * sticky porte un `min-height`, et sur un écran bas (mobile en paysage) la
-   * formule surestimerait la course, empêchant `progress` d'atteindre 1.
-   */
   const metrics = useCallback(() => {
     const stage = stageRef.current;
     if (!stage) return null;
@@ -33,8 +28,7 @@ export const useScrollProgress = ({ stickyOffset = 0 } = {}) => {
       rafRef.current = null;
       const m = metrics();
       if (!m) return;
-      // L'enfant s'épingle à `top: stickyOffset`, pas à 0 : la progression
-      // démarre quand la scène atteint cette ligne, d'où l'origine décalée.
+
       const raw = (stickyOffset - m.top) / m.travel;
       setProgress(Math.max(0, Math.min(1, raw)));
     };
@@ -54,11 +48,6 @@ export const useScrollProgress = ({ stickyOffset = 0 } = {}) => {
     };
   }, [metrics, stickyOffset]);
 
-  /**
-   * Amène la scène à une progression donnée. `documentTop` vient d'un
-   * `getBoundingClientRect()` et non d'`offsetTop`, qui serait relatif au
-   * `<main>` positionné et raterait la cible de la hauteur du header.
-   */
   const scrollToProgress = useCallback(
     (value) => {
       const m = metrics();

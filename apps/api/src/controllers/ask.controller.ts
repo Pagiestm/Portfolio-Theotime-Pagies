@@ -3,7 +3,6 @@ import { parseAskRequest } from '../models/ask.model.ts';
 import { ValidationError } from '../models/errors.model.ts';
 import * as assistant from '../services/assistant.service.ts';
 
-/** Reçoit la question, la valide, délègue au service, renvoie la réponse. */
 export const ask = async (c: Context) => {
   const body = await c.req.json().catch(() => {
     throw new ValidationError('corps JSON attendu');

@@ -8,19 +8,6 @@ import {
   type TeamMode,
 } from '@portfolio/shared';
 
-/**
- * Une réalisation du portfolio.
- *
- * Le tri de l'index se fait sur `endDate`, une vraie date, et non plus en
- * devinant le dernier mois cité dans un titre du genre « avril à mai 2025 ».
- * `period` reste affiché tel quel, mais ne pilote plus l'ordre.
- *
- * Le cadre, le type de livrable et le mode de réalisation sont des listes
- * fermées : ce sont les filtres de la page Réalisations, et un filtre ne
- * supporte pas les variantes d'orthographe. Les libellés affichés sur le site
- * vivent dans son `i18n/`, traduits ; ici seuls les intitulés du formulaire.
- */
-
 const CATEGORY_TITLES: Record<ProjectCategory, string> = {
   school: 'Projet scolaire',
   personal: 'Projet perso',

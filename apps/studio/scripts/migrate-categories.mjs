@@ -1,25 +1,8 @@
-/**
- * Remplace le texte libre « Type de projet » (`kicker`) par les listes fermées
- * `category`, `kinds` et `team`.
- *
- * Le cadre se déduit de l'ancien texte. Le type de livrable et le mode de
- * réalisation sont devinés, l'un d'après la stack, l'autre d'après le texte du
- * projet : la simulation affiche le résultat pour qu'il soit relu, et le Studio
- * permet de corriger après coup.
- *
- * Rejouable : un projet déjà migré (`category` défini) est ignoré. Ne touche
- * que les documents publiés : publier ou abandonner les brouillons avant.
- *
- *   npx sanity exec scripts/migrate-categories.mjs --with-user-token -- --dry-run
- *   npx sanity exec scripts/migrate-categories.mjs --with-user-token
- */
-
 import { getCliClient } from 'sanity/cli';
 
 const dryRun = process.argv.includes('--dry-run');
 const client = getCliClient({ apiVersion: '2024-10-01' });
 
-// « Projet » contient « pro » : on cherche le mot entier ou l'adjectif complet.
 const categoryOf = (kicker = '') => {
   const text = kicker.toLowerCase();
   if (/professionnel|\bpro\b/.test(text)) return 'professional';
@@ -39,8 +22,7 @@ const kindsOf = (stack = []) => {
   const kinds = Object.entries(KIND_BY_STACK)
     .filter(([, labels]) => has(labels))
     .map(([kind]) => kind);
-  // Un livrable mobile, bureau ou no-code n'est pas aussi un site web ;
-  // tout le reste, API comprise, l'est par défaut.
+
   const nonWeb = kinds.some((kind) => ['mobile', 'desktop', 'nocode'].includes(kind));
   if (!nonWeb) kinds.unshift('web');
   return kinds;

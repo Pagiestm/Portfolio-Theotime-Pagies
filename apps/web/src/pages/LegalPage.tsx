@@ -1,14 +1,6 @@
 import { useTranslation } from '../i18n/useTranslation';
 import { useSettings } from '../hooks/useSettings';
 
-/**
- * Mentions légales.
- *
- * L'identité de l'éditeur vient des réglages Sanity plutôt que du texte traduit :
- * le nom et l'adresse de contact sont déjà saisis une fois dans le Studio, les
- * recopier ici les ferait diverger au premier changement. Les textes portent des
- * marqueurs `{name}` et `{email}` que l'on substitue au rendu.
- */
 const LegalPage = () => {
   const { t } = useTranslation();
   const settings = useSettings();

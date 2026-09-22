@@ -16,7 +16,6 @@ const MainLayout = () => {
 
   return (
     <div className="relative flex min-h-screen flex-col bg-bg">
-      {/* Au clavier, sans ce lien il faut traverser tout le menu à chaque page. */}
       <a
         href="#contenu"
         className="sr-only z-50 focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:border-2 focus:border-accent focus:bg-surface focus:px-4 focus:py-2 focus:text-ink"
@@ -24,8 +23,6 @@ const MainLayout = () => {
         {t.skipToContent}
       </a>
 
-      {/* three.js pèse l'essentiel du bundle : la scène animée ne se charge
-          que sur l'accueil, les autres pages gardent le décor statique. */}
       <SceneBackground animated={pathname === paths.home} />
       <ScrollToTop />
       <Header />
