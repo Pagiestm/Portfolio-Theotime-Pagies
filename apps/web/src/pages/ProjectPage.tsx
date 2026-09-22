@@ -5,6 +5,7 @@ import ActionLink from '../components/common/ActionLink';
 import StackBadges from '../features/work/components/StackBadges';
 import ProjectGallery from '../features/work/components/ProjectGallery';
 import ProjectContent from '../features/work/components/ProjectContent';
+import ProjectCover from '../features/work/components/ProjectCover';
 import { useTranslation } from '../i18n/useTranslation';
 import { imageUrl } from '../services/sanity/image';
 import { paths } from '../routes/paths';
@@ -59,15 +60,13 @@ const ProjectPage = () => {
       </h1>
       <p className="m-0 mb-11 max-w-[62ch] text-[19px] text-muted">{localize(project.summary)}</p>
 
-      {/* object-contain : ce sont des captures d'écran, les recadrer les rend illisibles. */}
-      {cover && (
-        <div
-          className="mb-[2px] flex items-center justify-center border-2 border-line bg-surface-2"
-          style={{ height: 'clamp(230px,40vh,440px)' }}
-        >
-          <img src={cover} alt={project.title} className="block h-full w-full object-contain" />
-        </div>
-      )}
+      <ProjectCover
+        src={cover}
+        title={project.title}
+        loading="eager"
+        className="mb-[2px] border-2 border-line"
+        style={{ height: 'clamp(230px,40vh,440px)' }}
+      />
 
       <MetaGrid items={meta} tone="boxed" className="mb-[52px]" />
 
