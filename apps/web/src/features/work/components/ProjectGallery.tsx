@@ -14,8 +14,9 @@ const ProjectGallery = ({ images, title }: { images?: SanityImage[] | null; titl
     >
       {images.map((image, index) => {
         const thumb = imageUrl(image, 720);
-        const thumbSet = imageSrcSet(image, [400, 640, 900]);
-        const full = imageUrl(image, 1800);
+        const thumbSet = imageSrcSet(image, [400, 640, 900, 1200]);
+        const full = imageUrl(image, undefined, 90);
+        const fullSet = imageSrcSet(image, [1600, 2400, 3200], 90);
         if (!thumb) return null;
 
         return (
@@ -25,7 +26,7 @@ const ProjectGallery = ({ images, title }: { images?: SanityImage[] | null; titl
             delay={Math.min(index, 5) * 60}
             className="flex items-center justify-center bg-surface-2"
           >
-            <Zoom zoomImg={{ src: full }}>
+            <Zoom zoomImg={{ src: full, srcSet: fullSet, sizes: '100vw' }}>
               <img
                 src={thumb}
                 srcSet={thumbSet}
