@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Le site - Vite, React 18, Tailwind. Lit son contenu dans Sanity.",
   "engines": {
-    "node": ">=22.23.2"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "vite",

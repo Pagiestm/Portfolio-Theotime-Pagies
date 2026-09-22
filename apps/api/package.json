@@ -25,8 +25,5 @@
     "@hono/node-server": "^2.1.1",
     "hono": "^4.13.8"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=22.23.2"
-  }
+  "devDependencies": {}
 }

@@ -81,9 +81,76 @@ cause, pas seulement la ligne.
 Les paquets épinglés sont exclus des mises à jour : aucune PR ne les concernera.
 Retirer une épingle, c'est retirer sa règle dans `renovate.json` en même temps.
 
+## Node
+
+Une seule version vaut partout : **24**. Elle est déclarée à trois endroits, et
+pas un de plus, parce qu'aucun lecteur ne les lit tous :
+
+| Déclaration                 | Qui la lit                                                 |
+| --------------------------- | ---------------------------------------------------------- |
+| `.nvmrc`                    | fnm/nvm en local, et les workflows via `node-version-file` |
+| `engines.node` racine       | npm, qui avertit (`EBADENGINE`) si la machine dérive       |
+| `engines.node` d'`apps/web` | Vercel, qui ignore `.nvmrc` — c'est le projet déployé      |
+
+Le format `24.x` est celui que Vercel documente. Les workflows lisent `.nvmrc`
+au lieu de répéter le nombre : on ne monte de version qu'à un seul endroit.
+
+Les autres manifestes (`api`, `studio`, `shared`) n'en déclarent pas : ils sont
+`private`, jamais publiés, et l'API est embarquée dans le déploiement du site
+plutôt que déployée à part. Leur en donner un n'ajouterait qu'un endroit de plus
+à modifier à la prochaine montée.
+
+Le format compte. `>=22.23.2`, qu'utilisait le dépôt, se résout chez Vercel en
+« dernière 24.x » d'après sa table de correspondance : la production tournait
+donc en 24 pendant que la CI validait en 22, sans que rien ne le signale. Une
+borne ouverte ne déclare pas une version, elle en tolère une inconnue.
+
+`@types/node` suit le runtime et ne le précède jamais : le majeur des types
+reste celui de `engines`.
+
+`packageManager` suit la même logique : il déclare le npm **livré avec Node 24**
+(11.19.0), pas un autre. Corepack n'étant pas présent, personne ne l'applique en
+local — mais Vercel le lit. Y laisser un npm différent, c'était faire tourner la
+production sur un gestionnaire que la CI n'utilise jamais.
+
+Deux garde-fous rendent la règle opposable plutôt que déclarative :
+
+- `.npmrc` porte `engine-strict=true`. Sans lui, npm se contente d'un
+  avertissement et installe quand même — or un npm plus ancien réécrit le
+  lockfile en supprimant les métadonnées `libc` (`glibc`/`musl`) des binaires
+  natifs, sous un message « up to date ». Le dégât ne se voit qu'au déploiement.
+  Avec lui, l'installation échoue en `EBADENGINE` et le lockfile reste intact.
+- `turbo.json` liste `.nvmrc` dans `globalDependencies`. Le cache de Turborepo
+  ignore le runtime : sans cette ligne, changer de version de Node resservait
+  les artefacts bâtis avec l'ancienne, et la barrière qualité affichait un vert
+  trompeur (`FULL TURBO`).
+
+Pour s'y conformer sans installer Node à la main, `fnm use` lit `.nvmrc` — et le
+hook `--use-on-cd` le fait tout seul en entrant dans le dépôt.
+
+### Monter de version
+
+Les trois déclarations changent ensemble, puis :
+
+```bash
+fnm use --install-if-missing
+npm install --engine-strict=false   # voir ci-dessous
+npm install                         # confirme en strict
+npx turbo run typecheck test build --force
+```
+
+La passe `--engine-strict=false` n'est pas facultative : npm valide les `engines`
+**mémorisés dans le lockfile**, pas ceux des `package.json`. Il refuse donc
+l'installation en citant l'ancienne version alors que les fichiers portent déjà
+la nouvelle — il faut le laisser rafraîchir le lockfile une fois pour sortir de
+l'impasse.
+
+Et ne jamais descendre sous le npm qui a écrit le lockfile, pour la raison dite
+plus haut.
+
 ## ESLint
 
-La configuration est à plat (`apps/web/eslint.config.js`), sur ESLint 10. Deux
+La configuration est à plat (`eslint.config.mjs`, à la racine), sur ESLint 10. Deux
 règles apparues avec `eslint-plugin-react-hooks` 7 y sont désactivées —
 `set-state-in-effect` et `refs` — le temps de traiter les sept occurrences
 qu'elles signalent, dans `Reveal`, `Header`, `useMediaQuery`, `usePagination` et
