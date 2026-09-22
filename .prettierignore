@@ -5,3 +5,4 @@ public
 .sanity
 CHANGELOG.md
 .turbo
+.claude/settings.local.json
