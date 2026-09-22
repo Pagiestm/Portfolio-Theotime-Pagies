@@ -108,8 +108,12 @@ borne ouverte ne déclare pas une version, elle en tolère une inconnue.
 `@types/node` suit le runtime et ne le précède jamais : le majeur des types
 reste celui de `engines`.
 
-`packageManager` suit la même logique : il déclare le npm **livré avec Node 24**
-(11.19.0), pas un autre. Corepack n'étant pas présent, personne ne l'applique en
+`packageManager` suit la même logique, à une nuance près : il déclare la **ligne**
+de npm livrée avec Node 24 (`11.19.x`), pas une version au patch près. `.nvmrc`
+dit `24`, donc le patch de Node flotte — la CI a tourné en 24.20.0 quand la
+machine était en 24.21.0 — et le npm embarqué flotte avec lui. Exiger l'égalité
+exacte serait intenable ; c'est la ligne qui doit concorder, parce que c'est elle
+qui détermine le format du lockfile. Corepack n'étant pas présent, personne ne l'applique en
 local — mais Vercel le lit. Y laisser un npm différent, c'était faire tourner la
 production sur un gestionnaire que la CI n'utilise jamais.
 
