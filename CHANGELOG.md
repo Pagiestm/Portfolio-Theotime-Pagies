@@ -1,3 +1,14 @@
+## [1.10.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.9.0...v1.10.0) (2026-09-22)
+
+### Features
+
+* **web:** décrire le site et les projets en données structurées ([99705f9](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/99705f978a7258b544ebc23e00ea394796626e10))
+* **web:** mesurer l'audience avec Vercel Analytics ([d8aebe5](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/d8aebe522394bf894d101c47ff1ec3b5de542ccf))
+
+### Performance Improvements
+
+* **web:** servir les images à la taille de l'écran ([21b365a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/21b365abb809ef0ac8f8b03b16fd5129d0dcd2e0))
+
 ## [1.9.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.8.0...v1.9.0) (2026-09-22)
 
 ### Features
