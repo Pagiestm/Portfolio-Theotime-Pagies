@@ -6,7 +6,7 @@ import { router } from '../routes';
 const App = () => (
   <I18nProvider>
     <RouterProvider router={router} />
-    <Analytics />
+    <Analytics scriptSrc="/mesure/script.js" endpoint="/mesure" />
   </I18nProvider>
 );
 
