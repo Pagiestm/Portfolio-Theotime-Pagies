@@ -1,16 +1,18 @@
 import { lazy, Suspense } from 'react';
-import { scene } from '../../../config/site';
+import { scene } from '../../../config/scene';
 
 // three.js pèse l'essentiel du bundle : on le sort du chargement initial.
 const HeroScene = lazy(() => import('./HeroScene'));
 
-const SceneBackground = () => (
+const SceneBackground = ({ animated = true }: { animated?: boolean }) => (
   <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-    <div className="absolute inset-0 opacity-30">
-      <Suspense fallback={null}>
-        <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
-      </Suspense>
-    </div>
+    {animated && (
+      <div className="absolute inset-0 opacity-30">
+        <Suspense fallback={null}>
+          <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
+        </Suspense>
+      </div>
+    )}
 
     <div className="absolute inset-0 flex flex-col justify-between">
       {Array.from({ length: 8 }, (_, i) => (

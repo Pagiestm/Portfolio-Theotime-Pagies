@@ -3,7 +3,7 @@ import ProgressRail from '../../../components/common/ProgressRail';
 import type { HomeContent } from '../../../services/sanity/types';
 import { useScrollProgress } from '../../../hooks/useScrollProgress';
 import { useTranslation } from '../../../i18n/useTranslation';
-import { scene } from '../../../config/site';
+import { scene } from '../../../config/scene';
 
 const HeroScene = lazy(() => import('../../scene/components/HeroScene'));
 

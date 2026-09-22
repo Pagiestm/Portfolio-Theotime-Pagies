@@ -8,6 +8,38 @@ export default {
   prev: 'Étape précédente',
   next: 'Étape suivante',
   menu: 'Menu',
+  skipToContent: 'Aller au contenu',
+  legalTitle: 'Mentions légales',
+  legal: {
+    intro:
+      'Informations légales relatives à ce site, conformément à la loi pour la confiance dans l’économie numérique.',
+    sections: [
+      {
+        heading: 'Éditeur',
+        body: 'Ce site est édité à titre personnel par {name}, personne physique, joignable à l’adresse {email}. Directeur de la publication : {name}.',
+      },
+      {
+        heading: 'Hébergement',
+        body: 'Vercel Inc., 440 N. Barranca Ave #4133, Covina, CA 91723, États-Unis - vercel.com.',
+      },
+      {
+        heading: 'Propriété intellectuelle',
+        body: 'Les textes, visuels et captures présentés appartiennent à leur auteur ou aux organisations concernées par les projets décrits. Le code source du site est public et consultable sur GitHub.',
+      },
+      {
+        heading: 'Données personnelles',
+        body: 'Le formulaire de contact transmet le nom, l’adresse e-mail et le message renseignés, dans le seul but de permettre une réponse. Aucune donnée n’est conservée dans une base, revendue, ni utilisée à des fins publicitaires. Le formulaire est protégé des envois automatisés par reCAPTCHA, service de Google soumis à sa propre politique de confidentialité.',
+      },
+      {
+        heading: 'Vos droits',
+        body: 'Vous pouvez demander l’accès, la rectification ou l’effacement des informations que vous avez transmises en écrivant à {email}.',
+      },
+      {
+        heading: 'Cookies',
+        body: 'Ce site ne dépose aucun cookie de mesure d’audience ni de publicité. La langue choisie est conservée dans le stockage local du navigateur et ne quitte jamais votre appareil.',
+      },
+    ],
+  },
 
   selection: 'Sélection',
   indexTitle: 'Index des réalisations',

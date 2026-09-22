@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import { prerender } from './vite.prerender';
 
 /**
  * Sert l'API pendant `npm run dev`, exactement comme Vercel le fait en
@@ -35,7 +36,7 @@ const apiDev = (): Plugin => ({
 });
 
 export default defineConfig({
-  plugins: [react(), apiDev()],
+  plugins: [react(), apiDev(), prerender()],
 
   resolve: {
     /**

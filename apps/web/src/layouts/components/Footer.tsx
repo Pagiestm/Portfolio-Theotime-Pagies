@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from '../../i18n/useTranslation';
+import { paths } from '../../routes/paths';
 import { useSettings } from '../../hooks/useSettings';
 
 const Footer = () => {
-  const { localize } = useTranslation();
+  const { t, localize } = useTranslation();
   const settings = useSettings();
 
   const links = [
@@ -18,6 +20,9 @@ const Footer = () => {
           © {new Date().getFullYear()} {settings.name} - {localize(settings.role)}
         </span>
         <span className="flex flex-wrap gap-[22px]">
+          <Link to={paths.legal} className="text-muted hover:text-ink">
+            {t.legalTitle}
+          </Link>
           {links.map((link) => (
             <a
               key={link.label}

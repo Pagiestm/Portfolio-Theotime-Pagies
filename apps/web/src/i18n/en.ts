@@ -8,6 +8,37 @@ export default {
   prev: 'Previous step',
   next: 'Next step',
   menu: 'Menu',
+  skipToContent: 'Skip to content',
+  legalTitle: 'Legal notice',
+  legal: {
+    intro: 'Legal information about this website.',
+    sections: [
+      {
+        heading: 'Publisher',
+        body: 'This website is published in a personal capacity by {name}, a private individual, reachable at {email}. Publication director: {name}.',
+      },
+      {
+        heading: 'Hosting',
+        body: 'Vercel Inc., 440 N. Barranca Ave #4133, Covina, CA 91723, United States - vercel.com.',
+      },
+      {
+        heading: 'Intellectual property',
+        body: 'Texts, visuals and screenshots belong to their author or to the organisations involved in the projects described. The website source code is public on GitHub.',
+      },
+      {
+        heading: 'Personal data',
+        body: 'The contact form sends the name, email address and message you provide, for the sole purpose of replying. No data is stored in a database, sold, or used for advertising. The form is protected against automated submissions by reCAPTCHA, a Google service governed by its own privacy policy.',
+      },
+      {
+        heading: 'Your rights',
+        body: 'You may request access to, correction of, or deletion of the information you sent by writing to {email}.',
+      },
+      {
+        heading: 'Cookies',
+        body: 'This website sets no analytics or advertising cookies. The language you choose is kept in your browser local storage and never leaves your device.',
+      },
+    ],
+  },
 
   selection: 'Selection',
   indexTitle: 'Work index',

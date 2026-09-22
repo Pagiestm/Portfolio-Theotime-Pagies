@@ -1,10 +1,10 @@
 /**
- * Design tokens — source unique de vérité, design system « Modernist ».
+ * Design tokens - source unique de vérité, design system « Modernist ».
  *
  * En Tailwind 4, `@theme` remplace `tailwind.config.js` : chaque variable y
  * devient à la fois une variable CSS utilisable telle quelle et une classe
  * utilitaire. `--color-accent` donne ainsi `bg-accent`, `text-accent`,
- * `border-accent` — et reste lisible en `var(--color-accent)` dans un style
+ * `border-accent` - et reste lisible en `var(--color-accent)` dans un style
  * calculé. Plus de valeur déclarée à deux endroits.
  */
 @theme {
