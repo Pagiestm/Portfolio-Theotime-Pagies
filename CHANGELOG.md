@@ -1,3 +1,9 @@
+## [1.10.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.1...v1.10.2) (2026-09-22)
+
+### Bug Fixes
+
+* **web:** revenir au chemin de mesure standard ([9ac263a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/9ac263ae72eac51560bb541367d3c97f9a2869a3))
+
 ## [1.10.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.0...v1.10.1) (2026-09-22)
 
 ### Bug Fixes
