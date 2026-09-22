@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.0...v1.7.1) (2026-09-22)
+
+### Bug Fixes
+
+* **deps:** update sanity monorepo to v6 ([ee2e861](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/ee2e861eca1a6517fda64c7e7b3902d106329388))
+* **studio:** déplacer autoUpdates sous deployment ([8462e8a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/8462e8aadce9a3fc517ff300ba329799d99f0aa8))
+
 ## [1.7.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.6.0...v1.7.0) (2026-09-22)
 
 ### Features
