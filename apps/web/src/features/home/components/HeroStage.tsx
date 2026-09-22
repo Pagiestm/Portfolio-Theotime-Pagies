@@ -40,7 +40,6 @@ const HeroStage = ({ chapters }: { chapters: HomeContent['chapters'] }) => {
   const count = chapters.length;
   const activeIndex = Math.min(count - 1, Math.floor(progress * count + 0.0001));
 
-  // 0.45 vise le milieu du segment du chapitre plutôt que sa toute première frame.
   const goToChapter = (index) => scrollToProgress((index + 0.45) / count);
 
   return (

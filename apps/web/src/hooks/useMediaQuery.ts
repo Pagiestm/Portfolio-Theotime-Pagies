@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
-export const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia(query).matches
+export const useMediaQuery = (query: string) => {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const mql = window.matchMedia(query);
+      mql.addEventListener('change', onStoreChange);
+      return () => mql.removeEventListener('change', onStoreChange);
+    },
+    [query]
   );
 
-  useEffect(() => {
-    const mql = window.matchMedia(query);
-    const onChange = (e) => setMatches(e.matches);
-    setMatches(mql.matches);
-    mql.addEventListener('change', onChange);
-    return () => mql.removeEventListener('change', onChange);
-  }, [query]);
-
-  return matches;
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false
+  );
 };
 
-/** Le breakpoint « wide » de la maquette : la nav complète s'affiche à partir de 1180px. */
 export const useIsWide = () => useMediaQuery('(min-width: 1180px)');
 
 export const usePrefersReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');

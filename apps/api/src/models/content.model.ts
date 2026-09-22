@@ -1,5 +1,3 @@
-/** Formes du contenu Sanity telles que projetées par la requête GROQ de l'API. */
-
 export type Localized = { fr?: string | null; en?: string | null };
 
 export type Project = {

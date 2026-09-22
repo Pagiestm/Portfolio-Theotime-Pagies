@@ -15,11 +15,6 @@ import type { HomeContent, JourneyEntry, Project } from '../services/sanity/type
 
 const TECH_COUNT = 10;
 
-/**
- * En-tête commun des sections de l'accueil : numéro, surtitre, grand titre.
- * Le numéro suit l'ordre réel d'affichage, une section masquée ne laisse pas
- * de trou dans la numérotation.
- */
 const SectionHeader = ({
   number,
   kicker,

@@ -7,7 +7,7 @@ import ProjectGallery from '../features/work/components/ProjectGallery';
 import ProjectContent from '../features/work/components/ProjectContent';
 import ProjectCover from '../features/work/components/ProjectCover';
 import { useTranslation } from '../i18n/useTranslation';
-import { imageUrl } from '../services/sanity/image';
+import { imageSrcSet, imageUrl } from '../services/sanity/image';
 import { paths } from '../routes/paths';
 import type { Project } from '../services/sanity/types';
 
@@ -41,6 +41,7 @@ const ProjectPage = () => {
   });
 
   const cover = imageUrl(project.cover ?? undefined, 1600);
+  const coverSet = imageSrcSet(project.cover ?? undefined);
   const content = localize(project.content);
 
   return (
@@ -62,6 +63,8 @@ const ProjectPage = () => {
 
       <ProjectCover
         src={cover}
+        srcSet={coverSet}
+        sizes="(max-width: 1320px) 100vw, 1280px"
         title={project.title}
         loading="eager"
         className="mb-[2px] border-2 border-line"

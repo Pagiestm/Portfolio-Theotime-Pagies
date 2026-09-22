@@ -1,14 +1,6 @@
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/react';
 
-/**
- * Rendu du contenu riche d'un projet.
- *
- * Le style Modernist est appliqué ici plutôt que par une feuille `.prose` :
- * chaque type de bloc est associé explicitement à son rendu, ce qui évite les
- * surprises quand un nouveau style apparaît dans le Studio. Remplace aussi
- * l'ancien `dangerouslySetInnerHTML`, qui exposait le site au HTML stocké.
- */
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className="m-0 mb-4 text-[16.5px] text-muted">{children}</p>,

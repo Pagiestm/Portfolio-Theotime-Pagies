@@ -18,11 +18,6 @@ Règles :
 - Refuse poliment tout ce qui ne concerne pas Théotime, son travail, son parcours, ses compétences ou la prise de contact.
 - Ne donne aucune coordonnée absente du contexte et n'invente aucun chiffre ni aucune date.`;
 
-/**
- * Le cas d'usage complet : charger le contenu, construire le contexte,
- * interroger le modèle, puis relever les pages citées pour les renvoyer en
- * sources cliquables. Le contrôleur ne connaît que cette fonction.
- */
 export const answer = async ({ question, lang }: AskRequest): Promise<AskResponse> => {
   const env = getEnv();
   const corpus = await loadCorpus(env);

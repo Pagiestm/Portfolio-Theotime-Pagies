@@ -10,11 +10,6 @@ const toggleIn = <T>(list: T[], item: T) =>
 
 const labelsOf = (project: Project) => (project.stack ?? []).map((tech) => tech?.label ?? '');
 
-/**
- * Les valeurs présentes dans au moins un projet, dans l'ordre du registre
- * partagé, avec leur effectif. Une valeur que personne ne porte n'est pas
- * proposée : une case qui ne filtre rien n'est que du bruit.
- */
 const optionsOf = <T extends string>(
   order: readonly T[],
   valuesOf: (project: Project) => T[],
@@ -41,21 +36,11 @@ const techOptionsOf = (projects: Project[]): FilterOption<string>[] => {
     .map(([value, count]) => ({ value, count }));
 };
 
-/**
- * Recherche plein texte et filtres combinés de la page Réalisations.
- *
- * Entre familles, les filtres se cumulent (ET) : « scolaire » et « mobile »
- * donne les projets scolaires mobiles. Dans une même famille, ils s'ajoutent
- * (OU) : « web » et « API » donne les projets qui sont l'un ou l'autre.
- *
- * Les projets sont passés en argument plutôt qu'importés : ils viennent du
- * chargeur de route, et le hook reste testable sans réseau.
- */
 export const useProjectFilters = (projects: Project[] = []) => {
   const [query, setQuery] = useState('');
   const [categories, setCategories] = useState<ProjectCategory[]>([]);
   const [kinds, setKinds] = useState<ProjectKind[]>([]);
-  // Solo ou équipe s'excluent : un seul choix, `null` pour « tous ».
+
   const [team, setTeam] = useState<TeamMode | null>(null);
   const [tech, setTech] = useState<string[]>([]);
 

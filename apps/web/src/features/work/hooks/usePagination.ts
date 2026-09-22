@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-/**
- * Affichage progressif d'une liste (« Voir plus »), remis à zéro dès que
- * la liste source change - sinon un filtre laisserait le compteur trop haut.
- */
 export const usePagination = (items, step = 3) => {
   const [visible, setVisible] = useState(step);
+  const [source, setSource] = useState(items);
 
-  useEffect(() => setVisible(step), [items, step]);
+  if (source !== items) {
+    setSource(items);
+    setVisible(step);
+  }
 
   return {
     items: items.slice(0, visible),

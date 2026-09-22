@@ -3,14 +3,6 @@ import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-/**
- * Le « couloir » du parcours : le scroll vertical fait défiler une piste
- * horizontale, et chaque carte se rapproche ou s'éloigne en 3D selon sa
- * distance au centre. Portage de `_hstage()` / `_hStep()` de Portfolio.dc.html.
- *
- * Les styles par frame sont écrits directement sur le DOM : les passer par
- * un state React déclencherait un rendu complet à 60 fps pour rien.
- */
 export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
   const stageRef = useRef(null);
   const frameRef = useRef(null);
@@ -60,7 +52,6 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       const g = geometry();
       if (!g) return;
 
-      // Le cadre s'épingle à `top: stickyOffset` : la progression démarre là.
       const progress = clamp((stickyOffset - g.top) / g.travel, 0, 1);
       const target = -progress * g.shift;
 
@@ -69,8 +60,6 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       const settled = Math.abs(target - offset) < 0.35;
       if (settled) offset = target;
 
-      // Rien n'a bougé et l'interpolation est stabilisée : on évite de forcer
-      // un recalcul de layout pour chaque carte à chaque frame.
       if (settled && settledAt === progress) return;
       settledAt = settled ? progress : null;
 
@@ -133,8 +122,6 @@ export const useHorizontalStage = ({ stickyOffset = 0 } = {}) => {
       draw();
     };
 
-    // Sans ce garde, la boucle continuerait de forcer le layout à 60 fps
-    // tant que la page reste montée, même couloir hors écran.
     const start = () => {
       if (!raf) raf = requestAnimationFrame(frame);
     };

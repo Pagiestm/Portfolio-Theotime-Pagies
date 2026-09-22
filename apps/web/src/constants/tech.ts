@@ -51,16 +51,6 @@ import {
 import { DiMysql, DiSass } from 'react-icons/di';
 import { TECHNOLOGIES, type TechKey } from '@portfolio/shared';
 
-/**
- * Le logo de chaque technologie du registre partagé.
- *
- * Le type `Record<TechKey, IconType>` est le garde-fou : ajouter une clé dans
- * `@portfolio/shared` sans lui donner un logo ici fait échouer `tsc`. Le Studio
- * ne peut donc pas proposer une icône que le site ne saurait pas dessiner.
- *
- * Les entrées sans logo officiel (TDD, CI/CD, Merise…) reçoivent une icône
- * thématique, pour que les listes restent homogènes.
- */
 const ICONS: Record<TechKey, IconType> = {
   FaReact,
   FaVuejs,
@@ -111,11 +101,6 @@ const ICONS: Record<TechKey, IconType> = {
   Zapier: SiZapier,
 };
 
-/**
- * Registre complet côté site : libellé (du paquet partagé) + logo (d'ici).
- * Vit dans `constants/` et non dans une feature : `work` et `skills` le
- * consomment tous deux, il ne peut appartenir à aucune des deux.
- */
 export const TECH = Object.fromEntries(
   TECHNOLOGIES.map((tech) => [tech.key, { label: tech.label, Icon: ICONS[tech.key] }])
 ) as Record<TechKey, { label: string; Icon: IconType }>;

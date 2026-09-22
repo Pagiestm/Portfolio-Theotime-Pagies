@@ -18,7 +18,7 @@ type Status = 'idle' | 'loading' | 'error';
 export const useAssistant = (lang: string) => {
   const [messages, setMessages] = useState<AssistantMessage[]>([]);
   const [status, setStatus] = useState<Status>('idle');
-  /** La cause du dernier échec, pour choisir le message à afficher. */
+
   const [errorCode, setErrorCode] = useState<AssistantErrorCode | null>(null);
 
   const ask = useCallback(

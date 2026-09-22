@@ -163,8 +163,7 @@ export default {
   assistantSend: 'Envoyer',
   assistantClose: 'Fermer',
   assistantThinking: 'Je cherche dans les fiches',
-  // Un message par cause : chacune appelle une conduite différente, et « une
-  // erreur est survenue » laisse le visiteur sans rien à faire.
+
   assistantErrors: {
     rateLimited: "Beaucoup de questions d'un coup : réessayez dans une heure.",
     quota:

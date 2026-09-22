@@ -11,12 +11,15 @@ const Header = () => {
   const settings = useSettings();
   const wide = useIsWide();
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [lastPath, setLastPath] = useState(location.pathname);
 
-  useEffect(() => setMenuOpen(false), [location.pathname]);
-  useEffect(() => {
-    if (wide) setMenuOpen(false);
-  }, [wide]);
+  const menuOpen = panelOpen && !wide;
+
+  if (lastPath !== location.pathname) {
+    setLastPath(location.pathname);
+    setPanelOpen(false);
+  }
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -74,7 +77,7 @@ const Header = () => {
           ) : (
             <button
               type="button"
-              onClick={() => setMenuOpen((open) => !open)}
+              onClick={() => setPanelOpen((open) => !open)}
               aria-label={t.menu}
               aria-expanded={menuOpen}
               className="flex cursor-pointer flex-col items-center gap-[5px] border-2 border-line bg-transparent px-[13px] py-3 transition-colors hover:border-accent"
@@ -101,7 +104,7 @@ const Header = () => {
 
       <div
         role="presentation"
-        onClick={() => setMenuOpen(false)}
+        onClick={() => setPanelOpen(false)}
         className={`fixed inset-0 z-70 bg-black/60 transition-opacity duration-300 ${
           menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
@@ -120,7 +123,7 @@ const Header = () => {
           </span>
           <button
             type="button"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => setPanelOpen(false)}
             aria-label="Fermer le menu"
             className="flex cursor-pointer flex-col items-center gap-[5px] border-2 border-line bg-transparent px-[13px] py-3 transition-colors hover:border-accent"
           >
@@ -136,7 +139,7 @@ const Header = () => {
               key={item.to}
               to={item.to}
               end={item.to === paths.home}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => setPanelOpen(false)}
               className={({ isActive }) =>
                 `border-b border-line-soft py-5 text-[15px] font-bold uppercase tracking-[.05em] transition-colors ${
                   isActive ? 'text-accent' : 'text-ink hover:text-accent'
@@ -153,7 +156,7 @@ const Header = () => {
             <LangSwitch size="md" />
             <Link
               to={paths.contact}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => setPanelOpen(false)}
               className="border-2 border-accent bg-accent px-[18px] py-[14px] text-center text-[13px] font-bold uppercase tracking-[.04em] text-ink transition-colors hover:bg-transparent hover:text-accent"
             >
               {t.cta}

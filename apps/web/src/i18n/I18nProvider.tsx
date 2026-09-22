@@ -9,9 +9,7 @@ const readStoredLang = () => {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (LANGUAGES.includes(stored)) return stored;
-  } catch {
-    /* localStorage indisponible (navigation privée, cookies bloqués) */
-  }
+  } catch {}
   const nav = typeof navigator !== 'undefined' ? navigator.language : '';
   return nav.startsWith('en') ? 'en' : 'fr';
 };
@@ -23,18 +21,9 @@ const I18nProvider = ({ children }) => {
     document.documentElement.lang = lang;
     try {
       window.localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      /* ignoré volontairement */
-    }
+    } catch {}
   }, [lang]);
 
-  /**
-   * Résout une valeur localisée : soit une chaîne, soit `{ fr, en }`.
-   *
-   * Retombe sur le français quand la traduction est absente **ou vide** : dans
-   * le Studio, un champ anglais laissé de côté vaut la chaîne vide, et
-   * l'afficher tel quel laisserait un blanc dans la page.
-   */
   const localize = useCallback(
     (value) => {
       if (!value || typeof value !== 'object' || Array.isArray(value)) return value;

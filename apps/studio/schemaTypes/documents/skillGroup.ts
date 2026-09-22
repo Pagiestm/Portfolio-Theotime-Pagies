@@ -1,11 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
-/**
- * Un groupe de compétences (Front-end, Back-end…).
- *
- * Volontairement sans niveau ni jauge : afficher « bases » ou « intermédiaire »
- * ne peut que jouer contre soi en lecture rapide.
- */
 export const skillGroup = defineType({
   name: 'skillGroup',
   title: 'Groupe de compétences',

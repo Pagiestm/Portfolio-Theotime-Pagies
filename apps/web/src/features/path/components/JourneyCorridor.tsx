@@ -44,9 +44,7 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
         style={{
           top: HEADER_HEIGHT,
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-          // Le minimum ne doit jamais dépasser le viewport : sinon, sur un écran
-          // court (mobile paysage), la barre passerait sous le pli et deviendrait
-          // inaccessible à cause de overflow-hidden.
+
           minHeight: `min(520px, calc(100vh - ${HEADER_HEIGHT}px))`,
         }}
       >

@@ -4,7 +4,6 @@ import type { Locale, ProjectCategory, ProjectKind, TeamMode } from '@portfolio/
 export type { Locale };
 
 export type SanityImage = {
-  /** Identifiant de l'entrée quand l'image est dans un tableau (galerie). */
   _key?: string;
   asset?: { _ref?: string; _id?: string; url?: string };
   alt?: string;
@@ -73,7 +72,7 @@ export type HomeContent = {
   marquee: Array<{ label: Locale; value: Locale }>;
   selectionKicker?: Locale | null;
   indexTitle?: Locale | null;
-  /** Sections optionnelles ; `undefined` vaut affiché, un document ancien ne les cache pas. */
+
   showStack?: boolean | null;
   stackTitle?: Locale | null;
   showJourney?: boolean | null;

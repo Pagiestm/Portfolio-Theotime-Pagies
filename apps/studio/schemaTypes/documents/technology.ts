@@ -1,13 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { TECHNOLOGIES } from '@portfolio/shared';
 
-/**
- * Une technologie ou une méthode, référencée par les projets et par les
- * groupes de compétences.
- *
- * La liste des icônes vient du registre partagé avec le site : ce qui est
- * proposé ici est exactement ce que le site sait dessiner, sans recopie.
- */
 export const technology = defineType({
   name: 'technology',
   title: 'Technologie',
