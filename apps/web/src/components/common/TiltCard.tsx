@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode, useCallback, useRef } from 'react';
 import { usePrefersReducedMotion } from '../../hooks/useMediaQuery';
-import { scene } from '../../config/site';
+import { scene } from '../../config/scene';
 
 interface TiltCardProps {
   className?: string;

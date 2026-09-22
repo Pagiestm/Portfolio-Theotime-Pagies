@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { scene } from '../../../config/site';
+import { scene } from '../../../config/scene';
 
 // three.js pèse l'essentiel du bundle : on le sort du chargement initial.
 const HeroScene = lazy(() => import('./HeroScene'));
