@@ -31,6 +31,11 @@
       "enabled": false
     },
     {
+      "description": "packageManager doit suivre le npm livré avec Node, pas le dernier publié : le relever seul ferait installer la production par un gestionnaire que la CI n'utilise jamais. Il se met à jour avec Node, dans docs/versions.md.",
+      "matchPackageNames": ["npm"],
+      "enabled": false
+    },
+    {
       "description": "Preset de changelog tenu en majeure 9 : la 10 exige un writer que semantic-release ne fournit pas.",
       "matchPackageNames": ["conventional-changelog-conventionalcommits"],
       "matchUpdateTypes": ["major"],
