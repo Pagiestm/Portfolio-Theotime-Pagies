@@ -16,10 +16,10 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) · [v
 - Avant de proposer un changement, tout passe depuis la racine : `lint`,
   `typecheck`, `test`, `format:check`, `build`.
 - Vérifier le rendu dans le navigateur dès que l'affichage change.
-- Commits Conventional Commits, en français, corps expliquant le _pourquoi_ ; le
-  type décide de la version publiée ([docs/versions.md](docs/versions.md)).
+- Commits Conventional Commits en français, corps expliquant le _pourquoi_ ; le type fixe la version ([docs/versions.md](docs/versions.md)).
 - Les `feat/…` et `fix/…` vont dans `develop` ; `master` publie en production.
-- Commentaires et documentation en français, le _pourquoi_ plutôt que le _quoi_.
+- **Aucun commentaire dans le code** : le _pourquoi_ va au message de commit.
+  Documentation en français, trait d'union simple et jamais de tiret cadratin.
 
 ## Commandes
 
