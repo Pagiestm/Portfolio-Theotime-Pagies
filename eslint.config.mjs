@@ -93,6 +93,7 @@ export default [
       'apps/studio/sanity.*.ts',
       '**/*.config.{js,mjs,ts}',
       'scripts/**',
+      '**/scripts/**',
     ],
     languageOptions: { globals: globals.node },
   },

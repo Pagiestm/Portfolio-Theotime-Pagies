@@ -8,6 +8,7 @@ export const paths = {
   skills: '/competences',
   about: '/a-propos',
   contact: '/contact',
+  legal: '/mentions-legales',
 };
 
 export const NAV_ITEMS = [

@@ -30,6 +30,7 @@ const PathPage = lazy(() => import('../pages/PathPage'));
 const SkillsPage = lazy(() => import('../pages/SkillsPage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ContactPage = lazy(() => import('../pages/ContactPage'));
+const LegalPage = lazy(() => import('../pages/LegalPage'));
 
 /** Réserve la hauteur d'une page pendant son chargement, sans clignotement. */
 const PageFallback = () => <div style={{ minHeight: '60vh' }} aria-busy="true" />;
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
       { path: paths.skills, element: lazyRoute(<SkillsPage />), loader: skillsLoader },
       { path: paths.about, element: lazyRoute(<AboutPage />), loader: aboutLoader },
       { path: paths.contact, element: lazyRoute(<ContactPage />), loader: contactLoader },
+      { path: paths.legal, element: lazyRoute(<LegalPage />) },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build -w @portfolio/api && vite build",
+    "build": "npm run build -w @portfolio/api && vite build && node scripts/prerender.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
