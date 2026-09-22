@@ -6,10 +6,13 @@ import SceneBackground from '../features/scene/components/SceneBackground';
 import AssistantWidget from '../features/assistant/components/AssistantWidget';
 import { useTranslation } from '../i18n/useTranslation';
 import { paths } from '../routes/paths';
+import { useRouteMeta } from '../hooks/useRouteMeta';
 
 const MainLayout = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+
+  useRouteMeta();
 
   return (
     <div className="relative flex min-h-screen flex-col bg-bg">
