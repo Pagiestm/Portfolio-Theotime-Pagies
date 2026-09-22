@@ -20,7 +20,7 @@ jobs:
       SANITY_PROJECT_ID: svhdk2l2
       SANITY_DATASET: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Aucun step n'a besoin de Git authentifié : on ne persiste pas le jeton.
           persist-credentials: false
