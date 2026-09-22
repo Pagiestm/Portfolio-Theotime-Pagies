@@ -1,3 +1,9 @@
+## [1.7.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.1...v1.7.2) (2026-09-22)
+
+### Bug Fixes
+
+* **deps:** update dependency @portabletext/react to v8 ([4eb8fae](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/4eb8fae526bc8f4f9154fd75135ffbd2d9d671d4))
+
 ## [1.7.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.0...v1.7.1) (2026-09-22)
 
 ### Bug Fixes
