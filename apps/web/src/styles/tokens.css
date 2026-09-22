@@ -1,16 +1,40 @@
 /**
- * Design tokens - source unique de vérité, importés depuis Portfolio.dc.html
- * (design system « Modernist », variante sombre du portfolio).
- * Ces variables sont relues par tailwind.config.js : ne jamais dupliquer un hex ailleurs.
+ * Design tokens — source unique de vérité, design system « Modernist ».
+ *
+ * En Tailwind 4, `@theme` remplace `tailwind.config.js` : chaque variable y
+ * devient à la fois une variable CSS utilisable telle quelle et une classe
+ * utilitaire. `--color-accent` donne ainsi `bg-accent`, `text-accent`,
+ * `border-accent` — et reste lisible en `var(--color-accent)` dans un style
+ * calculé. Plus de valeur déclarée à deux endroits.
  */
-:root {
+@theme {
   --color-bg: #010001;
   --color-surface: #192231;
   --color-surface-2: #0c1119;
-  --color-text: #fefeff;
+  --color-ink: #fefeff;
   --color-muted: #8d9aad;
   --color-accent: #5c7fae;
   --color-accent-2: #c3cede;
   --color-line: #222c3c;
   --color-line-soft: rgba(254, 254, 255, 0.11);
+
+  --font-sans: Archivo, system-ui, sans-serif;
+
+  --container-shell: 1280px;
+  --spacing-header: 68px;
+
+  /* L'apparition des blocs au défilement ; les composants qui s'en servent
+     vérifient d'abord `usePrefersReducedMotion()`. */
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+
+  @keyframes rise {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

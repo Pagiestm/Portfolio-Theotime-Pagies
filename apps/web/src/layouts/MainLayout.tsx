@@ -10,7 +10,7 @@ const MainLayout = () => (
     <SceneBackground />
     <ScrollToTop />
     <Header />
-    <main className="relative z-[1] flex-1">
+    <main className="relative z-1 flex-1">
       <Outlet />
     </main>
     <Footer />

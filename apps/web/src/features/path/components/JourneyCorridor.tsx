@@ -87,7 +87,7 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
             >
               <span
                 data-card-node
-                className="h-[15px] w-[15px] border-2 border-line bg-bg transition-all duration-[400ms]"
+                className="h-[15px] w-[15px] border-2 border-line bg-bg transition-all duration-400"
               />
               <span className="h-[34px] w-[2px] bg-line" />
               <div
@@ -106,7 +106,7 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
           </div>
         </div>
 
-        <div className="relative z-[9] shrink-0 border-t-2 border-line bg-bg">
+        <div className="relative z-9 shrink-0 border-t-2 border-line bg-bg">
           <div className="mx-auto max-w-shell px-6 py-[18px]">
             <div className="mb-3 flex items-center justify-between gap-4">
               <span className="text-[11px] uppercase tracking-[.18em] text-muted">

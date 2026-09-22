@@ -13,7 +13,7 @@ const JourneyCard = forwardRef(({ entry }: { entry: JourneyEntry }, ref: Ref<HTM
     <div ref={ref} className="flex flex-none flex-col items-center" style={{ width: CARD_WIDTH }}>
       <span
         data-card-node
-        className="h-[15px] w-[15px] border-2 border-line bg-bg transition-all duration-[400ms]"
+        className="h-[15px] w-[15px] border-2 border-line bg-bg transition-all duration-400"
       />
       <span className="h-[34px] w-[2px] bg-line" />
       <div

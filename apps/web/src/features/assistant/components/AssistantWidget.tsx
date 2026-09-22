@@ -202,7 +202,7 @@ const AssistantWidget = () => {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t.assistantOpen}
-          className="fixed bottom-4 right-4 z-[50] flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-ink transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
+          className="fixed bottom-4 right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-ink transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
         >
           <FaCommentDots size={18} aria-hidden className="sm:hidden" />
           <span className="hidden h-[8px] w-[8px] bg-ink sm:inline-block" aria-hidden />
@@ -219,7 +219,7 @@ const AssistantWidget = () => {
       <div
         role="presentation"
         onClick={close}
-        className={`fixed inset-0 z-[90] bg-bg/70 ${reduced ? '' : 'transition-opacity duration-300'} ${
+        className={`fixed inset-0 z-90 bg-bg/70 ${reduced ? '' : 'transition-opacity duration-300'} ${
           open ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
       />
@@ -228,7 +228,7 @@ const AssistantWidget = () => {
         aria-modal={open}
         aria-labelledby="assistant-title"
         inert={!open}
-        className={`fixed inset-y-0 right-0 z-[100] flex h-[100dvh] w-full flex-col border-l-2 border-line bg-surface-2 sm:w-[440px] ${
+        className={`fixed inset-y-0 right-0 z-100 flex h-dvh w-full flex-col border-l-2 border-line bg-surface-2 sm:w-[440px] ${
           reduced ? '' : 'transition-transform duration-300 ease-in-out'
         } ${open ? 'translate-x-0' : 'translate-x-full'}`}
       >

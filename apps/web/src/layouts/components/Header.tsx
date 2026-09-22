@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-[60] border-b-2 border-line bg-[rgba(1,0,1,.84)] backdrop-blur-[14px]">
+      <header className="sticky top-0 z-60 border-b-2 border-line bg-[rgba(1,0,1,.84)] backdrop-blur-[14px]">
         <div className="mx-auto flex h-header max-w-shell items-center justify-between gap-5 px-6">
           <Link
             to={paths.home}
@@ -91,7 +91,7 @@ const Header = () => {
               />
               <span
                 className={`block h-[2px] w-5 bg-ink origin-center transition-transform duration-300 ${
-                  menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+                  menuOpen ? 'translate-y-[-7px] -rotate-45' : ''
                 }`}
               />
             </button>
@@ -102,7 +102,7 @@ const Header = () => {
       <div
         role="presentation"
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-[70] bg-black/60 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-70 bg-black/60 transition-opacity duration-300 ${
           menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
       />
@@ -110,11 +110,11 @@ const Header = () => {
       <div
         aria-modal={menuOpen}
         aria-hidden={!menuOpen}
-        className={`fixed right-0 top-0 z-[80] flex h-full w-[min(320px,85vw)] flex-col border-l-2 border-line bg-[rgba(1,0,1,.98)] transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 z-80 flex h-full w-[min(320px,85vw)] flex-col border-l-2 border-line bg-[rgba(1,0,1,.98)] transition-transform duration-300 ease-in-out ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex h-header flex-shrink-0 items-center justify-between border-b-2 border-line px-6">
+        <div className="flex h-header shrink-0 items-center justify-between border-b-2 border-line px-6">
           <span className="text-[11px] font-bold uppercase tracking-[.15em] text-muted">
             Navigation
           </span>
@@ -126,7 +126,7 @@ const Header = () => {
           >
             <span className="block h-[2px] w-5 bg-ink origin-center translate-y-[7px] rotate-45" />
             <span className="block h-[2px] w-5 bg-ink opacity-0" />
-            <span className="block h-[2px] w-5 bg-ink origin-center -translate-y-[7px] -rotate-45" />
+            <span className="block h-[2px] w-5 bg-ink origin-center translate-y-[-7px] -rotate-45" />
           </button>
         </div>
 
@@ -148,7 +148,7 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="flex-shrink-0 border-t-2 border-line px-6 py-6">
+        <div className="shrink-0 border-t-2 border-line px-6 py-6">
           <div className="flex flex-col gap-4">
             <LangSwitch size="md" />
             <Link
