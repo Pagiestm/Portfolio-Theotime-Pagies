@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.2...v1.8.0) (2026-09-22)
+
+### Features
+
+* **web:** champ d'étoiles et repli d'image de projet ([3098460](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/309846013c3906f3e34fbcfd62ae307e949eb94e))
+
 ## [1.7.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.1...v1.7.2) (2026-09-22)
 
 ### Bug Fixes
