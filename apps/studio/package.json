@@ -4,9 +4,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Le back-office Sanity. Embarque son propre React 19 (exigé par Sanity 6), indépendamment du site en React 18.",
-  "engines": {
-    "node": ">=22.23.2"
-  },
   "scripts": {
     "dev": "sanity dev",
     "preview": "sanity preview",
