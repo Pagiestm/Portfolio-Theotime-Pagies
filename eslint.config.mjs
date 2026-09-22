@@ -9,7 +9,7 @@ import prettier from 'eslint-config-prettier';
 
 /**
  * Une seule configuration pour tout le dépôt : les quatre workspaces partagent
- * la même base et n'ajoutent que ce qui les distingue — React et le navigateur
+ * la même base et n'ajoutent que ce qui les distingue - React et le navigateur
  * pour le site et le Studio, Node pour l'API. Dupliquer un fichier par
  * application aurait garanti qu'ils divergent.
  */
@@ -24,7 +24,7 @@ export default [
   js.configs.recommended,
 
   // Base commune : le parser TypeScript sert à lire la syntaxe, sans mode
-  // type-aware — le vrai contrôle de types reste `tsc --noEmit`.
+  // type-aware - le vrai contrôle de types reste `tsc --noEmit`.
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     languageOptions: {
@@ -45,7 +45,7 @@ export default [
   },
 
   // TypeScript vérifie déjà l'existence des identifiants, et connaît les types
-  // globaux que `no-undef` ignore — `NodeJS.ProcessEnv`, `RequestInit`. La règle
+  // globaux que `no-undef` ignore - `NodeJS.ProcessEnv`, `RequestInit`. La règle
   // n'y produit que des faux positifs ; c'est la recommandation de
   // typescript-eslint.
   {
@@ -93,6 +93,7 @@ export default [
       'apps/studio/sanity.*.ts',
       '**/*.config.{js,mjs,ts}',
       'scripts/**',
+      '**/scripts/**',
     ],
     languageOptions: { globals: globals.node },
   },

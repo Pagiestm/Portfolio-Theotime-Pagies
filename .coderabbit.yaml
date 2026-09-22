@@ -26,14 +26,14 @@ reviews:
     - path: 'apps/web/src/**/*.{ts,tsx}'
       instructions: >-
         Site React 19 + TypeScript + Vite, design « Modernist » : aucun arrondi,
-        et toute couleur vient des tokens. Tailwind 4 — ils sont déclarés dans un
+        et toute couleur vient des tokens. Tailwind 4 - ils sont déclarés dans un
         bloc `@theme` de styles/tokens.css, il n'existe aucun tailwind.config.js ;
         signale toute couleur écrite en dur. Architecture feature-based :
         UI → hooks → services → API. Vérifie qu'aucun composant n'appelle une API
         directement, qu'aucune feature n'importe une autre feature, que
         `import.meta.env` n'apparaît que dans config/env.ts, et que les textes
         passent par `localize()`. Signale bugs, accessibilité (dont
-        prefers-reduced-motion), performance et fuites (observateurs, WebGL —
+        prefers-reduced-motion), performance et fuites (observateurs, WebGL -
         three.js exige `forceContextLoss()` au démontage, et les textures ne sont
         pas libérées par `scene.traverse`).
     - path: 'apps/studio/**/*.ts'

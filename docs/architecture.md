@@ -16,14 +16,14 @@ packages/shared/   partagé           type Locale, registre TECHNOLOGIES
 ```
 
 - `apps/web` n'importe jamais `apps/studio`, ni l'inverse.
-- L'outillage de développement — ESLint et ses greffons, TypeScript, Prettier,
-  `@types/node` — est déclaré à la racine, pas dans chaque application : il sert
+- L'outillage de développement - ESLint et ses greffons, TypeScript, Prettier,
+  `@types/node` - est déclaré à la racine, pas dans chaque application : il sert
   au dépôt entier, ne s'exécute jamais en production, et le dupliquer
   garantissait qu'il divergerait. Les dépendances d'exécution restent dans leur
   workspace. Conséquence visible : aucun workspace n'a de `node_modules` propre,
   signe qu'aucune version n'entre en conflit avec celles de la racine.
 - Une seule configuration ESLint, `eslint.config.mjs`, couvre les quatre
-  workspaces : base commune, puis un bloc par nature — React et navigateur pour
+  workspaces : base commune, puis un bloc par nature - React et navigateur pour
   le site et le Studio, Node pour l'API et les scripts.
 - `apps/api` suit une architecture en couches classique (voir `apps/api/README.md`) :
   une route mène à un contrôleur, qui valide et délègue à un service ; les modèles

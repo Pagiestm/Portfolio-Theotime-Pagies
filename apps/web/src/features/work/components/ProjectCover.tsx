@@ -5,7 +5,7 @@ import type { CSSProperties } from 'react';
  *
  * `cover` n'est pas obligatoire dans le Studio : sans repli, la carte laissait
  * un cadre vide de 220 px qui se lisait comme une image cassée. On dessine donc
- * un monogramme sur une trame diagonale — assez neutre pour ne pas se faire
+ * un monogramme sur une trame diagonale - assez neutre pour ne pas se faire
  * passer pour du contenu, assez construit pour paraître voulu.
  *
  * Les deux appelants passent leurs bordures et leur hauteur par `className` :
