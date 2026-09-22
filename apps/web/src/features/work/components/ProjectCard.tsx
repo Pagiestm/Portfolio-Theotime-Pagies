@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Reveal from '../../../components/common/Reveal';
 import { useTranslation } from '../../../i18n/useTranslation';
-import { imageUrl } from '../../../services/sanity/image';
+import { imageSrcSet, imageUrl } from '../../../services/sanity/image';
 import ProjectCover from './ProjectCover';
 import { paths } from '../../../routes/paths';
 import type { Project } from '../../../services/sanity/types';
@@ -11,6 +11,7 @@ const STACK_PREVIEW = 4;
 const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number }) => {
   const { t, localize } = useTranslation();
   const cover = imageUrl(project.cover ?? undefined, 900);
+  const coverSet = imageSrcSet(project.cover ?? undefined, [400, 640, 900]);
   const stack = project.stack ?? [];
   const hidden = stack.length - STACK_PREVIEW;
 
@@ -22,6 +23,8 @@ const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number 
       >
         <ProjectCover
           src={cover}
+          srcSet={coverSet}
+          sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 340px"
           title={project.title}
           className="h-[220px] border-b-2 border-line p-4"
         />
