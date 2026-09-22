@@ -39,6 +39,27 @@ dépend de la 8 : la release échoue alors à l'étape `generateNotes`, après a
 calculé la version mais avant d'écrire quoi que ce soit. Ne remonter le preset
 que si le générateur de notes accepte un jour le writer 9.
 
+## Branches
+
+`develop` est la branche d'intégration : les `feat/…` et `fix/…` s'y fusionnent.
+`master` ne reçoit que des fusions de `develop`, et chacune déclenche une
+publication — c'est la seule branche que semantic-release regarde
+(`.releaserc.json`), et la seule que Vercel déploie en production. Les autres
+n'obtiennent qu'un aperçu.
+
+Renovate vise `develop` (`baseBranches`) : ses PR n'atteignent donc plus
+`master` directement. Il continue de lire sa configuration sur la branche par
+défaut du dépôt, `master` — y changer `baseBranches` reste donc nécessaire.
+
+**Après chaque publication, ramener `master` dans `develop`.** semantic-release
+commite sur `master` le bump de `package.json`, le lockfile et le CHANGELOG :
+sans ce retour, `develop` accumule un retard qui finit en conflit sur des
+fichiers que personne n'a édités à la main.
+
+```bash
+git switch develop && git merge --ff-only master && git push
+```
+
 ## Mises à jour de dépendances
 
 Renovate (app GitHub, config dans `renovate.json`) tient les dépendances à jour.

@@ -18,7 +18,7 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) · [v
 - Vérifier le rendu dans le navigateur dès que l'affichage change.
 - Commits Conventional Commits, en français, corps expliquant le _pourquoi_ ; le
   type décide de la version publiée ([docs/versions.md](docs/versions.md)).
-- `master` déploie en production à chaque push : travailler sur `feat/…` ou `fix/…`.
+- Les `feat/…` et `fix/…` vont dans `develop` ; `master` publie en production.
 - Commentaires et documentation en français, le _pourquoi_ plutôt que le _quoi_.
 
 ## Commandes
