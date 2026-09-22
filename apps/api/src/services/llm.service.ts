@@ -135,7 +135,7 @@ const askOne = async (
     });
 
     if (!res.ok) {
-      // Le corps dit *quelle* limite est atteinte — par minute, par jour, en
+      // Le corps dit *quelle* limite est atteinte - par minute, par jour, en
       // jetons. L'information ne vaut que dans les journaux : le visiteur n'a
       // pas à connaître la plomberie.
       const detail = await res.text().catch(() => '');

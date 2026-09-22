@@ -19,7 +19,7 @@ export default {
       },
       {
         heading: 'Hosting',
-        body: 'Vercel Inc., 440 N. Barranca Ave #4133, Covina, CA 91723, United States — vercel.com.',
+        body: 'Vercel Inc., 440 N. Barranca Ave #4133, Covina, CA 91723, United States - vercel.com.',
       },
       {
         heading: 'Intellectual property',

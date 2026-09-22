@@ -43,13 +43,13 @@ que si le générateur de notes accepte un jour le writer 9.
 
 `develop` est la branche d'intégration : les `feat/…` et `fix/…` s'y fusionnent.
 `master` ne reçoit que des fusions de `develop`, et chacune déclenche une
-publication — c'est la seule branche que semantic-release regarde
+publication - c'est la seule branche que semantic-release regarde
 (`.releaserc.json`), et la seule que Vercel déploie en production. Les autres
 n'obtiennent qu'un aperçu.
 
 Renovate vise `develop` (`baseBranches`) : ses PR n'atteignent donc plus
 `master` directement. Il continue de lire sa configuration sur la branche par
-défaut du dépôt, `master` — y changer `baseBranches` reste donc nécessaire.
+défaut du dépôt, `master` - y changer `baseBranches` reste donc nécessaire.
 
 **Après chaque publication, ramener `master` dans `develop`.** semantic-release
 commite sur `master` le bump de `package.json`, le lockfile et le CHANGELOG :
@@ -84,7 +84,7 @@ paquet compromis est presque toujours retiré du registre dans ce délai. Les
 failles font exception et arrivent tout de suite.
 
 La maintenance hebdomadaire du lockfile est le seul mécanisme qui atteint les
-dépendances **transitives** — celles qu'aucun `package.json` ne déclare, et où
+dépendances **transitives** - celles qu'aucun `package.json` ne déclare, et où
 se logent la plupart des alertes de `npm audit`.
 
 ## Épingles et surcharges
@@ -111,7 +111,7 @@ pas un de plus, parce qu'aucun lecteur ne les lit tous :
 | --------------------------- | ---------------------------------------------------------- |
 | `.nvmrc`                    | fnm/nvm en local, et les workflows via `node-version-file` |
 | `engines.node` racine       | npm, qui avertit (`EBADENGINE`) si la machine dérive       |
-| `engines.node` d'`apps/web` | Vercel, qui ignore `.nvmrc` — c'est le projet déployé      |
+| `engines.node` d'`apps/web` | Vercel, qui ignore `.nvmrc` - c'est le projet déployé      |
 
 Le format `24.x` est celui que Vercel documente. Les workflows lisent `.nvmrc`
 au lieu de répéter le nombre : on ne monte de version qu'à un seul endroit.
@@ -131,17 +131,17 @@ reste celui de `engines`.
 
 `packageManager` suit la même logique, à une nuance près : il déclare la **ligne**
 de npm livrée avec Node 24 (`11.19.x`), pas une version au patch près. `.nvmrc`
-dit `24`, donc le patch de Node flotte — la CI a tourné en 24.20.0 quand la
-machine était en 24.21.0 — et le npm embarqué flotte avec lui. Exiger l'égalité
+dit `24`, donc le patch de Node flotte - la CI a tourné en 24.20.0 quand la
+machine était en 24.21.0 - et le npm embarqué flotte avec lui. Exiger l'égalité
 exacte serait intenable ; c'est la ligne qui doit concorder, parce que c'est elle
 qui détermine le format du lockfile. Corepack n'étant pas présent, personne ne l'applique en
-local — mais Vercel le lit. Y laisser un npm différent, c'était faire tourner la
+local - mais Vercel le lit. Y laisser un npm différent, c'était faire tourner la
 production sur un gestionnaire que la CI n'utilise jamais.
 
 Deux garde-fous rendent la règle opposable plutôt que déclarative :
 
 - `.npmrc` porte `engine-strict=true`. Sans lui, npm se contente d'un
-  avertissement et installe quand même — or un npm plus ancien réécrit le
+  avertissement et installe quand même - or un npm plus ancien réécrit le
   lockfile en supprimant les métadonnées `libc` (`glibc`/`musl`) des binaires
   natifs, sous un message « up to date ». Le dégât ne se voit qu'au déploiement.
   Avec lui, l'installation échoue en `EBADENGINE` et le lockfile reste intact.
@@ -150,7 +150,7 @@ Deux garde-fous rendent la règle opposable plutôt que déclarative :
   les artefacts bâtis avec l'ancienne, et la barrière qualité affichait un vert
   trompeur (`FULL TURBO`).
 
-Pour s'y conformer sans installer Node à la main, `fnm use` lit `.nvmrc` — et le
+Pour s'y conformer sans installer Node à la main, `fnm use` lit `.nvmrc` - et le
 hook `--use-on-cd` le fait tout seul en entrant dans le dépôt.
 
 ### Monter de version
@@ -167,7 +167,7 @@ npx turbo run typecheck test build --force
 La passe `--engine-strict=false` n'est pas facultative : npm valide les `engines`
 **mémorisés dans le lockfile**, pas ceux des `package.json`. Il refuse donc
 l'installation en citant l'ancienne version alors que les fichiers portent déjà
-la nouvelle — il faut le laisser rafraîchir le lockfile une fois pour sortir de
+la nouvelle - il faut le laisser rafraîchir le lockfile une fois pour sortir de
 l'impasse.
 
 Et ne jamais descendre sous le npm qui a écrit le lockfile, pour la raison dite
@@ -176,8 +176,8 @@ plus haut.
 ## ESLint
 
 La configuration est à plat (`eslint.config.mjs`, à la racine), sur ESLint 10. Deux
-règles apparues avec `eslint-plugin-react-hooks` 7 y sont désactivées —
-`set-state-in-effect` et `refs` — le temps de traiter les sept occurrences
+règles apparues avec `eslint-plugin-react-hooks` 7 y sont désactivées -
+`set-state-in-effect` et `refs` - le temps de traiter les sept occurrences
 qu'elles signalent, dans `Reveal`, `Header`, `useMediaQuery`, `usePagination` et
 `AssistantWidget`. Ce sont de vrais anti-patterns : les corriger demande
 `useSyncExternalStore` pour les media queries et une clé de remontage pour la

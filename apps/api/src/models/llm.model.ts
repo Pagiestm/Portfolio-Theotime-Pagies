@@ -32,7 +32,7 @@ const isProvider = (value: string): value is Provider => value === 'google' || v
 /**
  * Lit `LLM_MODELS`, une liste ordonnée `fournisseur:modèle` séparée par des
  * virgules. Aucun modèle n'est écrit dans le code : en changer ne demande ni
- * modification ni déploiement, seulement une variable d'environnement — au
+ * modification ni déploiement, seulement une variable d'environnement - au
  * prix d'une configuration obligatoire, sans quoi l'API refuse de démarrer.
  *
  * Un candidat dont la clé manque est écarté plutôt que fatal : la liste peut

@@ -50,7 +50,7 @@ projet.
 `LLM_MODELS` énumère les modèles à interroger, du préféré au dernier recours.
 Aucun modèle n'est écrit dans le code : en changer, en ajouter un ou modifier
 leur ordre ne demande qu'une variable d'environnement, sans déploiement. En
-contrepartie la variable est obligatoire — sans elle l'API répond 500 plutôt
+contrepartie la variable est obligatoire - sans elle l'API répond 500 plutôt
 que d'appeler un modèle que personne n'a choisi.
 
 ```
@@ -71,12 +71,12 @@ recours consiste à les retenter quand même plutôt que de ne rien répondre.
 
 Chez Google les quotas par requête sont comptés modèle par modèle : passer de
 `flash` à `flash-lite` rouvre un quota. Le plafond en jetons par minute, lui,
-est partagé — la bascule n'y peut rien, et le détail du 429 est journalisé pour
+est partagé - la bascule n'y peut rien, et le détail du 429 est journalisé pour
 savoir laquelle des deux limites est atteinte.
 
 `openai` désigne un format d'API, pas une société : OpenRouter, Groq ou Mistral
 le parlent. Ajouter l'un d'eux ne demande qu'une entrée dans `LLM_MODELS`, une
-clé dans `LLM_API_KEY` et son hôte dans `LLM_BASE_URL` — aucun code. Les trois
+clé dans `LLM_API_KEY` et son hôte dans `LLM_BASE_URL` - aucun code. Les trois
 vont ensemble : un modèle `openai:` sans hôte est ignoré, pour ne pas appeler
 un fournisseur au hasard en croyant en viser un autre.
 
