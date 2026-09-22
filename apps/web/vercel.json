@@ -6,10 +6,6 @@
   },
   "rewrites": [
     {
-      "source": "/mesure/:path*",
-      "destination": "/_vercel/insights/:path*"
-    },
-    {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
