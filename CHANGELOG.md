@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.6.0...v1.7.0) (2026-09-22)
+
+### Features
+
+* **web:** migrer vers Tailwind 4 ([79b3855](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/79b3855d504109f021a628575fb03b6f6aaabae4))
+
 ## [1.6.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.5.6...v1.6.0) (2026-09-21)
 
 ### Features
