@@ -1,3 +1,9 @@
+## [1.10.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.0...v1.10.1) (2026-09-22)
+
+### Bug Fixes
+
+* **web:** servir la mesure d'audience depuis un chemin neutre ([1ea3a61](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/1ea3a6183dc646ef90601f3ccbb51c9a9f8a44d4))
+
 ## [1.10.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.9.0...v1.10.0) (2026-09-22)
 
 ### Features
