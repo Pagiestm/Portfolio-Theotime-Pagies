@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Reveal from '../../../components/common/Reveal';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { imageUrl } from '../../../services/sanity/image';
+import ProjectCover from './ProjectCover';
 import { paths } from '../../../routes/paths';
 import type { Project } from '../../../services/sanity/types';
 
@@ -19,17 +20,11 @@ const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number 
         to={paths.project(project.id)}
         className="group flex h-full flex-col border-2 border-line bg-surface text-ink transition-colors duration-200 hover:border-accent hover:text-ink"
       >
-        {/* object-contain : ce sont des captures d'écran, les recadrer les rend illisibles. */}
-        <div className="flex h-[220px] items-center justify-center border-b-2 border-line bg-surface-2 p-4">
-          {cover && (
-            <img
-              src={cover}
-              alt={project.title}
-              loading="lazy"
-              className="block h-full w-full object-contain"
-            />
-          )}
-        </div>
+        <ProjectCover
+          src={cover}
+          title={project.title}
+          className="h-[220px] border-b-2 border-line p-4"
+        />
 
         <div className="flex flex-1 flex-col p-6">
           <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[.16em]">
