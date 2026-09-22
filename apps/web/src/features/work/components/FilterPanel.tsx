@@ -9,10 +9,6 @@ const labelToIcon: Record<string, ElementType> = Object.fromEntries(
   Object.values(TECH).map(({ label, Icon }) => [label, Icon])
 );
 
-/**
- * Une facette : un titre et une colonne d'options.
- * Une facette à option unique ne filtre rien : elle n'est pas rendue.
- */
 const Facet = ({
   id,
   title,
@@ -45,11 +41,6 @@ interface OptionProps {
   Icon?: ElementType;
 }
 
-/**
- * Une ligne d'option : vraie case ou vrai bouton radio pour le clavier et les
- * lecteurs d'écran, masqués au profit d'un carré dessiné à la règle du design.
- * Case pour les choix cumulables, radio pour les choix exclusifs.
- */
 const Option = ({ type, name, label, count, checked, onChange, Icon }: OptionProps) => (
   <label className="-mx-2 flex cursor-pointer items-center gap-3 px-2 py-[7px] transition-colors hover:bg-surface">
     <input type={type} name={name} checked={checked} onChange={onChange} className="peer sr-only" />
@@ -75,7 +66,6 @@ const FilterPanel = ({ filters }: { filters: ProjectFiltersState }) => {
   const { available } = filters;
   const hasMoreTech = available.tech.length > PRIMARY_TECH_COUNT;
 
-  // Les technos cochées restent visibles même si elles sortent du top.
   const visibleTech = useMemo<FilterOption<string>[]>(() => {
     if (showAllTech) return available.tech;
     const primary = available.tech.slice(0, PRIMARY_TECH_COUNT);

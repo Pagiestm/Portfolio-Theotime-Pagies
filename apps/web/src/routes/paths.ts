@@ -1,4 +1,3 @@
-/** Table des routes - seule source de vérité pour les URL et le menu. */
 export const paths = {
   home: '/',
   work: '/realisations',

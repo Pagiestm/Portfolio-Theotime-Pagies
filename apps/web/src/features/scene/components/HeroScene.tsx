@@ -2,15 +2,6 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
 
-/**
- * Portage React de `scene3d.js` (variante « calm » de la maquette) : deux coques
- * filaires en contre-rotation, un anneau d'horizon et un champ d'étoiles.
- * La scène réagit au pointeur et, si `scrollDriven`, à la progression du scroll.
- *
- * Rendu en three.js brut plutôt qu'en react-three-fiber : la boucle est impérative
- * et n'a aucun état React à réconcilier, la monter dans un `useEffect` est plus direct
- * et évite un re-render par frame.
- */
 const HeroScene = ({
   accent = '#5c7fae',
   accent2 = '#c3cede',
@@ -42,9 +33,6 @@ const HeroScene = ({
     const group = new THREE.Group();
     scene.add(group);
 
-    // Deux icosaèdres filaires en contre-rotation. La géométrie source n'est
-    // jamais attachée à un objet : `scene.traverse` ne la verrait pas au
-    // démontage, on la libère donc dès qu'`EdgesGeometry` l'a consommée.
     const shells = [1.9, 2.55].map((radius, i) => {
       const source = new THREE.IcosahedronGeometry(radius, 1);
       const shell = new THREE.LineSegments(
@@ -72,9 +60,6 @@ const HeroScene = ({
     horizon.rotation.x = Math.PI / 2.35;
     group.add(horizon);
 
-    // Une étoile dessinée sur un canvas plutôt qu'un fichier : `PointsMaterial`
-    // sans texture peint des carrés pleins, d'où l'aspect « cubes ». Deux
-    // disques dégradés écrasés sur chaque axe donnent les quatre branches.
     const starTexture = (() => {
       const size = 64;
       const canvasTex = document.createElement('canvas');
@@ -112,9 +97,6 @@ const HeroScene = ({
       return tex;
     })();
 
-    // Trois strates plutôt qu'un nuage uniforme : `PointsMaterial` n'a qu'une
-    // taille pour tout le nuage, les répartir donne la profondeur d'un vrai
-    // ciel. Le scintillement anime l'opacité de chaque strate en décalé.
     const stars = new THREE.Group();
     scene.add(stars);
     const STAR_LAYERS = [
@@ -171,7 +153,6 @@ const HeroScene = ({
     };
     resize();
 
-    // `setSize` efface le canvas : en mode figé, rien ne le repeindrait ensuite.
     const resizeObserver = new ResizeObserver(() => {
       resize();
       if (reduced && visible) renderer.render(scene, camera);
@@ -187,9 +168,6 @@ const HeroScene = ({
     );
     visibility.observe(host);
 
-    // Les deux abonnements ne servent qu'à animer : inutile de les poser quand
-    // l'utilisateur demande moins de mouvement, ou quand la scène ignore le
-    // scroll (c'est le cas de `SceneBackground`, monté sur toutes les pages).
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
     const onPointerMove = (e) => {
       const r = host.getBoundingClientRect();
@@ -216,9 +194,6 @@ const HeroScene = ({
     let rendered = false;
 
     const tick = () => {
-      // En mode « animations réduites » la scène est figée : on continue de
-      // solliciter des frames jusqu'à ce qu'elle soit visible et rendue une
-      // fois, puis on laisse tomber la boucle.
       if (!reduced || !rendered) raf = requestAnimationFrame(tick);
       if (!visible) return;
 
@@ -269,10 +244,7 @@ const HeroScene = ({
           materials.forEach((m) => m.dispose());
         }
       });
-      // `dispose()` ne relâche pas le contexte WebGL en three r168 : sans ce
-      // `forceContextLoss()`, chaque retour sur l'accueil en crée un nouveau
-      // jusqu'à ce que le navigateur tue le plus ancien - le fond permanent.
-      // `scene.traverse` libère géométries et matériaux, jamais leurs textures.
+
       starTexture?.dispose();
       renderer.forceContextLoss();
       renderer.dispose();

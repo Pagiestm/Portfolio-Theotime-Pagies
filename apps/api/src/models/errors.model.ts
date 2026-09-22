@@ -1,4 +1,3 @@
-/** Erreur portant le statut HTTP à renvoyer et un code stable pour le client. */
 export class HttpError extends Error {
   readonly status: number;
   readonly code: string;
@@ -28,11 +27,6 @@ export class UpstreamError extends HttpError {
   }
 }
 
-/**
- * Tous les modèles ont refusé faute de quota. Distinct d'`UpstreamError` : ce
- * n'est pas une panne mais une limite atteinte, l'attente est longue, et le
- * visiteur mérite qu'on le lui dise plutôt que de l'inviter à réessayer.
- */
 export class QuotaExhaustedError extends HttpError {
   constructor(message: string) {
     super(503, 'quota_exhausted', message);

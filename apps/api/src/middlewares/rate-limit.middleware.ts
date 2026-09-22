@@ -3,11 +3,6 @@ import { RateLimitError } from '../models/errors.model.ts';
 
 type Options = { max: number; windowMs: number };
 
-/**
- * Limite par adresse, en mémoire. Elle vaut le temps de vie de l'instance
- * serverless, donc c'est un frein contre les rafales et non une comptabilité
- * exacte ; le vrai plafond de dépense se règle chez le fournisseur du modèle.
- */
 export const rateLimit = ({ max, windowMs }: Options): MiddlewareHandler => {
   const buckets = new Map<string, { count: number; reset: number }>();
   return async (c, next) => {

@@ -38,11 +38,6 @@ export const tokenize = (text: string): string[] => [
 const contentOf = (project: Project, lang: Lang) =>
   (lang === 'en' ? project.contentEn : project.contentFr) ?? project.contentFr ?? '';
 
-/**
- * Score de proximité entre une question et une réalisation : le titre et la
- * stack pèsent plus que le résumé, lui-même plus que le texte long, pour que
- * « NestJS » ramène d'abord les projets qui l'affichent dans leur stack.
- */
 export const scoreProject = (project: Project, terms: string[], lang: Lang): number => {
   const title = normalize(project.title);
   const stack = normalize((project.stack ?? []).join(' '));
@@ -58,7 +53,6 @@ export const scoreProject = (project: Project, terms: string[], lang: Lang): num
   return score;
 };
 
-/** Les réalisations à envoyer en entier : les plus proches, sinon les plus récentes. */
 export const selectProjects = (projects: Project[], question: string, lang: Lang): Project[] => {
   const terms = tokenize(question);
   const ranked = projects
@@ -91,11 +85,6 @@ const projectFull = (project: Project, lang: Lang) => {
   return `${projectLine(project, lang)}\n  Détail : ${contentOf(project, lang)}${links ? `\n  Liens : ${links}` : ''}`;
 };
 
-/**
- * Le contexte remis au modèle : identité, à propos, parcours, compétences,
- * puis les réalisations proches en entier et les autres en une ligne. Les
- * chemins entre parenthèses sont ceux que le modèle doit citer.
- */
 export const buildContext = (corpus: Corpus, question: string, lang: Lang): string => {
   const projects = corpus.projects ?? [];
   const full = selectProjects(projects, question, lang);

@@ -3,10 +3,6 @@ import { createServer } from 'node:http';
 import { after, before, describe, it } from 'node:test';
 import { handler } from '../src/index.ts';
 
-/**
- * Le handler exporté pour Vercel doit accepter le couple `(req, res)` de Node,
- * comme le fait le runtime : on le monte dans un vrai serveur HTTP.
- */
 describe('handler Node', () => {
   const server = createServer(handler);
   let base = '';

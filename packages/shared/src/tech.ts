@@ -1,18 +1,3 @@
-/**
- * Registre des technologies et méthodes, source unique pour le site et le Studio.
- *
- * - Le Studio en fait la liste déroulante du champ « Icône » d'une technologie.
- * - Le site y associe un logo (`apps/web/src/constants/tech.ts`) et vérifie à la
- *   compilation qu'aucune clé n'est oubliée.
- *
- * Ajouter une technologie = ajouter une ligne ici. Le Studio la propose aussitôt ;
- * le site refuse de compiler tant qu'un logo ne lui est pas associé, ce qui évite
- * qu'une clé choisie dans le back-office s'affiche sans icône.
- *
- * Les clés reprennent le nom de l'icône `react-icons` quand il en existe une, ce
- * qui rend le registre lisible sans aller voir le site. Les autres (`Pwa`, `Tdd`…)
- * n'ont pas de logo officiel et portent un nom métier.
- */
 export const TECHNOLOGIES = [
   { key: 'FaReact', label: 'React' },
   { key: 'FaVuejs', label: 'Vue.js' },

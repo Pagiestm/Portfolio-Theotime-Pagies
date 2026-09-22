@@ -20,11 +20,6 @@ const TTL_MS = 10 * 60 * 1000;
 
 let cache: { at: number; corpus: Corpus } | null = null;
 
-/**
- * Le contenu éditorial, lu sur le CDN public de Sanity et gardé dix minutes.
- * Pas de jeton : le dataset est public en lecture. Le cache vit le temps de
- * l'instance serverless, ce qui suffit à absorber une rafale de questions.
- */
 export const loadCorpus = async (env: Env): Promise<Corpus> => {
   if (cache && Date.now() - cache.at < TTL_MS) return cache.corpus;
   const url = `https://${env.sanityProjectId}.apicdn.sanity.io/v2024-10-01/data/query/${env.sanityDataset}?query=${encodeURIComponent(CORPUS_QUERY)}`;

@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import Reveal from '../components/common/Reveal';
 import MetaGrid from '../components/common/MetaGrid';
 import { useTranslation } from '../i18n/useTranslation';
-import { imageUrl } from '../services/sanity/image';
+import { imageSrcSet, imageUrl } from '../services/sanity/image';
 import { useSettings } from '../hooks/useSettings';
 import type { AboutContent } from '../services/sanity/types';
 
@@ -11,9 +11,8 @@ const AboutPage = () => {
   const { about } = useLoaderData() as { about: AboutContent };
   const settings = useSettings();
 
-  // Le portrait vit dans le Studio. Tant qu'aucune image n'y est déposée, le
-  // cadre est simplement omis plutôt que de montrer un rectangle vide.
   const portrait = imageUrl(about?.portrait ?? undefined, 900);
+  const portraitSet = imageSrcSet(about?.portrait ?? undefined, [400, 640, 900]);
 
   return (
     <section className="relative mx-auto max-w-shell overflow-hidden px-6 pb-[86px] pt-[68px]">
@@ -53,7 +52,13 @@ const AboutPage = () => {
         <Reveal variant="right" className="sticky top-[104px]">
           {portrait && (
             <div className="overflow-hidden border-2 border-line">
-              <img src={portrait} alt={t.portraitAlt} className="block h-auto w-full" />
+              <img
+                src={portrait}
+                srcSet={portraitSet}
+                sizes="(max-width: 700px) 100vw, 600px"
+                alt={t.portraitAlt}
+                className="block h-auto w-full"
+              />
             </div>
           )}
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">

@@ -19,7 +19,6 @@ export type AskResponse = {
 
 export const MAX_QUESTION_LENGTH = 300;
 
-/** Valide et normalise le corps reçu ; tout ce qui n'est pas attendu est rejeté. */
 export const parseAskRequest = (body: unknown): AskRequest => {
   const raw = body as { question?: unknown; lang?: unknown } | null;
   const question = typeof raw?.question === 'string' ? raw.question.trim() : '';

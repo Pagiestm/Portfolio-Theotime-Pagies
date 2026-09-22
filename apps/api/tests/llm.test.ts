@@ -7,7 +7,6 @@ import { cooldownFor, generate, resetModelState } from '../src/services/llm.serv
 
 const realFetch = globalThis.fetch;
 
-/** Déroule une suite de réponses, une par appel, et note les URL visitées. */
 const fakeUpstream = (replies: Array<Response | (() => Response)>) => {
   const visited: string[] = [];
   let i = 0;

@@ -25,14 +25,6 @@ import type {
   SkillGroup,
 } from './types';
 
-/**
- * Chargeurs de route (React Router).
- *
- * Chaque page déclare ses propres besoins : le contenu arrive avant le rendu,
- * il n'y a donc ni état de chargement ni scintillement à gérer dans les
- * composants. Une requête qui échoue remonte à `ErrorPage` via le routeur.
- */
-
 export const rootLoader = async () => ({
   settings: await sanityClient.fetch<SiteSettings>(SITE_SETTINGS_QUERY),
 });
@@ -60,7 +52,6 @@ export const projectLoader = async ({ params }: { params: { slug?: string } }) =
     sanityClient.fetch<Array<{ id: string; title: string }>>(PROJECT_SLUGS_QUERY),
   ]);
 
-  // Une adresse inconnue doit produire une 404, pas une page vide.
   if (!project) {
     throw new Response('Réalisation introuvable', { status: 404 });
   }

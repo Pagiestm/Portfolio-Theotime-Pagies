@@ -1,12 +1,3 @@
-/**
- * Listes fermées qui qualifient une réalisation.
- *
- * Partagées entre le Studio (qui en fait des boutons radio et des cases à
- * cocher) et le site (qui en fait des filtres et des libellés traduits). Une
- * valeur ajoutée ici sans libellé côté site est refusée par `tsc` : les deux
- * ne peuvent pas diverger.
- */
-
 export const PROJECT_CATEGORIES = ['school', 'personal', 'professional'] as const;
 export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number];
 

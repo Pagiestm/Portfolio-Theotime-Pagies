@@ -1,14 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/**
- * Champs bilingues FR/EN.
- *
- * Un simple objet `{ fr, en }` plutôt que le plugin d'internationalisation :
- * c'est exactement la forme que `localize()` attend déjà côté front, donc
- * aucun composant n'a besoin de changer. Le français est requis, l'anglais
- * est facultatif - une valeur EN vide retombe sur le FR à l'affichage.
- */
-
 export const localeString = defineType({
   name: 'localeString',
   title: 'Texte court bilingue',

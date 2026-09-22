@@ -1,7 +1,3 @@
-/**
- * Point d'accès unique aux variables d'environnement Vite.
- * Aucun `import.meta.env` ailleurs dans le code applicatif.
- */
 export const env = {
   emailjs: {
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,

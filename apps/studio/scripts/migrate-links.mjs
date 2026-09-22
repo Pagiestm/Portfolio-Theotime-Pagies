@@ -1,15 +1,3 @@
-/**
- * Déplace les anciens liens fixes d'une réalisation (`links.site`, `.github`,
- * `.api`, `.figma`, `.pdf`) vers la liste libre `resources`, puis retire
- * l'ancien champ.
- *
- * Rejouable : un projet déjà migré (`resources` défini) est ignoré. Ne touche
- * que les documents publiés : publier ou abandonner les brouillons avant.
- *
- *   npx sanity exec scripts/migrate-links.mjs --with-user-token -- --dry-run
- *   npx sanity exec scripts/migrate-links.mjs --with-user-token
- */
-
 import { randomUUID } from 'node:crypto';
 import { getCliClient } from 'sanity/cli';
 

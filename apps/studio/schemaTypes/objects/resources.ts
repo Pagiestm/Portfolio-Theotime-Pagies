@@ -1,15 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/**
- * Les « ressources » d'une réalisation : ce que le visiteur peut ouvrir depuis
- * la page projet.
- *
- * Avant, les liens étaient quatre champs aux intitulés fixes (site, GitHub,
- * API, Figma) plus un PDF. Chaque nouveau type de lien aurait demandé du code.
- * Ici, l'éditeur choisit l'intitulé, l'ordre, et le type de fichier : le site
- * se contente d'afficher la liste telle qu'elle est saisie.
- */
-
 export const externalLink = defineType({
   name: 'externalLink',
   title: 'Lien',
@@ -48,7 +38,7 @@ export const documentFile = defineType({
     defineField({
       name: 'file',
       title: 'Fichier',
-      // Volontairement sans `accept` : tout format est admis.
+
       type: 'file',
       validation: (rule) => rule.required(),
     }),

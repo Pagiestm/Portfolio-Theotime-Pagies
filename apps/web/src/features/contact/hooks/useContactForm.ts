@@ -11,7 +11,7 @@ export const useContactForm = () => {
   const captchaRef = useRef(null);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState('idle');
   const [captchaVerified, setCaptchaVerified] = useState(!isRecaptchaConfigured);
 
   const validate = useCallback(() => {
@@ -41,9 +41,7 @@ export const useContactForm = () => {
       try {
         await sendContactEmail(formRef.current);
         formRef.current.reset();
-        // Le widget reCAPTCHA garde son état résolu tant qu'on ne le réinitialise
-        // pas explicitement : sans ça il ne rappellerait plus `onChange`, et le
-        // second message resterait bloqué sur « validez le CAPTCHA ».
+
         captchaRef.current?.reset();
         setCaptchaVerified(!isRecaptchaConfigured);
         setStatus('sent');

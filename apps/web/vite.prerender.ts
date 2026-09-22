@@ -4,22 +4,6 @@ import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
 import { ROUTE_META, FALLBACK_SITE_URL, OWNER, trimDescription } from './src/routes/meta';
 
-/**
- * Écrit un fichier HTML par route après le build, chacun avec ses métadonnées.
- *
- * Le site est une application monopage : sans cette étape, les huit pages et les
- * onze projets partagent le titre et l'image de `index.html`. Le hook
- * `usePageMeta` corrige la navigation dans le navigateur, mais pas les aperçus
- * de liens : Google exécute le JavaScript, les robots de LinkedIn, Slack et
- * WhatsApp ne l'exécutent pas et lisent le HTML tel qu'il est servi.
- *
- * Vercel sert le système de fichiers avant d'appliquer les réécritures de
- * `vercel.json` : ces fichiers priment donc sur la règle qui renvoie tout vers
- * `index.html`, sans qu'il faille la modifier.
- *
- * Le titre et la description viennent de `src/config/pageMeta.ts`, que React lit
- * aussi : une seule source, jamais deux listes à tenir d'accord.
- */
 const escapeHtml = (value: unknown) =>
   String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -27,11 +11,6 @@ const escapeHtml = (value: unknown) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-/**
- * On réécrit balise par balise plutôt que par motif figé : Prettier éclate les
- * balises longues sur plusieurs lignes, et une expression attendant
- * `property="…" content="…"` côte à côte laisse passer les descriptions.
- */
 const setMetaTag = (html: string, key: string, value: string) =>
   html.replace(/<meta\b[^>]*>/g, (tag) => {
     const id = tag.match(/(?:name|property)="([^"]+)"/);
@@ -39,7 +18,20 @@ const setMetaTag = (html: string, key: string, value: string) =>
     return tag.replace(/content="[^"]*"/, `content="${escapeHtml(value)}"`);
   });
 
-type Meta = { title: string; description: string; url: string; image: string; type: string };
+type Meta = {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  type: string;
+  jsonLd?: object;
+};
+
+const injectJsonLd = (html: string, data: object) =>
+  html.replace(
+    '</head>',
+    `  <script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>\n  </head>`
+  );
 
 const applyMeta = (html: string, meta: Meta) => {
   let out = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(meta.title)}</title>`);
@@ -49,10 +41,11 @@ const applyMeta = (html: string, meta: Meta) => {
   out = setMetaTag(out, 'og:url', meta.url);
   out = setMetaTag(out, 'og:image', meta.image);
   out = setMetaTag(out, 'og:type', meta.type);
-  return out.replace(
+  out = out.replace(
     /(<link\b[^>]*rel="canonical"[^>]*href=")[^"]*(")/,
     `$1${escapeHtml(meta.url)}$2`
   );
+  return meta.jsonLd ? injectJsonLd(out, meta.jsonLd) : out;
 };
 
 export const prerender = (): Plugin => ({
@@ -60,7 +53,7 @@ export const prerender = (): Plugin => ({
   apply: 'build',
   async closeBundle() {
     const projectId = process.env.SANITY_PROJECT_ID;
-    // Un build local sans identifiants ne doit pas échouer pour autant.
+
     if (!projectId) {
       this.warn('SANITY_PROJECT_ID absent : pré-rendu ignoré.');
       return;
@@ -82,14 +75,13 @@ export const prerender = (): Plugin => ({
       await writeFile(target, html, 'utf8');
     };
 
-    /**
-     * L'adresse absolue ne doit jamais être écrite en dur : elle change avec le
-     * domaine. Le Studio fait autorité, Vercel prend le relais sur un aperçu ou
-     * si rien n'est saisi, et la constante ne sert qu'aux builds hors Vercel.
-     */
-    const settings: { siteUrl?: string } | null = await query(
-      '*[_type=="siteSettings"][0]{siteUrl}'
-    );
+    const settings: {
+      siteUrl?: string;
+      name?: string;
+      role?: { fr?: string };
+      github?: string;
+      linkedin?: string;
+    } | null = await query('*[_type=="siteSettings"][0]{siteUrl, name, role, github, linkedin}');
     const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
     const site = (
       settings?.siteUrl ||
@@ -97,6 +89,16 @@ export const prerender = (): Plugin => ({
       FALLBACK_SITE_URL
     ).replace(/\/$/, '');
     const defaultImage = `${site}/og.png`;
+    const owner = settings?.name ?? OWNER;
+    const person = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: owner,
+      jobTitle: settings?.role?.fr,
+      url: site,
+      image: defaultImage,
+      sameAs: [settings?.github, settings?.linkedin].filter(Boolean),
+    };
 
     const urls: Array<{ loc: string; priority: string; lastmod?: string }> = [];
 
@@ -108,6 +110,7 @@ export const prerender = (): Plugin => ({
           url: `${site}${route}`,
           image: defaultImage,
           type: 'website',
+          jsonLd: route === '/' ? person : undefined,
         })
       );
       urls.push({ loc: `${site}${route}`, priority: route === '/' ? '1.0' : '0.8' });
@@ -128,14 +131,24 @@ export const prerender = (): Plugin => ({
       await write(
         route,
         applyMeta(shell, {
-          title: `${project.title} - ${OWNER}`,
+          title: `${project.title} - ${owner}`,
           description: trimDescription(project.summary),
           url: `${site}${route}`,
-          // Le CDN de Sanity recadre à la demande : aucune image à générer.
+
           image: project.cover
             ? `${project.cover}?w=1200&h=630&fit=crop&auto=format`
             : defaultImage,
           type: 'article',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'CreativeWork',
+            name: project.title,
+            description: trimDescription(project.summary),
+            url: `${site}${route}`,
+            image: project.cover ?? defaultImage,
+            dateModified: project._updatedAt?.slice(0, 10),
+            author: { '@type': 'Person', name: owner, url: site },
+          },
         })
       );
       urls.push({
@@ -156,8 +169,6 @@ export const prerender = (): Plugin => ({
       'utf8'
     );
 
-    // `public/robots.txt` sert de garde-fou ; on le réécrit pour que l'URL du
-    // sitemap suive un éventuel changement de domaine.
     await writeFile(
       join(dist, 'robots.txt'),
       `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`,
