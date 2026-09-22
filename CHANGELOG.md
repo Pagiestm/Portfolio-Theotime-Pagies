@@ -1,3 +1,9 @@
+## [1.10.3](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.2...v1.10.3) (2026-09-22)
+
+### Bug Fixes
+
+* **web:** servir les aperçus zoomés à leur résolution native ([81ee976](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/81ee976546e8782c3c31fa78cf8a2007e0e46887))
+
 ## [1.10.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.1...v1.10.2) (2026-09-22)
 
 ### Bug Fixes
