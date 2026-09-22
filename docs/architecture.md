@@ -85,7 +85,7 @@ ne contient pas de requête GROQ.
 | Une constante partagée entre features  | `constants/`                     | `constants/tech.ts`                               |
 | Un utilitaire pur sans React           | `utils/`                         | `utils/slugify.ts`                                |
 | Un libellé d'interface                 | `i18n/fr.ts` et `i18n/en.ts`     | « Envoyer », « Voir plus »                        |
-| Un token de design                     | `styles/tokens.css`              | exposé à Tailwind                                 |
+| Un token de design                     | `styles/tokens.css`              | bloc `@theme`, variable et classe à la fois       |
 | Une valeur partagée avec le Studio     | `packages/shared/src/`           | `TECHNOLOGIES`, `Locale`                          |
 
 Si un fichier ne rentre dans aucune case, le dire plutôt que de forcer.
@@ -159,6 +159,11 @@ Toute couleur vient de `styles/tokens.css` via les classes Tailwind (`bg-surface
 Filets 2 px pour les séparations majeures, 1 px pour les mineures. Libellés de
 boutons alignés à gauche. Captures d'écran en `object-contain`, jamais recadrées.
 Toute animation vérifie `usePrefersReducedMotion()`.
+
+Les tokens sont déclarés dans un bloc `@theme`. Depuis Tailwind 4, une variable
+qui y figure est à la fois lisible en CSS (`var(--color-accent)`) et disponible
+en classe (`bg-accent`, `text-accent`, `border-accent`) : il n'y a plus de
+`tailwind.config.js`, ni de valeur écrite à deux endroits.
 
 # Bilingue
 

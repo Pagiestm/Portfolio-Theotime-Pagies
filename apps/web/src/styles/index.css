@@ -1,8 +1,6 @@
 @import './tokens.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 @layer base {
   /* Le défilement fluide n'est appliqué qu'aux visiteurs qui n'ont pas
@@ -16,7 +14,7 @@
   body {
     margin: 0;
     background: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-ink);
     font-family: Archivo, system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.55;

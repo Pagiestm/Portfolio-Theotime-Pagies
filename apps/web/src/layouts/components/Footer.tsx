@@ -12,7 +12,7 @@ const Footer = () => {
   ].filter(Boolean) as Array<{ label: string; href: string }>;
 
   return (
-    <footer className="relative z-[1] border-t-2 border-line bg-[rgba(1,0,1,.6)]">
+    <footer className="relative z-1 border-t-2 border-line bg-[rgba(1,0,1,.6)]">
       <div className="mx-auto flex max-w-shell flex-wrap items-center justify-between gap-[18px] px-6 py-8 text-[13px] text-muted">
         <span>
           © {new Date().getFullYear()} {settings.name} - {localize(settings.role)}

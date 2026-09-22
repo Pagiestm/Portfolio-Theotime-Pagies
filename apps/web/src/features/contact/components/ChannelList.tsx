@@ -16,7 +16,9 @@ const ChannelList = () => {
           <span className="w-[88px] flex-none text-[11px] uppercase tracking-[.16em] text-muted">
             {channel.label}
           </span>
-          <span className="min-w-0 flex-1 break-words text-[16px] font-bold">{channel.value}</span>
+          <span className="min-w-0 flex-1 wrap-break-word text-[16px] font-bold">
+            {channel.value}
+          </span>
           <span className="flex-none text-[19px] text-accent">↗</span>
         </a>
       ))}
