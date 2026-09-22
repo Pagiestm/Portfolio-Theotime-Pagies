@@ -28,20 +28,18 @@ const Reveal = ({
 }: RevealProps) => {
   const ref = useRef(null);
   const reduced = usePrefersReducedMotion();
-  const [shown, setShown] = useState(false);
+  const [entered, setEntered] = useState(false);
+  const shown = entered || reduced;
 
   useEffect(() => {
-    if (reduced) {
-      setShown(true);
-      return undefined;
-    }
+    if (reduced) return undefined;
     const el = ref.current;
     if (!el) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShown(true);
+          setEntered(true);
           observer.unobserve(entry.target);
         }
       },

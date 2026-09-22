@@ -21,11 +21,6 @@ const withBold = (text: string, keyPrefix: string): ReactNode[] =>
     )
   );
 
-/**
- * Le modèle répond en texte avec des liens Markdown vers les pages du site.
- * On ne rend que cela, pas un moteur Markdown complet : un lien interne
- * devient une navigation React Router, un lien externe un `<a>`.
- */
 const renderAnswer = (text: string, onNavigate: () => void): ReactNode =>
   text.split('\n').map((line, i) => {
     const nodes: ReactNode[] = [];
@@ -72,7 +67,6 @@ const renderAnswer = (text: string, onNavigate: () => void): ReactNode =>
     );
   });
 
-/** Trois carrés qui pulsent en décalé pendant que la réponse se prépare. */
 const Thinking = ({ label, animate }: { label: string; animate: boolean }) => (
   <div className="flex items-center gap-3 text-[12px] uppercase tracking-[.16em] text-muted">
     {label}
@@ -155,18 +149,11 @@ const AssistantWidget = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
-  /**
-   * Seule la réponse qui vient d'arriver s'écrit progressivement ; celles déjà
-   * lues restent entières, y compris après une réouverture du panneau. La
-   * décision se prend pendant le rendu, pas dans un effet : la machine à écrire
-   * fixe son point de départ au premier rendu du message.
-   */
-  const seen = useRef(new Set<number>());
+  const [seen, setSeen] = useState<ReadonlySet<number>>(() => new Set());
   const last = messages[messages.length - 1];
-  const typingId =
-    !reduced && last?.role === 'assistant' && !seen.current.has(last.id) ? last.id : null;
+  const typingId = !reduced && last?.role === 'assistant' && !seen.has(last.id) ? last.id : null;
   const markSeen = useCallback((id: number) => {
-    seen.current.add(id);
+    setSeen((previous) => (previous.has(id) ? previous : new Set(previous).add(id)));
   }, []);
 
   const scrollToEnd = useCallback(() => endRef.current?.scrollIntoView({ block: 'end' }), []);
@@ -210,12 +197,6 @@ const AssistantWidget = () => {
         </button>
       )}
 
-      {/*
-       * Même mécanique que le menu mobile du Header : le panneau reste monté et
-       * glisse depuis la droite par transition CSS, ce qui anime aussi la
-       * fermeture. `inert` le retire du focus et des lecteurs d'écran quand il
-       * est fermé.
-       */}
       <div
         role="presentation"
         onClick={close}
