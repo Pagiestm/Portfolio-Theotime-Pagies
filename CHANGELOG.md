@@ -1,3 +1,9 @@
+## [1.9.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.8.0...v1.9.0) (2026-09-22)
+
+### Features
+
+* **web:** rendre le site partageable, et ajouter mentions légales et évitement ([97f6fae](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/97f6fae809e21cfde8385037d30690345f816d45))
+
 ## [1.8.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.7.2...v1.8.0) (2026-09-22)
 
 ### Features
