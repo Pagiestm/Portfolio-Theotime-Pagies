@@ -21,7 +21,8 @@ export type ContactPayload = {
   name: string;
   email: string;
   message: string;
-  website: string;
+  trap: string;
+  lang: string;
 };
 
 export const sendContactMessage = async (payload: ContactPayload) => {

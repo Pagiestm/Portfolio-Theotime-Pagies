@@ -76,8 +76,6 @@ export type HomeContent = {
 
   showStack?: boolean | null;
   stackTitle?: Locale | null;
-  showJourney?: boolean | null;
-  journeyTitle?: Locale | null;
   closingTitle: Locale;
   closingCta: Locale;
 };

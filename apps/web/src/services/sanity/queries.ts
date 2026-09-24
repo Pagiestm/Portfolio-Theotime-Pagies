@@ -59,8 +59,6 @@ export const HOME_QUERY = groq`
     indexTitle ${LOCALE},
     showStack,
     stackTitle ${LOCALE},
-    showJourney,
-    journeyTitle ${LOCALE},
     closingTitle ${LOCALE},
     closingCta ${LOCALE}
   }
@@ -83,14 +81,6 @@ export const ABOUT_QUERY = groq`
     portrait,
     "paragraphs": paragraphs[] ${LOCALE},
     facts[] { label ${LOCALE}, value ${LOCALE} }
-  }
-`;
-
-export const JOURNEY_PREVIEW_QUERY = groq`
-  *[_type == "journeyEntry"] | order(startDate desc) [0...3] {
-    kind, org,
-    period ${LOCALE},
-    role ${LOCALE}
   }
 `;
 

@@ -7,7 +7,9 @@ import { useTranslation } from '../../../i18n/useTranslation';
 import { paths } from '../../../routes/paths';
 
 const HEADER_HEIGHT = 68;
-const TRACK_PAD_TOP = 'clamp(52px,9vh,120px)';
+const TRACK_PAD_TOP = 'var(--corridor-pad-top)';
+const STEM = 'var(--corridor-stem)';
+const CARD_PAD_Y = 'var(--corridor-close-pad)';
 const CARD_WIDTH = 'clamp(280px,30vw,384px)';
 
 const StepButton = ({
@@ -87,13 +89,20 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
                 data-card-node
                 className="h-[15px] w-[15px] border-2 border-line bg-bg transition-all duration-400"
               />
-              <span className="h-[34px] w-[2px] bg-line" />
+              <span className="w-[2px] bg-line" style={{ height: STEM }} />
               <div
                 data-card-body
-                className="w-full border-2 border-accent px-7 pb-[28px] pt-7"
-                style={{ transformStyle: 'preserve-3d' }}
+                className="w-full border-2 border-accent px-7"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  paddingTop: CARD_PAD_Y,
+                  paddingBottom: CARD_PAD_Y,
+                }}
               >
-                <h3 className="m-0 mb-6 text-[clamp(21px,2.4vw,30px)] font-black leading-[1.06] tracking-[-.03em]">
+                <h3
+                  className="m-0 text-[clamp(21px,2.4vw,30px)] font-black leading-[1.06] tracking-[-.03em]"
+                  style={{ marginBottom: 'var(--corridor-gap-lg)' }}
+                >
                   {t.closeTitle}
                 </h3>
                 <ActionLink to={paths.contact} className="px-6 py-[14px] text-[13px]">
@@ -104,9 +113,18 @@ const JourneyCorridor = ({ entries }: { entries: JourneyEntry[] }) => {
           </div>
         </div>
 
-        <div className="relative z-9 shrink-0 border-t-2 border-line bg-bg">
-          <div className="mx-auto max-w-shell px-6 py-[18px]">
-            <div className="mb-3 flex items-center justify-between gap-4">
+        <div data-bottom-bar className="relative z-9 shrink-0 border-t-2 border-line bg-bg">
+          <div
+            className="mx-auto max-w-shell px-6"
+            style={{
+              paddingTop: 'var(--corridor-bar-pad)',
+              paddingBottom: 'var(--corridor-bar-pad)',
+            }}
+          >
+            <div
+              className="flex items-center justify-between gap-4"
+              style={{ marginBottom: 'var(--corridor-gap-md)' }}
+            >
               <span className="text-[11px] uppercase tracking-[.18em] text-muted">
                 {t.scrollHint}
               </span>

@@ -1,8 +1,8 @@
 import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url';
-import { sanityClient } from './client';
+import { sanityConfig } from './client';
 
-const builder = imageUrlBuilder(sanityClient);
+const builder = imageUrlBuilder(sanityConfig);
 
 const DEFAULT_QUALITY = 80;
 

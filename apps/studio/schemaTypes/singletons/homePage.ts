@@ -98,21 +98,6 @@ export const homePage = defineType({
       hidden: ({ document }) => document?.showStack === false,
     }),
     defineField({
-      name: 'showJourney',
-      title: 'Afficher la section « Parcours en bref »',
-      description:
-        'Les trois étapes les plus récentes du parcours, avec un lien vers la page complète.',
-      type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
-      name: 'journeyTitle',
-      title: 'Parcours en bref - titre',
-      description: 'Laissez vide pour le titre par défaut.',
-      type: 'localeString',
-      hidden: ({ document }) => document?.showJourney === false,
-    }),
-    defineField({
       name: 'closingTitle',
       title: 'Bannière de clôture - titre',
       type: 'localeString',

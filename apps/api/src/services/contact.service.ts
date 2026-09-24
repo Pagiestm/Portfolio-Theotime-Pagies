@@ -4,6 +4,17 @@ import { ConfigError, UpstreamError } from '../models/errors.model.ts';
 
 const ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
+const LANGUAGES = { fr: 'Français', en: 'English' };
+
+const receivedAt = () =>
+  new Intl.DateTimeFormat('fr-FR', {
+    dateStyle: 'full',
+    timeStyle: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(new Date());
+
+const countWords = (message: string) => message.trim().split(/\s+/).filter(Boolean).length;
+
 export const send = async (request: ContactRequest) => {
   const { emailjs } = getEnv();
 
@@ -27,6 +38,9 @@ export const send = async (request: ContactRequest) => {
           user_email: request.email,
           reply_to: request.email,
           message: request.message,
+          received_at: receivedAt(),
+          site_language: LANGUAGES[request.lang],
+          message_words: String(countWords(request.message)),
         },
       }),
     });
