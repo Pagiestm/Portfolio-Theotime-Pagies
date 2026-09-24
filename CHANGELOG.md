@@ -1,3 +1,14 @@
+## [1.11.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.3...v1.11.0) (2026-09-24)
+
+### Features
+
+* **web:** faire passer le formulaire de contact par l'API ([39e739d](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/39e739d98094b62823a2644ac01dbf7487c81d6f))
+* **web:** proposer le CV au téléchargement ([93d71b7](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/93d71b794d21164fd72da7fdc323e34eb30a544f))
+
+### Bug Fixes
+
+* **web:** pointer le repli d'adresse vers le domaine courant ([d2fd9c5](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/d2fd9c5f8a28e15771b10ebf561909aca49a2f2e))
+
 ## [1.10.3](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.2...v1.10.3) (2026-09-22)
 
 ### Bug Fixes
