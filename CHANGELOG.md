@@ -1,3 +1,18 @@
+## [1.12.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.11.0...v1.12.0) (2026-09-24)
+
+### Features
+
+* **web:** décrire les images et offrir une vraie visionneuse de galerie ([0d77b9c](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/0d77b9c15d8a857ba504c7a8e8b4cda7e5c18c44))
+
+### Bug Fixes
+
+* **web:** rendre le parcours lisible sur écran court et écarter l'assistant ([c16b0db](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/c16b0dbdb1c5adc9cb884cb70c403177aebc17e4))
+* **web:** réparer le champ piège et enrichir l'email de contact ([4c3fc73](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/4c3fc7385bb6dda3c1dd39efea174ed6b18e09b8))
+
+### Performance Improvements
+
+* **web:** alléger le chargement initial et resserrer l'accueil ([1cfa99e](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/1cfa99e9f77a0c157ffa11b2b0bca730fded30d5))
+
 ## [1.11.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.10.3...v1.11.0) (2026-09-24)
 
 ### Features
