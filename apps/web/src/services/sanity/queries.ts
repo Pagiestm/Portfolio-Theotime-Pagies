@@ -117,6 +117,7 @@ export const SITE_SETTINGS_QUERY = groq`
   *[_type == "siteSettings"][0] {
     name,
     role ${LOCALE},
-    email, github, linkedin, siteUrl
+    email, github, linkedin, siteUrl,
+    "cv": cv.asset->url
   }
 `;

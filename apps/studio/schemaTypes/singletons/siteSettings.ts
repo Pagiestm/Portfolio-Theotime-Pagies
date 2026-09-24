@@ -27,6 +27,14 @@ export const siteSettings = defineType({
     defineField({ name: 'github', title: 'GitHub', type: 'url' }),
     defineField({ name: 'linkedin', title: 'LinkedIn', type: 'url' }),
     defineField({ name: 'siteUrl', title: 'Adresse du site', type: 'url' }),
+    defineField({
+      name: 'cv',
+      title: 'CV (PDF)',
+      description:
+        'Proposé au téléchargement dans le pied de page. Remplacer le fichier suffit, le lien ne change pas.',
+      type: 'file',
+      options: { accept: 'application/pdf' },
+    }),
   ],
   preview: { prepare: () => ({ title: 'Réglages du site' }) },
 });
