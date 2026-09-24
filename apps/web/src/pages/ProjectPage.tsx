@@ -66,6 +66,7 @@ const ProjectPage = () => {
         srcSet={coverSet}
         sizes="(max-width: 1320px) 100vw, 1280px"
         title={project.title}
+        alt={project.cover?.alt}
         loading="eager"
         className="mb-[2px] border-2 border-line"
         style={{ height: 'clamp(230px,40vh,440px)' }}

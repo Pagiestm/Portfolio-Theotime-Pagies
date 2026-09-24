@@ -26,6 +26,16 @@
   /* L'apparition des blocs au défilement ; les composants qui s'en servent
      vérifient d'abord `usePrefersReducedMotion()`. */
   --animate-rise: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-fade: fade 0.28s ease-out both;
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   @keyframes rise {
     0% {
@@ -36,5 +46,31 @@
       opacity: 1;
       transform: none;
     }
+  }
+}
+
+:root {
+  --corridor-pad-top: clamp(52px, 9vh, 120px);
+  --corridor-stem: 34px;
+  --corridor-card-pad: 22px;
+  --corridor-close-pad: 28px;
+  --corridor-gap-lg: 18px;
+  --corridor-gap-md: 12px;
+  --corridor-gap-sm: 8px;
+  --corridor-bar-pad: 18px;
+  --corridor-detail: 15px;
+}
+
+@media (max-height: 820px) {
+  :root {
+    --corridor-pad-top: clamp(18px, 4.5vh, 52px);
+    --corridor-stem: clamp(12px, 2.2vh, 20px);
+    --corridor-card-pad: clamp(12px, 1.9vh, 16px);
+    --corridor-close-pad: clamp(14px, 2.2vh, 20px);
+    --corridor-gap-lg: clamp(8px, 1.5vh, 12px);
+    --corridor-gap-md: clamp(6px, 1.1vh, 9px);
+    --corridor-gap-sm: clamp(4px, 0.8vh, 6px);
+    --corridor-bar-pad: clamp(8px, 1.4vh, 12px);
+    --corridor-detail: 13.5px;
   }
 }

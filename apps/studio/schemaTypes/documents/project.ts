@@ -148,6 +148,16 @@ export const project = defineType({
       type: 'image',
       group: 'media',
       options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Description de l’image',
+          description:
+            'Lue par les lecteurs d’écran et par les moteurs de recherche. Décrire ce que montre la capture, pas son format : « Tableau Kanban avec trois colonnes » plutôt que « capture 1 ».',
+          type: 'string',
+          validation: (rule) => rule.required().max(160),
+        }),
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -156,7 +166,22 @@ export const project = defineType({
       description: 'Les captures affichées en bas de la page projet.',
       type: 'array',
       group: 'media',
-      of: [defineArrayMember({ type: 'image', options: { hotspot: true } })],
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Description de l’image',
+              description:
+                'Lue par les lecteurs d’écran et par les moteurs de recherche. Décrire ce que montre la capture, pas son format : « Tableau Kanban avec trois colonnes » plutôt que « capture 1 ».',
+              type: 'string',
+              validation: (rule) => rule.required().max(160),
+            }),
+          ],
+        }),
+      ],
       options: { layout: 'grid' },
     }),
 

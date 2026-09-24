@@ -14,6 +14,7 @@ const ProjectCover = ({
   srcSet,
   sizes,
   title,
+  alt,
   className = '',
   style,
   loading = 'lazy',
@@ -22,6 +23,7 @@ const ProjectCover = ({
   srcSet?: string;
   sizes?: string;
   title: string;
+  alt?: string;
   className?: string;
   style?: CSSProperties;
   loading?: 'lazy' | 'eager';
@@ -32,7 +34,7 @@ const ProjectCover = ({
         src={src}
         srcSet={srcSet}
         sizes={sizes}
-        alt={title}
+        alt={alt ?? title}
         loading={loading}
         className="block h-full w-full object-contain"
       />
