@@ -1,20 +1,6 @@
 export const env = {
-  emailjs: {
-    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    userId: import.meta.env.VITE_EMAILJS_USER_ID,
-  },
-  recaptcha: {
-    siteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-  },
   sanity: {
     projectId: import.meta.env.SANITY_PROJECT_ID,
     dataset: import.meta.env.SANITY_DATASET ?? 'production',
   },
 };
-
-export const isEmailConfigured = Boolean(
-  env.emailjs.serviceId && env.emailjs.templateId && env.emailjs.userId
-);
-
-export const isRecaptchaConfigured = Boolean(env.recaptcha.siteKey);

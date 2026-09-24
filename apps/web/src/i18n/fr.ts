@@ -8,6 +8,7 @@ export default {
   prev: 'Étape précédente',
   next: 'Étape suivante',
   menu: 'Menu',
+  downloadCv: 'Télécharger le CV',
   skipToContent: 'Aller au contenu',
   legalTitle: 'Mentions légales',
   legal: {
@@ -28,7 +29,7 @@ export default {
       },
       {
         heading: 'Données personnelles',
-        body: 'Le formulaire de contact transmet le nom, l’adresse e-mail et le message renseignés, dans le seul but de permettre une réponse. Aucune donnée n’est conservée dans une base, revendue, ni utilisée à des fins publicitaires. Le formulaire est protégé des envois automatisés par reCAPTCHA, service de Google soumis à sa propre politique de confidentialité.',
+        body: 'Le formulaire de contact transmet le nom, l’adresse e-mail et le message renseignés, dans le seul but de permettre une réponse. Aucune donnée n’est conservée dans une base, revendue, ni utilisée à des fins publicitaires. Il est protégé des envois automatisés par un champ masqué, sans service tiers ni cookie.',
       },
       {
         heading: 'Vos droits',
@@ -110,8 +111,14 @@ export default {
   fErrMailRequired: "L'email est requis.",
   fErrMailFormat: "Le format de l'email est incorrect.",
   fErrMsg: 'Le message est requis.',
-  fErrCaptcha: 'Veuillez valider le CAPTCHA.',
   fErrSend: "L'envoi a échoué. Réessayez ou écrivez-moi directement.",
+  contactErrors: {
+    rateLimited: 'Plusieurs messages envoyés coup sur coup : réessayez dans une heure.',
+    invalid: 'Un champ est vide ou trop long : vérifiez avant de renvoyer.',
+    config: "L'envoi n'est pas configuré. Écrivez directement à l'adresse indiquée ci-contre.",
+    network: 'La connexion a échoué. Vérifiez votre réseau, puis réessayez.',
+    unavailable: "L'envoi est momentanément indisponible. Réessayez dans un instant.",
+  },
   fErrConfig: "Le formulaire n'est pas configuré. Écrivez-moi directement par email.",
 
   errorKicker: 'Erreur',
