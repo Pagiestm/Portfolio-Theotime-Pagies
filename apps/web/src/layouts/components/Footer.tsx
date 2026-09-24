@@ -20,6 +20,16 @@ const Footer = () => {
           © {new Date().getFullYear()} {settings.name} - {localize(settings.role)}
         </span>
         <span className="flex flex-wrap gap-[22px]">
+          {settings.cv && (
+            <a
+              href={settings.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-accent-2 hover:text-ink"
+            >
+              {t.downloadCv}
+            </a>
+          )}
           <Link to={paths.legal} className="text-muted hover:text-ink">
             {t.legalTitle}
           </Link>

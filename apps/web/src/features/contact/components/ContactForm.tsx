@@ -1,8 +1,5 @@
-import ReCAPTCHA from 'react-google-recaptcha';
 import { useContactForm } from '../hooks/useContactForm';
-import { useMediaQuery } from '../../../hooks/useMediaQuery';
 import { useTranslation } from '../../../i18n/useTranslation';
-import { env } from '../../../config/env';
 
 const FIELD_CLASS =
   'border-2 border-line bg-bg px-4 py-[14px] text-ink outline-none transition-colors focus:border-accent';
@@ -21,17 +18,7 @@ const Field = ({ id, label, error, children }) => (
 const ContactForm = () => {
   const { t } = useTranslation();
 
-  const captchaSize = useMediaQuery('(max-width: 400px)') ? 'compact' : 'normal';
-  const {
-    formRef,
-    captchaRef,
-    errors,
-    status,
-    submit,
-    onCaptchaChange,
-    onCaptchaExpired,
-    showCaptcha,
-  } = useContactForm();
+  const { formRef, errors, status, submit } = useContactForm();
 
   return (
     <form
@@ -52,20 +39,10 @@ const ContactForm = () => {
         <textarea id="cf-msg" name="message" rows={6} className={`${FIELD_CLASS} resize-y`} />
       </Field>
 
-      {showCaptcha && (
-        <div>
-          <ReCAPTCHA
-            key={captchaSize}
-            ref={captchaRef}
-            sitekey={env.recaptcha.siteKey}
-            size={captchaSize}
-            theme="dark"
-            onChange={onCaptchaChange}
-            onExpired={onCaptchaExpired}
-          />
-          {errors.captcha && <p className="m-0 mt-2 text-[13px] text-accent-2">{errors.captcha}</p>}
-        </div>
-      )}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="cf-site">Site web</label>
+        <input id="cf-site" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <button
         type="submit"

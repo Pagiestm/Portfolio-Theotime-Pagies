@@ -8,6 +8,7 @@ export default {
   prev: 'Previous step',
   next: 'Next step',
   menu: 'Menu',
+  downloadCv: 'Download CV',
   skipToContent: 'Skip to content',
   legalTitle: 'Legal notice',
   legal: {
@@ -27,7 +28,7 @@ export default {
       },
       {
         heading: 'Personal data',
-        body: 'The contact form sends the name, email address and message you provide, for the sole purpose of replying. No data is stored in a database, sold, or used for advertising. The form is protected against automated submissions by reCAPTCHA, a Google service governed by its own privacy policy.',
+        body: 'The contact form sends the name, email address and message you provide, for the sole purpose of replying. No data is stored in a database, sold, or used for advertising. It is protected against automated submissions by a hidden field, with no third-party service and no cookie.',
       },
       {
         heading: 'Your rights',
@@ -107,8 +108,14 @@ export default {
   fErrMailRequired: 'Email is required.',
   fErrMailFormat: 'This email address is not valid.',
   fErrMsg: 'Message is required.',
-  fErrCaptcha: 'Please complete the CAPTCHA.',
   fErrSend: 'Sending failed. Try again or write to me directly.',
+  contactErrors: {
+    rateLimited: 'Several messages sent in a row: try again in an hour.',
+    invalid: 'A field is empty or too long: check it before sending again.',
+    config: 'Sending is not configured. Write directly to the address shown alongside.',
+    network: 'The connection failed. Check your network, then try again.',
+    unavailable: 'Sending is momentarily unavailable. Try again in a moment.',
+  },
   fErrConfig: 'The form is not configured. Please write to me directly by email.',
 
   errorKicker: 'Error',

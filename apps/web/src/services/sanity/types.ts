@@ -65,6 +65,7 @@ export type SiteSettings = {
   github?: string | null;
   linkedin?: string | null;
   siteUrl?: string | null;
+  cv?: string | null;
 };
 
 export type HomeContent = {
