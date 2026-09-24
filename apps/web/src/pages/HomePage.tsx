@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ActionLink from '../components/common/ActionLink';
 import HeroStage from '../features/home/components/HeroStage';
-import JourneyPreview from '../features/home/components/JourneyPreview';
 import MarqueeBand from '../features/home/components/MarqueeBand';
 import TechBand from '../features/home/components/TechBand';
 import ClosingBanner from '../features/home/components/ClosingBanner';
@@ -11,7 +10,7 @@ import { selectFeatured } from '../features/work/utils/selectFeatured';
 import { useTranslation } from '../i18n/useTranslation';
 import { paths } from '../routes/paths';
 import { topTechnologies } from '../utils/topTechnologies';
-import type { HomeContent, JourneyEntry, Project } from '../services/sanity/types';
+import type { HomeContent, Project } from '../services/sanity/types';
 
 const TECH_COUNT = 10;
 
@@ -34,10 +33,9 @@ const SectionHeader = ({
 
 const HomePage = () => {
   const { t, localize } = useTranslation();
-  const { home, projects, journey } = useLoaderData() as {
+  const { home, projects } = useLoaderData() as {
     home: HomeContent;
     projects: Project[];
-    journey: JourneyEntry[];
   };
 
   const selection = selectFeatured(projects);
@@ -75,15 +73,6 @@ const HomePage = () => {
             kicker: t.stack,
             title: localize(home?.stackTitle) || t.stackTitle,
             body: <TechBand items={tech} />,
-          },
-        ]
-      : []),
-    ...(home?.showJourney !== false && journey.length > 0
-      ? [
-          {
-            kicker: t.pathKicker,
-            title: localize(home?.journeyTitle) || t.journeyTitle,
-            body: <JourneyPreview entries={journey} />,
           },
         ]
       : []),

@@ -39,11 +39,17 @@ describe('parseContactRequest', () => {
   });
 
   it('signale un envoi automatisé quand le champ piège est rempli', () => {
-    const request = parseContactRequest({ ...valide, website: 'https://spam.example' });
+    const request = parseContactRequest({ ...valide, trap: 'https://spam.example' });
     assert.equal(request.automated, true);
   });
 
   it('ignore un champ piège vide', () => {
-    assert.equal(parseContactRequest({ ...valide, website: '  ' }).automated, false);
+    assert.equal(parseContactRequest({ ...valide, trap: '  ' }).automated, false);
+  });
+
+  it('retient la langue du site, français par défaut', () => {
+    assert.equal(parseContactRequest(valide).lang, 'fr');
+    assert.equal(parseContactRequest({ ...valide, lang: 'en' }).lang, 'en');
+    assert.equal(parseContactRequest({ ...valide, lang: 'kr' }).lang, 'fr');
   });
 });

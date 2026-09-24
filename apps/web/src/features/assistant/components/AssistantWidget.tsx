@@ -2,6 +2,7 @@ import { FormEvent, Fragment, ReactNode, useCallback, useEffect, useRef, useStat
 import { Link } from 'react-router-dom';
 import { FaCommentDots } from 'react-icons/fa';
 import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
+import { useFloatingOffset } from '../hooks/useFloatingOffset';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { useAssistant, type AssistantMessage } from '../hooks/useAssistant';
 import { useTypewriter } from '../hooks/useTypewriter';
@@ -144,6 +145,7 @@ const AssistantWidget = () => {
   const { t, lang } = useTranslation();
   const { messages, status, errorCode, ask, reset } = useAssistant(lang);
   const reduced = usePrefersReducedMotion();
+  const floatingOffset = useFloatingOffset();
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -189,6 +191,10 @@ const AssistantWidget = () => {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t.assistantOpen}
+          style={{
+            transform: floatingOffset ? `translateY(-${floatingOffset}px)` : undefined,
+            transition: reduced ? undefined : 'transform .25s ease-out',
+          }}
           className="fixed bottom-4 right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-ink transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
         >
           <FaCommentDots size={18} aria-hidden className="sm:hidden" />

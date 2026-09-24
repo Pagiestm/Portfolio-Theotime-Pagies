@@ -26,6 +26,7 @@ const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number 
           srcSet={coverSet}
           sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 340px"
           title={project.title}
+          alt={project.cover?.alt}
           className="h-[220px] border-b-2 border-line p-4"
         />
 
