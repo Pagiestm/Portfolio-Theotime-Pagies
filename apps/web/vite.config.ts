@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { prerender } from './vite.prerender';
+import { prerender } from './vite.prerender.ts';
 
 const API_ENTRY = `/@fs/${fileURLToPath(new URL('../api/src/index.ts', import.meta.url)).replace(/\\/g, '/')}`;
 

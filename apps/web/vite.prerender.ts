@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
-import { ROUTE_META, FALLBACK_SITE_URL, OWNER, trimDescription } from './src/routes/meta';
+import { ROUTE_META, FALLBACK_SITE_URL, OWNER, trimDescription } from './src/routes/meta.ts';
 
 const escapeHtml = (value: unknown) =>
   String(value ?? '')

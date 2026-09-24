@@ -1,6 +1,6 @@
-import { paths } from './paths';
+import { paths } from './paths.ts';
 
-export const FALLBACK_SITE_URL = 'https://portfolio-theotime-pagies.vercel.app';
+export const FALLBACK_SITE_URL = 'https://theotimepagies.com';
 
 export const OWNER = 'Théotime Pagies';
 
