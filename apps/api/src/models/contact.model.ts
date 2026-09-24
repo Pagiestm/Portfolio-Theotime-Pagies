@@ -4,6 +4,7 @@ export type ContactRequest = {
   name: string;
   email: string;
   message: string;
+  lang: 'fr' | 'en';
   automated: boolean;
 };
 
@@ -19,7 +20,7 @@ const text = (value: unknown, field: string, max: number) => {
 
 export const parseContactRequest = (body: unknown): ContactRequest => {
   if (!body || typeof body !== 'object') throw new ValidationError('corps JSON attendu');
-  const { name, email, message, website } = body as Record<string, unknown>;
+  const { name, email, message, trap, lang } = body as Record<string, unknown>;
 
   const address = text(email, 'email', LIMITS.email);
   if (!EMAIL_PATTERN.test(address)) throw new ValidationError('email invalide');
@@ -28,6 +29,7 @@ export const parseContactRequest = (body: unknown): ContactRequest => {
     name: text(name, 'nom', LIMITS.name),
     email: address,
     message: text(message, 'message', LIMITS.message),
-    automated: typeof website === 'string' && website.trim().length > 0,
+    lang: lang === 'en' ? 'en' : 'fr',
+    automated: typeof trap === 'string' && trap.trim().length > 0,
   };
 };

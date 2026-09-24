@@ -9,7 +9,11 @@ export const send = async (c: Context) => {
   });
   const request = parseContactRequest(body);
 
-  if (!request.automated) await contact.send(request);
+  if (request.automated) {
+    console.warn('[api] contact écarté', { de: request.email, mots: request.message.length });
+  } else {
+    await contact.send(request);
+  }
 
   c.header('cache-control', 'no-store');
   return c.json({ sent: true });

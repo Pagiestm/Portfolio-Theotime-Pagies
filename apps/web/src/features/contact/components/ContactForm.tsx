@@ -40,8 +40,14 @@ const ContactForm = () => {
       </Field>
 
       <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="cf-site">Site web</label>
-        <input id="cf-site" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <input
+          id="cf-ref"
+          name="cf_ref"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
       </div>
 
       <button

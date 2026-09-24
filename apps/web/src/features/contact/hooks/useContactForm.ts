@@ -6,7 +6,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_FILL_MS = 2500;
 
 export const useContactForm = () => {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const formRef = useRef(null);
   const openedAt = useRef(0);
 
@@ -52,7 +52,8 @@ export const useContactForm = () => {
           name: fields.user_name.value.trim(),
           email: fields.user_email.value.trim(),
           message: fields.message.value.trim(),
-          website: tooFast ? 'trop rapide' : fields.website.value,
+          trap: tooFast ? 'delai' : fields.cf_ref.value,
+          lang,
         });
         formRef.current.reset();
         openedAt.current = Date.now();
@@ -63,7 +64,7 @@ export const useContactForm = () => {
         setErrors({ form: t.contactErrors[code] });
       }
     },
-    [t, validate]
+    [lang, t, validate]
   );
 
   return { formRef, errors, status, submit };
