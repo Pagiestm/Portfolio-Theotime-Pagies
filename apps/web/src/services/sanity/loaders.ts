@@ -1,9 +1,8 @@
-import { sanityClient } from './client';
+import { sanityFetch } from './client';
 import {
   ABOUT_QUERY,
   CONTACT_PAGE_QUERY,
   HOME_QUERY,
-  JOURNEY_PREVIEW_QUERY,
   JOURNEY_QUERY,
   PATH_PAGE_QUERY,
   PROJECTS_QUERY,
@@ -26,30 +25,29 @@ import type {
 } from './types';
 
 export const rootLoader = async () => ({
-  settings: await sanityClient.fetch<SiteSettings>(SITE_SETTINGS_QUERY),
+  settings: await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY),
 });
 
 export const homeLoader = async () => {
-  const [home, projects, journey] = await Promise.all([
-    sanityClient.fetch<HomeContent>(HOME_QUERY),
-    sanityClient.fetch<Project[]>(PROJECTS_QUERY),
-    sanityClient.fetch<JourneyEntry[]>(JOURNEY_PREVIEW_QUERY),
+  const [home, projects] = await Promise.all([
+    sanityFetch<HomeContent>(HOME_QUERY),
+    sanityFetch<Project[]>(PROJECTS_QUERY),
   ]);
-  return { home, projects, journey };
+  return { home, projects };
 };
 
 export const workLoader = async () => {
   const [page, projects] = await Promise.all([
-    sanityClient.fetch<{ header: PageHeader }>(WORK_PAGE_QUERY),
-    sanityClient.fetch<Project[]>(PROJECTS_QUERY),
+    sanityFetch<{ header: PageHeader }>(WORK_PAGE_QUERY),
+    sanityFetch<Project[]>(PROJECTS_QUERY),
   ]);
   return { header: page?.header, projects };
 };
 
 export const projectLoader = async ({ params }: { params: { slug?: string } }) => {
   const [project, siblings] = await Promise.all([
-    sanityClient.fetch<Project | null>(PROJECT_QUERY, { slug: params.slug }),
-    sanityClient.fetch<Array<{ id: string; title: string }>>(PROJECT_SLUGS_QUERY),
+    sanityFetch<Project | null>(PROJECT_QUERY, { slug: params.slug }),
+    sanityFetch<Array<{ id: string; title: string }>>(PROJECT_SLUGS_QUERY),
   ]);
 
   if (!project) {
@@ -60,25 +58,25 @@ export const projectLoader = async ({ params }: { params: { slug?: string } }) =
 
 export const pathLoader = async () => {
   const [page, journey] = await Promise.all([
-    sanityClient.fetch<PathContent>(PATH_PAGE_QUERY),
-    sanityClient.fetch<JourneyEntry[]>(JOURNEY_QUERY),
+    sanityFetch<PathContent>(PATH_PAGE_QUERY),
+    sanityFetch<JourneyEntry[]>(JOURNEY_QUERY),
   ]);
   return { page, journey };
 };
 
 export const skillsLoader = async () => {
   const [page, groups] = await Promise.all([
-    sanityClient.fetch<{ header: PageHeader }>(SKILLS_PAGE_QUERY),
-    sanityClient.fetch<SkillGroup[]>(SKILL_GROUPS_QUERY),
+    sanityFetch<{ header: PageHeader }>(SKILLS_PAGE_QUERY),
+    sanityFetch<SkillGroup[]>(SKILL_GROUPS_QUERY),
   ]);
   return { header: page?.header, groups };
 };
 
 export const aboutLoader = async () => ({
-  about: await sanityClient.fetch<AboutContent>(ABOUT_QUERY),
+  about: await sanityFetch<AboutContent>(ABOUT_QUERY),
 });
 
 export const contactLoader = async () => {
-  const page = await sanityClient.fetch<{ header: PageHeader }>(CONTACT_PAGE_QUERY);
+  const page = await sanityFetch<{ header: PageHeader }>(CONTACT_PAGE_QUERY);
   return { header: page?.header };
 };

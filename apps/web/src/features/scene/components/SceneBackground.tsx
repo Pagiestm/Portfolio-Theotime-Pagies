@@ -1,43 +1,63 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { scene } from '../../../config/scene';
 
 const HeroScene = lazy(() => import('./HeroScene'));
 
-const SceneBackground = ({ animated = true }: { animated?: boolean }) => (
-  <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-    {animated && (
-      <div className="absolute inset-0 opacity-30">
-        <Suspense fallback={null}>
-          <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
-        </Suspense>
+const useIdle = (enabled: boolean) => {
+  const [idle, setIdle] = useState(false);
+
+  useEffect(() => {
+    if (!enabled) return undefined;
+    if (typeof requestIdleCallback !== 'function') {
+      const timer = setTimeout(() => setIdle(true), 400);
+      return () => clearTimeout(timer);
+    }
+    const handle = requestIdleCallback(() => setIdle(true), { timeout: 2000 });
+    return () => cancelIdleCallback(handle);
+  }, [enabled]);
+
+  return idle;
+};
+
+const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
+  const ready = useIdle(animated);
+
+  return (
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {animated && ready && (
+        <div className="absolute inset-0 opacity-30">
+          <Suspense fallback={null}>
+            <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
+          </Suspense>
+        </div>
+      )}
+
+      <div className="absolute inset-0 flex flex-col justify-between">
+        {Array.from({ length: 8 }, (_, i) => (
+          <span key={i} className="block h-px bg-line-soft" />
+        ))}
       </div>
-    )}
 
-    <div className="absolute inset-0 flex flex-col justify-between">
-      {Array.from({ length: 8 }, (_, i) => (
-        <span key={i} className="block h-px bg-line-soft" />
-      ))}
-    </div>
+      <div className="absolute inset-0 mx-auto max-w-shell">
+        <span
+          className="absolute inset-y-0 left-6 block w-px"
+          style={{
+            background: 'linear-gradient(180deg,transparent,var(--color-line),transparent)',
+          }}
+        />
+      </div>
 
-    <div className="absolute inset-0 mx-auto max-w-shell">
-      <span
-        className="absolute inset-y-0 left-6 block w-px"
+      <div
+        className="absolute inset-0"
         style={{
-          background: 'linear-gradient(180deg,transparent,var(--color-line),transparent)',
-        }}
-      />
-    </div>
-
-    <div
-      className="absolute inset-0"
-      style={{
-        background: `
+          background: `
           radial-gradient(1000px 640px at 80% -6%, rgba(92,127,174,.20), transparent 64%),
           radial-gradient(760px 520px at 2% 40%, rgba(25,34,49,.9), transparent 62%),
           linear-gradient(180deg, rgba(1,0,1,.42) 0%, rgba(1,0,1,.72) 100%)`,
-      }}
-    />
-  </div>
-);
+        }}
+      />
+    </div>
+  );
+};
 
 export default SceneBackground;
