@@ -2,7 +2,13 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
-import { ROUTE_META, FALLBACK_SITE_URL, OWNER, trimDescription } from './src/routes/meta.ts';
+import {
+  ROUTE_META,
+  FALLBACK_SITE_URL,
+  LOCATION,
+  OWNER,
+  trimDescription,
+} from './src/routes/meta.ts';
 
 const escapeHtml = (value: unknown) =>
   String(value ?? '')
@@ -98,6 +104,13 @@ export const prerender = (): Plugin => ({
       url: site,
       image: defaultImage,
       sameAs: [settings?.github, settings?.linkedin].filter(Boolean),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: LOCATION.city,
+        addressRegion: LOCATION.region,
+        addressCountry: LOCATION.country,
+      },
+      workLocation: { '@type': 'Place', name: LOCATION.city },
     };
 
     const urls: Array<{ loc: string; priority: string; lastmod?: string }> = [];
