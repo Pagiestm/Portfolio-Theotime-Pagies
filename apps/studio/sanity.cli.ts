@@ -6,5 +6,5 @@ export default defineCliConfig({
     dataset: process.env.SANITY_STUDIO_DATASET ?? 'production',
   },
   studioHost: 'theotimepagies',
-  deployment: { autoUpdates: true },
+  deployment: { autoUpdates: true, appId: 'uy383x5p830fq4mt1wqkd32a' },
 });
