@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.12.0...v1.13.0) (2026-09-25)
+
+### Features
+
+* **web:** porter le positionnement réel dans les métadonnées ([b6d5dab](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/b6d5dabc33bfe512821326f18eb9130ec4ad8fd5))
+
 ## [1.12.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.11.0...v1.12.0) (2026-09-24)
 
 ### Features
