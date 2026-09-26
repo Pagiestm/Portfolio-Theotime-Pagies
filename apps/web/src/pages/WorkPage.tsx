@@ -37,7 +37,7 @@ const WorkPage = () => {
             <span>
               {t.filters}
               {filters.activeCount > 0 && (
-                <span className="ml-2 inline-flex h-[18px] min-w-[18px] items-center justify-center bg-accent px-[5px] text-[10px] font-extrabold text-ink">
+                <span className="ml-2 inline-flex h-[18px] min-w-[18px] items-center justify-center bg-accent px-[5px] text-[10px] font-extrabold text-on-accent">
                   {filters.activeCount}
                 </span>
               )}

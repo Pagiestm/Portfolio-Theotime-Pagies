@@ -8,6 +8,7 @@ export default {
   prev: 'Étape précédente',
   next: 'Étape suivante',
   menu: 'Menu',
+  theme: { label: 'Passer au thème', light: 'clair', dark: 'sombre' },
   downloadCv: 'Télécharger le CV',
   skipToContent: 'Aller au contenu',
   legalTitle: 'Mentions légales',
@@ -37,7 +38,7 @@ export default {
       },
       {
         heading: 'Cookies',
-        body: 'Ce site ne dépose aucun cookie de mesure d’audience ni de publicité. La langue choisie est conservée dans le stockage local du navigateur et ne quitte jamais votre appareil.',
+        body: 'Ce site ne dépose aucun cookie de mesure d’audience ni de publicité. La langue et le thème choisis sont conservés dans le stockage local du navigateur et ne quittent jamais votre appareil.',
       },
     ],
   },

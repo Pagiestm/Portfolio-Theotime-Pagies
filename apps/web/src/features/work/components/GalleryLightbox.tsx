@@ -29,7 +29,7 @@ const Control = ({
       onClick();
     }}
     aria-label={label}
-    className={`absolute top-1/2 -translate-y-1/2 border-2 border-line-soft bg-[rgba(1,0,1,.6)] p-3 text-ink transition-colors duration-200 hover:border-accent hover:text-accent ${className}`}
+    className={`absolute top-1/2 -translate-y-1/2 border-2 border-line-soft bg-bg/60 p-3 text-ink transition-colors duration-200 hover:border-accent hover:text-accent ${className}`}
   >
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d={path} stroke="currentColor" strokeWidth="2" />
@@ -97,7 +97,7 @@ const GalleryLightbox = ({
         const delta = event.changedTouches[0].clientX - touchStart.current;
         if (Math.abs(delta) > SWIPE_THRESHOLD) step(delta < 0 ? 1 : -1);
       }}
-      className={`fixed inset-0 z-50 flex flex-col bg-[rgba(1,0,1,.94)] outline-none ${
+      className={`fixed inset-0 z-50 flex flex-col bg-bg/95 outline-none ${
         reduced ? '' : 'animate-fade'
       }`}
     >
