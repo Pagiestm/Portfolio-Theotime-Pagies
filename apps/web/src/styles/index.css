@@ -28,11 +28,34 @@
   }
 
   a:hover {
-    color: #93aecf;
+    color: var(--color-accent-hover);
   }
 
   ::selection {
-    background: rgba(92, 127, 174, 0.35);
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+
+  [data-rmiz-modal-overlay='visible'] {
+    background-color: var(--color-bg);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-new(root) {
+    animation: theme-warp 620ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes theme-warp {
+    from {
+      clip-path: circle(0 at var(--warp-x) var(--warp-y));
+    }
+    to {
+      clip-path: circle(var(--warp-r) at var(--warp-x) var(--warp-y));
+    }
   }
 
   *:focus-visible {

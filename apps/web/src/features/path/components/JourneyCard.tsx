@@ -20,7 +20,7 @@ const JourneyCard = forwardRef(({ entry }: { entry: JourneyEntry }, ref: Ref<HTM
       <span className="w-[2px] bg-line" style={{ height: STEM }} />
       <div
         data-card-body
-        className="w-full border-2 border-line bg-[rgba(25,34,49,.86)] px-[24px] backdrop-blur-[10px]"
+        className="w-full border-2 border-line bg-surface/85 px-[24px] backdrop-blur-[10px]"
         style={{
           transformStyle: 'preserve-3d',
           paddingTop: CARD_PAD_Y,
@@ -35,7 +35,7 @@ const JourneyCard = forwardRef(({ entry }: { entry: JourneyEntry }, ref: Ref<HTM
         </div>
         <span
           className={`inline-block px-[10px] py-[5px] text-[11px] font-extrabold uppercase tracking-[.2em] ${
-            isExperience ? 'bg-accent text-ink' : 'border border-accent-2 text-accent-2'
+            isExperience ? 'bg-accent text-on-accent' : 'border border-accent-2 text-accent-2'
           }`}
           style={{ marginBottom: 'var(--corridor-gap-lg)' }}
         >

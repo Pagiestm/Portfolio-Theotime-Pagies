@@ -53,7 +53,7 @@ const ContactForm = () => {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="cursor-pointer border-2 border-accent bg-accent px-6 py-4 text-left text-[13.5px] font-bold uppercase tracking-[.05em] text-ink transition-all duration-200 hover:bg-transparent hover:text-accent disabled:cursor-wait disabled:opacity-45"
+        className="cursor-pointer border-2 border-accent bg-accent px-6 py-4 text-left text-[13.5px] font-bold uppercase tracking-[.05em] text-on-accent transition-all duration-200 hover:bg-transparent hover:text-accent disabled:cursor-wait disabled:opacity-45"
       >
         {status === 'sending' ? t.fSending : t.fSend}
       </button>
