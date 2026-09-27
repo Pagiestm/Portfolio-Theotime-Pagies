@@ -2,6 +2,8 @@ import { useLoaderData } from 'react-router-dom';
 import Reveal from '../components/common/Reveal';
 import MetaGrid from '../components/common/MetaGrid';
 import { useTranslation } from '../i18n/useTranslation';
+import { scene } from '../config/scene';
+import LazyHeroScene from '../features/scene/components/LazyHeroScene';
 import { imageSrcSet, imageUrl } from '../services/sanity/image';
 import { useSettings } from '../hooks/useSettings';
 import type { AboutContent } from '../services/sanity/types';
@@ -15,7 +17,7 @@ const AboutPage = () => {
   const portraitSet = imageSrcSet(about?.portrait ?? undefined, [400, 640, 900]);
 
   return (
-    <section className="relative mx-auto max-w-shell overflow-hidden px-6 pb-[86px] pt-[68px]">
+    <section className="relative mx-auto max-w-shell px-6 pb-[86px] pt-[68px]">
       <div
         className="relative grid items-start gap-[52px]"
         style={{
@@ -49,16 +51,24 @@ const AboutPage = () => {
           />
         </Reveal>
 
-        <Reveal variant="right" className="sticky top-[104px]">
+        <Reveal variant="right" className="sticky top-[156px]">
           {portrait && (
-            <div className="overflow-hidden border-2 border-line">
-              <img
-                src={portrait}
-                srcSet={portraitSet}
-                sizes="(max-width: 700px) 100vw, 600px"
-                alt={t.portraitAlt}
-                className="block h-auto w-full"
-              />
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-x-[22%] -inset-y-[6%] scale-[1.18]"
+              >
+                <LazyHeroScene density={scene.backgroundDensity} scrollDriven={false} />
+              </div>
+              <div className="relative overflow-hidden border-2 border-line bg-surface-2">
+                <img
+                  src={portrait}
+                  srcSet={portraitSet}
+                  sizes="(max-width: 700px) 100vw, 600px"
+                  alt={t.portraitAlt}
+                  className="block h-auto w-full"
+                />
+              </div>
             </div>
           )}
           <div className="mt-[14px] text-[12px] uppercase tracking-[.14em] text-muted">

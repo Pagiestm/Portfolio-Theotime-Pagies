@@ -8,6 +8,7 @@ export default {
   prev: 'Previous step',
   next: 'Next step',
   menu: 'Menu',
+  theme: { label: 'Switch to', light: 'light theme', dark: 'dark theme' },
   downloadCv: 'Download CV',
   skipToContent: 'Skip to content',
   legalTitle: 'Legal notice',
@@ -36,7 +37,7 @@ export default {
       },
       {
         heading: 'Cookies',
-        body: 'This website sets no analytics or advertising cookies. The language you choose is kept in your browser local storage and never leaves your device.',
+        body: 'This website sets no analytics or advertising cookies. The language and theme you choose are kept in your browser local storage and never leave your device.',
       },
     ],
   },

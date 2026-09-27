@@ -26,7 +26,7 @@ const MainLayout = () => {
       <SceneBackground animated={pathname === paths.home} />
       <ScrollToTop />
       <Header />
-      <main id="contenu" tabIndex={-1} className="relative z-1 flex-1">
+      <main id="contenu" tabIndex={-1} className="relative z-1 flex-1 overflow-x-clip">
         <Outlet />
       </main>
       <Footer />
