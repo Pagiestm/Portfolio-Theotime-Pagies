@@ -43,7 +43,7 @@ const HeroStage = ({ chapters }: { chapters: HomeContent['chapters'] }) => {
   const goToChapter = (index) => scrollToProgress((index + 0.45) / count);
 
   return (
-    <section ref={stageRef} className="relative" style={{ height: '440vh' }}>
+    <section ref={stageRef} data-hero-stage className="relative" style={{ height: '440vh' }}>
       <div
         ref={pinRef}
         className="sticky overflow-hidden border-b-2 border-line"
@@ -59,8 +59,8 @@ const HeroStage = ({ chapters }: { chapters: HomeContent['chapters'] }) => {
           className="pointer-events-none absolute inset-0"
           style={{
             background: `
-              radial-gradient(60% 60% at 74% 46%, rgba(92,127,174,.16), transparent 70%),
-              linear-gradient(90deg,rgba(1,0,1,.94) 0%,rgba(1,0,1,.66) 44%,rgba(1,0,1,.30) 72%,rgba(1,0,1,.62) 100%)`,
+              radial-gradient(60% 60% at 74% 46%, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 70%),
+              linear-gradient(90deg, color-mix(in srgb, var(--color-bg) var(--hero-veil-1), transparent) 0%, color-mix(in srgb, var(--color-bg) var(--hero-veil-2), transparent) 44%, color-mix(in srgb, var(--color-bg) var(--hero-veil-3), transparent) 72%, color-mix(in srgb, var(--color-bg) var(--hero-veil-4), transparent) 100%)`,
           }}
         />
 

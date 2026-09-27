@@ -195,10 +195,10 @@ const AssistantWidget = () => {
             transform: floatingOffset ? `translateY(-${floatingOffset}px)` : undefined,
             transition: reduced ? undefined : 'transform .25s ease-out',
           }}
-          className="fixed bottom-4 right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-ink transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
+          className="fixed bottom-4 right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-on-accent transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
         >
           <FaCommentDots size={18} aria-hidden className="sm:hidden" />
-          <span className="hidden h-[8px] w-[8px] bg-ink sm:inline-block" aria-hidden />
+          <span className="hidden h-[8px] w-[8px] bg-current sm:inline-block" aria-hidden />
           <span className="hidden sm:inline">{t.assistantOpen}</span>
         </button>
       )}
@@ -300,7 +300,7 @@ const AssistantWidget = () => {
             <button
               type="submit"
               disabled={status === 'loading' || !draft.trim()}
-              className="cursor-pointer border-2 border-accent bg-accent px-4 text-[12px] font-bold uppercase tracking-[.1em] text-ink hover:bg-transparent hover:text-accent-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="cursor-pointer border-2 border-accent bg-accent px-4 text-[12px] font-bold uppercase tracking-[.1em] text-on-accent hover:bg-transparent hover:text-accent-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {t.assistantSend}
             </button>

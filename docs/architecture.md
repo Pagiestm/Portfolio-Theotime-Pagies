@@ -118,7 +118,8 @@ Un composant qui dépasse ~150 lignes cache un hook ou un sous-composant.
 | Saisie, bascule d'UI, valeur temporaire | `useState` local                |
 | Contenu Sanity d'une page               | `loader` de la route            |
 | Réglages du site (nom, liens)           | `loader` racine + `useSettings` |
-| Langue courante                         | `I18nProvider`, seul Context    |
+| Langue courante                         | `I18nProvider`, Context         |
+| Thème (système, clair, sombre)          | `ThemeProvider`, Context        |
 
 Pas de Redux ni Zustand. Une donnée API à partager hors loaders appellerait un
 cache de requêtes (TanStack Query), jamais un store.
@@ -166,6 +167,19 @@ Les tokens sont déclarés dans un bloc `@theme`. Depuis Tailwind 4, une variabl
 qui y figure est à la fois lisible en CSS (`var(--color-accent)`) et disponible
 en classe (`bg-accent`, `text-accent`, `border-accent`) : il n'y a plus de
 `tailwind.config.js`, ni de valeur écrite à deux endroits.
+
+Deux palettes : le sombre, thème de référence, sur `:root`, et le clair sous
+`:root[data-theme='light']`. Les tokens de couleur passent par `@theme inline`
+et pointent vers ces variables, si bien qu'un composant écrit `bg-surface` ou
+`bg-bg/85` sans connaître le thème. Un fond ou une ombre translucide se fait
+avec un modificateur d'opacité (`bg-bg/60`) ou `color-mix()` sur un token,
+jamais avec un `rgba()` figé. Le texte posé sur l'accent utilise `text-on-accent`,
+qui reste clair dans les deux thèmes. Le thème est appliqué par un script inline
+de `index.html` avant le premier rendu, pour éviter le flash, puis piloté par
+`ThemeProvider` : réglage système tant que rien n'est choisi, puis le choix
+clair ou sombre mémorisé en local. Les voiles et l'opacité de la scène de fond
+sont eux aussi des tokens (`--scene-*`, `--hero-veil-*`) : le clair voile moins,
+sinon étoiles et filets disparaissent sur fond blanc.
 
 # Bilingue
 

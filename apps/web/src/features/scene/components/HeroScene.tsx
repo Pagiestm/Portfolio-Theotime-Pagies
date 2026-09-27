@@ -1,16 +1,15 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
+import { useTheme } from '../../../theme/useTheme';
 
-const HeroScene = ({
-  accent = '#5c7fae',
-  accent2 = '#c3cede',
-  density = 700,
-  scrollDriven = true,
-  className = '',
-}) => {
+const cssColor = (name: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
   const hostRef = useRef(null);
   const reduced = usePrefersReducedMotion();
+  const { resolved } = useTheme();
 
   useEffect(() => {
     const host = hostRef.current;
@@ -20,8 +19,12 @@ const HeroScene = ({
     Object.assign(canvas.style, { display: 'block', width: '100%', height: '100%' });
     host.appendChild(canvas);
 
-    const accentColor = new THREE.Color(accent);
-    const accent2Color = new THREE.Color(accent2);
+    const accentColor = new THREE.Color(cssColor('--accent'));
+    const accent2Color = new THREE.Color(cssColor('--accent-2'));
+    const light = resolved === 'light';
+    const blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
+    const boost = light ? 1.7 : 1;
+    const alpha = (value: number) => Math.min(1, value * boost);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -40,7 +43,7 @@ const HeroScene = ({
         new THREE.LineBasicMaterial({
           color: i ? accent2Color : accentColor,
           transparent: true,
-          opacity: i ? 0.16 : 0.34,
+          opacity: alpha(i ? 0.16 : 0.34),
         })
       );
       source.dispose();
@@ -53,7 +56,7 @@ const HeroScene = ({
       new THREE.MeshBasicMaterial({
         color: accentColor,
         transparent: true,
-        opacity: 0.2,
+        opacity: alpha(0.2),
         side: THREE.DoubleSide,
       })
     );
@@ -120,16 +123,16 @@ const HeroScene = ({
       const material = new THREE.PointsMaterial({
         color: layer.color,
         map: starTexture ?? undefined,
-        size: layer.size,
+        size: layer.size * (light ? 1.6 : 1),
         transparent: true,
-        opacity: layer.opacity,
+        opacity: alpha(layer.opacity),
         sizeAttenuation: true,
         depthWrite: false,
-        blending: THREE.AdditiveBlending,
+        blending,
       });
       const points = new THREE.Points(geometry, material);
       stars.add(points);
-      return { material, baseOpacity: layer.opacity };
+      return { material, baseOpacity: alpha(layer.opacity) };
     });
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.35));
@@ -250,7 +253,7 @@ const HeroScene = ({
       renderer.dispose();
       canvas.remove();
     };
-  }, [accent, accent2, density, scrollDriven, reduced]);
+  }, [density, scrollDriven, reduced, resolved]);
 
   return (
     <div ref={hostRef} aria-hidden="true" className={`relative block h-full w-full ${className}`} />
