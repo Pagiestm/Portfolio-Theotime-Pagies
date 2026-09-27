@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { useMediaQuery, usePrefersReducedMotion } from '../hooks/useMediaQuery';
 import {
@@ -35,7 +35,7 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const reduced = usePrefersReducedMotion();
   const resolved = preference === 'system' ? (systemLight ? 'light' : 'dark') : preference;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = resolved;
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {

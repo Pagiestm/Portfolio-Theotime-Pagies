@@ -23,8 +23,9 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
     const accent2Color = new THREE.Color(cssColor('--accent-2'));
     const light = resolved === 'light';
     const blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
-    const boost = light ? 1.7 : 1;
-    const alpha = (value: number) => Math.min(1, value * boost);
+    const lineBoost = light ? 2.6 : 1;
+    const starBoost = light ? 1.7 : 1;
+    const alpha = (value: number, boost = lineBoost) => Math.min(1, value * boost);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -125,14 +126,14 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
         map: starTexture ?? undefined,
         size: layer.size * (light ? 1.6 : 1),
         transparent: true,
-        opacity: alpha(layer.opacity),
+        opacity: alpha(layer.opacity, starBoost),
         sizeAttenuation: true,
         depthWrite: false,
         blending,
       });
       const points = new THREE.Points(geometry, material);
       stars.add(points);
-      return { material, baseOpacity: alpha(layer.opacity) };
+      return { material, baseOpacity: alpha(layer.opacity, starBoost) };
     });
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.35));

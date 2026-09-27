@@ -1,11 +1,9 @@
-import { lazy, Suspense } from 'react';
 import ProgressRail from '../../../components/common/ProgressRail';
 import type { HomeContent } from '../../../services/sanity/types';
 import { useScrollProgress } from '../../../hooks/useScrollProgress';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { scene } from '../../../config/scene';
-
-const HeroScene = lazy(() => import('../../scene/components/HeroScene'));
+import LazyHeroScene from '../../scene/components/LazyHeroScene';
 
 const HEADER_HEIGHT = 68;
 const clamp = (v) => Math.max(0, Math.min(1, v));
@@ -50,9 +48,7 @@ const HeroStage = ({ chapters }: { chapters: HomeContent['chapters'] }) => {
         style={{ top: HEADER_HEIGHT, height: `calc(100vh - ${HEADER_HEIGHT}px)`, minHeight: 540 }}
       >
         <div className="absolute inset-0">
-          <Suspense fallback={null}>
-            <HeroScene density={scene.density} />
-          </Suspense>
+          <LazyHeroScene density={scene.density} />
         </div>
 
         <div
