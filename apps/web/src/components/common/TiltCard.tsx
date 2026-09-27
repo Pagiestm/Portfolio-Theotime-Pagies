@@ -23,7 +23,7 @@ const TiltCard = ({ className = '', style, children, ...rest }: TiltCardProps) =
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
       el.style.transform = `rotateY(${(x * 3.2).toFixed(2)}deg) rotateX(${(-y * 3.2).toFixed(2)}deg) translateZ(5px)`;
-      el.style.boxShadow = `${(-x * 18).toFixed(0)}px ${(-y * 18).toFixed(0)}px 54px rgba(92,127,174,.16)`;
+      el.style.boxShadow = `${(-x * 18).toFixed(0)}px ${(-y * 18).toFixed(0)}px 54px color-mix(in srgb, var(--color-accent) 16%, transparent)`;
     },
     [enabled]
   );
@@ -40,7 +40,7 @@ const TiltCard = ({ className = '', style, children, ...rest }: TiltCardProps) =
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className={`border-2 border-line bg-[rgba(25,34,49,.86)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color] duration-200 hover:border-accent ${className}`}
+      className={`border-2 border-line bg-surface/85 backdrop-blur-[8px] transition-[transform,box-shadow,border-color] duration-200 hover:border-accent ${className}`}
       style={{ transformStyle: 'preserve-3d', ...style }}
       {...rest}
     >

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { scene } from '../../../config/scene';
+import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
 
 const HeroScene = lazy(() => import('./HeroScene'));
 
@@ -19,13 +20,49 @@ const useIdle = (enabled: boolean) => {
   return idle;
 };
 
+const useHeroInView = (enabled: boolean) => {
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    if (!enabled) return undefined;
+    const stage = document.querySelector('[data-hero-stage]');
+    if (!stage) return undefined;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setInView(stage.getBoundingClientRect().bottom >= window.innerHeight);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [enabled]);
+
+  return inView;
+};
+
 const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
   const ready = useIdle(animated);
+  const heroInView = useHeroInView(animated && ready);
+  const reduced = usePrefersReducedMotion();
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {animated && ready && (
-        <div className="absolute inset-0 opacity-30">
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: heroInView ? 'var(--scene-opacity)' : 0,
+            transition: reduced ? undefined : 'opacity .6s ease-out',
+          }}
+        >
           <Suspense fallback={null}>
             <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
           </Suspense>
@@ -51,9 +88,9 @@ const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
         className="absolute inset-0"
         style={{
           background: `
-          radial-gradient(1000px 640px at 80% -6%, rgba(92,127,174,.20), transparent 64%),
-          radial-gradient(760px 520px at 2% 40%, rgba(25,34,49,.9), transparent 62%),
-          linear-gradient(180deg, rgba(1,0,1,.42) 0%, rgba(1,0,1,.72) 100%)`,
+          radial-gradient(1000px 640px at 80% -6%, color-mix(in srgb, var(--color-accent) var(--scene-glow), transparent), transparent 64%),
+          radial-gradient(760px 520px at 2% 40%, color-mix(in srgb, var(--color-surface) var(--scene-veil-bottom), transparent), transparent 62%),
+          linear-gradient(180deg, color-mix(in srgb, var(--color-bg) var(--scene-veil-top), transparent) 0%, color-mix(in srgb, var(--color-bg) var(--scene-veil-bottom), transparent) 100%)`,
         }}
       />
     </div>

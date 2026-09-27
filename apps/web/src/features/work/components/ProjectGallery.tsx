@@ -71,7 +71,7 @@ const ProjectGallery = ({ images, title }: { images?: SanityImage[] | null; titl
                 {image.alt && (
                   <span
                     aria-hidden="true"
-                    className={`pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-[rgba(1,0,1,.82)] px-4 py-3 text-left text-[12.5px] leading-snug text-accent-2 group-hover:translate-y-0 group-focus-visible:translate-y-0 ${
+                    className={`pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-bg/80 px-4 py-3 text-left text-[12.5px] leading-snug text-accent-2 group-hover:translate-y-0 group-focus-visible:translate-y-0 ${
                       reduced ? '' : 'transition-transform duration-300 ease-out'
                     }`}
                   >
