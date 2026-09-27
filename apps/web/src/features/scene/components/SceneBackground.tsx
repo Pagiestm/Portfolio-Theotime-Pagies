@@ -1,8 +1,7 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { scene } from '../../../config/scene';
 import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
-
-const HeroScene = lazy(() => import('./HeroScene'));
+import LazyHeroScene from './LazyHeroScene';
 
 const useIdle = (enabled: boolean) => {
   const [idle, setIdle] = useState(false);
@@ -63,9 +62,7 @@ const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
             transition: reduced ? undefined : 'opacity .6s ease-out',
           }}
         >
-          <Suspense fallback={null}>
-            <HeroScene density={scene.backgroundDensity} scrollDriven={false} />
-          </Suspense>
+          <LazyHeroScene density={scene.backgroundDensity} scrollDriven={false} />
         </div>
       )}
 
