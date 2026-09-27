@@ -1,3 +1,10 @@
+## [1.14.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.13.0...v1.14.0) (2026-09-27)
+
+### Features
+
+* **web:** scène 3D derrière le portrait de la page À propos ([51a9926](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/51a9926dabd76c258f187273431792687b06f86e))
+* **web:** thème clair avec bascule animée ([0461562](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/0461562b7a099bc272c973db228b4508c3590380))
+
 ## [1.13.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.12.0...v1.13.0) (2026-09-25)
 
 ### Features
