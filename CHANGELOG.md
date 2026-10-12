@@ -1,3 +1,9 @@
+## [1.16.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.15.0...v1.16.0) (2026-10-12)
+
+### Features
+
+* **web:** illustrer la liste des réalisations ([c67aaeb](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/c67aaeb3ae14b2289eee6cd93b3ed6d8762a95bb))
+
 ## [1.15.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.14.0...v1.15.0) (2026-10-12)
 
 ### Features
