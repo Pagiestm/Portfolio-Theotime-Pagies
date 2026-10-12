@@ -62,7 +62,7 @@ const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
             transition: reduced ? undefined : 'opacity .6s ease-out',
           }}
         >
-          <LazyHeroScene density={scene.backgroundDensity} scrollDriven={false} />
+          <LazyHeroScene density={scene.backgroundDensity} />
         </div>
       )}
 

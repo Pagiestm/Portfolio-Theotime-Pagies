@@ -80,7 +80,7 @@ const HomePage = () => {
 
   return (
     <>
-      <HeroStage chapters={home?.chapters ?? []} />
+      <HeroStage title={home?.heroTitle} text={home?.heroText} />
       <MarqueeBand items={home?.marquee ?? []} />
 
       {sections.map((section, index) => (

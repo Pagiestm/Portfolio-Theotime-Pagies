@@ -58,7 +58,7 @@ const AboutPage = () => {
                 aria-hidden="true"
                 className="pointer-events-none absolute -inset-x-[22%] -inset-y-[6%] scale-[1.18]"
               >
-                <LazyHeroScene density={scene.backgroundDensity} scrollDriven={false} />
+                <LazyHeroScene density={scene.backgroundDensity} />
               </div>
               <div className="relative overflow-hidden border-2 border-line bg-surface-2">
                 <img
