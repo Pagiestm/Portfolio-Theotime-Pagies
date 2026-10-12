@@ -1,3 +1,13 @@
+## [1.15.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.14.0...v1.15.0) (2026-10-12)
+
+### Features
+
+* **web:** remplacer la scène d'accueil pilotée au scroll par un hero statique ([33c456a](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/33c456a09dbd700c06f5d8140df444d32a9593b2))
+
+### Bug Fixes
+
+* **web:** adoucir la description de la page d'accueil ([11c4716](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/11c47161a0b36997e60289169ca2637be20cd077))
+
 ## [1.14.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.13.0...v1.14.0) (2026-09-27)
 
 ### Features
