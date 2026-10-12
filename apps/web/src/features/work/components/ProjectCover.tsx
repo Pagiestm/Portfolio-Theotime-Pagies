@@ -16,6 +16,8 @@ const ProjectCover = ({
   title,
   alt,
   className = '',
+  imageClassName = '',
+  fit = 'contain',
   style,
   loading = 'lazy',
 }: {
@@ -25,10 +27,15 @@ const ProjectCover = ({
   title: string;
   alt?: string;
   className?: string;
+  imageClassName?: string;
+  fit?: 'contain' | 'cover';
   style?: CSSProperties;
   loading?: 'lazy' | 'eager';
 }) => (
-  <div className={`flex items-center justify-center bg-surface-2 ${className}`} style={style}>
+  <div
+    className={`flex items-center justify-center overflow-hidden bg-surface-2 ${className}`}
+    style={style}
+  >
     {src ? (
       <img
         src={src}
@@ -36,7 +43,9 @@ const ProjectCover = ({
         sizes={sizes}
         alt={alt ?? title}
         loading={loading}
-        className="block h-full w-full object-contain"
+        className={`block h-full w-full ${
+          fit === 'cover' ? 'object-cover object-top' : 'object-contain'
+        } ${imageClassName}`}
       />
     ) : (
       <div
