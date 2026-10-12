@@ -21,7 +21,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   [paths.home]: {
     title: `${OWNER} - Développeur full-stack, IA et automatisation`,
     description:
-      'Développeur web full-stack à Valenciennes. Je conçois des applications et des API, et j’y intègre de l’IA pour automatiser ce qui peut l’être.',
+      'Développeur web full-stack à Valenciennes. Je conçois des applications et des API, et j’y intègre de l’IA pour faire gagner du temps aux équipes au quotidien.',
   },
   [paths.work]: {
     title: `Réalisations - ${OWNER}`,

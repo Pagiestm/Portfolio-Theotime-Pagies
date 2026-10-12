@@ -69,7 +69,8 @@ export type SiteSettings = {
 };
 
 export type HomeContent = {
-  chapters: Array<{ kicker: Locale; title: Locale; bubble: Locale }>;
+  heroTitle?: Locale | null;
+  heroText?: Locale | null;
   marquee: Array<{ label: Locale; value: Locale }>;
   selectionKicker?: Locale | null;
   indexTitle?: Locale | null;

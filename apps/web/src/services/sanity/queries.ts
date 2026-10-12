@@ -53,7 +53,8 @@ export const PROJECT_SLUGS_QUERY = groq`
 
 export const HOME_QUERY = groq`
   *[_type == "homePage"][0] {
-    chapters[] { kicker ${LOCALE}, title ${LOCALE}, bubble ${LOCALE} },
+    heroTitle ${LOCALE},
+    heroText ${LOCALE},
     marquee[] { label ${LOCALE}, value ${LOCALE} },
     selectionKicker ${LOCALE},
     indexTitle ${LOCALE},

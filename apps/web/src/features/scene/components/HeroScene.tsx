@@ -6,7 +6,7 @@ import { useTheme } from '../../../theme/useTheme';
 const cssColor = (name: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
-const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
+const HeroScene = ({ density = 700, className = '' }) => {
   const hostRef = useRef(null);
   const reduced = usePrefersReducedMotion();
   const { resolved } = useTheme();
@@ -180,18 +180,6 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
     };
     if (!reduced) window.addEventListener('pointermove', onPointerMove, { passive: true });
 
-    let scroll = 0;
-    let scrollTarget = 0;
-    const onScroll = () => {
-      const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-      scrollTarget = Math.min(window.scrollY / max, 1);
-    };
-    const listensToScroll = scrollDriven && !reduced;
-    if (listensToScroll) {
-      document.addEventListener('scroll', onScroll, { passive: true, capture: true });
-      onScroll();
-    }
-
     const clock = new THREE.Clock();
     let raf = 0;
 
@@ -204,23 +192,19 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
       const t = reduced ? 0 : clock.getElapsedTime();
       pointer.x += (pointer.tx - pointer.x) * 0.045;
       pointer.y += (pointer.ty - pointer.y) * 0.045;
-      scroll += (scrollTarget - scroll) * 0.06;
-      const s = listensToScroll ? scroll : 0;
 
-      camera.position.z = restZ - s * 1.5;
-      camera.position.y = s * 0.9;
+      camera.position.z = restZ;
+      camera.position.y = 0;
       camera.lookAt(0, 0, 0);
 
-      group.rotation.y = t * 0.045 + pointer.x * 0.2 + s * 0.5;
+      group.rotation.y = t * 0.045 + pointer.x * 0.2;
       group.rotation.x = Math.sin(t * 0.12) * 0.05 + pointer.y * 0.11;
-      group.scale.setScalar(1 - s * 0.1);
 
       shells[1].rotation.y = -t * 0.07;
       shells[1].rotation.z = t * 0.03;
       horizon.rotation.z = t * 0.05;
-      horizon.scale.setScalar(1 + s * 0.3);
 
-      stars.rotation.y = t * 0.035 + pointer.x * 0.12 + s * 0.8;
+      stars.rotation.y = t * 0.035 + pointer.x * 0.12;
       stars.rotation.x = pointer.y * 0.08;
       if (!reduced) {
         starLayers.forEach((layer, i) => {
@@ -237,7 +221,6 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onPointerMove);
-      if (listensToScroll) document.removeEventListener('scroll', onScroll, true);
       resizeObserver.disconnect();
       visibility.disconnect();
       scene.traverse((obj) => {
@@ -254,7 +237,7 @@ const HeroScene = ({ density = 700, scrollDriven = true, className = '' }) => {
       renderer.dispose();
       canvas.remove();
     };
-  }, [density, scrollDriven, reduced, resolved]);
+  }, [density, reduced, resolved]);
 
   return (
     <div ref={hostRef} aria-hidden="true" className={`relative block h-full w-full ${className}`} />

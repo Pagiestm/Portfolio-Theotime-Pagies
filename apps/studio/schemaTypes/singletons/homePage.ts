@@ -6,46 +6,23 @@ export const homePage = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'chapters',
-      title: 'Chapitres de la scène',
-      description:
-        'Les blocs de texte qui se succèdent quand on fait défiler l’accueil. Trois à cinq fonctionnent bien.',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'chapter',
-          fields: [
-            defineField({
-              name: 'kicker',
-              title: 'Surtitre',
-              description: 'Par exemple « 01 / Qui ».',
-              type: 'localeString',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'title',
-              title: 'Titre',
-              type: 'localeString',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'bubble',
-              title: 'Texte',
-              description: 'Court : il s’affiche lettre à lettre.',
-              type: 'localeText',
-              validation: (rule) => rule.required(),
-            }),
-          ],
-          preview: { select: { title: 'title.fr', subtitle: 'kicker.fr' } },
-        }),
-      ],
-      validation: (rule) => rule.min(1).error('Au moins un chapitre est nécessaire.'),
+      name: 'heroTitle',
+      title: 'Accueil - titre',
+      description: 'Le grand titre affiché par-dessus la scène, en haut de la page.',
+      type: 'localeString',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'heroText',
+      title: 'Accueil - texte',
+      description: 'Deux ou trois phrases sous le titre.',
+      type: 'localeText',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'marquee',
       title: 'Bande de repères',
-      description: 'Les quatre cases sous la scène d’accueil.',
+      description: 'Les quatre cases sous le titre d’accueil.',
       type: 'array',
       of: [
         defineArrayMember({
