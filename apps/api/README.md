@@ -1,7 +1,12 @@
 # API du portfolio
 
-L'assistant du site : `POST /api/ask` reçoit une question et une langue, et
-répond à partir du contenu Sanity, avec les pages citées en sources.
+Deux routes, chacune limitée en débit :
+
+- `POST /api/ask`, l'assistant du site : reçoit une question et une langue, et
+  répond à partir du contenu Sanity, avec les pages citées en sources.
+- `POST /api/contact`, le formulaire de contact : valide le message et l'envoie
+  par l'API REST d'EmailJS, côté serveur, pour qu'aucune clé n'atteigne le
+  navigateur. Cinq envois par heure et par adresse IP, vingt questions pour l'assistant.
 
 ## Structure
 
@@ -18,7 +23,7 @@ tests/             tests Node natifs, sans réseau : les appels sortants sont si
 ```
 
 Une requête traverse les couches dans un seul sens : route → middleware →
-contrôleur → service → modèle. Un contrôleur ne lit jamais Sanity ni Gemini ;
+contrôleur → service → modèle. Un contrôleur ne lit jamais Sanity, Gemini ni EmailJS ;
 un service ne connaît pas HTTP.
 
 ## Où elle tourne
@@ -33,14 +38,15 @@ un service ne connaît pas HTTP.
 
 ## Variables
 
-| Variable            | Rôle                                                 |
-| ------------------- | ---------------------------------------------------- |
-| `GEMINI_API_KEY`    | clé des modèles Google, jamais exposée au navigateur |
-| `LLM_MODELS`        | **obligatoire**, liste ordonnée `fournisseur:modèle` |
-| `LLM_API_KEY`       | optionnel, clé d'un fournisseur au format OpenAI     |
-| `LLM_BASE_URL`      | optionnel, défaut `https://openrouter.ai/api/v1`     |
-| `SANITY_PROJECT_ID` | dataset public lu sur le CDN, sans jeton             |
-| `SANITY_DATASET`    | optionnel, défaut `production`                       |
+| Variable            | Rôle                                                                              |
+| ------------------- | --------------------------------------------------------------------------------- |
+| `GEMINI_API_KEY`    | clé des modèles Google, jamais exposée au navigateur                              |
+| `LLM_MODELS`        | **obligatoire**, liste ordonnée `fournisseur:modèle`                              |
+| `LLM_API_KEY`       | optionnel, clé d'un fournisseur au format OpenAI                                  |
+| `LLM_BASE_URL`      | optionnel, défaut `https://openrouter.ai/api/v1`                                  |
+| `SANITY_PROJECT_ID` | dataset public lu sur le CDN, sans jeton                                          |
+| `SANITY_DATASET`    | optionnel, défaut `production`                                                    |
+| `EMAILJS_*`         | `SERVICE_ID`, `TEMPLATE_ID`, `PUBLIC_KEY`, `PRIVATE_KEY` du formulaire de contact |
 
 En local elles vivent dans `apps/web/.env` ; sur Vercel dans les variables du
 projet.
@@ -54,18 +60,28 @@ contrepartie la variable est obligatoire - sans elle l'API répond 500 plutôt
 que d'appeler un modèle que personne n'a choisi.
 
 ```
-LLM_MODELS=google:gemini-3.5-flash-lite,google:gemini-3.1-flash-lite,google:gemini-3.8-flash,google:gemini-3.7-flash,google:gemini-3.6-flash,google:gemini-3.5-flash,google:gemini-2.5-flash,google:gemini-2.5-flash-lite,google:gemini-3-flash-preview
+LLM_MODELS=google:gemini-flash-lite-latest,google:gemini-flash-latest
 ```
+
+Les alias `-latest` désignent la dernière version d'une famille : Google les
+fait pointer vers chaque nouvelle sortie, avec deux semaines de préavis par
+e-mail pour un changement cassant. La liste n'a donc pas à suivre les versions,
+et aucun modèle retiré ne la rend caduque. Pro en est absent : le palier sans
+frais ne l'offre pas, il répondrait toujours 429.
 
 L'ordre suit le quota journalier plutôt que la puissance. Au palier sans frais,
 un `flash-lite` accepte 500 requêtes par jour quand un `flash` s'arrête à 20 :
-mis en tête, les deux premiers portent l'essentiel du trafic, les autres ne
-servent que lorsqu'ils sont épuisés. Ces plafonds se lisent dans
+en tête, il porte l'essentiel du trafic. Un alias consomme le quota du modèle
+vers lequel il pointe ; pour plus de capacité, des versions explicites
+(`google:gemini-3.6-flash`…) s'ajoutent en fin de liste, chacune avec son
+propre quota. Ces plafonds se lisent dans
 [AI Studio](https://aistudio.google.com/rate-limit), modèle par modèle.
 
 Le premier qui répond gagne. Un modèle qui renvoie 429 est noté comme épuisé et
-sauté pendant dix minutes ; une panne passagère fait passer au suivant ; une
-erreur de notre côté (requête invalide, clé refusée) arrête tout de suite, parce
+sauté le temps indiqué par le fournisseur, une minute ou une heure selon la
+limite atteinte ; un modèle introuvable (404, retiré par exemple) est sauté une
+heure ; une panne passagère fait passer au suivant ; une erreur de notre côté
+(requête invalide, clé refusée) arrête tout de suite, parce
 qu'elle se répéterait à l'identique ailleurs. Si tous sont épuisés, le dernier
 recours consiste à les retenter quand même plutôt que de ne rien répondre.
 

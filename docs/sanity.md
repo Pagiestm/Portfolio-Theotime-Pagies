@@ -53,7 +53,7 @@ l'anglais est vide. Images : `imageUrl(source, largeur)`.
 | --------------- | --------------------------------------------------------------------------- |
 | Du contenu      | rien, le site le lit au prochain chargement                                 |
 | Un schéma       | `npm run deploy:studio`, sinon le Studio en ligne garde l'ancien formulaire |
-| Du code du site | commit et push sur `master`, Vercel déploie                                 |
+| Du code du site | PR fusionnée dans `master`, Vercel déploie                                  |
 
 ## Changer un champ existant
 

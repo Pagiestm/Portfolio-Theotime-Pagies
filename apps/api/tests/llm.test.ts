@@ -107,6 +107,19 @@ describe('generate', () => {
     assert.equal(visited.length, 1);
   });
 
+  it('passe au suivant quand un modèle a été retiré, et ne le retente plus', async () => {
+    const visited = fakeUpstream([
+      new Response('{"error":{"message":"models/a is not found"}}', { status: 404 }),
+      googleText('réponse du second'),
+    ]);
+    assert.equal(await generate(two, 'sys', 'user'), 'réponse du second');
+    assert.equal(visited.length, 2);
+
+    const ensuite = fakeUpstream([googleText('encore le second')]);
+    await generate(two, 'sys', 'user');
+    assert.ok(ensuite[0]?.includes('/models/b:'), 'le modèle retiré ne doit plus passer en tête');
+  });
+
   it('se souvient du modèle épuisé et commence par le suivant', async () => {
     fakeUpstream([quota(), googleText('second')]);
     await generate(two, 'sys', 'user');

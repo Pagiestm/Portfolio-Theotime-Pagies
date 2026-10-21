@@ -42,13 +42,14 @@ que si le générateur de notes accepte un jour le writer 9.
 ## Branches
 
 `master` est la seule branche durable : les `feat/…` et `fix/…` en partent et
-y reviennent par PR, et chaque fusion déclenche une publication - c'est la
-seule branche que semantic-release regarde (`.releaserc.json`), et la seule que
-Vercel déploie en production. Les autres n'obtiennent qu'un aperçu.
+y reviennent par PR, et chaque fusion lance semantic-release - c'est la seule
+branche qu'il regarde (`.releaserc.json`), et la seule que Vercel déploie en
+production. Les autres n'obtiennent qu'un aperçu.
 
 Renovate vise la branche par défaut, `master`, et y fusionne seul ce que la CI
-valide. Ses commits `chore(deps)` ne publient aucune version : seuls `feat` et
-`fix` en déclenchent une.
+valide. Une dépendance de développement arrive en `chore(deps)` et ne publie
+rien ; une dépendance de production arrive en `fix(deps)` et publie un
+correctif, puisqu'elle change ce qui tourne en ligne.
 
 ## Mises à jour de dépendances
 
@@ -173,6 +174,7 @@ qu'elles signalent, dans `Reveal`, `Header`, `useMediaQuery`, `usePagination` et
 `useSyncExternalStore` pour les media queries et une clé de remontage pour la
 pagination. Les réactiver sans ce travail fera échouer le lint.
 
-Les commits sont des `chore(deps)` : aucune release, le changelog les ignore.
+Les commits sont des `chore(deps)` pour l'outillage, sans release, et des
+`fix(deps)` pour les dépendances de production, qui publient un correctif.
 L'issue « Dependency Dashboard » du dépôt liste tout ce qui est en attente ou
 bloqué ; cocher une case y force une PR hors calendrier.

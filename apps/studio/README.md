@@ -69,8 +69,9 @@ variable au navigateur. Elles sont donc déclarées **nommément** dans `envPref
 ### Origines autorisées (CORS)
 
 Le navigateur ne peut lire l'API que depuis une origine déclarée. Sont
-autorisées, sans identifiants : `localhost:5173`, `localhost:4173`, le domaine
-Vercel de production et le motif de ses déploiements de prévisualisation. Pour
+autorisées, sans identifiants : `localhost:5173`, `localhost:4173`,
+`theotimepagies.com` avec et sans `www`, le domaine Vercel de production et le
+motif de ses déploiements de prévisualisation. Pour
 en ajouter une : sanity.io/manage › API › CORS origins.
 
 ## Sauvegarde
