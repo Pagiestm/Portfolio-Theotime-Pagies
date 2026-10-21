@@ -1,3 +1,9 @@
+## [1.16.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.0...v1.16.1) (2026-10-21)
+
+### Bug Fixes
+
+* **web:** rendre la scène aussi visible en sombre qu'en clair ([a4f5ffc](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/a4f5ffc38b9cd656d8e69a31cab2a25a80b40a04))
+
 ## [1.16.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.15.0...v1.16.0) (2026-10-12)
 
 ### Features
