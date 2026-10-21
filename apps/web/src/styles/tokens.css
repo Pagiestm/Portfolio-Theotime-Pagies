@@ -2,13 +2,15 @@
  * Design tokens - source unique de vérité, design system « Modernist ».
  *
  * Les couleurs existent en deux palettes : le sombre, thème de référence,
- * porté par `:root`, et le clair, activé par `data-theme="light"` sur `<html>`.
+ * porté par `:root` ou `data-theme="dark"`, et le clair, activé par
+ * `data-theme="light"` sur `<html>`.
  * Le bloc `@theme inline` relie chaque token Tailwind à la variable courante :
  * `--color-accent` donne ainsi `bg-accent`, `text-accent`, `border-accent`,
  * reste lisible en `var(--color-accent)` dans un style calculé, et suit le
  * thème sans que les composants aient à le connaître.
  */
-:root {
+:root,
+[data-theme='dark'] {
   color-scheme: dark;
   --bg: #010001;
   --surface: #192231;
@@ -28,8 +30,8 @@
   --scene-veil-bottom: 72%;
   --hero-veil-1: 94%;
   --hero-veil-2: 66%;
-  --hero-veil-3: 30%;
-  --hero-veil-4: 62%;
+  --hero-veil-3: 14%;
+  --hero-veil-4: 44%;
 }
 
 [data-theme='light'] {

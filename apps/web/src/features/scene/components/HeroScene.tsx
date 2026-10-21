@@ -23,8 +23,8 @@ const HeroScene = ({ density = 700, className = '' }) => {
     const accent2Color = new THREE.Color(cssColor('--accent-2'));
     const light = resolved === 'light';
     const blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
-    const lineBoost = light ? 2.6 : 1;
-    const starBoost = light ? 1.7 : 1;
+    const lineBoost = light ? 2.6 : 2.2;
+    const starBoost = light ? 1.7 : 2;
     const alpha = (value: number, boost = lineBoost) => Math.min(1, value * boost);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -104,7 +104,7 @@ const HeroScene = ({ density = 700, className = '' }) => {
     const stars = new THREE.Group();
     scene.add(stars);
     const STAR_LAYERS = [
-      { share: 0.62, size: 0.05, opacity: 0.45, color: accentColor },
+      { share: 0.62, size: 0.05, opacity: 0.45, color: light ? accentColor : accent2Color },
       { share: 0.28, size: 0.085, opacity: 0.7, color: accent2Color },
       { share: 0.1, size: 0.13, opacity: 0.9, color: accent2Color },
     ];
@@ -124,7 +124,7 @@ const HeroScene = ({ density = 700, className = '' }) => {
       const material = new THREE.PointsMaterial({
         color: layer.color,
         map: starTexture ?? undefined,
-        size: layer.size * (light ? 1.6 : 1),
+        size: layer.size * 1.6,
         transparent: true,
         opacity: alpha(layer.opacity, starBoost),
         sizeAttenuation: true,
