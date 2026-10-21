@@ -1,3 +1,9 @@
+## [1.16.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.1...v1.16.2) (2026-10-21)
+
+### Bug Fixes
+
+* **api:** passer au modèle suivant quand un modèle a été retiré ([82e9a1d](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/82e9a1d98a8018921f08e5a96ca1036b92df971f))
+
 ## [1.16.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.0...v1.16.1) (2026-10-21)
 
 ### Bug Fixes
