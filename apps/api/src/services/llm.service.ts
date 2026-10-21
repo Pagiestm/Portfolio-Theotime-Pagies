@@ -61,10 +61,11 @@ const ADAPTERS: Record<Provider, Adapter> = {
   },
 };
 
-type Verdict = 'quota' | 'transient' | 'fatal';
+type Verdict = 'quota' | 'missing' | 'transient' | 'fatal';
 
 const verdictOf = (status: number): Verdict => {
   if (status === 429) return 'quota';
+  if (status === 404) return 'missing';
   if (status >= 500) return 'transient';
   return 'fatal';
 };
@@ -110,6 +111,10 @@ const askOne = async (
           `écarté ${Math.round(cooldown / 1000)} s`,
           detail.slice(0, 300)
         );
+      }
+      if (verdictOf(res.status) === 'missing') {
+        exhaustedUntil.set(candidate.id, Date.now() + COOLDOWN_DAY_MS);
+        console.warn('[api] modèle introuvable', candidate.id, detail.slice(0, 300));
       }
       throw Object.assign(error, { verdict: verdictOf(res.status) });
     }
