@@ -17,7 +17,8 @@ Détail : [architecture](docs/architecture.md) · [Sanity](docs/sanity.md) · [v
   `typecheck`, `test`, `format:check`, `build`.
 - Vérifier le rendu dans le navigateur dès que l'affichage change.
 - Commits Conventional Commits en français, corps expliquant le _pourquoi_ ; le type fixe la version ([docs/versions.md](docs/versions.md)).
-- Les `feat/…` et `fix/…` vont dans `develop` ; `master` publie en production.
+- Les `feat/…` et `fix/…` partent de `master` et y reviennent par PR ; chaque
+  fusion publie en production.
 - **Aucun commentaire dans le code** : le _pourquoi_ va au message de commit.
   Documentation en français, trait d'union simple et jamais de tiret cadratin.
 

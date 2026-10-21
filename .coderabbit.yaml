@@ -15,7 +15,6 @@ reviews:
     drafts: false
     base_branches:
       - master
-      - develop
   # On ne relit ni les artefacts de build ni les fichiers générés.
   path_filters:
     - '!**/dist/**'
