@@ -46,7 +46,7 @@ packages/shared/   partagé           type Locale, registre TECHNOLOGIES
 - `overrides.typescript` à la racine force toute la ligne 5.9. La chaîne Sanity
   déclare des `peerDependencies` très larges (`typescript >=5`, `^5 || ^6 || ^7`) :
   sans cette contrainte npm hisse un TypeScript majeur plus récent à la racine, et
-  `@typescript-eslint` 7 s'y casse - le lint échoue avant d'avoir lu une ligne de
+  `@typescript-eslint` s'y casse - le lint échoue avant d'avoir lu une ligne de
   code.
 - `prepare` tolère l'absence de husky (`husky || echo …`). Un build distant qui
   n'installe pas les devDependencies ferait autrement échouer `npm install` en
@@ -61,7 +61,7 @@ depuis `apps/web` ou `apps/studio`.
 Flux en une ligne, chaque flèche à sens unique :
 
 ```
-UI (pages, components) → Hooks → Services → API (Sanity, EmailJS) → État (loaders React Router)
+UI (pages, components) → Hooks → Services → API (Sanity, apps/api) → État (loaders React Router)
 ```
 
 Un composant ne parle jamais à une API, un service ne rend jamais de JSX, un hook
@@ -75,8 +75,8 @@ ne contient pas de requête GROQ.
 | Un composant propre à un domaine       | `features/<domaine>/components/` | `features/work/components/ProjectRow.tsx`         |
 | Un hook propre à un domaine            | `features/<domaine>/hooks/`      | `features/work/hooks/useProjectFilters.ts`        |
 | Un composant générique sans métier     | `components/common/`             | `components/common/Reveal.tsx`                    |
-| Un hook utilisé par plusieurs features | `hooks/`                         | `hooks/useScrollProgress.ts`                      |
-| Un appel API ou SDK externe            | `services/`                      | `services/emailService.ts`                        |
+| Un hook utilisé par plusieurs features | `hooks/`                         | `hooks/useMediaQuery.ts`                          |
+| Un appel API ou SDK externe            | `services/`                      | `services/contactService.ts`                      |
 | Une route d'API, une clé secrète       | `apps/api/src/`                  | `routes/`, `controllers/`, `services/`, `models/` |
 | Une requête GROQ                       | `services/sanity/queries.ts`     |                                                   |
 | Un chargeur de route                   | `services/sanity/loaders.ts`     |                                                   |
@@ -168,8 +168,10 @@ qui y figure est à la fois lisible en CSS (`var(--color-accent)`) et disponible
 en classe (`bg-accent`, `text-accent`, `border-accent`) : il n'y a plus de
 `tailwind.config.js`, ni de valeur écrite à deux endroits.
 
-Deux palettes : le sombre, thème de référence, sur `:root`, et le clair sous
-`:root[data-theme='light']`. Les tokens de couleur passent par `@theme inline`
+Deux palettes : le sombre, thème de référence, sur `:root` et
+`[data-theme='dark']`, et le clair sous `[data-theme='light']`. Le sélecteur
+sombre explicite sert à lire une palette sans l'appliquer : `ThemeWarp` en
+tire les couleurs du thème d'arrivée alors que la page porte encore l'autre. Les tokens de couleur passent par `@theme inline`
 et pointent vers ces variables, si bien qu'un composant écrit `bg-surface` ou
 `bg-bg/85` sans connaître le thème. Un fond ou une ombre translucide se fait
 avec un modificateur d'opacité (`bg-bg/60`) ou `color-mix()` sur un token,

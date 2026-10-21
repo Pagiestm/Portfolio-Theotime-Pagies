@@ -1,8 +1,9 @@
-# Portfolio - Théotime Pagies
+# <img src="apps/web/public/favicon.svg" alt="Logo" width="36" height="36" align="absmiddle" /> Portfolio - Théotime Pagies
 
-Développeur web full-stack à Lille. Le site est en ligne sur
-[portfolio-theotime-pagies.vercel.app](https://portfolio-theotime-pagies.vercel.app/),
-son contenu est administré dans un back-office Sanity.
+Développeur web full-stack à Valenciennes. Le site est en ligne sur
+[theotimepagies.com](https://theotimepagies.com/), son contenu est administré
+dans un back-office Sanity, et un assistant répond aux visiteurs à partir de ce
+contenu.
 
 ## Structure
 
@@ -14,29 +15,34 @@ portfolio/
 ├── turbo.json      graphe des tâches, cache de build, variables d'environnement
 ├── apps/
 │   ├── web/        le site - Vite, React 19, Tailwind, React Router
-│   └── studio/     le back-office - Sanity Studio, React 19
+│   ├── studio/     le back-office - Sanity Studio, React 19
+│   └── api/        l'API - Hono : assistant et formulaire de contact
 ├── packages/
-│   └── shared/     ce que les deux consomment : type Locale, registre des technologies
-├── .github/        CI (lint · types · format · build) et release automatique
-└── .claude/        skills et permissions pour Claude Code
+│   └── shared/     ce que tous consomment : type Locale, registre des technologies
+├── docs/           architecture, Sanity, commits et versions
+├── .github/        CI (lint · types · tests · format · build) et release automatique
+└── .claude/        permissions pour Claude Code
 ```
 
-Le site ne dépend que de `packages/shared` et de l'API Sanity. Le Studio ne
-dépend que de `packages/shared`. Les deux ne s'importent jamais l'un l'autre.
+Le site dépend de `packages/shared`, de l'API Sanity et de `apps/api`, qu'il
+déploie en fonction Vercel (`apps/web/api/[[...route]].ts`). Le Studio ne
+dépend que de `packages/shared`. Hors ce cas, les applications ne s'importent
+jamais entre elles.
 
 L'architecture interne du site (feature-based, flux UI → hooks → services →
-API) est décrite dans `CLAUDE.md`, lu par Claude Code à chaque session.
+API) est décrite dans [docs/architecture.md](docs/architecture.md), celle de
+l'API dans [apps/api/README.md](apps/api/README.md).
 
 ## Démarrer
 
 ```bash
-npm install          # installe les trois workspaces d'un coup
+npm install          # installe les quatre workspaces d'un coup
 npm run dev          # site sur :5173 et Studio sur :3333, en parallèle
 ```
 
 Ou séparément : `npm run dev:web`, `npm run dev:studio`.
 
-`dev`, `build`, `lint` et `typecheck` passent par Turborepo, qui lance en
+`dev`, `build`, `typecheck` et `test` passent par Turborepo, qui lance en
 parallèle ce qui est indépendant et met en cache le résultat de chaque tâche :
 relancer `npm run build` sans rien avoir modifié ne reconstruit rien. Vercel
 réutilise ce cache d'un déploiement à l'autre. Pour ne viser qu'une
@@ -47,11 +53,18 @@ Variables d'environnement, dans `apps/web/.env` (jamais commité) :
 ```
 SANITY_PROJECT_ID=svhdk2l2
 SANITY_DATASET=production
-VITE_EMAILJS_SERVICE_ID=…
-VITE_EMAILJS_TEMPLATE_ID=…
-VITE_EMAILJS_USER_ID=…
-VITE_RECAPTCHA_SITE_KEY=…
+EMAILJS_SERVICE_ID=…
+EMAILJS_TEMPLATE_ID=…
+EMAILJS_PUBLIC_KEY=…
+EMAILJS_PRIVATE_KEY=…
+GEMINI_API_KEY=…
+LLM_MODELS=…
 ```
+
+Seules les deux variables Sanity atteignent le navigateur ; les autres ne sont
+lues que par l'API, côté serveur. Le modèle commenté est dans
+`apps/web/.env.example`, le rôle de chaque variable de l'API dans
+[apps/api/README.md](apps/api/README.md).
 
 et dans `apps/studio/.env` : `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`
 (modèle dans `apps/studio/.env.example`).
@@ -59,20 +72,22 @@ et dans `apps/studio/.env` : `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`
 ## Qualité
 
 ```bash
-npm run lint         # ESLint sur le site
-npm run typecheck    # tsc sur le site et le Studio
+npm run lint         # ESLint sur tout le dépôt
+npm run typecheck    # tsc sur le site, le Studio et l'API
+npm test             # tests de l'API
 npm run format:check # Prettier sur tout le dépôt
-npm run build        # construit le site et le Studio
+npm run build        # construit l'API, le site et le Studio
 ```
 
-Les trois premières, sauf `format:check`, passent par Turborepo et sont donc
-mises en cache.
+`typecheck`, `test` et `build` passent par Turborepo et sont donc mis en cache.
 
-Les quatre tournent en CI sur chaque PR, et avant chaque release. En local,
+Les cinq tournent en CI sur chaque PR, et avant chaque release. En local,
 Husky formate et lint les fichiers modifiés à chaque commit, et vérifie que le
 message suit les [Conventional Commits](https://www.conventionalcommits.org/)
 (`feat(cms): …`, `fix(web): …`). C'est de ces messages que semantic-release
-déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master` :
+déduit la version et rédige le `CHANGELOG.md` à chaque fusion dans `master`,
+seule branche durable : les `feat/…` et `fix/…` en partent et y reviennent par
+PR ([docs/versions.md](docs/versions.md)) :
 
 | Commit                                     | Version        |
 | ------------------------------------------ | -------------- |
@@ -86,9 +101,11 @@ Vérifier avant de fusionner, sans rien publier :
 
 ## Déployer
 
-**Le site** est déployé par Vercel à chaque push sur `master`. Dans les réglages
-du projet Vercel, le _Root Directory_ doit valoir `apps/web` ; Vercel détecte les
-workspaces et installe depuis la racine du dépôt. Les variables ci-dessus
+**Le site** est déployé par Vercel à chaque push sur `master`, sur
+[theotimepagies.com](https://theotimepagies.com/) ; chaque PR obtient un aperçu.
+Dans les réglages du projet Vercel, le _Root Directory_ doit valoir `apps/web`,
+avec « Include source files outside of the Root Directory » activé ; Vercel
+détecte les workspaces et installe depuis la racine du dépôt. Les variables ci-dessus
 doivent être définies pour l'environnement _Production_.
 
 **Le Studio** est hébergé par Sanity :
