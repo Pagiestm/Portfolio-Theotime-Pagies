@@ -95,7 +95,7 @@ Retirer une épingle, c'est retirer sa règle dans `renovate.json` en même temp
 
 ## Node
 
-Une seule version vaut partout : **24**. Elle est déclarée à trois endroits, et
+Une seule version vaut partout : **26**, la LTS en cours. Elle est déclarée à trois endroits, et
 pas un de plus, parce qu'aucun lecteur ne les lit tous :
 
 | Déclaration                 | Qui la lit                                                 |
@@ -104,7 +104,7 @@ pas un de plus, parce qu'aucun lecteur ne les lit tous :
 | `engines.node` racine       | npm, qui avertit (`EBADENGINE`) si la machine dérive       |
 | `engines.node` d'`apps/web` | Vercel, qui ignore `.nvmrc` - c'est le projet déployé      |
 
-Le format `24.x` est celui que Vercel documente. Les workflows lisent `.nvmrc`
+Le format `26.x` est celui que Vercel documente. Les workflows lisent `.nvmrc`
 au lieu de répéter le nombre : on ne monte de version qu'à un seul endroit.
 
 Les autres manifestes (`api`, `studio`, `shared`) n'en déclarent pas : ils sont
@@ -121,9 +121,9 @@ borne ouverte ne déclare pas une version, elle en tolère une inconnue.
 reste celui de `engines`.
 
 `packageManager` suit la même logique, à une nuance près : il déclare la **ligne**
-de npm livrée avec Node 24 (`11.19.x`), pas une version au patch près. `.nvmrc`
-dit `24`, donc le patch de Node flotte - la CI a tourné en 24.20.0 quand la
-machine était en 24.21.0 - et le npm embarqué flotte avec lui. Exiger l'égalité
+de npm livrée avec Node 26 (`11.20.x`), pas une version au patch près. `.nvmrc`
+dit `26`, donc le patch de Node flotte - la CI et la machine n'ont pas toujours
+le même - et le npm embarqué flotte avec lui. Exiger l'égalité
 exacte serait intenable ; c'est la ligne qui doit concorder, parce que c'est elle
 qui détermine le format du lockfile. Corepack n'étant pas présent, personne ne l'applique en
 local - mais Vercel le lit. Y laisser un npm différent, c'était faire tourner la
