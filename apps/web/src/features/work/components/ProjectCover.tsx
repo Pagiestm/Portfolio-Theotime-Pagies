@@ -15,6 +15,7 @@ const ProjectCover = ({
   sizes,
   title,
   alt,
+  placeholder,
   className = '',
   imageClassName = '',
   fit = 'contain',
@@ -26,6 +27,7 @@ const ProjectCover = ({
   sizes?: string;
   title: string;
   alt?: string;
+  placeholder?: string;
   className?: string;
   imageClassName?: string;
   fit?: 'contain' | 'cover';
@@ -56,9 +58,15 @@ const ProjectCover = ({
             'repeating-linear-gradient(135deg, var(--color-line-soft) 0 1px, transparent 1px 12px)',
         }}
       >
-        <span className="text-[clamp(30px,5vw,58px)] font-black tracking-[-.04em] text-line">
-          {initialsOf(title)}
-        </span>
+        {placeholder ? (
+          <span className="max-w-[80%] text-center text-[11px] font-bold uppercase leading-[1.5] tracking-[.16em] text-muted">
+            {placeholder}
+          </span>
+        ) : (
+          <span className="text-[clamp(30px,5vw,58px)] font-black tracking-[-.04em] text-line">
+            {initialsOf(title)}
+          </span>
+        )}
       </div>
     )}
   </div>

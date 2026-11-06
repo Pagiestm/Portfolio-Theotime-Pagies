@@ -2,12 +2,23 @@ import type { Project, Technology } from '../services/sanity/types';
 
 export type TechnologyUsage = Technology & { count: number };
 
+const PRACTICES = new Set([
+  'Cicd',
+  'FaFigma',
+  'FaGithub',
+  'Merise',
+  'ProjectManagement',
+  'Scrum',
+  'SiEslint',
+  'Tdd',
+]);
+
 export const topTechnologies = (projects: Project[], limit: number): TechnologyUsage[] => {
   const usage = new Map<string, TechnologyUsage>();
 
   projects.forEach((project) =>
     (project.stack ?? []).forEach((tech) => {
-      if (!tech?.label) return;
+      if (!tech?.label || PRACTICES.has(tech.iconKey ?? '')) return;
       const current = usage.get(tech.label);
       if (current) current.count += 1;
       else usage.set(tech.label, { ...tech, count: 1 });

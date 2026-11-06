@@ -1,16 +1,20 @@
 import { useLoaderData } from 'react-router-dom';
 import Reveal from '../components/common/Reveal';
 import MetaGrid from '../components/common/MetaGrid';
+import Testimonials from '../features/about/components/Testimonials';
 import { useTranslation } from '../i18n/useTranslation';
 import { scene } from '../config/scene';
 import LazyHeroScene from '../features/scene/components/LazyHeroScene';
 import { imageSrcSet, imageUrl } from '../services/sanity/image';
 import { useSettings } from '../hooks/useSettings';
-import type { AboutContent } from '../services/sanity/types';
+import type { AboutContent, Testimonial } from '../services/sanity/types';
 
 const AboutPage = () => {
   const { t, localize } = useTranslation();
-  const { about } = useLoaderData() as { about: AboutContent };
+  const { about, testimonials } = useLoaderData() as {
+    about: AboutContent;
+    testimonials: Testimonial[];
+  };
   const settings = useSettings();
 
   const portrait = imageUrl(about?.portrait ?? undefined, 900);
@@ -76,6 +80,8 @@ const AboutPage = () => {
           </div>
         </Reveal>
       </div>
+
+      <Testimonials items={testimonials ?? []} className="mt-[72px]" />
     </section>
   );
 };

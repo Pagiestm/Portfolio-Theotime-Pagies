@@ -3,16 +3,24 @@ import groq from 'groq';
 const LOCALE = '{ fr, en }';
 const HEADER = `{ kicker ${LOCALE}, title ${LOCALE}, body ${LOCALE} }`;
 const TECH = '{ label, iconKey }';
+const TESTIMONIAL = `{
+  _id, author, date,
+  role ${LOCALE},
+  relation ${LOCALE},
+  quote ${LOCALE}
+}`;
 
 export const PROJECTS_QUERY = groq`
   *[_type == "project" && defined(slug.current)] | order(endDate desc) {
     "id": slug.current,
     title,
-    featured, category, kinds, team,
+    featured, categories, kinds, team,
+    titleEn,
     period ${LOCALE},
     endDate,
     summary ${LOCALE},
     cover,
+    visualNote ${LOCALE},
     "stack": stack[]->${TECH},
     resources[] {
       _key, _type,
@@ -27,13 +35,16 @@ export const PROJECT_QUERY = groq`
   *[_type == "project" && slug.current == $slug][0] {
     "id": slug.current,
     title,
-    category, kinds, team,
+    categories, kinds, team,
+    titleEn,
     period ${LOCALE},
     endDate,
     summary ${LOCALE},
     content { fr, en },
     cover,
     gallery,
+    visualNote ${LOCALE},
+    "testimonials": *[_type == "testimonial" && project._ref == ^._id] | order(order asc, date desc) ${TESTIMONIAL},
     "stack": stack[]->${TECH},
     resources[] {
       _key, _type,
@@ -44,10 +55,15 @@ export const PROJECT_QUERY = groq`
   }
 `;
 
+export const TESTIMONIALS_QUERY = groq`
+  *[_type == "testimonial" && !defined(project)] | order(order asc, date desc) ${TESTIMONIAL}
+`;
+
 export const PROJECT_SLUGS_QUERY = groq`
   *[_type == "project" && defined(slug.current)] | order(endDate desc) {
     "id": slug.current,
-    title
+    title,
+    titleEn
   }
 `;
 

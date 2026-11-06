@@ -15,7 +15,7 @@ import {
   workLoader,
 } from '../services/sanity/loaders';
 import { paths } from './paths';
-import { OWNER, ROUTE_META, trimDescription, type RouteMeta } from './meta';
+import { NOT_FOUND, OWNER, ROUTE_META, trimDescription, type RouteMeta } from './meta';
 import { imageUrl } from '../services/sanity/image';
 import type { Project } from '../services/sanity/types';
 
@@ -37,7 +37,8 @@ const meta = (path: string) => ({ meta: ROUTE_META[path] });
 
 const projectMeta = {
   meta: (data: unknown): RouteMeta => {
-    const { project } = data as { project: Project };
+    const { project } = (data ?? {}) as { project?: Project };
+    if (!project) return ROUTE_META[NOT_FOUND];
     return {
       title: `${project.title} - ${OWNER}`,
 
@@ -94,7 +95,7 @@ export const router = createBrowserRouter([
         handle: meta(paths.contact),
       },
       { path: paths.legal, element: lazyRoute(<LegalPage />), handle: meta(paths.legal) },
-      { path: '*', element: <NotFoundPage /> },
+      { path: '*', element: <NotFoundPage />, handle: meta(NOT_FOUND) },
     ],
   },
 ]);

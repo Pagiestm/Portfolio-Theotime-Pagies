@@ -158,8 +158,8 @@ composant vers `components/common`, hook vers `hooks/`, constante vers
 # Design system Modernist
 
 Toute couleur vient de `styles/tokens.css` via les classes Tailwind (`bg-surface`,
-`text-muted`, `border-line`) ; aucun hex dans un composant. **Aucun arrondi.**
-Filets 2 px pour les séparations majeures, 1 px pour les mineures. Libellés de
+`text-muted`, `border-line`) ; aucun hex dans un composant. **Aucun arrondi**,
+sauf les puces de liste, rondes. Filets 2 px pour les séparations majeures, 1 px pour les mineures. Libellés de
 boutons alignés à gauche. Captures d'écran en `object-contain`, jamais recadrées.
 Toute animation vérifie `usePrefersReducedMotion()`.
 

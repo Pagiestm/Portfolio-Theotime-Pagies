@@ -4,6 +4,8 @@ export const FALLBACK_SITE_URL = 'https://theotimepagies.com';
 
 export const OWNER = 'Théotime Pagies';
 
+export const NOT_FOUND = '*';
+
 export const LOCATION = {
   city: 'Valenciennes',
   region: 'Hauts-de-France',
@@ -51,6 +53,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   [paths.legal]: {
     title: `Mentions légales - ${OWNER}`,
     description: 'Informations légales du site de Théotime Pagies.',
+  },
+  [NOT_FOUND]: {
+    title: `Page introuvable - ${OWNER}`,
+    description: 'Cette adresse ne mène nulle part sur le site de Théotime Pagies.',
   },
 };
 

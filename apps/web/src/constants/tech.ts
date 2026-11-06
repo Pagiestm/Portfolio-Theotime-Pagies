@@ -1,6 +1,9 @@
 import type { IconType } from 'react-icons';
 import {
   FaAngular,
+  FaBrain,
+  FaBolt,
+  FaChartLine,
   FaCodeBranch,
   FaDatabase,
   FaFigma,
@@ -18,6 +21,7 @@ import {
 } from 'react-icons/fa';
 import {
   SiAirtable,
+  SiAmazon,
   SiDocker,
   SiTerraform,
   SiAmazonwebservices,
@@ -29,6 +33,7 @@ import {
   SiSqlite,
   SiTelegram,
   SiNginx,
+  SiPhp,
   SiPuppeteer,
   SiAppwrite,
   SiDart,
@@ -98,6 +103,11 @@ const ICONS: Record<TechKey, IconType> = {
   SiNginx: SiNginx,
   SiPuppeteer: SiPuppeteer,
   Ollama: FaRobot,
+  Llm: FaBrain,
+  OpenClaw: FaBolt,
+  SiAmazon: SiAmazon,
+  Keepa: FaChartLine,
+  SiPhp: SiPhp,
   Zapier: SiZapier,
 };
 

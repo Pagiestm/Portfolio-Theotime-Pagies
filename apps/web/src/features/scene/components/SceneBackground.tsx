@@ -66,21 +66,6 @@ const SceneBackground = ({ animated = true }: { animated?: boolean }) => {
         </div>
       )}
 
-      <div className="absolute inset-0 flex flex-col justify-between">
-        {Array.from({ length: 8 }, (_, i) => (
-          <span key={i} className="block h-px bg-line-soft" />
-        ))}
-      </div>
-
-      <div className="absolute inset-0 mx-auto max-w-shell">
-        <span
-          className="absolute inset-y-0 left-6 block w-px"
-          style={{
-            background: 'linear-gradient(180deg,transparent,var(--color-line),transparent)',
-          }}
-        />
-      </div>
-
       <div
         className="absolute inset-0"
         style={{

@@ -33,7 +33,10 @@ const SkillGroupCard = ({ group, delay = 0 }: { group: SkillGroup; delay?: numbe
                 {Icon ? (
                   <Icon className="flex-none text-[22px] text-accent-2" aria-hidden="true" />
                 ) : (
-                  <span className="h-[7px] w-[7px] flex-none bg-accent-2" aria-hidden="true" />
+                  <span
+                    className="h-[7px] w-[7px] flex-none rounded-full bg-accent-2"
+                    aria-hidden="true"
+                  />
                 )}
                 <span className="text-[15.5px] font-semibold">{label}</span>
               </li>

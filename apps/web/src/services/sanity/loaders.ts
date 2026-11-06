@@ -11,6 +11,7 @@ import {
   SITE_SETTINGS_QUERY,
   SKILLS_PAGE_QUERY,
   SKILL_GROUPS_QUERY,
+  TESTIMONIALS_QUERY,
   WORK_PAGE_QUERY,
 } from './queries';
 import type {
@@ -22,6 +23,7 @@ import type {
   Project,
   SiteSettings,
   SkillGroup,
+  Testimonial,
 } from './types';
 
 export const rootLoader = async () => ({
@@ -29,11 +31,12 @@ export const rootLoader = async () => ({
 });
 
 export const homeLoader = async () => {
-  const [home, projects] = await Promise.all([
+  const [home, projects, testimonials] = await Promise.all([
     sanityFetch<HomeContent>(HOME_QUERY),
     sanityFetch<Project[]>(PROJECTS_QUERY),
+    sanityFetch<Testimonial[]>(TESTIMONIALS_QUERY),
   ]);
-  return { home, projects };
+  return { home, projects, testimonials };
 };
 
 export const workLoader = async () => {
@@ -72,9 +75,13 @@ export const skillsLoader = async () => {
   return { header: page?.header, groups };
 };
 
-export const aboutLoader = async () => ({
-  about: await sanityFetch<AboutContent>(ABOUT_QUERY),
-});
+export const aboutLoader = async () => {
+  const [about, testimonials] = await Promise.all([
+    sanityFetch<AboutContent>(ABOUT_QUERY),
+    sanityFetch<Testimonial[]>(TESTIMONIALS_QUERY),
+  ]);
+  return { about, testimonials };
+};
 
 export const contactLoader = async () => {
   const page = await sanityFetch<{ header: PageHeader }>(CONTACT_PAGE_QUERY);

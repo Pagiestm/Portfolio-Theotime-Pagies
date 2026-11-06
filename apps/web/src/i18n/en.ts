@@ -51,7 +51,7 @@ export default {
   stackHint: 'projects',
   seeSkills: 'See all skills',
   seePath: 'See the full path',
-  closeTitle: 'Available for a full-time role or freelance work.',
+  closeTitle: 'Want to know more about one of these roles? Write to me.',
   closeCta: 'Write to me',
 
   workKicker: 'Work',
@@ -127,8 +127,22 @@ export default {
     'This page failed to load. It may be temporary: try again, or head back to the homepage.',
   errorRetry: 'Try again',
 
+  noVisual: 'Internal project, no screenshots',
+  testimonials: 'What people say about me',
+  testimonialsKicker: 'Recommendations',
+  seeTestimonials: 'See the other recommendations',
+  testimonialProject: 'From the client',
   notFoundTitle: 'Page not found',
-  notFoundBody: 'This address leads nowhere. Head back to the homepage.',
+  notFoundBody: 'This address leads nowhere: the link may be old, or the page may have moved.',
+  notFoundPathLabel: 'Requested address',
+  notFoundLinksTitle: 'Where to go next',
+  notFoundLinks: {
+    work: 'The projects, from a Telegram bot to a platform in production.',
+    path: 'Degrees, apprenticeships and internships on a single timeline.',
+    skills: 'The tools I use, from the front end to production.',
+    about: 'Who I am and how I work.',
+    contact: 'A role, a mission, a question.',
+  },
   backHome: 'Back to the homepage',
 
   allOption: 'All',
@@ -149,6 +163,7 @@ export default {
     mobile: 'Mobile',
     desktop: 'Desktop',
     api: 'API',
+    automation: 'Automation & AI',
     nocode: 'No-code',
   } satisfies Record<ProjectKind, string>,
   team: {
@@ -156,7 +171,7 @@ export default {
     team: 'Team',
   } satisfies Record<TeamMode, string>,
 
-  assistantOpen: 'A question?',
+  assistantOpen: 'Ask the AI',
   assistantKicker: 'Assistant IA ',
   assistantTitle: 'Ask me a question',
   assistantIntro: 'I answer from the content of this site: projects, path, skills...',

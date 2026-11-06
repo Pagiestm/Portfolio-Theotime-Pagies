@@ -8,6 +8,7 @@ export const TECHNOLOGIES = [
   { key: 'SiJavascript', label: 'JavaScript' },
   { key: 'SiTypescript', label: 'TypeScript' },
 
+  { key: 'SiPhp', label: 'PHP' },
   { key: 'SiNestjs', label: 'NestJS' },
   { key: 'FaNodeJs', label: 'Node.js' },
   { key: 'SiExpress', label: 'Express' },
@@ -48,6 +49,10 @@ export const TECHNOLOGIES = [
   { key: 'SiNginx', label: 'Nginx' },
   { key: 'SiPuppeteer', label: 'Puppeteer' },
   { key: 'Ollama', label: 'Ollama' },
+  { key: 'Llm', label: 'LLM' },
+  { key: 'OpenClaw', label: 'OpenClaw' },
+  { key: 'SiAmazon', label: 'Amazon Seller Central' },
+  { key: 'Keepa', label: 'Keepa' },
   { key: 'Airtable', label: 'Airtable' },
   { key: 'Zapier', label: 'Zapier' },
 ] as const;
