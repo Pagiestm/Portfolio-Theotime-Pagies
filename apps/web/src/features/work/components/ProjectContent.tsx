@@ -32,13 +32,13 @@ const components: PortableTextComponents = {
   listItem: {
     bullet: ({ children }) => (
       <li className="relative pl-[22px] text-[16px] text-muted">
-        <span className="absolute left-0 top-[9px] h-[7px] w-[7px] bg-accent" />
+        <span className="absolute left-0 top-[9px] h-[7px] w-[7px] rounded-full bg-accent" />
         {children}
       </li>
     ),
     number: ({ children }) => (
       <li className="relative pl-[22px] text-[16px] text-muted">
-        <span className="absolute left-0 top-[9px] h-[7px] w-[7px] bg-accent-2" />
+        <span className="absolute left-0 top-[9px] h-[7px] w-[7px] rounded-full bg-accent-2" />
         {children}
       </li>
     ),

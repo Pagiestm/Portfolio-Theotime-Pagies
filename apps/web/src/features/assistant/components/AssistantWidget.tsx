@@ -1,6 +1,6 @@
 import { FormEvent, Fragment, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCommentDots } from 'react-icons/fa';
+import { HiSparkles } from 'react-icons/hi2';
 import { usePrefersReducedMotion } from '../../../hooks/useMediaQuery';
 import { useFloatingOffset } from '../hooks/useFloatingOffset';
 import { useTranslation } from '../../../i18n/useTranslation';
@@ -58,7 +58,7 @@ const renderAnswer = (text: string, onNavigate: () => void): ReactNode =>
     return (
       <Fragment key={i}>
         {bullet ? (
-          <span className="mr-2 inline-block h-[6px] w-[6px] bg-accent align-middle" />
+          <span className="mr-2 inline-block h-[6px] w-[6px] rounded-full bg-accent align-middle" />
         ) : null}
         {bullet
           ? nodes.map((n) => (typeof n === 'string' ? n.replace(/^\s*[-*•]\s+/, '') : n))
@@ -197,8 +197,7 @@ const AssistantWidget = () => {
           }}
           className="fixed bottom-4 right-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center border-2 border-accent bg-accent text-on-accent transition-colors hover:bg-transparent hover:text-accent-2 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-4 sm:py-3 sm:text-[12px] sm:font-bold sm:uppercase sm:tracking-[.1em]"
         >
-          <FaCommentDots size={18} aria-hidden className="sm:hidden" />
-          <span className="hidden h-[8px] w-[8px] bg-current sm:inline-block" aria-hidden />
+          <HiSparkles size={18} aria-hidden className="sm:size-[15px]" />
           <span className="hidden sm:inline">{t.assistantOpen}</span>
         </button>
       )}

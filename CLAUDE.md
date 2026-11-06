@@ -47,5 +47,5 @@ resservira un site bâti avec d'autres valeurs.
 - Aucune clé de modèle (`GEMINI_API_KEY`, `LLM_API_KEY`) n'entre dans `envPrefix` :
   seule `apps/api` les lit, côté serveur. `envPrefix` finit dans le bundle.
 - Un identifiant de document Sanity ne contient **jamais de point**.
-- Toute couleur vient de `styles/tokens.css`. **Aucun arrondi.** Toute animation
-  vérifie `usePrefersReducedMotion()`.
+- Toute couleur vient de `styles/tokens.css`. **Aucun arrondi**, sauf les puces
+  de liste, rondes. Toute animation vérifie `usePrefersReducedMotion()`.

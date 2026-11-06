@@ -52,7 +52,7 @@ export default {
   stackHint: 'projets',
   seeSkills: 'Voir toutes les compétences',
   seePath: 'Voir tout le parcours',
-  closeTitle: 'Disponible pour un CDI ou une mission freelance.',
+  closeTitle: 'Vous voulez en savoir plus sur un poste du parcours ? Écrivez-moi.',
   closeCta: 'Écrivez-moi',
 
   workKicker: 'Réalisations',
@@ -130,8 +130,23 @@ export default {
     "La page n'a pas pu se charger. C'est peut-être passager : réessayez, ou revenez à l'accueil.",
   errorRetry: 'Réessayer',
 
+  noVisual: 'Projet interne, sans visuel',
+  testimonials: "Ce qu'on dit de moi",
+  testimonialsKicker: 'Recommandations',
+  seeTestimonials: 'Voir les autres recommandations',
+  testimonialProject: 'Le mot du client',
   notFoundTitle: 'Page introuvable',
-  notFoundBody: "Cette adresse ne mène nulle part. Revenez à l'accueil.",
+  notFoundBody:
+    "Cette adresse ne mène nulle part : le lien est peut-être ancien, ou la page a changé d'adresse.",
+  notFoundPathLabel: 'Adresse demandée',
+  notFoundLinksTitle: 'Où aller maintenant',
+  notFoundLinks: {
+    work: 'Les projets, du bot Telegram à la plateforme en production.',
+    path: 'Formations, alternances et stages sur une seule frise.',
+    skills: 'Les outils que je pratique, du front à la mise en production.',
+    about: 'Qui je suis et comment je travaille.',
+    contact: 'Un poste, une mission, une question.',
+  },
   backHome: "Retour à l'accueil",
 
   allOption: 'Tous',
@@ -152,6 +167,7 @@ export default {
     mobile: 'Mobile',
     desktop: 'Desktop',
     api: 'API',
+    automation: 'Automatisation & IA',
     nocode: 'No-code',
   } satisfies Record<ProjectKind, string>,
   team: {
@@ -159,7 +175,7 @@ export default {
     team: 'En équipe',
   } satisfies Record<TeamMode, string>,
 
-  assistantOpen: 'Une question ?',
+  assistantOpen: "Demander à l'IA",
   assistantKicker: 'Assistant IA de Théotime',
   assistantTitle: 'Posez-moi une question',
   assistantIntro:
