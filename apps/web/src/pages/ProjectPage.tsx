@@ -6,23 +6,26 @@ import StackBadges from '../features/work/components/StackBadges';
 import ProjectGallery from '../features/work/components/ProjectGallery';
 import ProjectContent from '../features/work/components/ProjectContent';
 import ProjectCover from '../features/work/components/ProjectCover';
+import { projectTitle } from '../features/work/utils/projectTitle';
+import ProjectVisualNote from '../features/work/components/ProjectVisualNote';
+import Testimonials from '../features/about/components/Testimonials';
 import { useTranslation } from '../i18n/useTranslation';
 import { imageSrcSet, imageUrl } from '../services/sanity/image';
 import { paths } from '../routes/paths';
 import type { Project } from '../services/sanity/types';
 
 const ProjectPage = () => {
-  const { t, localize } = useTranslation();
+  const { t, localize, lang } = useTranslation();
   const { project, siblings } = useLoaderData() as {
     project: Project;
-    siblings: Array<{ id: string; title: string }>;
+    siblings: Array<{ id: string; title: string; titleEn?: string | null }>;
   };
 
   const index = siblings.findIndex((p) => p.id === project.id);
   const next = siblings[(index + 1) % siblings.length] ?? project;
 
   const meta = [
-    { label: t.metaCategory, value: t.category[project.category] },
+    { label: t.metaCategory, value: project.categories.map((v) => t.category[v]).join(' · ') },
     {
       label: t.metaKind,
       value: (project.kinds ?? []).map((kind) => t.kind[kind]).join(', ') || '-',
@@ -54,23 +57,27 @@ const ProjectPage = () => {
       </Link>
 
       <div className="mb-4 text-[12px] font-bold uppercase tracking-[.2em] text-accent-2">
-        {t.category[project.category]}
+        {project.categories.map((v) => t.category[v]).join(' · ')}
       </div>
       <h1 className="m-0 mb-6 max-w-[20ch] text-[clamp(36px,6vw,74px)] font-black leading-none tracking-[-.035em]">
-        {project.title}
+        {projectTitle(project, lang)}
       </h1>
       <p className="m-0 mb-11 max-w-[62ch] text-[19px] text-muted">{localize(project.summary)}</p>
 
-      <ProjectCover
-        src={cover}
-        srcSet={coverSet}
-        sizes="(max-width: 1320px) 100vw, 1280px"
-        title={project.title}
-        alt={project.cover?.alt}
-        loading="eager"
-        className="mb-[2px] border-2 border-line"
-        style={{ height: 'clamp(230px,40vh,440px)' }}
-      />
+      {!cover && project.visualNote ? (
+        <ProjectVisualNote note={project.visualNote} className="mb-[2px]" />
+      ) : (
+        <ProjectCover
+          src={cover}
+          srcSet={coverSet}
+          sizes="(max-width: 1320px) 100vw, 1280px"
+          title={projectTitle(project, lang)}
+          alt={project.cover?.alt}
+          loading="eager"
+          className="mb-[2px] border-2 border-line"
+          style={{ height: 'clamp(230px,40vh,440px)' }}
+        />
+      )}
 
       <MetaGrid items={meta} tone="boxed" className="mb-[52px]" />
 
@@ -116,12 +123,18 @@ const ProjectPage = () => {
         </Reveal>
       </div>
 
+      <Testimonials
+        items={project.testimonials ?? []}
+        title={t.testimonialProject}
+        className="mt-[60px]"
+      />
+
       {(project.gallery?.length ?? 0) > 0 && (
         <div className="mt-[60px]">
           <h2 className="m-0 mb-5 border-b-2 border-line pb-[14px] text-[12.5px] font-bold uppercase tracking-[.2em] text-accent-2">
             {t.gallery}
           </h2>
-          <ProjectGallery images={project.gallery} title={project.title} />
+          <ProjectGallery images={project.gallery} title={projectTitle(project, lang)} />
         </div>
       )}
 
@@ -131,7 +144,7 @@ const ProjectPage = () => {
           to={paths.project(next.id)}
           className="border-b-2 border-accent pb-1 text-[clamp(20px,2.8vw,30px)] font-extrabold tracking-[-.02em] text-ink hover:text-accent-2"
         >
-          {next.title} →
+          {projectTitle(next, lang)} →
         </Link>
       </div>
     </section>

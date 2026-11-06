@@ -32,6 +32,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('project').title('Réalisations'),
       S.documentTypeListItem('journeyEntry').title('Parcours'),
       S.documentTypeListItem('skillGroup').title('Groupes de compétences'),
+      S.documentTypeListItem('testimonial').title('Recommandations'),
       S.divider(),
       S.documentTypeListItem('technology').title('Technologies'),
     ]);

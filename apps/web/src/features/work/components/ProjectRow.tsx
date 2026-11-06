@@ -6,9 +6,11 @@ import { paths } from '../../../routes/paths';
 import { thumbSrcSet, thumbUrl } from '../../../services/sanity/image';
 import type { Project } from '../../../services/sanity/types';
 import ProjectCover from './ProjectCover';
+import { projectTitle } from '../utils/projectTitle';
 
 const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
-  const { t, localize } = useTranslation();
+  const { t, localize, lang } = useTranslation();
+  const title = projectTitle(project, lang);
   const reduced = usePrefersReducedMotion();
   const cover = project.cover ?? undefined;
 
@@ -22,8 +24,9 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
           src={thumbUrl(cover)}
           srcSet={thumbSrcSet(cover)}
           sizes="(max-width: 640px) 100vw, 210px"
-          title={project.title}
+          title={title}
           alt={cover?.alt}
+          placeholder={project.visualNote ? t.noVisual : undefined}
           fit="cover"
           imageClassName={
             reduced ? '' : 'transition-transform duration-[600ms] ease-out group-hover:scale-[1.05]'
@@ -34,7 +37,9 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
         <div className="min-w-0 flex-1">
           <div className="mb-[10px] flex flex-wrap items-center gap-x-[10px] gap-y-1 text-[11px] uppercase tracking-[.16em]">
             <span className="text-muted">{String(index + 1).padStart(2, '0')}</span>
-            <span className="text-accent-2">{t.category[project.category]}</span>
+            <span className="text-accent-2">
+              {project.categories.map((value) => t.category[value]).join(' · ')}
+            </span>
             {(project.kinds ?? []).map((kind) => (
               <span key={kind} className="text-muted">
                 · {t.kind[kind]}
@@ -43,7 +48,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
           </div>
 
           <h3 className="m-0 text-[clamp(22px,2.8vw,32px)] font-extrabold tracking-[-.025em]">
-            {project.title}
+            {title}
           </h3>
 
           {project.period && (

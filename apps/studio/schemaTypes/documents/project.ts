@@ -19,6 +19,7 @@ const KIND_TITLES: Record<ProjectKind, string> = {
   mobile: 'Application mobile',
   desktop: 'Application de bureau',
   api: 'API',
+  automation: 'Automatisation & IA',
   nocode: 'No-code',
 };
 
@@ -48,6 +49,14 @@ export const project = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'titleEn',
+      title: 'Titre en anglais',
+      description:
+        'Facultatif. À remplir seulement quand le titre français est une description, par exemple « Suivi des blocages ». Les noms propres n’en ont pas besoin.',
+      type: 'string',
+      group: 'content',
+    }),
+    defineField({
       name: 'slug',
       title: 'Adresse de la page',
       description: 'Renseigne l’URL /realisations/… . Cliquez sur « Generate » après le titre.',
@@ -66,16 +75,15 @@ export const project = defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'category',
+      name: 'categories',
       title: 'Cadre',
-      type: 'string',
+      description:
+        'Plusieurs choix possibles : un projet d’école livré à un vrai client est les deux.',
+      type: 'array',
       group: 'content',
-      options: {
-        list: asOptions(PROJECT_CATEGORIES, CATEGORY_TITLES),
-        layout: 'radio',
-        direction: 'horizontal',
-      },
-      validation: (rule) => rule.required(),
+      of: [defineArrayMember({ type: 'string' })],
+      options: { list: asOptions(PROJECT_CATEGORIES, CATEGORY_TITLES), layout: 'grid' },
+      validation: (rule) => rule.min(1).error('Choisissez au moins un cadre.'),
     }),
     defineField({
       name: 'kinds',
@@ -144,7 +152,8 @@ export const project = defineType({
     defineField({
       name: 'cover',
       title: 'Image principale',
-      description: 'Affichée en haut de la page projet.',
+      description:
+        'Affichée en haut de la page projet. Sans image, remplir « Pourquoi il n’y a pas de visuel ».',
       type: 'image',
       group: 'media',
       options: { hotspot: true },
@@ -158,7 +167,14 @@ export const project = defineType({
           validation: (rule) => rule.required().max(160),
         }),
       ],
-      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'visualNote',
+      title: 'Pourquoi il n’y a pas de visuel',
+      description:
+        'À remplir seulement quand le projet n’a pas d’image principale : la phrase affichée à la place, par exemple « outil interne, aucune capture publiable ».',
+      type: 'localeText',
+      group: 'media',
     }),
     defineField({
       name: 'gallery',

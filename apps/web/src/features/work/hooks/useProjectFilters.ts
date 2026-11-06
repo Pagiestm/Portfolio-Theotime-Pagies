@@ -71,7 +71,9 @@ export const useProjectFilters = (projects: Project[] = []) => {
     return projects.filter((project) => {
       const labels = labelsOf(project);
 
-      const matchesCategory = categories.length === 0 || categories.includes(project.category);
+      const matchesCategory =
+        categories.length === 0 ||
+        (project.categories ?? []).some((value) => categories.includes(value));
       const matchesKind =
         kinds.length === 0 || (project.kinds ?? []).some((kind) => kinds.includes(kind));
       const matchesTeam = team === null || project.team === team;
@@ -90,7 +92,7 @@ export const useProjectFilters = (projects: Project[] = []) => {
 
   const available = useMemo(
     () => ({
-      categories: optionsOf(PROJECT_CATEGORIES, (project) => [project.category], projects),
+      categories: optionsOf(PROJECT_CATEGORIES, (project) => project.categories ?? [], projects),
       kinds: optionsOf(PROJECT_KINDS, (project) => project.kinds ?? [], projects),
       teams: optionsOf(TEAM_MODES, (project) => (project.team ? [project.team] : []), projects),
       tech: techOptionsOf(projects),

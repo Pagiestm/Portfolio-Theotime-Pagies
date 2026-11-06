@@ -3,6 +3,15 @@ import type { Locale, ProjectCategory, ProjectKind, TeamMode } from '@portfolio/
 
 export type { Locale };
 
+export type Testimonial = {
+  _id: string;
+  author: string;
+  role: Locale;
+  date: string;
+  relation?: Locale | null;
+  quote: Locale;
+};
+
 export type SanityImage = {
   _key?: string;
   asset?: { _ref?: string; _id?: string; url?: string };
@@ -25,8 +34,9 @@ export type ProjectResource = {
 export type Project = {
   id: string;
   title: string;
+  titleEn?: string | null;
   featured?: boolean | null;
-  category: ProjectCategory;
+  categories: ProjectCategory[];
   kinds?: ProjectKind[] | null;
   team?: TeamMode | null;
   period: Locale;
@@ -35,6 +45,8 @@ export type Project = {
   content?: Locale<PortableTextBlock[]> | null;
   cover?: SanityImage | null;
   gallery?: SanityImage[] | null;
+  visualNote?: Locale | null;
+  testimonials?: Testimonial[] | null;
   stack: Technology[];
   resources?: ProjectResource[] | null;
 };

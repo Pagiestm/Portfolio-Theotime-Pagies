@@ -4,15 +4,20 @@ import ActionLink from '../components/common/ActionLink';
 import HeroStage from '../features/home/components/HeroStage';
 import MarqueeBand from '../features/home/components/MarqueeBand';
 import TechBand from '../features/home/components/TechBand';
+import Testimonials from '../features/about/components/Testimonials';
 import ClosingBanner from '../features/home/components/ClosingBanner';
 import ProjectCard from '../features/work/components/ProjectCard';
 import { selectFeatured } from '../features/work/utils/selectFeatured';
 import { useTranslation } from '../i18n/useTranslation';
 import { paths } from '../routes/paths';
 import { topTechnologies } from '../utils/topTechnologies';
-import type { HomeContent, Project } from '../services/sanity/types';
+import type { HomeContent, Project, Testimonial } from '../services/sanity/types';
 
 const TECH_COUNT = 10;
+
+const HOME_TESTIMONIALS = 2;
+
+const HOME_PROJECTS = 4;
 
 const SectionHeader = ({
   number,
@@ -33,16 +38,37 @@ const SectionHeader = ({
 
 const HomePage = () => {
   const { t, localize } = useTranslation();
-  const { home, projects } = useLoaderData() as {
+  const { home, projects, testimonials } = useLoaderData() as {
     home: HomeContent;
     projects: Project[];
+    testimonials: Testimonial[];
   };
 
-  const selection = selectFeatured(projects);
+  const selection = selectFeatured(projects, { max: HOME_PROJECTS });
   const tech = topTechnologies(projects, TECH_COUNT);
   const others = projects.length - selection.length;
 
   const sections: Array<{ kicker: string; title: string; body: ReactNode }> = [
+    ...(testimonials.length > 0
+      ? [
+          {
+            kicker: t.testimonialsKicker,
+            title: t.testimonials,
+            body: (
+              <>
+                <Testimonials items={testimonials.slice(0, HOME_TESTIMONIALS)} hideTitle />
+                {testimonials.length > HOME_TESTIMONIALS && (
+                  <div className="mt-9 flex justify-end">
+                    <ActionLink to={paths.about} variant="outline">
+                      {t.seeTestimonials}
+                    </ActionLink>
+                  </div>
+                )}
+              </>
+            ),
+          },
+        ]
+      : []),
     {
       kicker: localize(home?.selectionKicker) || t.selection,
       title: localize(home?.indexTitle) || t.indexTitle,

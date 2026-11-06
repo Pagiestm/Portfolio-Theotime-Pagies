@@ -3,13 +3,15 @@ import Reveal from '../../../components/common/Reveal';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { imageSrcSet, imageUrl } from '../../../services/sanity/image';
 import ProjectCover from './ProjectCover';
+import { projectTitle } from '../utils/projectTitle';
 import { paths } from '../../../routes/paths';
 import type { Project } from '../../../services/sanity/types';
 
 const STACK_PREVIEW = 4;
 
 const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number }) => {
-  const { t, localize } = useTranslation();
+  const { t, localize, lang } = useTranslation();
+  const title = projectTitle(project, lang);
   const cover = imageUrl(project.cover ?? undefined, 900);
   const coverSet = imageSrcSet(project.cover ?? undefined, [400, 640, 900]);
   const stack = project.stack ?? [];
@@ -25,14 +27,17 @@ const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number 
           src={cover}
           srcSet={coverSet}
           sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 340px"
-          title={project.title}
+          title={title}
           alt={project.cover?.alt}
+          placeholder={project.visualNote ? t.noVisual : undefined}
           className="h-[220px] border-b-2 border-line p-4"
         />
 
         <div className="flex flex-1 flex-col p-6">
           <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[.16em]">
-            <span className="text-accent-2">{t.category[project.category]}</span>
+            <span className="text-accent-2">
+              {project.categories.map((value) => t.category[value]).join(' · ')}
+            </span>
             {(project.kinds ?? []).map((kind) => (
               <span key={kind} className="text-muted">
                 {t.kind[kind]}
@@ -40,7 +45,7 @@ const ProjectCard = ({ project, index = 0 }: { project: Project; index?: number 
             ))}
           </div>
           <h3 className="m-0 mb-3 text-[clamp(22px,2.4vw,30px)] font-extrabold leading-[1.05] tracking-[-.025em]">
-            {project.title}
+            {title}
           </h3>
           <p className="m-0 line-clamp-3 text-[15px] text-muted">{localize(project.summary)}</p>
 

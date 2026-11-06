@@ -4,6 +4,7 @@ import { documentFile, externalLink } from './objects/resources';
 import { journeyEntry } from './documents/journeyEntry';
 import { project } from './documents/project';
 import { skillGroup } from './documents/skillGroup';
+import { testimonial } from './documents/testimonial';
 import { technology } from './documents/technology';
 import { homePage } from './singletons/homePage';
 import { siteSettings } from './singletons/siteSettings';
@@ -30,6 +31,7 @@ export const schemaTypes = [
   journeyEntry,
   skillGroup,
   technology,
+  testimonial,
   siteSettings,
   homePage,
   workPage,
