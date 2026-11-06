@@ -1,3 +1,10 @@
+## [1.17.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.2...v1.17.0) (2026-11-06)
+
+### Features
+
+* **cms:** recommandations, projets sans visuel et cadres multiples ([da1ff80](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/da1ff801ee001b1803d881f32e540e8eff93935d))
+* **web:** fond sans grille, page 404 utile et libellés plus clairs ([7d5a474](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/7d5a4741722f1cc51388375fcd7fe7efc326123e))
+
 ## [1.16.2](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.1...v1.16.2) (2026-10-21)
 
 ### Bug Fixes
