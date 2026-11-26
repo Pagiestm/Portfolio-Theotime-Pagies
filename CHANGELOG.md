@@ -1,3 +1,9 @@
+## [1.17.1](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.17.0...v1.17.1) (2026-11-26)
+
+### Bug Fixes
+
+* **deps:** update paquets 0.x to ^0.187.0 ([3026024](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/commit/3026024f919a1d3043a9ba73ae8e171e83a451b7))
+
 ## [1.17.0](https://github.com/Pagiestm/Portfolio-Theotime-Pagies/compare/v1.16.2...v1.17.0) (2026-11-06)
 
 ### Features
